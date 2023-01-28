@@ -232,15 +232,11 @@ window.addEventListener('DOMContentLoaded', main);
       <li><a class="reference" href="#add%2CBox%2CWidget"
     title="add(b: Box; child: Widget; stretchy = false)">add(b: Box; child: Widget; stretchy = false)</a></li>
   <li><a class="reference" href="#add%2CBox%2CopenArray%5BWidget%5D"
-    title="add(c: Box; items: openArray[Widget])">add(c: Box; items: openArray[Widget])</a></li>
-  <li><a class="reference" href="#add%2CCombobox%2CopenArray%5Bstring%5D"
-    title="add(c: Combobox; items: openArray[string])">add(c: Combobox; items: openArray[string])</a></li>
-  <li><a class="reference" href="#add%2CCombobox%2Cstring"
-    title="add(c: Combobox; text: string)">add(c: Combobox; text: string)</a></li>
-  <li><a class="reference" href="#add%2CEditableCombobox%2CopenArray%5Bstring%5D"
-    title="add(c: EditableCombobox; items: openArray[string])">add(c: EditableCombobox; items: openArray[string])</a></li>
-  <li><a class="reference" href="#add%2CEditableCombobox%2Cstring"
-    title="add(c: EditableCombobox; text: string)">add(c: EditableCombobox; text: string)</a></li>
+    title="add(c: Box; items: openArray[Widget]; stretchy = false)">add(c: Box; items: openArray[Widget]; stretchy = false)</a></li>
+  <li><a class="reference" href="#add%2CCombobox%2Cvarargs%5Bstring%5D"
+    title="add(c: Combobox; items: varargs[string])">add(c: Combobox; items: varargs[string])</a></li>
+  <li><a class="reference" href="#add%2CEditableCombobox%2Cvarargs%5Bstring%5D"
+    title="add(c: EditableCombobox; items: varargs[string])">add(c: EditableCombobox; items: varargs[string])</a></li>
   <li><a class="reference" href="#add%2CMultilineEntry%2Cstring"
     title="add(e: MultilineEntry; text: string)">add(e: MultilineEntry; text: string)</a></li>
   <li><a class="reference" href="#add%2CForm%2Cstring%2CWidget%2Cbool"
@@ -255,10 +251,8 @@ window.addEventListener('DOMContentLoaded', main);
     byteStride: int)</a></li>
   <li><a class="reference" href="#add%2COpenTypeFeatures%2Cchar%2Cchar%2Cchar%2Cchar%2Cuint32"
     title="add(otf: OpenTypeFeatures; a, b, c, d: char; value: uint32)">add(otf: OpenTypeFeatures; a, b, c, d: char; value: uint32)</a></li>
-  <li><a class="reference" href="#add%2CRadioButtons%2CopenArray%5Bstring%5D"
-    title="add(r: RadioButtons; items: openArray[string])">add(r: RadioButtons; items: openArray[string])</a></li>
-  <li><a class="reference" href="#add%2CRadioButtons%2Cstring"
-    title="add(r: RadioButtons; text: string)">add(r: RadioButtons; text: string)</a></li>
+  <li><a class="reference" href="#add%2CRadioButtons%2Cvarargs%5Bstring%5D"
+    title="add(r: RadioButtons; items: varargs[string])">add(r: RadioButtons; items: varargs[string])</a></li>
   <li><a class="reference" href="#add%2CTab%2Cstring%2CWidget"
     title="add(t: Tab; name: string; c: Widget)">add(t: Tab; name: string; c: Widget)</a></li>
 
@@ -632,6 +626,11 @@ window.addEventListener('DOMContentLoaded', main);
     title="headerVisible(t: Table): bool">headerVisible(t: Table): bool</a></li>
 
   </ul>
+  <ul class="simple nested-toc-section">headerVisible=
+      <li><a class="reference" href="#headerVisible%3D%2CTable%2Cbool"
+    title="headerVisible=(t: Table; visible: bool)">headerVisible=(t: Table; visible: bool)</a></li>
+
+  </ul>
   <ul class="simple nested-toc-section">hide
       <li><a class="reference" href="#hide%2CW"
     title="hide[W: Widget](w: W)">hide[W: Widget](w: W)</a></li>
@@ -913,7 +912,7 @@ window.addEventListener('DOMContentLoaded', main);
   </ul>
   <ul class="simple nested-toc-section">newCombobox
       <li><a class="reference" href="#newCombobox%2Cproc%28Combobox%29"
-    title="newCombobox(onSelected: proc (sender: Combobox) = nil): Combobox">newCombobox(onSelected: proc (sender: Combobox) = nil): Combobox</a></li>
+    title="newCombobox(onselected: proc (sender: Combobox) = nil): Combobox">newCombobox(onselected: proc (sender: Combobox) = nil): Combobox</a></li>
 
   </ul>
   <ul class="simple nested-toc-section">newDatePicker
@@ -1306,6 +1305,8 @@ window.addEventListener('DOMContentLoaded', main);
   <ul class="simple nested-toc-section">selected=
       <li><a class="reference" href="#selected%3D%2CCombobox%2Cint"
     title="selected=(c: Combobox; n: int)">selected=(c: Combobox; n: int)</a></li>
+  <li><a class="reference" href="#selected%3D%2CRadioButtons%2Cint"
+    title="selected=(r: RadioButtons; index: int)">selected=(r: RadioButtons; index: int)</a></li>
 
   </ul>
   <ul class="simple nested-toc-section">selection
@@ -1361,11 +1362,6 @@ window.addEventListener('DOMContentLoaded', main);
   <ul class="simple nested-toc-section">setRange
       <li><a class="reference" href="#setRange%2CSlider%2Cint%2Cint"
     title="setRange(s: Slider; min, max: int)">setRange(s: Slider; min, max: int)</a></li>
-
-  </ul>
-  <ul class="simple nested-toc-section">setSelected
-      <li><a class="reference" href="#setSelected%2CRadioButtons%2Cint"
-    title="setSelected(r: RadioButtons; index: int)">setSelected(r: RadioButtons; index: int)</a></li>
 
   </ul>
   <ul class="simple nested-toc-section">setSortIndicator
@@ -1977,39 +1973,24 @@ A Window can NOT be a child of another Widget.</div>
 </dd>
 </div>
 <div id="add,Box,openArray[Widget]">
-<dt><pre><span class="Keyword">proc</span> <a href="#add%2CBox%2CopenArray%5BWidget%5D"><span class="Identifier">add</span></a><span class="Other">(</span><span class="Identifier">c</span><span class="Other">:</span> <a href="uing.html#Box"><span class="Identifier">Box</span></a><span class="Other">;</span> <span class="Identifier">items</span><span class="Other">:</span> <span class="Identifier">openArray</span><span class="Other">[</span><a href="uing.html#Widget"><span class="Identifier">Widget</span></a><span class="Other">]</span><span class="Other">)</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
+<dt><pre><span class="Keyword">proc</span> <a href="#add%2CBox%2CopenArray%5BWidget%5D"><span class="Identifier">add</span></a><span class="Other">(</span><span class="Identifier">c</span><span class="Other">:</span> <a href="uing.html#Box"><span class="Identifier">Box</span></a><span class="Other">;</span> <span class="Identifier">items</span><span class="Other">:</span> <span class="Identifier">openArray</span><span class="Other">[</span><a href="uing.html#Widget"><span class="Identifier">Widget</span></a><span class="Other">]</span><span class="Other">;</span> <span class="Identifier">stretchy</span> <span class="Other">=</span> <span class="Identifier">false</span><span class="Other">)</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span>
+    <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
 <dd>
 
 Adds multiple widgets to the box
 
 </dd>
 </div>
-<div id="add,Combobox,openArray[string]">
-<dt><pre><span class="Keyword">proc</span> <a href="#add%2CCombobox%2CopenArray%5Bstring%5D"><span class="Identifier">add</span></a><span class="Other">(</span><span class="Identifier">c</span><span class="Other">:</span> <a href="uing.html#Combobox"><span class="Identifier">Combobox</span></a><span class="Other">;</span> <span class="Identifier">items</span><span class="Other">:</span> <span class="Identifier">openArray</span><span class="Other">[</span><span class="Identifier">string</span><span class="Other">]</span><span class="Other">)</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
+<div id="add,Combobox,varargs[string]">
+<dt><pre><span class="Keyword">proc</span> <a href="#add%2CCombobox%2Cvarargs%5Bstring%5D"><span class="Identifier">add</span></a><span class="Other">(</span><span class="Identifier">c</span><span class="Other">:</span> <a href="uing.html#Combobox"><span class="Identifier">Combobox</span></a><span class="Other">;</span> <span class="Identifier">items</span><span class="Other">:</span> <span class="Identifier">varargs</span><span class="Other">[</span><span class="Identifier">string</span><span class="Other">]</span><span class="Other">)</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
 <dd>
 
 
 
 </dd>
 </div>
-<div id="add,Combobox,string">
-<dt><pre><span class="Keyword">proc</span> <a href="#add%2CCombobox%2Cstring"><span class="Identifier">add</span></a><span class="Other">(</span><span class="Identifier">c</span><span class="Other">:</span> <a href="uing.html#Combobox"><span class="Identifier">Combobox</span></a><span class="Other">;</span> <span class="Identifier">text</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">)</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
-<dd>
-
-
-
-</dd>
-</div>
-<div id="add,EditableCombobox,openArray[string]">
-<dt><pre><span class="Keyword">proc</span> <a href="#add%2CEditableCombobox%2CopenArray%5Bstring%5D"><span class="Identifier">add</span></a><span class="Other">(</span><span class="Identifier">c</span><span class="Other">:</span> <a href="uing.html#EditableCombobox"><span class="Identifier">EditableCombobox</span></a><span class="Other">;</span> <span class="Identifier">items</span><span class="Other">:</span> <span class="Identifier">openArray</span><span class="Other">[</span><span class="Identifier">string</span><span class="Other">]</span><span class="Other">)</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
-<dd>
-
-
-
-</dd>
-</div>
-<div id="add,EditableCombobox,string">
-<dt><pre><span class="Keyword">proc</span> <a href="#add%2CEditableCombobox%2Cstring"><span class="Identifier">add</span></a><span class="Other">(</span><span class="Identifier">c</span><span class="Other">:</span> <a href="uing.html#EditableCombobox"><span class="Identifier">EditableCombobox</span></a><span class="Other">;</span> <span class="Identifier">text</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">)</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
+<div id="add,EditableCombobox,varargs[string]">
+<dt><pre><span class="Keyword">proc</span> <a href="#add%2CEditableCombobox%2Cvarargs%5Bstring%5D"><span class="Identifier">add</span></a><span class="Other">(</span><span class="Identifier">c</span><span class="Other">:</span> <a href="uing.html#EditableCombobox"><span class="Identifier">EditableCombobox</span></a><span class="Other">;</span> <span class="Identifier">items</span><span class="Other">:</span> <span class="Identifier">varargs</span><span class="Other">[</span><span class="Identifier">string</span><span class="Other">]</span><span class="Other">)</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
 <dd>
 
 
@@ -2060,16 +2041,8 @@ Adds multiple widgets to the box
 
 </dd>
 </div>
-<div id="add,RadioButtons,openArray[string]">
-<dt><pre><span class="Keyword">proc</span> <a href="#add%2CRadioButtons%2CopenArray%5Bstring%5D"><span class="Identifier">add</span></a><span class="Other">(</span><span class="Identifier">r</span><span class="Other">:</span> <a href="uing.html#RadioButtons"><span class="Identifier">RadioButtons</span></a><span class="Other">;</span> <span class="Identifier">items</span><span class="Other">:</span> <span class="Identifier">openArray</span><span class="Other">[</span><span class="Identifier">string</span><span class="Other">]</span><span class="Other">)</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
-<dd>
-
-
-
-</dd>
-</div>
-<div id="add,RadioButtons,string">
-<dt><pre><span class="Keyword">proc</span> <a href="#add%2CRadioButtons%2Cstring"><span class="Identifier">add</span></a><span class="Other">(</span><span class="Identifier">r</span><span class="Other">:</span> <a href="uing.html#RadioButtons"><span class="Identifier">RadioButtons</span></a><span class="Other">;</span> <span class="Identifier">text</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">)</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
+<div id="add,RadioButtons,varargs[string]">
+<dt><pre><span class="Keyword">proc</span> <a href="#add%2CRadioButtons%2Cvarargs%5Bstring%5D"><span class="Identifier">add</span></a><span class="Other">(</span><span class="Identifier">r</span><span class="Other">:</span> <a href="uing.html#RadioButtons"><span class="Identifier">RadioButtons</span></a><span class="Other">;</span> <span class="Identifier">items</span><span class="Other">:</span> <span class="Identifier">varargs</span><span class="Other">[</span><span class="Identifier">string</span><span class="Other">]</span><span class="Other">)</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
 <dd>
 
 
@@ -2254,9 +2227,7 @@ Adds multiple widgets to the box
 <dt><pre><span class="Keyword">proc</span> <a href="#borderless%2CWindow"><span class="Identifier">borderless</span></a><span class="Other">(</span><span class="Identifier">w</span><span class="Other">:</span> <a href="uing.html#Window"><span class="Identifier">Window</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">bool</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
 <dd>
 
-<p>Returns whether or not the window is borderless.</p>
-<p><tt class="docutils literal"><span class="pre"><span class="Identifier">w</span></span></tt>: Window instance.</p>
-
+Returns whether or not the window is borderless.
 
 </dd>
 </div>
@@ -2408,7 +2379,6 @@ This method is merely a hint and may be ignored by the system.</div>
 
 Gets the window content size.<div class="admonition admonition-info"><span class="admonition-info-text"><b>Note:</b></span>
 The content size does NOT include window decorations like menus or title bars.</div>
-<p><tt class="docutils literal"><span class="pre"><span class="Identifier">window</span></span></tt>: Window instance.</p>
 
 
 </dd>
@@ -2594,9 +2564,7 @@ Alias for <tt class="docutils literal"><span class="pre"><span class="Identifier
 <dt><pre><span class="Keyword">proc</span> <a href="#focused%2CWindow"><span class="Identifier">focused</span></a><span class="Other">(</span><span class="Identifier">w</span><span class="Other">:</span> <a href="uing.html#Window"><span class="Identifier">Window</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">bool</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
 <dd>
 
-<p>Returns whether or not the window is focused.</p>
-<p><tt class="docutils literal"><span class="pre"><span class="Identifier">w</span></span></tt>: Window instance.</p>
-
+Returns whether or not the window is focused.
 
 </dd>
 </div>
@@ -2735,9 +2703,7 @@ Frees the widget.
 <dt><pre><span class="Keyword">proc</span> <a href="#fullscreen%2CWindow"><span class="Identifier">fullscreen</span></a><span class="Other">(</span><span class="Identifier">w</span><span class="Other">:</span> <a href="uing.html#Window"><span class="Identifier">Window</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">bool</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
 <dd>
 
-<p>Returns whether or not the window is full screen.</p>
-<p><tt class="docutils literal"><span class="pre"><span class="Identifier">w</span></span></tt>: Window instance.</p>
-
+Returns whether or not the window is full screen.
 
 </dd>
 </div>
@@ -2805,6 +2771,14 @@ This method is merely a hint and may be ignored by the system.</div>
 </div>
 <div id="headerVisible,Table">
 <dt><pre><span class="Keyword">proc</span> <a href="#headerVisible%2CTable"><span class="Identifier">headerVisible</span></a><span class="Other">(</span><span class="Identifier">t</span><span class="Other">:</span> <a href="uing.html#Table"><span class="Identifier">Table</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">bool</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
+<dd>
+
+
+
+</dd>
+</div>
+<div id="headerVisible=,Table,bool">
+<dt><pre><span class="Keyword">proc</span> <a href="#headerVisible%3D%2CTable%2Cbool"><span class="Identifier">headerVisible=</span></a><span class="Other">(</span><span class="Identifier">t</span><span class="Other">:</span> <a href="uing.html#Table"><span class="Identifier">Table</span></a><span class="Other">;</span> <span class="Identifier">visible</span><span class="Other">:</span> <span class="Identifier">bool</span><span class="Other">)</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
 <dd>
 
 
@@ -3490,9 +3464,7 @@ Hides the widget.
 <dt><pre><span class="Keyword">proc</span> <a href="#margined%2CWindow"><span class="Identifier">margined</span></a><span class="Other">(</span><span class="Identifier">w</span><span class="Other">:</span> <a href="uing.html#Window"><span class="Identifier">Window</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">bool</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
 <dd>
 
-<p>Returns whether or not the window has a margin.i</p>
-<p><tt class="docutils literal"><span class="pre"><span class="Identifier">w</span></span></tt>: Window instance.</p>
-
+Returns whether or not the window has a margin.i
 
 </dd>
 </div>
@@ -3607,7 +3579,7 @@ Hides the widget.
 </dd>
 </div>
 <div id="newCombobox,proc(Combobox)">
-<dt><pre><span class="Keyword">proc</span> <a href="#newCombobox%2Cproc%28Combobox%29"><span class="Identifier">newCombobox</span></a><span class="Other">(</span><span class="Identifier">onSelected</span><span class="Other">:</span> <span class="Keyword">proc</span> <span class="Other">(</span><span class="Identifier">sender</span><span class="Other">:</span> <a href="uing.html#Combobox"><span class="Identifier">Combobox</span></a><span class="Other">)</span> <span class="Other">=</span> <span class="Keyword">nil</span><span class="Other">)</span><span class="Other">:</span> <a href="uing.html#Combobox"><span class="Identifier">Combobox</span></a> {.
+<dt><pre><span class="Keyword">proc</span> <a href="#newCombobox%2Cproc%28Combobox%29"><span class="Identifier">newCombobox</span></a><span class="Other">(</span><span class="Identifier">onselected</span><span class="Other">:</span> <span class="Keyword">proc</span> <span class="Other">(</span><span class="Identifier">sender</span><span class="Other">:</span> <a href="uing.html#Combobox"><span class="Identifier">Combobox</span></a><span class="Other">)</span> <span class="Other">=</span> <span class="Keyword">nil</span><span class="Other">)</span><span class="Other">:</span> <a href="uing.html#Combobox"><span class="Identifier">Combobox</span></a> {.
     <span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">Exception</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">RootEffect</span><span class="Other">]</span></span>.}</pre></dt>
 <dd>
 
@@ -4081,7 +4053,6 @@ Creates a new tab container.
 
 <p>Returns whether or not widgets within the box are padded.</p>
 <p>Padding is defined as space between individual widgets.</p>
-<p><tt class="docutils literal"><span class="pre"><span class="Identifier">b</span></span></tt>: Box instance.</p>
 
 
 </dd>
@@ -4186,9 +4157,7 @@ Can be used to merge an async event loop with UI's event loop. Implemented using
 <dt><pre><span class="Keyword">proc</span> <a href="#readOnly%2CEntry"><span class="Identifier">readOnly</span></a><span class="Other">(</span><span class="Identifier">e</span><span class="Other">:</span> <a href="uing.html#Entry"><span class="Identifier">Entry</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">bool</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
 <dd>
 
-<p>Returns whether or not the entry's text can be changed.</p>
-<p><tt class="docutils literal"><span class="pre"><span class="Identifier">e</span></span></tt>: Entry instance.</p>
-
+Returns whether or not the entry's text can be changed.
 
 </dd>
 </div>
@@ -4231,9 +4200,7 @@ Can be used to merge an async event loop with UI's event loop. Implemented using
 <dt><pre><span class="Keyword">proc</span> <a href="#resizeable%2CWindow"><span class="Identifier">resizeable</span></a><span class="Other">(</span><span class="Identifier">w</span><span class="Other">:</span> <a href="uing.html#Window"><span class="Identifier">Window</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">bool</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
 <dd>
 
-<p>Returns whether or not the window is user resizeable.</p>
-<p><tt class="docutils literal"><span class="pre"><span class="Identifier">w</span></span></tt>: Window instance.</p>
-
+Returns whether or not the window is user resizeable.
 
 </dd>
 </div>
@@ -4244,7 +4211,7 @@ Can be used to merge an async event loop with UI's event loop. Implemented using
 Sets whether or not the window is user resizeable.<div class="admonition admonition-info"><span class="admonition-info-text"><b>Note:</b></span>
 This method is merely a hint and may be ignored by the system.</div>
 <p><tt class="docutils literal"><span class="pre"><span class="Identifier">w</span></span></tt>: Window instance.</p>
-<p><tt class="docutils literal"><span class="pre"><span class="Identifier">resizeable</span></span></tt>: <tt class="docutils literal"><span class="pre"><span class="Identifier">true</span></span></tt> to make window resizable, <tt class="docutils literal"><span class="pre"><span class="Identifier">true</span></span></tt> otherwise.</p>
+<p><tt class="docutils literal"><span class="pre"><span class="Identifier">resizeable</span></span></tt>: <tt class="docutils literal"><span class="pre"><span class="Identifier">true</span></span></tt> to make window resizable, <tt class="docutils literal"><span class="pre"><span class="Identifier">false</span></span></tt> otherwise.</p>
 
 
 </dd>
@@ -4316,6 +4283,14 @@ This method is merely a hint and may be ignored by the system.</div>
 </div>
 <div id="selected=,Combobox,int">
 <dt><pre><span class="Keyword">proc</span> <a href="#selected%3D%2CCombobox%2Cint"><span class="Identifier">selected=</span></a><span class="Other">(</span><span class="Identifier">c</span><span class="Other">:</span> <a href="uing.html#Combobox"><span class="Identifier">Combobox</span></a><span class="Other">;</span> <span class="Identifier">n</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">)</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
+<dd>
+
+
+
+</dd>
+</div>
+<div id="selected=,RadioButtons,int">
+<dt><pre><span class="Keyword">proc</span> <a href="#selected%3D%2CRadioButtons%2Cint"><span class="Identifier">selected=</span></a><span class="Other">(</span><span class="Identifier">r</span><span class="Other">:</span> <a href="uing.html#RadioButtons"><span class="Identifier">RadioButtons</span></a><span class="Other">;</span> <span class="Identifier">index</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">)</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
 <dd>
 
 
@@ -4408,14 +4383,6 @@ This method is merely a hint and may be ignored by the system.</div>
 </div>
 <div id="setRange,Slider,int,int">
 <dt><pre><span class="Keyword">proc</span> <a href="#setRange%2CSlider%2Cint%2Cint"><span class="Identifier">setRange</span></a><span class="Other">(</span><span class="Identifier">s</span><span class="Other">:</span> <a href="uing.html#Slider"><span class="Identifier">Slider</span></a><span class="Other">;</span> <span class="Identifier">min</span><span class="Other">,</span> <span class="Identifier">max</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">)</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
-<dd>
-
-
-
-</dd>
-</div>
-<div id="setSelected,RadioButtons,int">
-<dt><pre><span class="Keyword">proc</span> <a href="#setSelected%2CRadioButtons%2Cint"><span class="Identifier">setSelected</span></a><span class="Other">(</span><span class="Identifier">r</span><span class="Other">:</span> <a href="uing.html#RadioButtons"><span class="Identifier">RadioButtons</span></a><span class="Other">;</span> <span class="Identifier">index</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">)</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
 <dd>
 
 
@@ -4535,9 +4502,7 @@ Shows the widget.
 <dt><pre><span class="Keyword">proc</span> <a href="#text%2CButton"><span class="Identifier">text</span></a><span class="Other">(</span><span class="Identifier">b</span><span class="Other">:</span> <a href="uing.html#Button"><span class="Identifier">Button</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">string</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
 <dd>
 
-<p>Returns the button label text.</p>
-<p><tt class="docutils literal"><span class="pre"><span class="Identifier">b</span></span></tt>: Button instance</p>
-
+Returns the button label text.
 
 </dd>
 </div>
@@ -4545,9 +4510,7 @@ Shows the widget.
 <dt><pre><span class="Keyword">proc</span> <a href="#text%2CCheckbox"><span class="Identifier">text</span></a><span class="Other">(</span><span class="Identifier">c</span><span class="Other">:</span> <a href="uing.html#Checkbox"><span class="Identifier">Checkbox</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">string</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
 <dd>
 
-<p>Returns the checkbox label text.</p>
-<p><tt class="docutils literal"><span class="pre"><span class="Identifier">c</span></span></tt>: Checkbox instance.</p>
-
+Returns the checkbox label text.
 
 </dd>
 </div>
@@ -4581,9 +4544,7 @@ Shows the widget.
 <dt><pre><span class="Keyword">proc</span> <a href="#text%2CLabel"><span class="Identifier">text</span></a><span class="Other">(</span><span class="Identifier">l</span><span class="Other">:</span> <a href="uing.html#Label"><span class="Identifier">Label</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">string</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
 <dd>
 
-<p>Returns the label text.</p>
-<p><tt class="docutils literal"><span class="pre"><span class="Identifier">l</span></span></tt>: Lable Instance</p>
-
+Returns the label text.
 
 </dd>
 </div>
@@ -4684,9 +4645,7 @@ Shows the widget.
 <dt><pre><span class="Keyword">proc</span> <a href="#title%2CWindow"><span class="Identifier">title</span></a><span class="Other">(</span><span class="Identifier">w</span><span class="Other">:</span> <a href="uing.html#Window"><span class="Identifier">Window</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">string</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
 <dd>
 
-<p>Returns the window title.</p>
-<p><tt class="docutils literal"><span class="pre"><span class="Identifier">w</span></span></tt>: Window instance.</p>
-
+Returns the window title.
 
 </dd>
 </div>
@@ -4850,7 +4809,7 @@ Returns whether or not the widget is visible.
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small style="color: var(--hint);">Made with Nim. Generated: 2023-01-28 19:24:41 UTC</small>
+        <small style="color: var(--hint);">Made with Nim. Generated: 2023-01-28 21:38:55 UTC</small>
       </div>
     </div>
   </div>

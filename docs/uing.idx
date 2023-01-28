@@ -115,11 +115,10 @@ newButton	uing.html#newButton,string,proc(Button)	uing: newButton(text: string; 
 RadioButtons	uing.html#RadioButtons	uing: RadioButtons	
 impl	uing.html#impl,RadioButtons	uing: impl(b: RadioButtons): RawRadioButtons	
 impl=	uing.html#impl=,RadioButtons,RawRadioButtons	uing: impl=(b: RadioButtons; r: RawRadioButtons)	
-add	uing.html#add,RadioButtons,string	uing: add(r: RadioButtons; text: string)	
-add	uing.html#add,RadioButtons,openArray[string]	uing: add(r: RadioButtons; items: openArray[string])	
+add	uing.html#add,RadioButtons,varargs[string]	uing: add(r: RadioButtons; items: varargs[string])	
 radioButtonsSelected	uing.html#radioButtonsSelected,RadioButtons	uing: radioButtonsSelected(r: RadioButtons): int	
 selected	uing.html#selected,RadioButtons	uing: selected(r: RadioButtons): int	
-setSelected	uing.html#setSelected,RadioButtons,int	uing: setSelected(r: RadioButtons; index: int)	
+selected=	uing.html#selected=,RadioButtons,int	uing: selected=(r: RadioButtons; index: int)	
 newRadioButtons	uing.html#newRadioButtons,proc(RadioButtons)	uing: newRadioButtons(onSelected: proc (sender: RadioButtons) = nil): RadioButtons	
 Window	uing.html#Window	uing: Window	
 impl	uing.html#impl,Window	uing: impl(b: Window): RawWindow	
@@ -150,7 +149,7 @@ Box	uing.html#Box	uing: Box
 impl	uing.html#impl,Box	uing: impl(b: Box): RawBox	
 impl=	uing.html#impl=,Box,RawBox	uing: impl=(b: Box; r: RawBox)	
 add	uing.html#add,Box,Widget	uing: add(b: Box; child: Widget; stretchy = false)	
-add	uing.html#add,Box,openArray[Widget]	uing: add(c: Box; items: openArray[Widget])	
+add	uing.html#add,Box,openArray[Widget]	uing: add(c: Box; items: openArray[Widget]; stretchy = false)	
 delete	uing.html#delete,Box,int	uing: delete(b: Box; index: int)	
 padded	uing.html#padded,Box	uing: padded(b: Box): bool	
 padded=	uing.html#padded=,Box,bool	uing: padded=(b: Box; x: bool)	
@@ -232,20 +231,18 @@ newHorizontalSeparator	uing.html#newHorizontalSeparator	uing: newHorizontalSepar
 Combobox	uing.html#Combobox	uing: Combobox	
 impl	uing.html#impl,Combobox	uing: impl(b: Combobox): RawCombobox	
 impl=	uing.html#impl=,Combobox,RawCombobox	uing: impl=(b: Combobox; r: RawCombobox)	
-add	uing.html#add,Combobox,string	uing: add(c: Combobox; text: string)	
-add	uing.html#add,Combobox,openArray[string]	uing: add(c: Combobox; items: openArray[string])	
+add	uing.html#add,Combobox,varargs[string]	uing: add(c: Combobox; items: varargs[string])	
 insertAt	uing.html#insertAt,Combobox,int,string	uing: insertAt(c: Combobox; index: int; text: string)	
 clear	uing.html#clear,Combobox	uing: clear(c: Combobox)	
 delete	uing.html#delete,Combobox,int	uing: delete(c: Combobox; index: int)	
 numItems	uing.html#numItems,Combobox	uing: numItems(c: Combobox): int	
 selected	uing.html#selected,Combobox	uing: selected(c: Combobox): int	
 selected=	uing.html#selected=,Combobox,int	uing: selected=(c: Combobox; n: int)	
-newCombobox	uing.html#newCombobox,proc(Combobox)	uing: newCombobox(onSelected: proc (sender: Combobox) = nil): Combobox	
+newCombobox	uing.html#newCombobox,proc(Combobox)	uing: newCombobox(onselected: proc (sender: Combobox) = nil): Combobox	
 EditableCombobox	uing.html#EditableCombobox	uing: EditableCombobox	
 impl	uing.html#impl,EditableCombobox	uing: impl(b: EditableCombobox): RawEditableCombobox	
 impl=	uing.html#impl=,EditableCombobox,RawEditableCombobox	uing: impl=(b: EditableCombobox; r: RawEditableCombobox)	
-add	uing.html#add,EditableCombobox,string	uing: add(c: EditableCombobox; text: string)	
-add	uing.html#add,EditableCombobox,openArray[string]	uing: add(c: EditableCombobox; items: openArray[string])	
+add	uing.html#add,EditableCombobox,varargs[string]	uing: add(c: EditableCombobox; items: varargs[string])	
 text	uing.html#text,EditableCombobox	uing: text(c: EditableCombobox): string	
 text=	uing.html#text=,EditableCombobox,string	uing: text=(c: EditableCombobox; text: string)	
 newEditableCombobox	uing.html#newEditableCombobox,proc(EditableCombobox)	uing: newEditableCombobox(onchanged: proc (sender: EditableCombobox) = nil): EditableCombobox	
@@ -336,6 +333,7 @@ appendCheckboxColumn	uing.html#appendCheckboxColumn,Table,string,int,int	uing: a
 appendProgressBarColumn	uing.html#appendProgressBarColumn,Table,string,int	uing: appendProgressBarColumn(table: Table; title: string; index: int)	
 appendButtonColumn	uing.html#appendButtonColumn,Table,string,int,int	uing: appendButtonColumn(table: Table; title: string; index, clickableMode: int)	
 headerVisible	uing.html#headerVisible,Table	uing: headerVisible(t: Table): bool	
+headerVisible=	uing.html#headerVisible=,Table,bool	uing: headerVisible=(t: Table; visible: bool)	
 headerSetVisible	uing.html#headerSetVisible,Table,bool	uing: headerSetVisible(t: Table; visible: bool)	
 selectionMode	uing.html#selectionMode,Table	uing: selectionMode(table: Table): TableSelectionMode	
 selectionMode=	uing.html#selectionMode=,Table,TableSelectionMode	uing: selectionMode=(table: Table; mode: TableSelectionMode)	

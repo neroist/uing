@@ -1,18 +1,15 @@
 # 13 october 2015
+import std/random
 
-import ui/rawui, random
+import uing/rawui
 
-var mainwin*: ptr Window
-
-var histogram*: ptr Area
-
-var handler*: AreaHandler
-
-var datapoints*: array[10, ptr Spinbox]
-
-var colorButton*: ptr ColorButton
-
-var currentPoint*: cint = - 1
+var 
+  mainwin*: ptr Window
+  histogram*: ptr Area
+  handler*: AreaHandler
+  datapoints*: array[10, ptr Spinbox]
+  colorButton*: ptr ColorButton
+  currentPoint*: cint = -1
 
 # some metrics
 
@@ -35,7 +32,7 @@ proc renderText(ctx: ptr DrawContext; txt: cstring) =
     stretch: TextStretchNormal
   )
   let textLayoutParams = DrawTextLayoutParams(
-    str: newAttributedString(txt),
+    string: newAttributedString(txt),
     defaultFont: unsafeAddr fontDesc,
     width: -1.0,
     align: DrawTextAlignCenter

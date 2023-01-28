@@ -484,7 +484,7 @@ proc radioButtonsSelected*(r: RadioButtons): int =
 proc selected*(r: RadioButtons): int =
   radioButtonsSelected(r.impl)
 
-proc setSelected*(r: RadioButtons, index: int) =
+proc `selected=`*(r: RadioButtons, index: int) =
   radioButtonsSetSelected(r.impl, cint index)
 
 proc newRadioButtons*(onSelected: proc(sender: RadioButtons)  = nil): RadioButtons =
@@ -621,7 +621,7 @@ proc `resizeable=`*(w: Window, resizeable: bool) =
   ## 
   ## `w`: Window instance.
   ## 
-  ## `resizeable`: `true` to make window resizable, `true` otherwise.
+  ## `resizeable`: `true` to make window resizable, `false` otherwise.
 
   windowSetResizeable(w.impl, cint resizeable)
 
@@ -630,6 +630,7 @@ proc `resizeable=`*(w: Window, resizeable: bool) =
 #  ## true. Don't ask...
 #
 #  controlDestroy(w.impl)
+
 proc margined*(w: Window): bool = 
   ## Returns whether or not the window has a margin.i
   ## 
@@ -1510,6 +1511,7 @@ proc appendButtonColumn*(table: Table, title: string, index, clickableMode: int)
   table.impl.tableAppendButtonColumn(title, index.cint, clickableMode.cint)
 
 proc headerVisible*(t: Table): bool = bool tableHeaderVisible(t.impl)
+proc `headerVisible=`*(t: Table; visible: bool) = tableHeaderSetVisible(t.impl, cint visible)
 proc headerSetVisible*(t: Table; visible: bool) = tableHeaderSetVisible(t.impl, cint visible)
 
 proc selectionMode*(table: Table): TableSelectionMode = tableGetSelectionMode(table.impl)

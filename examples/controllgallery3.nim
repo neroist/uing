@@ -1,5 +1,4 @@
-import std/sugar
-import std/with
+import std/[sugar, with]
 
 import uing
 

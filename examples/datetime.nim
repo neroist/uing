@@ -1,5 +1,4 @@
-import std/sugar
-import std/times
+import std/[sugar, times]
 
 import uing
 
