@@ -47,22 +47,22 @@ else:
     {.compile: ("./libui/unix/*.c", "unix_$#.obj").}
 
   when defined(gcc) and defined(windows):
-    {.passL: r"-lwinspool".}
-    {.passL: r"-lcomdlg32".}
-    {.passL: r"-ladvapi32".}
-    {.passL: r"-lshell32".}
-    {.passL: r"-lole32".}
-    {.passL: r"-loleaut32".}
+    {.passl: r"-lwinspool".}
+    {.passl: r"-lcomdlg32".}
+    {.passl: r"-ladvapi32".}
+    {.passl: r"-lshell32".}
+    {.passl: r"-lole32".}
+    {.passl: r"-loleaut32".}
 
-    {.passL: r"-luuid".}
-    {.passL: r"-lcomctl32".}
-    {.passL: r"-ld2d1".}
-    {.passL: r"-ldwrite".}
-    {.passL: r"-lUxTheme".}
-    {.passL: r"-lUsp10".}
-    {.passL: r"-lgdi32".}
-    {.passL: r"-luser32".}
-    {.passL: r"-lkernel32".}
+    {.passl: r"-luuid".}
+    {.passl: r"-lcomctl32".}
+    {.passl: r"-ld2d1".}
+    {.passl: r"-ldwrite".}
+    {.passl: r"-lUxTheme".}
+    {.passl: r"-lUsp10".}
+    {.passl: r"-lgdi32".}
+    {.passl: r"-luser32".}
+    {.passl: r"-lkernel32".}
     {.link: r"..\res\resources.o".}
 
   when defined(vcc):

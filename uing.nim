@@ -685,7 +685,7 @@ proc error*(parent: Window; title, desc: string) =
 
   msgBoxError(parent, title, desc)
 
-proc onclosingWrapper(rw: ptr rawui.Window; data: pointer): cint {.cdecl.} =
+proc onClosingWrapper(rw: ptr rawui.Window; data: pointer): cint {.cdecl.} =
   let w = cast[Window](data)
   if w.onclosing != nil:
     if w.onclosing(w):
@@ -1171,10 +1171,10 @@ proc `selected=`*(c: Combobox; n: int) = comboboxSetSelected c.impl, cint n
 
 genCallback wrapbbOnSelected, Combobox, onselected
 
-proc newCombobox*(onSelected: proc(sender: Combobox) = nil): Combobox =
+proc newCombobox*(onselected: proc(sender: Combobox) = nil): Combobox =
   newFinal result
   result.impl = rawui.newCombobox()
-  result.onSelected = onSelected
+  result.onselected = onselected
   comboboxOnSelected(result.impl, wrapbbOnSelected, cast[pointer](result))
 
 # ----------------------- EditableCombobox ----------------------
@@ -1369,7 +1369,7 @@ proc newColorButton*(onchanged: proc (sender: ColorButton) = nil): ColorButton =
   newFinal result
   result.impl = rawui.newColorButton()
   result.onchanged = onchanged
-  colorButtonOnChanged(result.impl, wrapOnchanged, cast[pointer](result))
+  colorButtonOnChanged(result.impl, wrapOnChanged, cast[pointer](result))
 
 # -------------------- Form --------------------------------------
 
@@ -1677,7 +1677,7 @@ proc `time=`*(d: DateTimePicker, dateTime: DateTime) =
     mday: cint dateTime.monthday,
     mon: cint ord(dateTime.month) - 1,
     year: cint dateTime.year - 1900,
-    wday: cint ord(dateTime.weekDay) - 1,
+    wday: cint ord(dateTime.weekday) - 1,
     yday: cint dateTime.yearday,
     isdst: cint dateTime.isDst
   )
