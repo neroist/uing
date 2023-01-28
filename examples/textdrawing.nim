@@ -52,7 +52,6 @@ proc makeAttributedString =
   appendWithAttribute("text background color", attr6, nil)
   attrstr.addUnattributed(", ")
 
-
   let attr7 = newUnderlineAttribute(UnderlineSingle)
   appendWithAttribute("underline style", attr7, nil)
   attrstr.addUnattributed("and ")
@@ -102,11 +101,11 @@ proc drawHandler*(a: ptr AreaHandler; area: ptr Area; p: ptr AreaDrawParams) {.c
 
   params.defaultFont = defaultFontImpl
   params.width = p.areaWidth
-  params.align = DrawTextAlign alignment.selected
+  params.align = DrawTextAlign(alignment.selected)
   textLayout = newDrawTextLayout(addr params)
-  drawText(p.context, textLayout, 0, 0)
-  free textLayout
+  drawText p.context, textLayout, 0, 0
 
+  free textLayout
   free defaultFont
 
 proc main =
@@ -136,7 +135,7 @@ proc main =
   vbox.add form
 
   alignment = newCombobox()
-  alignment.add ["Left", "Center", "Right"]
+  alignment.add "Left", "Center", "Right"
   alignment.selected = 0
   alignment.onselected = (_: Combobox) => area.queueRedrawAll()
   form.add "Alignment", alignment

@@ -1092,7 +1092,7 @@ proc `value=`*(s: Slider; value: int) = sliderSetValue(s.impl, cint value)
 proc `range=`*(s: Slider; sliderRange: tuple[min, max: int]) = sliderSetRange(s.impl, cint sliderRange.min, cint sliderRange.max)
 proc setRange*(s: Slider; min, max: int) = sliderSetRange(s.impl, cint min, cint max)
 proc hasToolTip*(s: Slider): bool = bool sliderHasToolTip(s.impl)
-proc `hasToolTip=`*(s: Slider, hasToolTip: bool): bool = sliderSetHasToolTip(s.impl, cint hasToolTip)
+proc `hasToolTip=`*(s: Slider, hasToolTip: bool) = sliderSetHasToolTip(s.impl, cint hasToolTip)
 
 genCallback wrapslOnChanged, Slider, onchanged
 genCallback wrapslOnReleased, Slider, onreleased
@@ -1114,6 +1114,9 @@ genImplProcs(ProgressBar)
 proc value*(p: ProgressBar): int = int progressBarValue(p.impl)
 
 proc `value=`*(p: ProgressBar; n: int) =
+  if n < -1:
+    raise newException(ValueError, "ProgressBar value can not be lower than -1")
+
   progressBarSetValue p.impl, n.cint
 
 proc indeterminate*(p: ProgressBar): bool = p.value == -1
@@ -1155,7 +1158,7 @@ proc add*(c: Combobox; items: varargs[string]) =
     c.items.add text
 
 proc insertAt*(c: Combobox; index: int; text: string) = 
-  comboboxInsertAt(c.impl, cint index, cstring text)
+  comboboxInsertAt(c.impl, cint index, text)
   c.items.insert text, index
 
 proc clear*(c: Combobox) = 
@@ -1356,7 +1359,7 @@ proc color*(c: ColorButton): tuple[r, g, b, a: float] =
   result = (r: float r, g: float g, b: float b, a: float a)
 
 proc setColor*(c: ColorButton; r, g, b, alpha: float = 1.0) = 
-  colorButtonSetColor(c.impl, cdouble r, cdouble b, cdouble g, cdouble alpha)
+  colorButtonSetColor(c.impl, r, b, g, alpha)
 
 #[
 proc setColor*(c: ColorButton; color: colors.Color; alpha: float) = 
@@ -1381,7 +1384,7 @@ type
 genImplProcs(Form)
 
 proc add*(f: Form, label: string, w: Widget, stretchy: bool = false) = 
-  formAppend(f.impl, cstring label, w.impl, cint stretchy)
+  formAppend(f.impl, label, w.impl, cint stretchy)
   f.chlidren.add (label: label, widget: w)
 
 # maybe kinda useless since you can do len(form.children)

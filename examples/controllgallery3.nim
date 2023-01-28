@@ -50,8 +50,8 @@ proc makenumbersAndListsBox: Box =
   spin.onchanged = update
   slide.onchanged = update
 
-  #progress2.value = -1 # send progressbar to be indeterminate
-  progress2.indeterminate = true
+  #progress2.value = -1 # set progressbar to be indeterminate
+  progress2.indeterminate= true
 
   numbers.child = numbersBox
   numbersBox.add spin
@@ -67,9 +67,9 @@ proc makenumbersAndListsBox: Box =
     editableCombo = newEditableCombobox()
     radio = newRadioButtons()
 
-  combo.add ["Combobox Item 1", "Combobox Item 2", "Combobox Item 3"]
-  editableCombo.add ["Editable Item 1", "Editable Item 2", "Editable Item 3"]
-  radio.add ["Radio Button 1", "Radio Button 2", "Radio Button 3"]
+  combo.add "Combobox Item 1", "Combobox Item 2", "Combobox Item 3"
+  editableCombo.add "Editable Item 1", "Editable Item 2", "Editable Item 3"
+  radio.add "Radio Button 1", "Radio Button 2", "Radio Button 3"
 
   lists.child = listsBox
   listsBox.add combo
