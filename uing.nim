@@ -9,15 +9,17 @@ type
 func impl*(w: Widget): ptr[Control] = cast[ptr Control](w.internalImpl)
 
 proc init*() =
-  var o: rawui.InitOptions
-  var err: cstring
-  err = rawui.init(addr o)
+  var 
+    o: rawui.InitOptions
+    err = rawui.init(addr o)
+
   if err != nil:
     let msg = $err
+
     freeInitError(err)
     raise newException(ValueError, msg)
 
-proc quit*() = rawui.quit()
+proc quit* = rawui.quit()
 
 proc mainLoop*() =
   rawui.main()
@@ -27,10 +29,13 @@ proc pollingMainLoop*(poll: proc(timeout: int); timeout: int) =
   ## Can be used to merge an async event loop with UI's event loop.
   ## Implemented using timeouts and polling because that's the only
   ## thing that truely composes.
+  
   rawui.mainSteps()
+
   while true:
     poll(timeout)
     discard rawui.mainStep(0) # != 0: break
+
   rawui.uninit()
 
 template newFinal(result) =
@@ -55,11 +60,11 @@ template genCallback(name, typ, on) {. dirty .} =
     let widget = cast[typ](data)
     if widget.on != nil: widget.on(widget)
   
-    
 template genImplProcs(t: untyped) {.dirty.}=
   type `Raw t` = ptr[rawui.t]
   func impl*(b: t): `Raw t` = cast[`Raw t`](b.internalImpl)
   func `impl=`*(b: t, r: `Raw t`) = b.internalImpl = pointer(r)
+
 
 # -------------------- Non-Widgets --------------------------------------
 
@@ -97,7 +102,7 @@ proc newFontDescriptor*(
   stretch: TextStretch = TextStretchNormal): FontDescriptor =
   newFinal result
 
-  proc impl(): RawFontDescriptor =
+  proc impl: RawFontDescriptor =
     var font = rawui.FontDescriptor(
       family: cstring family,
       size: float size, 
@@ -435,8 +440,6 @@ genImplProcs(Button)
 
 proc text*(b: Button): string =
   ## Returns the button label text.
-  ## 
-  ## `b`: Button instance
   
   $buttonText(b.impl)
 
@@ -471,12 +474,9 @@ genCallback(wrapOnRadioButtonClick, RadioButtons, onSelected)
 
 genImplProcs(RadioButtons)
 
-proc add*(r: RadioButtons; text: string) =
-  radioButtonsAppend(r.impl, text)
-
-proc add*(r: RadioButtons; items: openArray[string]) = 
-  for item in items:
-    r.add item
+proc add*(r: RadioButtons; items: varargs[string]) = 
+  for text in items:
+    radioButtonsAppend(r.impl, cstring text)
 
 proc radioButtonsSelected*(r: RadioButtons): int =
   radioButtonsSelected(r.impl)
@@ -745,11 +745,11 @@ proc add*(b: Box; child: Widget; stretchy = false) =
   boxAppend(b.impl, child.impl, cint(stretchy))
   b.children.add child
 
-proc add*(c: Box; items: openArray[Widget]) = 
+proc add*(c: Box; items: openArray[Widget]; stretchy = false) = 
   ## Adds multiple widgets to the box
 
   for item in items:
-    c.add item
+    c.add item, stretchy
 
 proc delete*(b: Box; index: int) = 
   ## Removes the widget at `index` from the box.
@@ -1148,13 +1148,10 @@ type
     
 genImplProcs(Combobox)
 
-proc add*(c: Combobox; text: string) = 
-  comboboxAppend(c.impl, text)
-  c.items.add text
-
-proc add*(c: Combobox; items: openArray[string]) = 
-  for item in items:
-    c.add item
+proc add*(c: Combobox; items: varargs[string]) = 
+  for text in items:
+    comboboxAppend(c.impl, cstring text)
+    c.items.add text
 
 proc insertAt*(c: Combobox; index: int; text: string) = 
   comboboxInsertAt(c.impl, cint index, cstring text)
@@ -1188,12 +1185,9 @@ type
     
 genImplProcs(EditableCombobox)
 
-proc add*(c: EditableCombobox; text: string) =
-  editableComboboxAppend(c.impl, text)
-
-proc add*(c: EditableCombobox; items: openArray[string]) = 
-  for item in items:
-    c.add item
+proc add*(c: EditableCombobox; items: varargs[string]) = 
+  for text in items:
+    editableComboboxAppend(c.impl, cstring text)
 
 proc text*(c: EditableCombobox): string =
   $editableComboboxText(c.impl)

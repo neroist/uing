@@ -7,6 +7,7 @@ proc main*() =
   var mainwin: Window
 
   var menu = newMenu("File")
+
   menu.addItem("Open", proc(_: MenuItem) =
     let filename = openFile(mainwin)
     if filename.len == 0:
@@ -14,6 +15,7 @@ proc main*() =
     else:
       msgBox(mainwin, "File selected", filename)
   )
+
   menu.addItem("Save", proc(_: MenuItem) =
     let filename = saveFile(mainwin)
     if filename.len == 0:
@@ -21,6 +23,7 @@ proc main*() =
     else:
       msgBox(mainwin, "File selected (don't worry, it's still there)", filename)
   )
+  
   menu.addQuitItem(
     proc(): bool {.closure.} =
       mainwin.destroy()

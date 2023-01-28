@@ -1,4 +1,4 @@
-# Uing
+# UIng
 
 This package wraps the [libui-ng](https://github.com/libui-ng/libui-ng) C library. It
 also provides a high-level Nim binding for it.
@@ -24,7 +24,7 @@ OSX: `$ brew install gtk+3`
 
 
 You should then be able to compile the sample code in the
-[``examples/``](https://github.com/nim-lang/ui/tree/master/examples)
+[``examples/``](examples/)
 directory successfully.
 
 ## Static vs. dynamic linking
