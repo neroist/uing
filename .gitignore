@@ -1,3 +1,4 @@
 nimcache/
 libui/
 *.dll
+*.exe
