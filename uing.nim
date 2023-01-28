@@ -1,6 +1,6 @@
 import std/times
 
-import ui/rawui
+import uing/rawui
 
 type
   Widget* = ref object of RootRef ## abstract Widget base class.

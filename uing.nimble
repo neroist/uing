@@ -5,8 +5,8 @@ author        = "Jasmine"
 description   = "Wrapper for libui-ng, a maintained fork of libui"
 license       = "MIT"
 
-installDirs = @["ui","res"]
-installFiles = @["ui.nim"]
+installDirs = @["uing","res"]
+installFiles = @["uing.nim"]
 
 # Dependencies
 

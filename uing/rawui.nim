@@ -1498,9 +1498,6 @@ type
     numRows*: cint
     rows*   : ptr cint
 
-
-
-
 proc tableGetSelectionMode*(t: ptr Table): TableSelectionMode {.cdecl,
     importc: "uiTableGetSelectionMode", libui.}
 

@@ -1,0 +1,368 @@
+Widget	uing.html#Widget	uing: Widget	
+impl	uing.html#impl,Widget	uing: impl(w: Widget): ptr [Control]	
+init	uing.html#init	uing: init()	
+quit	uing.html#quit	uing: quit()	
+mainLoop	uing.html#mainLoop	uing: mainLoop()	
+pollingMainLoop	uing.html#pollingMainLoop,proc(int),int	uing: pollingMainLoop(poll: proc (timeout: int); timeout: int)	
+timer	uing.html#timer,int,proc(pointer),pointer	uing: timer(milliseconds: int; f: proc (data: pointer): cint {.cdecl.}; data: pointer)	
+free	uing.html#free,string	uing: free(str: string)	
+FontDescriptor	uing.html#FontDescriptor	uing: FontDescriptor	
+impl	uing.html#impl,FontDescriptor	uing: impl(b: FontDescriptor): RawFontDescriptor	
+impl=	uing.html#impl=,FontDescriptor,RawFontDescriptor	uing: impl=(b: FontDescriptor; r: RawFontDescriptor)	
+loadControlFont	uing.html#loadControlFont,FontDescriptor	uing: loadControlFont(f: FontDescriptor)	
+free	uing.html#free,FontDescriptor	uing: free(f: FontDescriptor)	
+newFontDescriptor	uing.html#newFontDescriptor,string,,TextWeight,TextItalic,TextStretch	uing: newFontDescriptor(family: string; size: float | int;\n                  weight: TextWeight = TextWeightNormal;\n                  italic: TextItalic = TextItalicNormal;\n                  stretch: TextStretch = TextStretchNormal): FontDescriptor	
+Area	uing.html#Area	uing: Area	
+impl	uing.html#impl,Area	uing: impl(b: Area): RawArea	
+impl=	uing.html#impl=,Area,RawArea	uing: impl=(b: Area; r: RawArea)	
+size=	uing.html#size=,Area,tuple[int,int]	uing: size=(a: Area; size: tuple[width, height: int])	
+queueRedrawAll	uing.html#queueRedrawAll,Area	uing: queueRedrawAll(a: Area)	
+beginUserWindowMove	uing.html#beginUserWindowMove,Area	uing: beginUserWindowMove(a: Area)	
+beginUserWindowResize	uing.html#beginUserWindowResize,Area,WindowResizeEdge	uing: beginUserWindowResize(a: Area; edge: WindowResizeEdge)	
+newArea	uing.html#newArea,ptr.AreaHandler	uing: newArea(ah: ptr AreaHandler): Area	
+newScrollingArea	uing.html#newScrollingArea,ptr.AreaHandler,int,int	uing: newScrollingArea(ah: ptr AreaHandler; width: int; height: int): Area	
+DrawPath	uing.html#DrawPath	uing: DrawPath	
+DrawMatrix	uing.html#DrawMatrix	uing: DrawMatrix	
+impl	uing.html#impl,DrawPath	uing: impl(b: DrawPath): RawDrawPath	
+impl=	uing.html#impl=,DrawPath,RawDrawPath	uing: impl=(b: DrawPath; r: RawDrawPath)	
+impl	uing.html#impl,DrawMatrix	uing: impl(b: DrawMatrix): RawDrawMatrix	
+impl=	uing.html#impl=,DrawMatrix,RawDrawMatrix	uing: impl=(b: DrawMatrix; r: RawDrawMatrix)	
+newDrawPath	uing.html#newDrawPath,DrawFillMode	uing: newDrawPath(fillMode: DrawFillMode): DrawPath	
+free	uing.html#free,DrawPath	uing: free(p: DrawPath)	
+newFigure	uing.html#newFigure,DrawPath,float,float	uing: newFigure(p: DrawPath; x: float; y: float)	
+newFigureWithArc	uing.html#newFigureWithArc,DrawPath,float,float,float,float,float,int	uing: newFigureWithArc(p: DrawPath;\n                 xCenter, yCenter, radius, startAngle, sweep: float;\n                 negative: int)	
+lineTo	uing.html#lineTo,DrawPath,float,float	uing: lineTo(p: DrawPath; x, y: float)	
+arcTo	uing.html#arcTo,DrawPath,float,float,float,float,float,int	uing: arcTo(p: DrawPath; xCenter, yCenter, radius, startAngle, sweep: float;\n      negative: int)	
+bezierTo	uing.html#bezierTo,DrawPath,float,float,float,float,float,float	uing: bezierTo(p: DrawPath; c1x, c1y, c2x, c2y, endX, endY: float)	
+closeFigure	uing.html#closeFigure,DrawPath	uing: closeFigure(p: DrawPath)	
+addRectangle	uing.html#addRectangle,DrawPath,float,float,float,float	uing: addRectangle(p: DrawPath; x, y, width, height: float)	
+ended	uing.html#ended,DrawPath	uing: ended(p: DrawPath): bool	
+`end`	uing.html#end,DrawPath	uing: `end`(p: DrawPath)	
+stroke	uing.html#stroke,ptr.DrawContext,DrawPath,ptr.DrawBrush,ptr.DrawStrokeParams	uing: stroke(c: ptr DrawContext; path: DrawPath; b: ptr DrawBrush;\n       p: ptr DrawStrokeParams)	
+fill	uing.html#fill,ptr.DrawContext,DrawPath,ptr.DrawBrush	uing: fill(c: ptr DrawContext; path: DrawPath; b: ptr DrawBrush)	
+setIdentity	uing.html#setIdentity,DrawMatrix	uing: setIdentity(m: DrawMatrix)	
+translate	uing.html#translate,DrawMatrix,float,float	uing: translate(m: DrawMatrix; x, y: float)	
+scale	uing.html#scale,DrawMatrix,float,float,float,float	uing: scale(m: DrawMatrix; xCenter, yCenter, x, y: float)	
+rotate	uing.html#rotate,DrawMatrix,float,float,float	uing: rotate(m: DrawMatrix; x, y, amount: float)	
+skew	uing.html#skew,DrawMatrix,float,float,float,float	uing: skew(m: DrawMatrix; x, y, xamount, yamount: float)	
+multiply	uing.html#multiply,DrawMatrix,DrawMatrix	uing: multiply(dest: DrawMatrix; src: DrawMatrix)	
+invertible	uing.html#invertible,DrawMatrix	uing: invertible(m: DrawMatrix): bool	
+invert	uing.html#invert,DrawMatrix	uing: invert(m: DrawMatrix): int	
+transformPoint	uing.html#transformPoint,DrawMatrix	uing: transformPoint(m: DrawMatrix): tuple[x, y: float]	
+transformSize	uing.html#transformSize,DrawMatrix	uing: transformSize(m: DrawMatrix): tuple[x, y: float]	
+Attribute	uing.html#Attribute	uing: Attribute	
+AttributedString	uing.html#AttributedString	uing: AttributedString	
+impl	uing.html#impl,Attribute	uing: impl(b: Attribute): RawAttribute	
+impl=	uing.html#impl=,Attribute,RawAttribute	uing: impl=(b: Attribute; r: RawAttribute)	
+impl	uing.html#impl,AttributedString	uing: impl(b: AttributedString): RawAttributedString	
+impl=	uing.html#impl=,AttributedString,RawAttributedString	uing: impl=(b: AttributedString; r: RawAttributedString)	
+newAttributedString	uing.html#newAttributedString,string	uing: newAttributedString(initialString: string): AttributedString	
+free	uing.html#free,AttributedString	uing: free(a: AttributedString)	
+`$`	uing.html#$,AttributedString	uing: `$`(s: AttributedString): string	
+len	uing.html#len,AttributedString	uing: len(s: AttributedString): BiggestUInt	
+addUnattributed	uing.html#addUnattributed,AttributedString,string	uing: addUnattributed(s: AttributedString; str: string)	
+insertAtUnattributed	uing.html#insertAtUnattributed,AttributedString,string,BiggestUInt	uing: insertAtUnattributed(s: AttributedString; str: string; at: BiggestUInt)	
+delete	uing.html#delete,AttributedString,BiggestUInt,BiggestUInt	uing: delete(s: AttributedString; start, end: BiggestUInt)	
+setAttribute	uing.html#setAttribute,AttributedString,Attribute,BiggestUInt,BiggestUInt	uing: setAttribute(s: AttributedString; a: Attribute; start, end: BiggestUInt)	
+forEachAttribute	uing.html#forEachAttribute,AttributedString,,pointer	uing: forEachAttribute(s: AttributedString;\n                 f: rawui.AttributedStringForEachAttributeFunc; data: pointer)	
+numGraphemes	uing.html#numGraphemes,AttributedString	uing: numGraphemes(s: AttributedString): BiggestUInt	
+byteIndexToGrapheme	uing.html#byteIndexToGrapheme,AttributedString,BiggestUInt	uing: byteIndexToGrapheme(s: AttributedString; pos: BiggestUInt): BiggestUInt	
+graphemeToByteIndex	uing.html#graphemeToByteIndex,AttributedString,BiggestUInt	uing: graphemeToByteIndex(s: AttributedString; pos: BiggestUInt): BiggestUInt	
+free	uing.html#free,Attribute	uing: free(a: Attribute)	
+getType	uing.html#getType,Attribute	uing: getType(a: Attribute): AttributeType	
+newFamilyAttribute	uing.html#newFamilyAttribute,string	uing: newFamilyAttribute(family: string): Attribute	
+family	uing.html#family,Attribute	uing: family(a: Attribute): string	
+newSizeAttribute	uing.html#newSizeAttribute,float	uing: newSizeAttribute(size: float): Attribute	
+size	uing.html#size,Attribute	uing: size(a: Attribute): float	
+newWeightAttribute	uing.html#newWeightAttribute,TextWeight	uing: newWeightAttribute(weight: TextWeight): Attribute	
+weight	uing.html#weight,Attribute	uing: weight(a: Attribute): TextWeight	
+newItalicAttribute	uing.html#newItalicAttribute,TextItalic	uing: newItalicAttribute(italic: TextItalic): Attribute	
+italic	uing.html#italic,Attribute	uing: italic(a: Attribute): TextItalic	
+newStretchAttribute	uing.html#newStretchAttribute,TextStretch	uing: newStretchAttribute(stretch: TextStretch): Attribute	
+stretch	uing.html#stretch,Attribute	uing: stretch(a: Attribute): TextStretch	
+newColorAttribute	uing.html#newColorAttribute,cdouble,cdouble,cdouble,cdouble	uing: newColorAttribute(r: cdouble; g: cdouble; b: cdouble; a: cdouble): Attribute	
+color	uing.html#color,Attribute	uing: color(a: Attribute): tuple[r, g, b, alpha: float]	
+newBackgroundAttribute	uing.html#newBackgroundAttribute,float,float,float,float	uing: newBackgroundAttribute(r, g, b, a: float): Attribute	
+newUnderlineAttribute	uing.html#newUnderlineAttribute,Underline	uing: newUnderlineAttribute(u: Underline): Attribute	
+underline	uing.html#underline,Attribute	uing: underline(a: Attribute): Underline	
+newUnderlineColorAttribute	uing.html#newUnderlineColorAttribute,UnderlineColor,float,float,float,float	uing: newUnderlineColorAttribute(u: UnderlineColor; r, g, b, a: float): Attribute	
+underlineColor	uing.html#underlineColor,Attribute	uing: underlineColor(a: Attribute): tuple[u: UnderlineColor, r, g, b, alpha: float]	
+OpenTypeFeatures	uing.html#OpenTypeFeatures	uing: OpenTypeFeatures	
+impl	uing.html#impl,OpenTypeFeatures	uing: impl(b: OpenTypeFeatures): RawOpenTypeFeatures	
+impl=	uing.html#impl=,OpenTypeFeatures,RawOpenTypeFeatures	uing: impl=(b: OpenTypeFeatures; r: RawOpenTypeFeatures)	
+newOpenTypeFeatures	uing.html#newOpenTypeFeatures	uing: newOpenTypeFeatures(): OpenTypeFeatures	
+free	uing.html#free,OpenTypeFeatures	uing: free(otf: OpenTypeFeatures)	
+clone	uing.html#clone,OpenTypeFeatures	uing: clone(otf: OpenTypeFeatures): OpenTypeFeatures	
+add	uing.html#add,OpenTypeFeatures,char,char,char,char,uint32	uing: add(otf: OpenTypeFeatures; a, b, c, d: char; value: uint32)	
+remove	uing.html#remove,OpenTypeFeatures,char,char,char,char	uing: remove(otf: OpenTypeFeatures; a, b, c, d: char)	
+get	uing.html#get,OpenTypeFeatures,char,char,char,char,uint32	uing: get(otf: OpenTypeFeatures; a, b, c, d: char; value: var uint32): bool	
+forEach	uing.html#forEach,OpenTypeFeatures,,pointer	uing: forEach(otf: OpenTypeFeatures; f: rawui.OpenTypeFeaturesForEachFunc;\n        data: pointer)	
+newFeaturesAttribute	uing.html#newFeaturesAttribute,OpenTypeFeatures	uing: newFeaturesAttribute(otf: OpenTypeFeatures): Attribute	
+features	uing.html#features,Attribute	uing: features(a: Attribute): OpenTypeFeatures	
+DrawTextLayout	uing.html#DrawTextLayout	uing: DrawTextLayout	
+impl	uing.html#impl,DrawTextLayout	uing: impl(b: DrawTextLayout): RawDrawTextLayout	
+impl=	uing.html#impl=,DrawTextLayout,RawDrawTextLayout	uing: impl=(b: DrawTextLayout; r: RawDrawTextLayout)	
+newDrawTextLayout	uing.html#newDrawTextLayout,ptr.DrawTextLayoutParams	uing: newDrawTextLayout(params: ptr DrawTextLayoutParams): DrawTextLayout	
+free	uing.html#free,DrawTextLayout	uing: free(tl: DrawTextLayout)	
+drawText	uing.html#drawText,ptr.DrawContext,DrawTextLayout,float,float	uing: drawText(c: ptr DrawContext; tl: DrawTextLayout; x, y: float)	
+extents	uing.html#extents,DrawTextLayout	uing: extents(tl: DrawTextLayout): tuple[width, height: float]	
+Button	uing.html#Button	uing: Button	
+impl	uing.html#impl,Button	uing: impl(b: Button): RawButton	
+impl=	uing.html#impl=,Button,RawButton	uing: impl=(b: Button; r: RawButton)	
+text	uing.html#text,Button	uing: text(b: Button): string	
+text=	uing.html#text=,Button,string	uing: text=(b: Button; text: string)	
+newButton	uing.html#newButton,string,proc(Button)	uing: newButton(text: string; onclick: proc (sender: Button) = nil): Button	
+RadioButtons	uing.html#RadioButtons	uing: RadioButtons	
+impl	uing.html#impl,RadioButtons	uing: impl(b: RadioButtons): RawRadioButtons	
+impl=	uing.html#impl=,RadioButtons,RawRadioButtons	uing: impl=(b: RadioButtons; r: RawRadioButtons)	
+add	uing.html#add,RadioButtons,string	uing: add(r: RadioButtons; text: string)	
+add	uing.html#add,RadioButtons,openArray[string]	uing: add(r: RadioButtons; items: openArray[string])	
+radioButtonsSelected	uing.html#radioButtonsSelected,RadioButtons	uing: radioButtonsSelected(r: RadioButtons): int	
+selected	uing.html#selected,RadioButtons	uing: selected(r: RadioButtons): int	
+setSelected	uing.html#setSelected,RadioButtons,int	uing: setSelected(r: RadioButtons; index: int)	
+newRadioButtons	uing.html#newRadioButtons,proc(RadioButtons)	uing: newRadioButtons(onSelected: proc (sender: RadioButtons) = nil): RadioButtons	
+Window	uing.html#Window	uing: Window	
+impl	uing.html#impl,Window	uing: impl(b: Window): RawWindow	
+impl=	uing.html#impl=,Window,RawWindow	uing: impl=(b: Window; r: RawWindow)	
+title	uing.html#title,Window	uing: title(w: Window): string	
+title=	uing.html#title=,Window,string	uing: title=(w: Window; text: string)	
+contentSize	uing.html#contentSize,Window	uing: contentSize(window: Window): tuple[width, height: int]	
+contentSize=	uing.html#contentSize=,Window,tuple[int,int]	uing: contentSize=(window: Window; size: tuple[width, height: int])	
+fullscreen	uing.html#fullscreen,Window	uing: fullscreen(w: Window): bool	
+fullscreen=	uing.html#fullscreen=,Window,bool	uing: fullscreen=(w: Window; fullscreen: bool)	
+focused	uing.html#focused,Window	uing: focused(w: Window): bool	
+borderless	uing.html#borderless,Window	uing: borderless(w: Window): bool	
+borderless=	uing.html#borderless=,Window,bool	uing: borderless=(w: Window; borderless: bool)	
+resizeable	uing.html#resizeable,Window	uing: resizeable(w: Window): bool	
+resizeable=	uing.html#resizeable=,Window,bool	uing: resizeable=(w: Window; resizeable: bool)	
+margined	uing.html#margined,Window	uing: margined(w: Window): bool	
+margined=	uing.html#margined=,Window,bool	uing: margined=(w: Window; x: bool)	
+child	uing.html#child,Window	uing: child(w: Window): Widget	
+child=	uing.html#child=,Window,Widget	uing: child=(w: Window; child: Widget)	
+openFile	uing.html#openFile,Window	uing: openFile(parent: Window): string	
+openFolder	uing.html#openFolder,Window	uing: openFolder(parent: Window): string	
+saveFile	uing.html#saveFile,Window	uing: saveFile(parent: Window): string	
+msgBox	uing.html#msgBox,Window,string,string	uing: msgBox(parent: Window; title, desc: string)	
+msgBoxError	uing.html#msgBoxError,Window,string,string	uing: msgBoxError(parent: Window; title, desc: string)	
+error	uing.html#error,Window,string,string	uing: error(parent: Window; title, desc: string)	
+newWindow	uing.html#newWindow,string,int,int,bool,proc(Window)	uing: newWindow(title: string; width, height: int; hasMenubar: bool = false;\n          onfocuschanged: proc (sender: Window) = nil): Window	
+Box	uing.html#Box	uing: Box	
+impl	uing.html#impl,Box	uing: impl(b: Box): RawBox	
+impl=	uing.html#impl=,Box,RawBox	uing: impl=(b: Box; r: RawBox)	
+add	uing.html#add,Box,Widget	uing: add(b: Box; child: Widget; stretchy = false)	
+add	uing.html#add,Box,openArray[Widget]	uing: add(c: Box; items: openArray[Widget])	
+delete	uing.html#delete,Box,int	uing: delete(b: Box; index: int)	
+padded	uing.html#padded,Box	uing: padded(b: Box): bool	
+padded=	uing.html#padded=,Box,bool	uing: padded=(b: Box; x: bool)	
+newHorizontalBox	uing.html#newHorizontalBox	uing: newHorizontalBox(padded = false): Box	
+newVerticalBox	uing.html#newVerticalBox	uing: newVerticalBox(padded = false): Box	
+Checkbox	uing.html#Checkbox	uing: Checkbox	
+impl	uing.html#impl,Checkbox	uing: impl(b: Checkbox): RawCheckbox	
+impl=	uing.html#impl=,Checkbox,RawCheckbox	uing: impl=(b: Checkbox; r: RawCheckbox)	
+text	uing.html#text,Checkbox	uing: text(c: Checkbox): string	
+text=	uing.html#text=,Checkbox,string	uing: text=(c: Checkbox; text: string)	
+checked	uing.html#checked,Checkbox	uing: checked(c: Checkbox): bool	
+checked=	uing.html#checked=,Checkbox,bool	uing: checked=(c: Checkbox; x: bool)	
+newCheckbox	uing.html#newCheckbox,string,proc(Checkbox)	uing: newCheckbox(text: string; ontoggled: proc (sender: Checkbox) = nil): Checkbox	
+Entry	uing.html#Entry	uing: Entry	
+impl	uing.html#impl,Entry	uing: impl(b: Entry): RawEntry	
+impl=	uing.html#impl=,Entry,RawEntry	uing: impl=(b: Entry; r: RawEntry)	
+text	uing.html#text,Entry	uing: text(e: Entry): string	
+text=	uing.html#text=,Entry,string	uing: text=(e: Entry; text: string)	
+readOnly	uing.html#readOnly,Entry	uing: readOnly(e: Entry): bool	
+readOnly=	uing.html#readOnly=,Entry,bool	uing: readOnly=(e: Entry; readOnly: bool)	
+newEntry	uing.html#newEntry,string,proc(Entry)	uing: newEntry(text: string = &quot;&quot;; onchanged: proc (sender: Entry) = nil): Entry	
+newPasswordEntry	uing.html#newPasswordEntry,string,proc(Entry)	uing: newPasswordEntry(text: string = &quot;&quot;; onchanged: proc (sender: Entry) = nil): Entry	
+newSearchEntry	uing.html#newSearchEntry,string,proc(Entry)	uing: newSearchEntry(text: string = &quot;&quot;; onchanged: proc (sender: Entry) = nil): Entry	
+Label	uing.html#Label	uing: Label	
+impl	uing.html#impl,Label	uing: impl(b: Label): RawLabel	
+impl=	uing.html#impl=,Label,RawLabel	uing: impl=(b: Label; r: RawLabel)	
+text	uing.html#text,Label	uing: text(l: Label): string	
+text=	uing.html#text=,Label,string	uing: text=(l: Label; text: string)	
+newLabel	uing.html#newLabel,string	uing: newLabel(text: string = &quot;&quot;): Label	
+Tab	uing.html#Tab	uing: Tab	
+impl	uing.html#impl,Tab	uing: impl(b: Tab): RawTab	
+impl=	uing.html#impl=,Tab,RawTab	uing: impl=(b: Tab; r: RawTab)	
+add	uing.html#add,Tab,string,Widget	uing: add(t: Tab; name: string; c: Widget)	
+insertAt	uing.html#insertAt,Tab,string,int,Widget	uing: insertAt(t: Tab; name: string; at: int; c: Widget)	
+delete	uing.html#delete,Tab,int	uing: delete(t: Tab; index: int)	
+margined	uing.html#margined,Tab,int	uing: margined(t: Tab; index: int): bool	
+setMargined	uing.html#setMargined,Tab,int,bool	uing: setMargined(t: Tab; index: int; margined: bool)	
+newTab	uing.html#newTab	uing: newTab(): Tab	
+Group	uing.html#Group	uing: Group	
+impl	uing.html#impl,Group	uing: impl(b: Group): RawGroup	
+impl=	uing.html#impl=,Group,RawGroup	uing: impl=(b: Group; r: RawGroup)	
+title	uing.html#title,Group	uing: title(g: Group): string	
+title=	uing.html#title=,Group,string	uing: title=(g: Group; title: string)	
+child	uing.html#child,Group,Widget	uing: child(g: Group; c: Widget): Widget	
+child=	uing.html#child=,Group,Widget	uing: child=(g: Group; c: Widget)	
+margined	uing.html#margined,Group	uing: margined(g: Group): bool	
+margined=	uing.html#margined=,Group,bool	uing: margined=(g: Group; x: bool)	
+newGroup	uing.html#newGroup,string	uing: newGroup(title: string; margined = false): Group	
+Spinbox	uing.html#Spinbox	uing: Spinbox	
+impl	uing.html#impl,Spinbox	uing: impl(b: Spinbox): RawSpinbox	
+impl=	uing.html#impl=,Spinbox,RawSpinbox	uing: impl=(b: Spinbox; r: RawSpinbox)	
+value	uing.html#value,Spinbox	uing: value(s: Spinbox): int	
+value=	uing.html#value=,Spinbox,int	uing: value=(s: Spinbox; value: int)	
+newSpinbox	uing.html#newSpinbox,int,int,proc(Spinbox)	uing: newSpinbox(min, max: int; onchanged: proc (sender: Spinbox) = nil): Spinbox	
+Slider	uing.html#Slider	uing: Slider	
+impl	uing.html#impl,Slider	uing: impl(b: Slider): RawSlider	
+impl=	uing.html#impl=,Slider,RawSlider	uing: impl=(b: Slider; r: RawSlider)	
+value	uing.html#value,Slider	uing: value(s: Slider): int	
+value=	uing.html#value=,Slider,int	uing: value=(s: Slider; value: int)	
+range=	uing.html#range=,Slider,tuple[int,int]	uing: range=(s: Slider; sliderRange: tuple[min, max: int])	
+setRange	uing.html#setRange,Slider,int,int	uing: setRange(s: Slider; min, max: int)	
+hasToolTip	uing.html#hasToolTip,Slider	uing: hasToolTip(s: Slider): bool	
+hasToolTip=	uing.html#hasToolTip=,Slider,bool	uing: hasToolTip=(s: Slider; hasToolTip: bool): bool	
+newSlider	uing.html#newSlider,int,int,proc(Slider)	uing: newSlider(min, max: int; onchanged: proc (sender: Slider) = nil): Slider	
+ProgressBar	uing.html#ProgressBar	uing: ProgressBar	
+impl	uing.html#impl,ProgressBar	uing: impl(b: ProgressBar): RawProgressBar	
+impl=	uing.html#impl=,ProgressBar,RawProgressBar	uing: impl=(b: ProgressBar; r: RawProgressBar)	
+value	uing.html#value,ProgressBar	uing: value(p: ProgressBar): int	
+value=	uing.html#value=,ProgressBar,int	uing: value=(p: ProgressBar; n: int)	
+indeterminate	uing.html#indeterminate,ProgressBar	uing: indeterminate(p: ProgressBar): bool	
+indeterminate=	uing.html#indeterminate=,ProgressBar,bool	uing: indeterminate=(p: ProgressBar; indeterminate: bool)	
+setIndeterminate	uing.html#setIndeterminate,ProgressBar	uing: setIndeterminate(p: ProgressBar)	
+newProgressBar	uing.html#newProgressBar	uing: newProgressBar(): ProgressBar	
+Separator	uing.html#Separator	uing: Separator	
+impl	uing.html#impl,Separator	uing: impl(b: Separator): RawSeparator	
+impl=	uing.html#impl=,Separator,RawSeparator	uing: impl=(b: Separator; r: RawSeparator)	
+newVerticalSeparator	uing.html#newVerticalSeparator	uing: newVerticalSeparator(): Separator	
+newHorizontalSeparator	uing.html#newHorizontalSeparator	uing: newHorizontalSeparator(): Separator	
+Combobox	uing.html#Combobox	uing: Combobox	
+impl	uing.html#impl,Combobox	uing: impl(b: Combobox): RawCombobox	
+impl=	uing.html#impl=,Combobox,RawCombobox	uing: impl=(b: Combobox; r: RawCombobox)	
+add	uing.html#add,Combobox,string	uing: add(c: Combobox; text: string)	
+add	uing.html#add,Combobox,openArray[string]	uing: add(c: Combobox; items: openArray[string])	
+insertAt	uing.html#insertAt,Combobox,int,string	uing: insertAt(c: Combobox; index: int; text: string)	
+clear	uing.html#clear,Combobox	uing: clear(c: Combobox)	
+delete	uing.html#delete,Combobox,int	uing: delete(c: Combobox; index: int)	
+numItems	uing.html#numItems,Combobox	uing: numItems(c: Combobox): int	
+selected	uing.html#selected,Combobox	uing: selected(c: Combobox): int	
+selected=	uing.html#selected=,Combobox,int	uing: selected=(c: Combobox; n: int)	
+newCombobox	uing.html#newCombobox,proc(Combobox)	uing: newCombobox(onSelected: proc (sender: Combobox) = nil): Combobox	
+EditableCombobox	uing.html#EditableCombobox	uing: EditableCombobox	
+impl	uing.html#impl,EditableCombobox	uing: impl(b: EditableCombobox): RawEditableCombobox	
+impl=	uing.html#impl=,EditableCombobox,RawEditableCombobox	uing: impl=(b: EditableCombobox; r: RawEditableCombobox)	
+add	uing.html#add,EditableCombobox,string	uing: add(c: EditableCombobox; text: string)	
+add	uing.html#add,EditableCombobox,openArray[string]	uing: add(c: EditableCombobox; items: openArray[string])	
+text	uing.html#text,EditableCombobox	uing: text(c: EditableCombobox): string	
+text=	uing.html#text=,EditableCombobox,string	uing: text=(c: EditableCombobox; text: string)	
+newEditableCombobox	uing.html#newEditableCombobox,proc(EditableCombobox)	uing: newEditableCombobox(onchanged: proc (sender: EditableCombobox) = nil): EditableCombobox	
+MultilineEntry	uing.html#MultilineEntry	uing: MultilineEntry	
+impl	uing.html#impl,MultilineEntry	uing: impl(b: MultilineEntry): RawMultilineEntry	
+impl=	uing.html#impl=,MultilineEntry,RawMultilineEntry	uing: impl=(b: MultilineEntry; r: RawMultilineEntry)	
+text	uing.html#text,MultilineEntry	uing: text(e: MultilineEntry): string	
+text=	uing.html#text=,MultilineEntry,string	uing: text=(e: MultilineEntry; text: string)	
+add	uing.html#add,MultilineEntry,string	uing: add(e: MultilineEntry; text: string)	
+readonly	uing.html#readonly,MultilineEntry	uing: readonly(e: MultilineEntry): bool	
+readonly=	uing.html#readonly=,MultilineEntry,bool	uing: readonly=(e: MultilineEntry; x: bool)	
+newMultilineEntry	uing.html#newMultilineEntry,proc(MultilineEntry)	uing: newMultilineEntry(onchanged: proc (sender: MultilineEntry) = nil): MultilineEntry	
+newNonWrappingMultilineEntry	uing.html#newNonWrappingMultilineEntry,proc(MultilineEntry)	uing: newNonWrappingMultilineEntry(onchanged: proc (sender: MultilineEntry) = nil): MultilineEntry	
+MenuItem	uing.html#MenuItem	uing: MenuItem	
+impl	uing.html#impl,MenuItem	uing: impl(b: MenuItem): RawMenuItem	
+impl=	uing.html#impl=,MenuItem,RawMenuItem	uing: impl=(b: MenuItem; r: RawMenuItem)	
+enable	uing.html#enable,MenuItem	uing: enable(m: MenuItem)	
+disable	uing.html#disable,MenuItem	uing: disable(m: MenuItem)	
+checked	uing.html#checked,MenuItem	uing: checked(m: MenuItem): bool	
+checked=	uing.html#checked=,MenuItem,bool	uing: checked=(m: MenuItem; x: bool)	
+Menu	uing.html#Menu	uing: Menu	
+impl	uing.html#impl,Menu	uing: impl(b: Menu): RawMenu	
+impl=	uing.html#impl=,Menu,RawMenu	uing: impl=(b: Menu; r: RawMenu)	
+addItem	uing.html#addItem,Menu,string,proc(MenuItem)	uing: addItem(m: Menu; name: string; onclicked: proc (sender: MenuItem) = proc (\n    _: MenuItem) = discard ): MenuItem	
+addCheckItem	uing.html#addCheckItem,Menu,string,proc(MenuItem)	uing: addCheckItem(m: Menu; name: string; onclicked: proc (sender: MenuItem) = proc (\n    _: MenuItem) = discard ): MenuItem	
+addQuitItem	uing.html#addQuitItem,Menu,proc)	uing: addQuitItem(m: Menu; shouldQuit: proc (): bool): MenuItem	
+addPreferencesItem	uing.html#addPreferencesItem,Menu,proc(MenuItem)	uing: addPreferencesItem(m: Menu; onclicked: proc (sender: MenuItem) = proc (\n    _: MenuItem) {.discardable.} = discard ): MenuItem	
+addAboutItem	uing.html#addAboutItem,Menu,proc(MenuItem)	uing: addAboutItem(m: Menu; onclicked: proc (sender: MenuItem) = proc (_: MenuItem) {.\n    discardable.} = discard ): MenuItem	
+addSeparator	uing.html#addSeparator,Menu	uing: addSeparator(m: Menu)	
+newMenu	uing.html#newMenu,string	uing: newMenu(name: string): Menu	
+FontButton	uing.html#FontButton	uing: FontButton	
+impl	uing.html#impl,FontButton	uing: impl(b: FontButton): RawFontButton	
+impl=	uing.html#impl=,FontButton,RawFontButton	uing: impl=(b: FontButton; r: RawFontButton)	
+font	uing.html#font,FontButton	uing: font(f: FontButton): FontDescriptor	
+freeFont	uing.html#freeFont,FontDescriptor	uing: freeFont(f: FontDescriptor)	
+newFontButton	uing.html#newFontButton,proc(FontButton)	uing: newFontButton(onChanged: proc (sender: FontButton) = nil): FontButton	
+ColorButton	uing.html#ColorButton	uing: ColorButton	
+impl	uing.html#impl,ColorButton	uing: impl(b: ColorButton): RawColorButton	
+impl=	uing.html#impl=,ColorButton,RawColorButton	uing: impl=(b: ColorButton; r: RawColorButton)	
+color	uing.html#color,ColorButton	uing: color(c: ColorButton): tuple[r, g, b, a: float]	
+setColor	uing.html#setColor,ColorButton,float,float,float,float	uing: setColor(c: ColorButton; r, g, b, alpha: float = 1.0)	
+newColorButton	uing.html#newColorButton,proc(ColorButton)	uing: newColorButton(onchanged: proc (sender: ColorButton) = nil): ColorButton	
+Form	uing.html#Form	uing: Form	
+impl	uing.html#impl,Form	uing: impl(b: Form): RawForm	
+impl=	uing.html#impl=,Form,RawForm	uing: impl=(b: Form; r: RawForm)	
+add	uing.html#add,Form,string,Widget,bool	uing: add(f: Form; label: string; w: Widget; stretchy: bool = false)	
+numChildren	uing.html#numChildren,Form	uing: numChildren(f: Form): int	
+delete	uing.html#delete,Form,int	uing: delete(f: Form; index: int)	
+padded	uing.html#padded,Form	uing: padded(f: Form): bool	
+padded=	uing.html#padded=,Form,bool	uing: padded=(f: Form; padded: bool)	
+newForm	uing.html#newForm	uing: newForm(): Form	
+Grid	uing.html#Grid	uing: Grid	
+impl	uing.html#impl,Grid	uing: impl(b: Grid): RawGrid	
+impl=	uing.html#impl=,Grid,RawGrid	uing: impl=(b: Grid; r: RawGrid)	
+add	uing.html#add,Grid,Widget,int,int,int,int,bool,Align,bool,Align	uing: add(g: Grid; w: Widget; left, top, xspan, yspan: int; hexpand: bool;\n    halign: Align; vexpand: bool; valign: Align)	
+insertAt	uing.html#insertAt,Grid,Widget,Widget,At,int,int,int,int,int,Align,int,Align	uing: insertAt(g: Grid; w, existing: Widget; at: At;\n         left, top, xspan, yspan, hexpand: int; halign: Align; vexpand: int;\n         valign: Align)	
+padded	uing.html#padded,Grid	uing: padded(g: Grid): bool	
+padded=	uing.html#padded=,Grid,bool	uing: padded=(g: Grid; padded: bool)	
+newGrid	uing.html#newGrid	uing: newGrid(): Grid	
+Image	uing.html#Image	uing: Image	
+impl	uing.html#impl,Image	uing: impl(b: Image): RawImage	
+impl=	uing.html#impl=,Image,RawImage	uing: impl=(b: Image; r: RawImage)	
+add	uing.html#add,Image,pointer,int,int,int	uing: add(i: Image; pixels: pointer; pixelWidth: int; pixelHeight: int;\n    byteStride: int)	
+free	uing.html#free,Image	uing: free(i: Image)	
+newImage	uing.html#newImage,float,float	uing: newImage(width, height: float): Image	
+Table	uing.html#Table	uing: Table	
+impl	uing.html#impl,Table	uing: impl(b: Table): RawTable	
+impl=	uing.html#impl=,Table,RawTable	uing: impl=(b: Table; r: RawTable)	
+free	uing.html#free,ptr.TableValue	uing: free(t: ptr TableValue)	
+free	uing.html#free,ptr.TableModel	uing: free(t: ptr TableModel)	
+free	uing.html#free,ptr.	uing: free(t: ptr rawui.TableSelection)	
+tableValueGetType	uing.html#tableValueGetType,ptr.TableValue	uing: tableValueGetType(v: ptr TableValue): TableValueType	
+newTableValueString	uing.html#newTableValueString,string	uing: newTableValueString(s: string): ptr TableValue	
+tableValueString	uing.html#tableValueString,ptr.TableValue	uing: tableValueString(v: ptr TableValue): string	
+newTableValueImage	uing.html#newTableValueImage,Image	uing: newTableValueImage(img: Image): ptr TableValue	
+tableValueImage	uing.html#tableValueImage,ptr.TableValue	uing: tableValueImage(v: ptr TableValue): Image	
+newTableValueInt	uing.html#newTableValueInt,int	uing: newTableValueInt(i: int): ptr TableValue	
+tableValueInt	uing.html#tableValueInt,ptr.TableValue	uing: tableValueInt(v: ptr TableValue): int	
+newTableValueColor	uing.html#newTableValueColor,float,float,float,float	uing: newTableValueColor(r: float; g: float; b: float; a: float): ptr TableValue	
+tableValueColor	uing.html#tableValueColor,ptr.TableValue,ptr.float,ptr.float,ptr.float,ptr.float	uing: tableValueColor(v: ptr TableValue; r: ptr float; g: ptr float; b: ptr float;\n                a: ptr float)	
+rowInserted	uing.html#rowInserted,ptr.TableModel,int	uing: rowInserted(m: ptr TableModel; newIndex: int)	
+rowChanged	uing.html#rowChanged,ptr.TableModel,int	uing: rowChanged(m: ptr TableModel; index: int)	
+rowDeleted	uing.html#rowDeleted,ptr.TableModel,int	uing: rowDeleted(m: ptr TableModel; oldIndex: int)	
+appendTextColumn	uing.html#appendTextColumn,Table,string,int,int,ptr.TableTextColumnOptionalParams	uing: appendTextColumn(table: Table; title: string; index, editableMode: int;\n                 textParams: ptr TableTextColumnOptionalParams)	
+appendImageColumn	uing.html#appendImageColumn,Table,string,int	uing: appendImageColumn(table: Table; title: string; index: int)	
+appendImageTextColumn	uing.html#appendImageTextColumn,Table,string,int,int,int,ptr.TableTextColumnOptionalParams	uing: appendImageTextColumn(table: Table; title: string;\n                      imageIndex, textIndex, editableMode: int;\n                      textParams: ptr TableTextColumnOptionalParams)	
+appendCheckboxColumn	uing.html#appendCheckboxColumn,Table,string,int,int	uing: appendCheckboxColumn(table: Table; title: string; index, editableMode: int)	
+appendProgressBarColumn	uing.html#appendProgressBarColumn,Table,string,int	uing: appendProgressBarColumn(table: Table; title: string; index: int)	
+appendButtonColumn	uing.html#appendButtonColumn,Table,string,int,int	uing: appendButtonColumn(table: Table; title: string; index, clickableMode: int)	
+headerVisible	uing.html#headerVisible,Table	uing: headerVisible(t: Table): bool	
+headerSetVisible	uing.html#headerSetVisible,Table,bool	uing: headerSetVisible(t: Table; visible: bool)	
+selectionMode	uing.html#selectionMode,Table	uing: selectionMode(table: Table): TableSelectionMode	
+selectionMode=	uing.html#selectionMode=,Table,TableSelectionMode	uing: selectionMode=(table: Table; mode: TableSelectionMode)	
+columnWidth	uing.html#columnWidth,Table,int	uing: columnWidth(table: Table; column: int): int	
+setColumnWidth	uing.html#setColumnWidth,Table,int,int	uing: setColumnWidth(table: Table; column, width: int)	
+sortIndicator	uing.html#sortIndicator,Table,int	uing: sortIndicator(table: Table; column: int): SortIndicator	
+setSortIndicator	uing.html#setSortIndicator,Table,int,SortIndicator	uing: setSortIndicator(table: Table; column: int; indicator: SortIndicator)	
+selection	uing.html#selection,Table	uing: selection(table: Table): tuple[numRows: int, row: int]	
+selection=	uing.html#selection=,Table,int	uing: selection=(table: Table; selection: int)	
+newTable	uing.html#newTable,ptr.TableParams	uing: newTable(params: ptr TableParams): Table	
+show	uing.html#show,W	uing: show[W: Widget](w: W)	
+hide	uing.html#hide,W	uing: hide[W: Widget](w: W)	
+enabled	uing.html#enabled,W	uing: enabled[W: Widget](w: W): bool	
+enable	uing.html#enable,W	uing: enable[W: Widget](w: W)	
+disable	uing.html#disable,W	uing: disable[W: Widget](w: W)	
+destroy	uing.html#destroy,W	uing: destroy[W: Widget](w: W)	
+parent=	uing.html#parent=,W	uing: parent=[W: Widget](w: W): W	
+topLevel	uing.html#topLevel,W	uing: topLevel[W: Widget](w: W): bool	
+visible	uing.html#visible,W	uing: visible[W: Widget](w: W): bool	
+verifySetParent	uing.html#verifySetParent,W,W	uing: verifySetParent[W: Widget](w, parent: W): bool	
+enabledToUser	uing.html#enabledToUser,W	uing: enabledToUser[W: Widget](w: W): bool	
+free	uing.html#free,W	uing: free[W: Widget](w: W)	
+DateTimePicker	uing.html#DateTimePicker	uing: DateTimePicker	
+impl	uing.html#impl,DateTimePicker	uing: impl(b: DateTimePicker): RawDateTimePicker	
+impl=	uing.html#impl=,DateTimePicker,RawDateTimePicker	uing: impl=(b: DateTimePicker; r: RawDateTimePicker)	
+time	uing.html#time,DateTimePicker	uing: time(d: DateTimePicker): DateTime	
+time=	uing.html#time=,DateTimePicker,DateTime	uing: time=(d: DateTimePicker; dateTime: DateTime)	
+newDateTimePicker	uing.html#newDateTimePicker,proc(DateTimePicker)	uing: newDateTimePicker(onchanged: proc (sender: DateTimePicker) = nil): DateTimePicker	
+newDatePicker	uing.html#newDatePicker,proc(DateTimePicker)	uing: newDatePicker(onchanged: proc (sender: DateTimePicker) = nil): DateTimePicker	
+newTimePicker	uing.html#newTimePicker,proc(DateTimePicker)	uing: newTimePicker(onchanged: proc (sender: DateTimePicker) = nil): DateTimePicker	
