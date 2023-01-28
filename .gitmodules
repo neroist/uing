@@ -1,0 +1,4 @@
+[submodule "ui/libui"]
+	path = ui/libui
+	url = https://github.com/neroist/libui-ng.git
+	branch = master

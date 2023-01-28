@@ -1,0 +1,364 @@
+Widget	ui.html#Widget	ui: Widget	
+impl	ui.html#impl,Widget	ui: impl(w: Widget): ptr [Control]	
+init	ui.html#init	ui: init()	
+quit	ui.html#quit	ui: quit()	
+mainLoop	ui.html#mainLoop	ui: mainLoop()	
+pollingMainLoop	ui.html#pollingMainLoop,proc(int),int	ui: pollingMainLoop(poll: proc (timeout: int); timeout: int)	
+start	ui.html#start.t	ui: start()	
+start	ui.html#start.t,proc	ui: start(fun: proc)	
+timer	ui.html#timer,int,proc(pointer),pointer	ui: timer(milliseconds: int; f: proc (data: pointer): cint {.cdecl.}; data: pointer)	
+free	ui.html#free,string	ui: free(str: string)	
+FontDescriptor	ui.html#FontDescriptor	ui: FontDescriptor	
+impl	ui.html#impl,FontDescriptor	ui: impl(b: FontDescriptor): RawFontDescriptor	
+impl=	ui.html#impl=,FontDescriptor,RawFontDescriptor	ui: impl=(b: FontDescriptor; r: RawFontDescriptor)	
+loadControlFont	ui.html#loadControlFont,FontDescriptor	ui: loadControlFont(f: FontDescriptor)	
+free	ui.html#free,FontDescriptor	ui: free(f: FontDescriptor)	
+newFontDescriptor	ui.html#newFontDescriptor,string,,TextWeight,TextItalic,TextStretch	ui: newFontDescriptor(family: string; size: float | int;\n                  weight: TextWeight = TextWeightNormal;\n                  italic: TextItalic = TextItalicNormal;\n                  stretch: TextStretch = TextStretchNormal): FontDescriptor	
+Area	ui.html#Area	ui: Area	
+impl	ui.html#impl,Area	ui: impl(b: Area): RawArea	
+impl=	ui.html#impl=,Area,RawArea	ui: impl=(b: Area; r: RawArea)	
+size=	ui.html#size=,Area,tuple[int,int]	ui: size=(a: Area; size: tuple[width, height: int])	
+queueRedrawAll	ui.html#queueRedrawAll,Area	ui: queueRedrawAll(a: Area)	
+beginUserWindowMove	ui.html#beginUserWindowMove,Area	ui: beginUserWindowMove(a: Area)	
+beginUserWindowResize	ui.html#beginUserWindowResize,Area,WindowResizeEdge	ui: beginUserWindowResize(a: Area; edge: WindowResizeEdge)	
+newArea	ui.html#newArea,ptr.AreaHandler	ui: newArea(ah: ptr AreaHandler): Area	
+newScrollingArea	ui.html#newScrollingArea,ptr.AreaHandler,int,int	ui: newScrollingArea(ah: ptr AreaHandler; width: int; height: int): Area	
+DrawPath	ui.html#DrawPath	ui: DrawPath	
+DrawMatrix	ui.html#DrawMatrix	ui: DrawMatrix	
+impl	ui.html#impl,DrawPath	ui: impl(b: DrawPath): RawDrawPath	
+impl=	ui.html#impl=,DrawPath,RawDrawPath	ui: impl=(b: DrawPath; r: RawDrawPath)	
+impl	ui.html#impl,DrawMatrix	ui: impl(b: DrawMatrix): RawDrawMatrix	
+impl=	ui.html#impl=,DrawMatrix,RawDrawMatrix	ui: impl=(b: DrawMatrix; r: RawDrawMatrix)	
+newDrawPath	ui.html#newDrawPath,DrawFillMode	ui: newDrawPath(fillMode: DrawFillMode): DrawPath	
+free	ui.html#free,DrawPath	ui: free(p: DrawPath)	
+newFigure	ui.html#newFigure,DrawPath,float,float	ui: newFigure(p: DrawPath; x: float; y: float)	
+newFigureWithArc	ui.html#newFigureWithArc,DrawPath,float,float,float,float,float,int	ui: newFigureWithArc(p: DrawPath;\n                 xCenter, yCenter, radius, startAngle, sweep: float;\n                 negative: int)	
+lineTo	ui.html#lineTo,DrawPath,float,float	ui: lineTo(p: DrawPath; x, y: float)	
+arcTo	ui.html#arcTo,DrawPath,float,float,float,float,float,int	ui: arcTo(p: DrawPath; xCenter, yCenter, radius, startAngle, sweep: float;\n      negative: int)	
+bezierTo	ui.html#bezierTo,DrawPath,float,float,float,float,float,float	ui: bezierTo(p: DrawPath; c1x, c1y, c2x, c2y, endX, endY: float)	
+closeFigure	ui.html#closeFigure,DrawPath	ui: closeFigure(p: DrawPath)	
+addRectangle	ui.html#addRectangle,DrawPath,float,float,float,float	ui: addRectangle(p: DrawPath; x, y, width, height: float)	
+ended	ui.html#ended,DrawPath	ui: ended(p: DrawPath): bool	
+`end`	ui.html#end,DrawPath	ui: `end`(p: DrawPath)	
+stroke	ui.html#stroke,ptr.DrawContext,DrawPath,ptr.DrawBrush,ptr.DrawStrokeParams	ui: stroke(c: ptr DrawContext; path: DrawPath; b: ptr DrawBrush;\n       p: ptr DrawStrokeParams)	
+fill	ui.html#fill,ptr.DrawContext,DrawPath,ptr.DrawBrush	ui: fill(c: ptr DrawContext; path: DrawPath; b: ptr DrawBrush)	
+setIdentity	ui.html#setIdentity,DrawMatrix	ui: setIdentity(m: DrawMatrix)	
+translate	ui.html#translate,DrawMatrix,float,float	ui: translate(m: DrawMatrix; x, y: float)	
+scale	ui.html#scale,DrawMatrix,float,float,float,float	ui: scale(m: DrawMatrix; xCenter, yCenter, x, y: float)	
+rotate	ui.html#rotate,DrawMatrix,float,float,float	ui: rotate(m: DrawMatrix; x, y, amount: float)	
+skew	ui.html#skew,DrawMatrix,float,float,float,float	ui: skew(m: DrawMatrix; x, y, xamount, yamount: float)	
+multiply	ui.html#multiply,DrawMatrix,DrawMatrix	ui: multiply(dest: DrawMatrix; src: DrawMatrix)	
+invertible	ui.html#invertible,DrawMatrix	ui: invertible(m: DrawMatrix): bool	
+invert	ui.html#invert,DrawMatrix	ui: invert(m: DrawMatrix): int	
+transformPoint	ui.html#transformPoint,DrawMatrix	ui: transformPoint(m: DrawMatrix): tuple[x, y: float]	
+transformSize	ui.html#transformSize,DrawMatrix	ui: transformSize(m: DrawMatrix): tuple[x, y: float]	
+Attribute	ui.html#Attribute	ui: Attribute	
+AttributedString	ui.html#AttributedString	ui: AttributedString	
+impl	ui.html#impl,Attribute	ui: impl(b: Attribute): RawAttribute	
+impl=	ui.html#impl=,Attribute,RawAttribute	ui: impl=(b: Attribute; r: RawAttribute)	
+impl	ui.html#impl,AttributedString	ui: impl(b: AttributedString): RawAttributedString	
+impl=	ui.html#impl=,AttributedString,RawAttributedString	ui: impl=(b: AttributedString; r: RawAttributedString)	
+newAttributedString	ui.html#newAttributedString,string	ui: newAttributedString(initialString: string): AttributedString	
+free	ui.html#free,AttributedString	ui: free(a: AttributedString)	
+`$`	ui.html#$,AttributedString	ui: `$`(s: AttributedString): string	
+len	ui.html#len,AttributedString	ui: len(s: AttributedString): BiggestUInt	
+addUnattributed	ui.html#addUnattributed,AttributedString,string	ui: addUnattributed(s: AttributedString; str: string)	
+insertAtUnattributed	ui.html#insertAtUnattributed,AttributedString,string,BiggestUInt	ui: insertAtUnattributed(s: AttributedString; str: string; at: BiggestUInt)	
+delete	ui.html#delete,AttributedString,BiggestUInt,BiggestUInt	ui: delete(s: AttributedString; start, end: BiggestUInt)	
+setAttribute	ui.html#setAttribute,AttributedString,Attribute,BiggestUInt,BiggestUInt	ui: setAttribute(s: AttributedString; a: Attribute; start, end: BiggestUInt)	
+forEachAttribute	ui.html#forEachAttribute,AttributedString,,pointer	ui: forEachAttribute(s: AttributedString;\n                 f: rawui.AttributedStringForEachAttributeFunc; data: pointer)	
+numGraphemes	ui.html#numGraphemes,AttributedString	ui: numGraphemes(s: AttributedString): BiggestUInt	
+byteIndexToGrapheme	ui.html#byteIndexToGrapheme,AttributedString,BiggestUInt	ui: byteIndexToGrapheme(s: AttributedString; pos: BiggestUInt): BiggestUInt	
+graphemeToByteIndex	ui.html#graphemeToByteIndex,AttributedString,BiggestUInt	ui: graphemeToByteIndex(s: AttributedString; pos: BiggestUInt): BiggestUInt	
+free	ui.html#free,Attribute	ui: free(a: Attribute)	
+getType	ui.html#getType,Attribute	ui: getType(a: Attribute): AttributeType	
+newFamilyAttribute	ui.html#newFamilyAttribute,string	ui: newFamilyAttribute(family: string): Attribute	
+family	ui.html#family,Attribute	ui: family(a: Attribute): string	
+newSizeAttribute	ui.html#newSizeAttribute,float	ui: newSizeAttribute(size: float): Attribute	
+size	ui.html#size,Attribute	ui: size(a: Attribute): float	
+newWeightAttribute	ui.html#newWeightAttribute,TextWeight	ui: newWeightAttribute(weight: TextWeight): Attribute	
+weight	ui.html#weight,Attribute	ui: weight(a: Attribute): TextWeight	
+newItalicAttribute	ui.html#newItalicAttribute,TextItalic	ui: newItalicAttribute(italic: TextItalic): Attribute	
+italic	ui.html#italic,Attribute	ui: italic(a: Attribute): TextItalic	
+newStretchAttribute	ui.html#newStretchAttribute,TextStretch	ui: newStretchAttribute(stretch: TextStretch): Attribute	
+stretch	ui.html#stretch,Attribute	ui: stretch(a: Attribute): TextStretch	
+newColorAttribute	ui.html#newColorAttribute,cdouble,cdouble,cdouble,cdouble	ui: newColorAttribute(r: cdouble; g: cdouble; b: cdouble; a: cdouble): Attribute	
+color	ui.html#color,Attribute	ui: color(a: Attribute): tuple[r, g, b, alpha: float]	
+newBackgroundAttribute	ui.html#newBackgroundAttribute,float,float,float,float	ui: newBackgroundAttribute(r, g, b, a: float): Attribute	
+newUnderlineAttribute	ui.html#newUnderlineAttribute,Underline	ui: newUnderlineAttribute(u: Underline): Attribute	
+underline	ui.html#underline,Attribute	ui: underline(a: Attribute): Underline	
+newUnderlineColorAttribute	ui.html#newUnderlineColorAttribute,UnderlineColor,float,float,float,float	ui: newUnderlineColorAttribute(u: UnderlineColor; r, g, b, a: float): Attribute	
+underlineColor	ui.html#underlineColor,Attribute	ui: underlineColor(a: Attribute): tuple[u: UnderlineColor, r, g, b, alpha: float]	
+OpenTypeFeatures	ui.html#OpenTypeFeatures	ui: OpenTypeFeatures	
+impl	ui.html#impl,OpenTypeFeatures	ui: impl(b: OpenTypeFeatures): RawOpenTypeFeatures	
+impl=	ui.html#impl=,OpenTypeFeatures,RawOpenTypeFeatures	ui: impl=(b: OpenTypeFeatures; r: RawOpenTypeFeatures)	
+newOpenTypeFeatures	ui.html#newOpenTypeFeatures	ui: newOpenTypeFeatures(): OpenTypeFeatures	
+free	ui.html#free,OpenTypeFeatures	ui: free(otf: OpenTypeFeatures)	
+clone	ui.html#clone,OpenTypeFeatures	ui: clone(otf: OpenTypeFeatures): OpenTypeFeatures	
+add	ui.html#add,OpenTypeFeatures,char,char,char,char,uint32	ui: add(otf: OpenTypeFeatures; a, b, c, d: char; value: uint32)	
+remove	ui.html#remove,OpenTypeFeatures,char,char,char,char	ui: remove(otf: OpenTypeFeatures; a, b, c, d: char)	
+get	ui.html#get,OpenTypeFeatures,char,char,char,char,uint32	ui: get(otf: OpenTypeFeatures; a, b, c, d: char; value: var uint32): bool	
+forEach	ui.html#forEach,OpenTypeFeatures,,pointer	ui: forEach(otf: OpenTypeFeatures; f: rawui.OpenTypeFeaturesForEachFunc;\n        data: pointer)	
+newFeaturesAttribute	ui.html#newFeaturesAttribute,OpenTypeFeatures	ui: newFeaturesAttribute(otf: OpenTypeFeatures): Attribute	
+features	ui.html#features,Attribute	ui: features(a: Attribute): OpenTypeFeatures	
+DrawTextLayout	ui.html#DrawTextLayout	ui: DrawTextLayout	
+impl	ui.html#impl,DrawTextLayout	ui: impl(b: DrawTextLayout): RawDrawTextLayout	
+impl=	ui.html#impl=,DrawTextLayout,RawDrawTextLayout	ui: impl=(b: DrawTextLayout; r: RawDrawTextLayout)	
+newDrawTextLayout	ui.html#newDrawTextLayout,ptr.DrawTextLayoutParams	ui: newDrawTextLayout(params: ptr DrawTextLayoutParams): DrawTextLayout	
+free	ui.html#free,DrawTextLayout	ui: free(tl: DrawTextLayout)	
+drawText	ui.html#drawText,ptr.DrawContext,DrawTextLayout,float,float	ui: drawText(c: ptr DrawContext; tl: DrawTextLayout; x, y: float)	
+extents	ui.html#extents,DrawTextLayout	ui: extents(tl: DrawTextLayout): tuple[width, height: float]	
+Button	ui.html#Button	ui: Button	
+impl	ui.html#impl,Button	ui: impl(b: Button): RawButton	
+impl=	ui.html#impl=,Button,RawButton	ui: impl=(b: Button; r: RawButton)	
+text	ui.html#text,Button	ui: text(b: Button): string	
+text=	ui.html#text=,Button,string	ui: text=(b: Button; text: string)	
+newButton	ui.html#newButton,string,proc)	ui: newButton(text: string; onclick: proc () = nil): Button	
+RadioButtons	ui.html#RadioButtons	ui: RadioButtons	
+impl	ui.html#impl,RadioButtons	ui: impl(b: RadioButtons): RawRadioButtons	
+impl=	ui.html#impl=,RadioButtons,RawRadioButtons	ui: impl=(b: RadioButtons; r: RawRadioButtons)	
+add	ui.html#add,RadioButtons,string	ui: add(r: RadioButtons; text: string)	
+radioButtonsSelected	ui.html#radioButtonsSelected,RadioButtons	ui: radioButtonsSelected(r: RadioButtons): int	
+selected	ui.html#selected,RadioButtons	ui: selected(r: RadioButtons): int	
+setSelected	ui.html#setSelected,RadioButtons,int	ui: setSelected(r: RadioButtons; index: int)	
+newRadioButtons	ui.html#newRadioButtons,proc)	ui: newRadioButtons(onclick: proc () = nil): RadioButtons	
+Window	ui.html#Window	ui: Window	
+impl	ui.html#impl,Window	ui: impl(b: Window): RawWindow	
+impl=	ui.html#impl=,Window,RawWindow	ui: impl=(b: Window; r: RawWindow)	
+title	ui.html#title,Window	ui: title(w: Window): string	
+title=	ui.html#title=,Window,string	ui: title=(w: Window; text: string)	
+contentSize	ui.html#contentSize,Window	ui: contentSize(window: Window): tuple[width, height: int]	
+contentSize=	ui.html#contentSize=,Window,tuple[int,int]	ui: contentSize=(window: Window; size: tuple[width, height: int])	
+fullscreen	ui.html#fullscreen,Window	ui: fullscreen(w: Window): bool	
+fullscreen=	ui.html#fullscreen=,Window,bool	ui: fullscreen=(w: Window; fullscreen: bool)	
+focused	ui.html#focused,Window	ui: focused(w: Window): bool	
+borderless	ui.html#borderless,Window	ui: borderless(w: Window): bool	
+borderless=	ui.html#borderless=,Window,bool	ui: borderless=(w: Window; borderless: bool)	
+resizeable	ui.html#resizeable,Window	ui: resizeable(w: Window): bool	
+resizeable=	ui.html#resizeable=,Window,bool	ui: resizeable=(w: Window; resizeable: bool)	
+margined	ui.html#margined,Window	ui: margined(w: Window): bool	
+margined=	ui.html#margined=,Window,bool	ui: margined=(w: Window; x: bool)	
+child	ui.html#child,Window	ui: child(w: Window): Widget	
+child=	ui.html#child=,Window,Widget	ui: child=(w: Window; child: Widget)	
+openFile	ui.html#openFile,Window	ui: openFile(parent: Window): string	
+openFolder	ui.html#openFolder,Window	ui: openFolder(parent: Window): string	
+saveFile	ui.html#saveFile,Window	ui: saveFile(parent: Window): string	
+msgBox	ui.html#msgBox,Window,string,string	ui: msgBox(parent: Window; title, desc: string)	
+msgBoxError	ui.html#msgBoxError,Window,string,string	ui: msgBoxError(parent: Window; title, desc: string)	
+error	ui.html#error,Window,string,string	ui: error(parent: Window; title, desc: string)	
+newWindow	ui.html#newWindow,string,int,int,bool,proc)	ui: newWindow(title: string; width, height: int; hasMenubar: bool = false;\n          onfocuschanged: proc () = nil): Window	
+Box	ui.html#Box	ui: Box	
+impl	ui.html#impl,Box	ui: impl(b: Box): RawBox	
+impl=	ui.html#impl=,Box,RawBox	ui: impl=(b: Box; r: RawBox)	
+add	ui.html#add,Box,Widget	ui: add(b: Box; child: Widget; stretchy = false)	
+add	ui.html#add,Box,openArray[Widget]	ui: add(c: Box; items: openArray[Widget])	
+delete	ui.html#delete,Box,int	ui: delete(b: Box; index: int)	
+padded	ui.html#padded,Box	ui: padded(b: Box): bool	
+padded=	ui.html#padded=,Box,bool	ui: padded=(b: Box; x: bool)	
+newHorizontalBox	ui.html#newHorizontalBox	ui: newHorizontalBox(padded = false): Box	
+newVerticalBox	ui.html#newVerticalBox	ui: newVerticalBox(padded = false): Box	
+Checkbox	ui.html#Checkbox	ui: Checkbox	
+impl	ui.html#impl,Checkbox	ui: impl(b: Checkbox): RawCheckbox	
+impl=	ui.html#impl=,Checkbox,RawCheckbox	ui: impl=(b: Checkbox; r: RawCheckbox)	
+text	ui.html#text,Checkbox	ui: text(c: Checkbox): string	
+text=	ui.html#text=,Checkbox,string	ui: text=(c: Checkbox; text: string)	
+checked	ui.html#checked,Checkbox	ui: checked(c: Checkbox): bool	
+checked=	ui.html#checked=,Checkbox,bool	ui: checked=(c: Checkbox; x: bool)	
+newCheckbox	ui.html#newCheckbox,string,proc)	ui: newCheckbox(text: string; ontoggled: proc () = nil): Checkbox	
+Entry	ui.html#Entry	ui: Entry	
+impl	ui.html#impl,Entry	ui: impl(b: Entry): RawEntry	
+impl=	ui.html#impl=,Entry,RawEntry	ui: impl=(b: Entry; r: RawEntry)	
+text	ui.html#text,Entry	ui: text(e: Entry): string	
+text=	ui.html#text=,Entry,string	ui: text=(e: Entry; text: string)	
+readOnly	ui.html#readOnly,Entry	ui: readOnly(e: Entry): bool	
+readOnly=	ui.html#readOnly=,Entry,bool	ui: readOnly=(e: Entry; readOnly: bool)	
+newEntry	ui.html#newEntry,string,proc)	ui: newEntry(text: string = &quot;&quot;; onchanged: proc () = nil): Entry	
+newPasswordEntry	ui.html#newPasswordEntry,string,proc)	ui: newPasswordEntry(text: string = &quot;&quot;; onchanged: proc () = nil): Entry	
+newSearchEntry	ui.html#newSearchEntry,string,proc)	ui: newSearchEntry(text: string = &quot;&quot;; onchanged: proc () = nil): Entry	
+Label	ui.html#Label	ui: Label	
+impl	ui.html#impl,Label	ui: impl(b: Label): RawLabel	
+impl=	ui.html#impl=,Label,RawLabel	ui: impl=(b: Label; r: RawLabel)	
+text	ui.html#text,Label	ui: text(l: Label): string	
+text=	ui.html#text=,Label,string	ui: text=(l: Label; text: string)	
+newLabel	ui.html#newLabel,string	ui: newLabel(text: string): Label	
+Tab	ui.html#Tab	ui: Tab	
+impl	ui.html#impl,Tab	ui: impl(b: Tab): RawTab	
+impl=	ui.html#impl=,Tab,RawTab	ui: impl=(b: Tab; r: RawTab)	
+add	ui.html#add,Tab,string,Widget	ui: add(t: Tab; name: string; c: Widget)	
+insertAt	ui.html#insertAt,Tab,string,int,Widget	ui: insertAt(t: Tab; name: string; at: int; c: Widget)	
+delete	ui.html#delete,Tab,int	ui: delete(t: Tab; index: int)	
+margined	ui.html#margined,Tab,int	ui: margined(t: Tab; page: int): bool	
+margined=	ui.html#margined=,Tab,int,bool	ui: margined=(t: Tab; page: int; x: bool)	
+newTab	ui.html#newTab	ui: newTab(): Tab	
+Group	ui.html#Group	ui: Group	
+impl	ui.html#impl,Group	ui: impl(b: Group): RawGroup	
+impl=	ui.html#impl=,Group,RawGroup	ui: impl=(b: Group; r: RawGroup)	
+title	ui.html#title,Group	ui: title(g: Group): string	
+title=	ui.html#title=,Group,string	ui: title=(g: Group; title: string)	
+child	ui.html#child,Group,Widget	ui: child(g: Group; c: Widget): Widget	
+child=	ui.html#child=,Group,Widget	ui: child=(g: Group; c: Widget)	
+margined	ui.html#margined,Group	ui: margined(g: Group): bool	
+margined=	ui.html#margined=,Group,bool	ui: margined=(g: Group; x: bool)	
+newGroup	ui.html#newGroup,string	ui: newGroup(title: string; margined = false): Group	
+Spinbox	ui.html#Spinbox	ui: Spinbox	
+impl	ui.html#impl,Spinbox	ui: impl(b: Spinbox): RawSpinbox	
+impl=	ui.html#impl=,Spinbox,RawSpinbox	ui: impl=(b: Spinbox; r: RawSpinbox)	
+value	ui.html#value,Spinbox	ui: value(s: Spinbox): int	
+value=	ui.html#value=,Spinbox,int	ui: value=(s: Spinbox; value: int)	
+newSpinbox	ui.html#newSpinbox,int,int,proc(int)	ui: newSpinbox(min, max: int; onchanged: proc (newvalue: int) = nil): Spinbox	
+Slider	ui.html#Slider	ui: Slider	
+impl	ui.html#impl,Slider	ui: impl(b: Slider): RawSlider	
+impl=	ui.html#impl=,Slider,RawSlider	ui: impl=(b: Slider; r: RawSlider)	
+value	ui.html#value,Slider	ui: value(s: Slider): int	
+value=	ui.html#value=,Slider,int	ui: value=(s: Slider; value: int)	
+range=	ui.html#range=,Slider,tuple[int,int]	ui: range=(s: Slider; sliderRange: tuple[min, max: int])	
+setRange	ui.html#setRange,Slider,int,int	ui: setRange(s: Slider; min, max: int)	
+hasToolTip	ui.html#hasToolTip,Slider	ui: hasToolTip(s: Slider): bool	
+hasToolTip=	ui.html#hasToolTip=,Slider,bool	ui: hasToolTip=(s: Slider; hasToolTip: bool): bool	
+newSlider	ui.html#newSlider,int,int,proc(int)	ui: newSlider(min, max: int; onchanged: proc (newvalue: int) = nil): Slider	
+ProgressBar	ui.html#ProgressBar	ui: ProgressBar	
+impl	ui.html#impl,ProgressBar	ui: impl(b: ProgressBar): RawProgressBar	
+impl=	ui.html#impl=,ProgressBar,RawProgressBar	ui: impl=(b: ProgressBar; r: RawProgressBar)	
+value	ui.html#value,ProgressBar	ui: value(p: ProgressBar): int	
+value=	ui.html#value=,ProgressBar,int	ui: value=(p: ProgressBar; n: int)	
+newProgressBar	ui.html#newProgressBar	ui: newProgressBar(): ProgressBar	
+Separator	ui.html#Separator	ui: Separator	
+impl	ui.html#impl,Separator	ui: impl(b: Separator): RawSeparator	
+impl=	ui.html#impl=,Separator,RawSeparator	ui: impl=(b: Separator; r: RawSeparator)	
+newVerticalSeparator	ui.html#newVerticalSeparator	ui: newVerticalSeparator(): Separator	
+newHorizontalSeparator	ui.html#newHorizontalSeparator	ui: newHorizontalSeparator(): Separator	
+Combobox	ui.html#Combobox	ui: Combobox	
+impl	ui.html#impl,Combobox	ui: impl(b: Combobox): RawCombobox	
+impl=	ui.html#impl=,Combobox,RawCombobox	ui: impl=(b: Combobox; r: RawCombobox)	
+add	ui.html#add,Combobox,string	ui: add(c: Combobox; text: string)	
+add	ui.html#add,Combobox,openArray[string]	ui: add(c: Combobox; items: openArray[string])	
+insertAt	ui.html#insertAt,Combobox,int,string	ui: insertAt(c: Combobox; index: int; text: string)	
+clear	ui.html#clear,Combobox	ui: clear(c: Combobox)	
+delete	ui.html#delete,Combobox,int	ui: delete(c: Combobox; index: int)	
+numItems	ui.html#numItems,Combobox	ui: numItems(c: Combobox): int	
+selected	ui.html#selected,Combobox	ui: selected(c: Combobox): int	
+selected=	ui.html#selected=,Combobox,int	ui: selected=(c: Combobox; n: int)	
+newCombobox	ui.html#newCombobox,proc)	ui: newCombobox(onSelected: proc () = nil): Combobox	
+EditableCombobox	ui.html#EditableCombobox	ui: EditableCombobox	
+impl	ui.html#impl,EditableCombobox	ui: impl(b: EditableCombobox): RawEditableCombobox	
+impl=	ui.html#impl=,EditableCombobox,RawEditableCombobox	ui: impl=(b: EditableCombobox; r: RawEditableCombobox)	
+add	ui.html#add,EditableCombobox,string	ui: add(c: EditableCombobox; text: string)	
+add	ui.html#add,EditableCombobox,openArray[string]	ui: add(c: EditableCombobox; items: openArray[string])	
+text	ui.html#text,EditableCombobox	ui: text(c: EditableCombobox): string	
+text=	ui.html#text=,EditableCombobox,string	ui: text=(c: EditableCombobox; text: string)	
+newEditableCombobox	ui.html#newEditableCombobox,proc)	ui: newEditableCombobox(onchanged: proc () = nil): EditableCombobox	
+MultilineEntry	ui.html#MultilineEntry	ui: MultilineEntry	
+impl	ui.html#impl,MultilineEntry	ui: impl(b: MultilineEntry): RawMultilineEntry	
+impl=	ui.html#impl=,MultilineEntry,RawMultilineEntry	ui: impl=(b: MultilineEntry; r: RawMultilineEntry)	
+text	ui.html#text,MultilineEntry	ui: text(e: MultilineEntry): string	
+text=	ui.html#text=,MultilineEntry,string	ui: text=(e: MultilineEntry; text: string)	
+add	ui.html#add,MultilineEntry,string	ui: add(e: MultilineEntry; text: string)	
+readonly	ui.html#readonly,MultilineEntry	ui: readonly(e: MultilineEntry): bool	
+readonly=	ui.html#readonly=,MultilineEntry,bool	ui: readonly=(e: MultilineEntry; x: bool)	
+newMultilineEntry	ui.html#newMultilineEntry	ui: newMultilineEntry(): MultilineEntry	
+newNonWrappingMultilineEntry	ui.html#newNonWrappingMultilineEntry	ui: newNonWrappingMultilineEntry(): MultilineEntry	
+MenuItem	ui.html#MenuItem	ui: MenuItem	
+impl	ui.html#impl,MenuItem	ui: impl(b: MenuItem): RawMenuItem	
+impl=	ui.html#impl=,MenuItem,RawMenuItem	ui: impl=(b: MenuItem; r: RawMenuItem)	
+enable	ui.html#enable,MenuItem	ui: enable(m: MenuItem)	
+disable	ui.html#disable,MenuItem	ui: disable(m: MenuItem)	
+checked	ui.html#checked,MenuItem	ui: checked(m: MenuItem): bool	
+checked=	ui.html#checked=,MenuItem,bool	ui: checked=(m: MenuItem; x: bool)	
+Menu	ui.html#Menu	ui: Menu	
+impl	ui.html#impl,Menu	ui: impl(b: Menu): RawMenu	
+impl=	ui.html#impl=,Menu,RawMenu	ui: impl=(b: Menu; r: RawMenu)	
+addItem	ui.html#addItem,Menu,string,proc)	ui: addItem(m: Menu; name: string; onclicked: proc ()): MenuItem	
+addCheckItem	ui.html#addCheckItem,Menu,string,proc)	ui: addCheckItem(m: Menu; name: string; onclicked: proc ()): MenuItem	
+addQuitItem	ui.html#addQuitItem,Menu,proc)	ui: addQuitItem(m: Menu; shouldQuit: proc (): bool): MenuItem	
+addPreferencesItem	ui.html#addPreferencesItem,Menu,proc)	ui: addPreferencesItem(m: Menu; onclicked: proc ()): MenuItem	
+addAboutItem	ui.html#addAboutItem,Menu,proc)	ui: addAboutItem(m: Menu; onclicked: proc ()): MenuItem	
+addSeparator	ui.html#addSeparator,Menu	ui: addSeparator(m: Menu)	
+newMenu	ui.html#newMenu,string	ui: newMenu(name: string): Menu	
+FontButton	ui.html#FontButton	ui: FontButton	
+impl	ui.html#impl,FontButton	ui: impl(b: FontButton): RawFontButton	
+impl=	ui.html#impl=,FontButton,RawFontButton	ui: impl=(b: FontButton; r: RawFontButton)	
+font	ui.html#font,FontButton	ui: font(f: FontButton): FontDescriptor	
+freeFont	ui.html#freeFont,FontDescriptor	ui: freeFont(f: FontDescriptor)	
+newFontButton	ui.html#newFontButton,proc(FontDescriptor)	ui: newFontButton(onChanged: proc (font: FontDescriptor) = nil): FontButton	
+ColorButton	ui.html#ColorButton	ui: ColorButton	
+impl	ui.html#impl,ColorButton	ui: impl(b: ColorButton): RawColorButton	
+impl=	ui.html#impl=,ColorButton,RawColorButton	ui: impl=(b: ColorButton; r: RawColorButton)	
+color	ui.html#color,ColorButton	ui: color(c: ColorButton): tuple[r, g, b, a: float]	
+setColor	ui.html#setColor,ColorButton,float,float,float,float	ui: setColor(c: ColorButton; r, g, b, alpha: float)	
+newColorButton	ui.html#newColorButton,proc(tuple[float,float,float,float])	ui: newColorButton(onchanged: proc (color: tuple[r, g, b, a: float]) = nil): ColorButton	
+Form	ui.html#Form	ui: Form	
+impl	ui.html#impl,Form	ui: impl(b: Form): RawForm	
+impl=	ui.html#impl=,Form,RawForm	ui: impl=(b: Form; r: RawForm)	
+add	ui.html#add,Form,string,Widget,bool	ui: add(f: Form; label: string; w: Widget; stretchy: bool = false)	
+numChildren	ui.html#numChildren,Form	ui: numChildren(f: Form): int	
+delete	ui.html#delete,Form,int	ui: delete(f: Form; index: int)	
+padded	ui.html#padded,Form	ui: padded(f: Form): bool	
+padded=	ui.html#padded=,Form,bool	ui: padded=(f: Form; padded: bool)	
+newForm	ui.html#newForm	ui: newForm(): Form	
+Grid	ui.html#Grid	ui: Grid	
+impl	ui.html#impl,Grid	ui: impl(b: Grid): RawGrid	
+impl=	ui.html#impl=,Grid,RawGrid	ui: impl=(b: Grid; r: RawGrid)	
+add	ui.html#add,Grid,Widget,int,int,int,int,int,Align,int,Align	ui: add(g: Grid; w: Widget; left, top, xspan, yspan, hexpand: int; halign: Align;\n    vexpand: int; valign: Align)	
+insertAt	ui.html#insertAt,Grid,Widget,Widget,At,int,int,int,int,int,Align,int,Align	ui: insertAt(g: Grid; w, existing: Widget; at: At;\n         left, top, xspan, yspan, hexpand: int; halign: Align; vexpand: int;\n         valign: Align)	
+padded	ui.html#padded,Grid	ui: padded(g: Grid): bool	
+padded=	ui.html#padded=,Grid,bool	ui: padded=(g: Grid; padded: bool)	
+newGrid	ui.html#newGrid	ui: newGrid(): Grid	
+Image	ui.html#Image	ui: Image	
+impl	ui.html#impl,Image	ui: impl(b: Image): RawImage	
+impl=	ui.html#impl=,Image,RawImage	ui: impl=(b: Image; r: RawImage)	
+add	ui.html#add,Image,pointer,int,int,int	ui: add(i: Image; pixels: pointer; pixelWidth: int; pixelHeight: int;\n    byteStride: int)	
+free	ui.html#free,Image	ui: free(i: Image)	
+newImage	ui.html#newImage,float,float	ui: newImage(width, height: float): Image	
+Table	ui.html#Table	ui: Table	
+impl	ui.html#impl,Table	ui: impl(b: Table): RawTable	
+impl=	ui.html#impl=,Table,RawTable	ui: impl=(b: Table; r: RawTable)	
+free	ui.html#free,ptr.TableValue	ui: free(t: ptr TableValue)	
+free	ui.html#free,ptr.TableModel	ui: free(t: ptr TableModel)	
+free	ui.html#free,ptr.	ui: free(t: ptr rawui.TableSelection)	
+tableValueGetType	ui.html#tableValueGetType,ptr.TableValue	ui: tableValueGetType(v: ptr TableValue): TableValueType	
+newTableValueString	ui.html#newTableValueString,string	ui: newTableValueString(s: string): ptr TableValue	
+tableValueString	ui.html#tableValueString,ptr.TableValue	ui: tableValueString(v: ptr TableValue): string	
+newTableValueImage	ui.html#newTableValueImage,Image	ui: newTableValueImage(img: Image): ptr TableValue	
+tableValueImage	ui.html#tableValueImage,ptr.TableValue	ui: tableValueImage(v: ptr TableValue): Image	
+newTableValueInt	ui.html#newTableValueInt,int	ui: newTableValueInt(i: int): ptr TableValue	
+tableValueInt	ui.html#tableValueInt,ptr.TableValue	ui: tableValueInt(v: ptr TableValue): int	
+newTableValueColor	ui.html#newTableValueColor,float,float,float,float	ui: newTableValueColor(r: float; g: float; b: float; a: float): ptr TableValue	
+tableValueColor	ui.html#tableValueColor,ptr.TableValue,ptr.float,ptr.float,ptr.float,ptr.float	ui: tableValueColor(v: ptr TableValue; r: ptr float; g: ptr float; b: ptr float;\n                a: ptr float)	
+rowInserted	ui.html#rowInserted,ptr.TableModel,int	ui: rowInserted(m: ptr TableModel; newIndex: int)	
+rowChanged	ui.html#rowChanged,ptr.TableModel,int	ui: rowChanged(m: ptr TableModel; index: int)	
+rowDeleted	ui.html#rowDeleted,ptr.TableModel,int	ui: rowDeleted(m: ptr TableModel; oldIndex: int)	
+appendTextColumn	ui.html#appendTextColumn,Table,string,int,int,ptr.TableTextColumnOptionalParams	ui: appendTextColumn(table: Table; title: string; index, editableMode: int;\n                 textParams: ptr TableTextColumnOptionalParams)	
+appendImageColumn	ui.html#appendImageColumn,Table,string,int	ui: appendImageColumn(table: Table; title: string; index: int)	
+appendImageTextColumn	ui.html#appendImageTextColumn,Table,string,int,int,int,ptr.TableTextColumnOptionalParams	ui: appendImageTextColumn(table: Table; title: string;\n                      imageIndex, textIndex, editableMode: int;\n                      textParams: ptr TableTextColumnOptionalParams)	
+appendCheckboxColumn	ui.html#appendCheckboxColumn,Table,string,int,int	ui: appendCheckboxColumn(table: Table; title: string; index, editableMode: int)	
+appendProgressBarColumn	ui.html#appendProgressBarColumn,Table,string,int	ui: appendProgressBarColumn(table: Table; title: string; index: int)	
+appendButtonColumn	ui.html#appendButtonColumn,Table,string,int,int	ui: appendButtonColumn(table: Table; title: string; index, clickableMode: int)	
+headerVisible	ui.html#headerVisible,Table	ui: headerVisible(t: Table): bool	
+headerSetVisible	ui.html#headerSetVisible,Table,bool	ui: headerSetVisible(t: Table; visible: bool)	
+selectionMode	ui.html#selectionMode,Table	ui: selectionMode(table: Table): TableSelectionMode	
+selectionMode=	ui.html#selectionMode=,Table,TableSelectionMode	ui: selectionMode=(table: Table; mode: TableSelectionMode)	
+columnWidth	ui.html#columnWidth,Table,int	ui: columnWidth(table: Table; column: int): int	
+setColumnWidth	ui.html#setColumnWidth,Table,int,int	ui: setColumnWidth(table: Table; column, width: int)	
+sortIndicator	ui.html#sortIndicator,Table,int	ui: sortIndicator(table: Table; column: int): SortIndicator	
+setSortIndicator	ui.html#setSortIndicator,Table,int,SortIndicator	ui: setSortIndicator(table: Table; column: int; indicator: SortIndicator)	
+newTable	ui.html#newTable,ptr.TableParams	ui: newTable(params: ptr TableParams): Table	
+show	ui.html#show,W	ui: show[W: Widget](w: W)	
+hide	ui.html#hide,W	ui: hide[W: Widget](w: W)	
+enabled	ui.html#enabled,W	ui: enabled[W: Widget](w: W): bool	
+enable	ui.html#enable,W	ui: enable[W: Widget](w: W)	
+disable	ui.html#disable,W	ui: disable[W: Widget](w: W)	
+destroy	ui.html#destroy,W	ui: destroy[W: Widget](w: W)	
+parent=	ui.html#parent=,W	ui: parent=[W: Widget](w: W): W	
+topLevel	ui.html#topLevel,W	ui: topLevel[W: Widget](w: W): bool	
+visible	ui.html#visible,W	ui: visible[W: Widget](w: W): bool	
+verifySetParent	ui.html#verifySetParent,W,W	ui: verifySetParent[W: Widget](w, parent: W): bool	
+enabledToUser	ui.html#enabledToUser,W	ui: enabledToUser[W: Widget](w: W): bool	
+free	ui.html#free,W	ui: free[W: Widget](w: W)	
+DateTimePicker	ui.html#DateTimePicker	ui: DateTimePicker	
+impl	ui.html#impl,DateTimePicker	ui: impl(b: DateTimePicker): RawDateTimePicker	
+impl=	ui.html#impl=,DateTimePicker,RawDateTimePicker	ui: impl=(b: DateTimePicker; r: RawDateTimePicker)	
+time	ui.html#time,DateTimePicker	ui: time(d: DateTimePicker): DateTime	
+time=	ui.html#time=,DateTimePicker,DateTime	ui: time=(d: DateTimePicker; dateTime: DateTime)	
+newDateTimePicker	ui.html#newDateTimePicker,proc(DateTime)	ui: newDateTimePicker(onchanged: proc (dateTime: DateTime) = nil): DateTimePicker	
+newDatePicker	ui.html#newDatePicker,proc(DateTime)	ui: newDatePicker(onchanged: proc (dateTime: DateTime) = nil): DateTimePicker	
+newTimePicker	ui.html#newTimePicker,proc(DateTime)	ui: newTimePicker(onchanged: proc (dateTime: DateTime) = nil): DateTimePicker	

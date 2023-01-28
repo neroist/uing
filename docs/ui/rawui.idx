@@ -1,0 +1,398 @@
+ForEach	ui/rawui.html#ForEach	rawui: ForEach	
+InitOptions	ui/rawui.html#InitOptions	rawui: InitOptions	
+init	ui/rawui.html#init,ptr.InitOptions	rawui: init(options: ptr InitOptions): cstring	
+uninit	ui/rawui.html#uninit	rawui: uninit()	
+freeInitError	ui/rawui.html#freeInitError,cstring	rawui: freeInitError(err: cstring)	
+main	ui/rawui.html#main	rawui: main()	
+mainSteps	ui/rawui.html#mainSteps	rawui: mainSteps()	
+mainStep	ui/rawui.html#mainStep,cint	rawui: mainStep(wait: cint): cint	
+quit	ui/rawui.html#quit	rawui: quit()	
+queueMain	ui/rawui.html#queueMain,proc(pointer),pointer	rawui: queueMain(f: proc (data: pointer) {.cdecl.}; data: pointer)	
+timer	ui/rawui.html#timer,cint,proc(pointer),pointer	rawui: timer(milliseconds: cint; f: proc (data: pointer): cint {.cdecl.}; data: pointer)	
+onShouldQuit	ui/rawui.html#onShouldQuit,proc(pointer),pointer	rawui: onShouldQuit(f: proc (data: pointer): cint {.cdecl.}; data: pointer)	
+freeText	ui/rawui.html#freeText,cstring	rawui: freeText(text: cstring)	
+Control	ui/rawui.html#Control	rawui: Control	
+control	ui/rawui.html#control.t,untyped	rawui: control(this: untyped): untyped	
+controlDestroy	ui/rawui.html#controlDestroy,ptr.Control	rawui: controlDestroy(c: ptr Control)	
+controlHandle	ui/rawui.html#controlHandle,ptr.Control	rawui: controlHandle(c: ptr Control): int	
+controlParent	ui/rawui.html#controlParent,ptr.Control	rawui: controlParent(c: ptr Control): ptr Control	
+controlSetParent	ui/rawui.html#controlSetParent,ptr.Control,ptr.Control	rawui: controlSetParent(c: ptr Control; parent: ptr Control)	
+controlToplevel	ui/rawui.html#controlToplevel,ptr.Control	rawui: controlToplevel(c: ptr Control): cint	
+controlVisible	ui/rawui.html#controlVisible,ptr.Control	rawui: controlVisible(c: ptr Control): cint	
+controlShow	ui/rawui.html#controlShow,ptr.Control	rawui: controlShow(c: ptr Control)	
+controlHide	ui/rawui.html#controlHide,ptr.Control	rawui: controlHide(c: ptr Control)	
+controlEnabled	ui/rawui.html#controlEnabled,ptr.Control	rawui: controlEnabled(c: ptr Control): cint	
+controlEnable	ui/rawui.html#controlEnable,ptr.Control	rawui: controlEnable(c: ptr Control)	
+controlDisable	ui/rawui.html#controlDisable,ptr.Control	rawui: controlDisable(c: ptr Control)	
+allocControl	ui/rawui.html#allocControl,csize_t,uint32,uint32,cstring	rawui: allocControl(n: csize_t; oSsig: uint32; typesig: uint32; typenamestr: cstring): ptr Control	
+freeControl	ui/rawui.html#freeControl,ptr.Control	rawui: freeControl(c: ptr Control)	
+controlVerifySetParent	ui/rawui.html#controlVerifySetParent,ptr.Control,ptr.Control	rawui: controlVerifySetParent(c: ptr Control; parent: ptr Control)	
+controlEnabledToUser	ui/rawui.html#controlEnabledToUser,ptr.Control	rawui: controlEnabledToUser(c: ptr Control): cint	
+userBugCannotSetParentOnToplevel	ui/rawui.html#userBugCannotSetParentOnToplevel,cstring	rawui: userBugCannotSetParentOnToplevel(type: cstring)	
+Window	ui/rawui.html#Window	rawui: Window	
+window	ui/rawui.html#window.t,untyped	rawui: window(this: untyped): untyped	
+windowTitle	ui/rawui.html#windowTitle,ptr.Window	rawui: windowTitle(w: ptr Window): cstring	
+windowSetTitle	ui/rawui.html#windowSetTitle,ptr.Window,cstring	rawui: windowSetTitle(w: ptr Window; title: cstring)	
+windowContentSize	ui/rawui.html#windowContentSize,ptr.Window,ptr.cint,ptr.cint	rawui: windowContentSize(w: ptr Window; width: ptr cint; height: ptr cint)	
+windowSetContentSize	ui/rawui.html#windowSetContentSize,ptr.Window,cint,cint	rawui: windowSetContentSize(w: ptr Window; width: cint; height: cint)	
+windowFullscreen	ui/rawui.html#windowFullscreen,ptr.Window	rawui: windowFullscreen(w: ptr Window): cint	
+windowSetFullscreen	ui/rawui.html#windowSetFullscreen,ptr.Window,cint	rawui: windowSetFullscreen(w: ptr Window; fullscreen: cint)	
+windowOnContentSizeChanged	ui/rawui.html#windowOnContentSizeChanged,ptr.Window,proc(ptr.Window,pointer),pointer	rawui: windowOnContentSizeChanged(w: ptr Window; f: proc (sender: ptr Window;\n    senderData: pointer) {.cdecl.}; data: pointer)	
+windowOnClosing	ui/rawui.html#windowOnClosing,ptr.Window,proc(ptr.Window,pointer),pointer	rawui: windowOnClosing(w: ptr Window; f: proc (sender: ptr Window; senderData: pointer): cint {.\n    cdecl.}; data: pointer)	
+windowOnFocusChanged	ui/rawui.html#windowOnFocusChanged,ptr.Window,proc(ptr.Window,pointer),pointer	rawui: windowOnFocusChanged(w: ptr Window; f: proc (sender: ptr Window;\n    senderData: pointer) {.cdecl.}; data: pointer)	
+windowFocused	ui/rawui.html#windowFocused,ptr.Window	rawui: windowFocused(w: ptr Window): cint	
+windowBorderless	ui/rawui.html#windowBorderless,ptr.Window	rawui: windowBorderless(w: ptr Window): cint	
+windowSetBorderless	ui/rawui.html#windowSetBorderless,ptr.Window,cint	rawui: windowSetBorderless(w: ptr Window; borderless: cint)	
+windowSetChild	ui/rawui.html#windowSetChild,ptr.Window,ptr.Control	rawui: windowSetChild(w: ptr Window; child: ptr Control)	
+windowMargined	ui/rawui.html#windowMargined,ptr.Window	rawui: windowMargined(w: ptr Window): cint	
+windowSetMargined	ui/rawui.html#windowSetMargined,ptr.Window,cint	rawui: windowSetMargined(w: ptr Window; margined: cint)	
+windowResizeable	ui/rawui.html#windowResizeable,ptr.Window	rawui: windowResizeable(w: ptr Window): cint	
+windowSetResizeable	ui/rawui.html#windowSetResizeable,ptr.Window,cint	rawui: windowSetResizeable(w: ptr Window; resizeable: cint)	
+newWindow	ui/rawui.html#newWindow,cstring,cint,cint,cint	rawui: newWindow(title: cstring; width: cint; height: cint; hasMenubar: cint): ptr Window	
+Button	ui/rawui.html#Button	rawui: Button	
+button	ui/rawui.html#button.t,untyped	rawui: button(this: untyped): untyped	
+buttonText	ui/rawui.html#buttonText,ptr.Button	rawui: buttonText(b: ptr Button): cstring	
+buttonSetText	ui/rawui.html#buttonSetText,ptr.Button,cstring	rawui: buttonSetText(b: ptr Button; text: cstring)	
+buttonOnClicked	ui/rawui.html#buttonOnClicked,ptr.Button,proc(ptr.Button,pointer),pointer	rawui: buttonOnClicked(b: ptr Button;\n                f: proc (sender: ptr Button; senderData: pointer) {.cdecl.};\n                data: pointer)	
+newButton	ui/rawui.html#newButton,cstring	rawui: newButton(text: cstring): ptr Button	
+Box	ui/rawui.html#Box	rawui: Box	
+box	ui/rawui.html#box.t,untyped	rawui: box(this: untyped): untyped	
+boxAppend	ui/rawui.html#boxAppend,ptr.Box,ptr.Control,cint	rawui: boxAppend(b: ptr Box; child: ptr Control; stretchy: cint)	
+boxNumChildren	ui/rawui.html#boxNumChildren,ptr.Box	rawui: boxNumChildren(b: ptr Box): cint	
+boxDelete	ui/rawui.html#boxDelete,ptr.Box,cint	rawui: boxDelete(b: ptr Box; index: cint)	
+boxPadded	ui/rawui.html#boxPadded,ptr.Box	rawui: boxPadded(b: ptr Box): cint	
+boxSetPadded	ui/rawui.html#boxSetPadded,ptr.Box,cint	rawui: boxSetPadded(b: ptr Box; padded: cint)	
+newHorizontalBox	ui/rawui.html#newHorizontalBox	rawui: newHorizontalBox(): ptr Box	
+newVerticalBox	ui/rawui.html#newVerticalBox	rawui: newVerticalBox(): ptr Box	
+Checkbox	ui/rawui.html#Checkbox	rawui: Checkbox	
+checkbox	ui/rawui.html#checkbox.t,untyped	rawui: checkbox(this: untyped): untyped	
+checkboxText	ui/rawui.html#checkboxText,ptr.Checkbox	rawui: checkboxText(c: ptr Checkbox): cstring	
+checkboxSetText	ui/rawui.html#checkboxSetText,ptr.Checkbox,cstring	rawui: checkboxSetText(c: ptr Checkbox; text: cstring)	
+checkboxOnToggled	ui/rawui.html#checkboxOnToggled,ptr.Checkbox,proc(ptr.Checkbox,pointer),pointer	rawui: checkboxOnToggled(c: ptr Checkbox;\n                  f: proc (sender: ptr Checkbox; senderData: pointer) {.cdecl.};\n                  data: pointer)	
+checkboxChecked	ui/rawui.html#checkboxChecked,ptr.Checkbox	rawui: checkboxChecked(c: ptr Checkbox): cint	
+checkboxSetChecked	ui/rawui.html#checkboxSetChecked,ptr.Checkbox,cint	rawui: checkboxSetChecked(c: ptr Checkbox; checked: cint)	
+newCheckbox	ui/rawui.html#newCheckbox,cstring	rawui: newCheckbox(text: cstring): ptr Checkbox	
+Entry	ui/rawui.html#Entry	rawui: Entry	
+entry	ui/rawui.html#entry.t,untyped	rawui: entry(this: untyped): untyped	
+entryText	ui/rawui.html#entryText,ptr.Entry	rawui: entryText(e: ptr Entry): cstring	
+entrySetText	ui/rawui.html#entrySetText,ptr.Entry,cstring	rawui: entrySetText(e: ptr Entry; text: cstring)	
+entryOnChanged	ui/rawui.html#entryOnChanged,ptr.Entry,proc(ptr.Entry,pointer),pointer	rawui: entryOnChanged(e: ptr Entry;\n               f: proc (sender: ptr Entry; senderData: pointer) {.cdecl.};\n               data: pointer)	
+entryReadOnly	ui/rawui.html#entryReadOnly,ptr.Entry	rawui: entryReadOnly(e: ptr Entry): cint	
+entrySetReadOnly	ui/rawui.html#entrySetReadOnly,ptr.Entry,cint	rawui: entrySetReadOnly(e: ptr Entry; readonly: cint)	
+newEntry	ui/rawui.html#newEntry	rawui: newEntry(): ptr Entry	
+newPasswordEntry	ui/rawui.html#newPasswordEntry	rawui: newPasswordEntry(): ptr Entry	
+newSearchEntry	ui/rawui.html#newSearchEntry	rawui: newSearchEntry(): ptr Entry	
+Label	ui/rawui.html#Label	rawui: Label	
+label	ui/rawui.html#label.t,untyped	rawui: label(this: untyped): untyped	
+labelText	ui/rawui.html#labelText,ptr.Label	rawui: labelText(l: ptr Label): cstring	
+labelSetText	ui/rawui.html#labelSetText,ptr.Label,cstring	rawui: labelSetText(l: ptr Label; text: cstring)	
+newLabel	ui/rawui.html#newLabel,cstring	rawui: newLabel(text: cstring): ptr Label	
+Tab	ui/rawui.html#Tab	rawui: Tab	
+tab	ui/rawui.html#tab.t,untyped	rawui: tab(this: untyped): untyped	
+tabAppend	ui/rawui.html#tabAppend,ptr.Tab,cstring,ptr.Control	rawui: tabAppend(t: ptr Tab; name: cstring; c: ptr Control)	
+tabInsertAt	ui/rawui.html#tabInsertAt,ptr.Tab,cstring,cint,ptr.Control	rawui: tabInsertAt(t: ptr Tab; name: cstring; index: cint; c: ptr Control)	
+tabDelete	ui/rawui.html#tabDelete,ptr.Tab,cint	rawui: tabDelete(t: ptr Tab; index: cint)	
+tabNumPages	ui/rawui.html#tabNumPages,ptr.Tab	rawui: tabNumPages(t: ptr Tab): cint	
+tabMargined	ui/rawui.html#tabMargined,ptr.Tab,cint	rawui: tabMargined(t: ptr Tab; index: cint): cint	
+tabSetMargined	ui/rawui.html#tabSetMargined,ptr.Tab,cint,cint	rawui: tabSetMargined(t: ptr Tab; index: cint; margined: cint)	
+newTab	ui/rawui.html#newTab	rawui: newTab(): ptr Tab	
+Group	ui/rawui.html#Group	rawui: Group	
+group	ui/rawui.html#group.t,untyped	rawui: group(this: untyped): untyped	
+groupTitle	ui/rawui.html#groupTitle,ptr.Group	rawui: groupTitle(g: ptr Group): cstring	
+groupSetTitle	ui/rawui.html#groupSetTitle,ptr.Group,cstring	rawui: groupSetTitle(g: ptr Group; title: cstring)	
+groupSetChild	ui/rawui.html#groupSetChild,ptr.Group,ptr.Control	rawui: groupSetChild(g: ptr Group; c: ptr Control)	
+groupMargined	ui/rawui.html#groupMargined,ptr.Group	rawui: groupMargined(g: ptr Group): cint	
+groupSetMargined	ui/rawui.html#groupSetMargined,ptr.Group,cint	rawui: groupSetMargined(g: ptr Group; margined: cint)	
+newGroup	ui/rawui.html#newGroup,cstring	rawui: newGroup(title: cstring): ptr Group	
+Spinbox	ui/rawui.html#Spinbox	rawui: Spinbox	
+spinbox	ui/rawui.html#spinbox.t,untyped	rawui: spinbox(this: untyped): untyped	
+spinboxValue	ui/rawui.html#spinboxValue,ptr.Spinbox	rawui: spinboxValue(s: ptr Spinbox): cint	
+spinboxSetValue	ui/rawui.html#spinboxSetValue,ptr.Spinbox,cint	rawui: spinboxSetValue(s: ptr Spinbox; value: cint)	
+spinboxOnChanged	ui/rawui.html#spinboxOnChanged,ptr.Spinbox,proc(ptr.Spinbox,pointer),pointer	rawui: spinboxOnChanged(s: ptr Spinbox;\n                 f: proc (sender: ptr Spinbox; senderData: pointer) {.cdecl.};\n                 data: pointer)	
+newSpinbox	ui/rawui.html#newSpinbox,cint,cint	rawui: newSpinbox(min: cint; max: cint): ptr Spinbox	
+Slider	ui/rawui.html#Slider	rawui: Slider	
+slider	ui/rawui.html#slider.t,untyped	rawui: slider(this: untyped): untyped	
+sliderValue	ui/rawui.html#sliderValue,ptr.Slider	rawui: sliderValue(s: ptr Slider): cint	
+sliderSetValue	ui/rawui.html#sliderSetValue,ptr.Slider,cint	rawui: sliderSetValue(s: ptr Slider; value: cint)	
+sliderHasToolTip	ui/rawui.html#sliderHasToolTip,ptr.Slider	rawui: sliderHasToolTip(s: ptr Slider): cint	
+sliderSetHasToolTip	ui/rawui.html#sliderSetHasToolTip,ptr.Slider,cint	rawui: sliderSetHasToolTip(s: ptr Slider; hasToolTip: cint)	
+sliderOnChanged	ui/rawui.html#sliderOnChanged,ptr.Slider,proc(ptr.Slider,pointer),pointer	rawui: sliderOnChanged(s: ptr Slider;\n                f: proc (sender: ptr Slider; senderData: pointer) {.cdecl.};\n                data: pointer)	
+sliderOnReleased	ui/rawui.html#sliderOnReleased,ptr.Slider,proc(ptr.Slider,pointer),pointer	rawui: sliderOnReleased(s: ptr Slider;\n                 f: proc (sender: ptr Slider; senderData: pointer) {.cdecl.};\n                 data: pointer)	
+sliderSetRange	ui/rawui.html#sliderSetRange,ptr.Slider,cint,cint	rawui: sliderSetRange(s: ptr Slider; min: cint; max: cint)	
+newSlider	ui/rawui.html#newSlider,cint,cint	rawui: newSlider(min: cint; max: cint): ptr Slider	
+ProgressBar	ui/rawui.html#ProgressBar	rawui: ProgressBar	
+progressBar	ui/rawui.html#progressBar.t,untyped	rawui: progressBar(this: untyped): untyped	
+progressBarValue	ui/rawui.html#progressBarValue,ptr.ProgressBar	rawui: progressBarValue(p: ptr ProgressBar): cint	
+progressBarSetValue	ui/rawui.html#progressBarSetValue,ptr.ProgressBar,cint	rawui: progressBarSetValue(p: ptr ProgressBar; n: cint)	
+newProgressBar	ui/rawui.html#newProgressBar	rawui: newProgressBar(): ptr ProgressBar	
+Separator	ui/rawui.html#Separator	rawui: Separator	
+separator	ui/rawui.html#separator.t,untyped	rawui: separator(this: untyped): untyped	
+newHorizontalSeparator	ui/rawui.html#newHorizontalSeparator	rawui: newHorizontalSeparator(): ptr Separator	
+newVerticalSeparator	ui/rawui.html#newVerticalSeparator	rawui: newVerticalSeparator(): ptr Separator	
+Combobox	ui/rawui.html#Combobox	rawui: Combobox	
+combobox	ui/rawui.html#combobox.t,untyped	rawui: combobox(this: untyped): untyped	
+comboboxAppend	ui/rawui.html#comboboxAppend,ptr.Combobox,cstring	rawui: comboboxAppend(c: ptr Combobox; text: cstring)	
+comboboxInsertAt	ui/rawui.html#comboboxInsertAt,ptr.Combobox,cint,cstring	rawui: comboboxInsertAt(c: ptr Combobox; index: cint; text: cstring)	
+comboboxDelete	ui/rawui.html#comboboxDelete,ptr.Combobox,cint	rawui: comboboxDelete(c: ptr Combobox; index: cint)	
+comboboxClear	ui/rawui.html#comboboxClear,ptr.Combobox	rawui: comboboxClear(c: ptr Combobox)	
+comboboxNumItems	ui/rawui.html#comboboxNumItems,ptr.Combobox	rawui: comboboxNumItems(c: ptr Combobox): cint	
+comboboxSelected	ui/rawui.html#comboboxSelected,ptr.Combobox	rawui: comboboxSelected(c: ptr Combobox): cint	
+comboboxSetSelected	ui/rawui.html#comboboxSetSelected,ptr.Combobox,cint	rawui: comboboxSetSelected(c: ptr Combobox; index: cint)	
+comboboxOnSelected	ui/rawui.html#comboboxOnSelected,ptr.Combobox,proc(ptr.Combobox,pointer),pointer	rawui: comboboxOnSelected(c: ptr Combobox; f: proc (sender: ptr Combobox;\n    senderData: pointer) {.cdecl.}; data: pointer)	
+newCombobox	ui/rawui.html#newCombobox	rawui: newCombobox(): ptr Combobox	
+EditableCombobox	ui/rawui.html#EditableCombobox	rawui: EditableCombobox	
+editableCombobox	ui/rawui.html#editableCombobox.t,untyped	rawui: editableCombobox(this: untyped): untyped	
+editableComboboxAppend	ui/rawui.html#editableComboboxAppend,ptr.EditableCombobox,cstring	rawui: editableComboboxAppend(c: ptr EditableCombobox; text: cstring)	
+editableComboboxText	ui/rawui.html#editableComboboxText,ptr.EditableCombobox	rawui: editableComboboxText(c: ptr EditableCombobox): cstring	
+editableComboboxSetText	ui/rawui.html#editableComboboxSetText,ptr.EditableCombobox,cstring	rawui: editableComboboxSetText(c: ptr EditableCombobox; text: cstring)	
+editableComboboxOnChanged	ui/rawui.html#editableComboboxOnChanged,ptr.EditableCombobox,proc(ptr.EditableCombobox,pointer),pointer	rawui: editableComboboxOnChanged(c: ptr EditableCombobox; f: proc (\n    sender: ptr EditableCombobox; senderData: pointer) {.cdecl.}; data: pointer)	
+newEditableCombobox	ui/rawui.html#newEditableCombobox	rawui: newEditableCombobox(): ptr EditableCombobox	
+RadioButtons	ui/rawui.html#RadioButtons	rawui: RadioButtons	
+radioButtons	ui/rawui.html#radioButtons.t,untyped	rawui: radioButtons(this: untyped): untyped	
+radioButtonsAppend	ui/rawui.html#radioButtonsAppend,ptr.RadioButtons,cstring	rawui: radioButtonsAppend(r: ptr RadioButtons; text: cstring)	
+radioButtonsSelected	ui/rawui.html#radioButtonsSelected,ptr.RadioButtons	rawui: radioButtonsSelected(r: ptr RadioButtons): cint	
+radioButtonsSetSelected	ui/rawui.html#radioButtonsSetSelected,ptr.RadioButtons,cint	rawui: radioButtonsSetSelected(r: ptr RadioButtons; index: cint)	
+radioButtonsOnSelected	ui/rawui.html#radioButtonsOnSelected,ptr.RadioButtons,proc(ptr.RadioButtons,pointer),pointer	rawui: radioButtonsOnSelected(r: ptr RadioButtons; f: proc (sender: ptr RadioButtons;\n    senderData: pointer) {.cdecl.}; data: pointer)	
+newRadioButtons	ui/rawui.html#newRadioButtons	rawui: newRadioButtons(): ptr RadioButtons	
+Tm	ui/rawui.html#Tm	rawui: Tm	
+DateTimePicker	ui/rawui.html#DateTimePicker	rawui: DateTimePicker	
+dateTimePicker	ui/rawui.html#dateTimePicker.t,untyped	rawui: dateTimePicker(this: untyped): untyped	
+dateTimePickerTime	ui/rawui.html#dateTimePickerTime,ptr.DateTimePicker,ptr.Tm	rawui: dateTimePickerTime(d: ptr DateTimePicker; time: ptr Tm)	
+dateTimePickerSetTime	ui/rawui.html#dateTimePickerSetTime,ptr.DateTimePicker,ptr.Tm	rawui: dateTimePickerSetTime(d: ptr DateTimePicker; time: ptr Tm)	
+dateTimePickerOnChanged	ui/rawui.html#dateTimePickerOnChanged,ptr.DateTimePicker,proc(ptr.DateTimePicker,pointer),pointer	rawui: dateTimePickerOnChanged(d: ptr DateTimePicker; f: proc (\n    sender: ptr DateTimePicker; senderData: pointer) {.cdecl.}; data: pointer)	
+newDateTimePicker	ui/rawui.html#newDateTimePicker	rawui: newDateTimePicker(): ptr DateTimePicker	
+newDatePicker	ui/rawui.html#newDatePicker	rawui: newDatePicker(): ptr DateTimePicker	
+newTimePicker	ui/rawui.html#newTimePicker	rawui: newTimePicker(): ptr DateTimePicker	
+MultilineEntry	ui/rawui.html#MultilineEntry	rawui: MultilineEntry	
+multilineEntry	ui/rawui.html#multilineEntry.t,untyped	rawui: multilineEntry(this: untyped): untyped	
+multilineEntryText	ui/rawui.html#multilineEntryText,ptr.MultilineEntry	rawui: multilineEntryText(e: ptr MultilineEntry): cstring	
+multilineEntrySetText	ui/rawui.html#multilineEntrySetText,ptr.MultilineEntry,cstring	rawui: multilineEntrySetText(e: ptr MultilineEntry; text: cstring)	
+multilineEntryAppend	ui/rawui.html#multilineEntryAppend,ptr.MultilineEntry,cstring	rawui: multilineEntryAppend(e: ptr MultilineEntry; text: cstring)	
+multilineEntryOnChanged	ui/rawui.html#multilineEntryOnChanged,ptr.MultilineEntry,proc(ptr.MultilineEntry,pointer),pointer	rawui: multilineEntryOnChanged(e: ptr MultilineEntry; f: proc (\n    sender: ptr MultilineEntry; senderData: pointer) {.cdecl.}; data: pointer)	
+multilineEntryReadOnly	ui/rawui.html#multilineEntryReadOnly,ptr.MultilineEntry	rawui: multilineEntryReadOnly(e: ptr MultilineEntry): cint	
+multilineEntrySetReadOnly	ui/rawui.html#multilineEntrySetReadOnly,ptr.MultilineEntry,cint	rawui: multilineEntrySetReadOnly(e: ptr MultilineEntry; readonly: cint)	
+newMultilineEntry	ui/rawui.html#newMultilineEntry	rawui: newMultilineEntry(): ptr MultilineEntry	
+newNonWrappingMultilineEntry	ui/rawui.html#newNonWrappingMultilineEntry	rawui: newNonWrappingMultilineEntry(): ptr MultilineEntry	
+MenuItem	ui/rawui.html#MenuItem	rawui: MenuItem	
+menuItem	ui/rawui.html#menuItem.t,untyped	rawui: menuItem(this: untyped): untyped	
+menuItemEnable	ui/rawui.html#menuItemEnable,ptr.MenuItem	rawui: menuItemEnable(m: ptr MenuItem)	
+menuItemDisable	ui/rawui.html#menuItemDisable,ptr.MenuItem	rawui: menuItemDisable(m: ptr MenuItem)	
+menuItemOnClicked	ui/rawui.html#menuItemOnClicked,ptr.MenuItem,proc(ptr.MenuItem,ptr.Window,pointer),pointer	rawui: menuItemOnClicked(m: ptr MenuItem; f: proc (sender: ptr MenuItem;\n    window: ptr Window; senderData: pointer) {.cdecl.}; data: pointer)	
+menuItemChecked	ui/rawui.html#menuItemChecked,ptr.MenuItem	rawui: menuItemChecked(m: ptr MenuItem): cint	
+menuItemSetChecked	ui/rawui.html#menuItemSetChecked,ptr.MenuItem,cint	rawui: menuItemSetChecked(m: ptr MenuItem; checked: cint)	
+Menu	ui/rawui.html#Menu	rawui: Menu	
+menu	ui/rawui.html#menu.t,untyped	rawui: menu(this: untyped): untyped	
+menuAppendItem	ui/rawui.html#menuAppendItem,ptr.Menu,cstring	rawui: menuAppendItem(m: ptr Menu; name: cstring): ptr MenuItem	
+menuAppendCheckItem	ui/rawui.html#menuAppendCheckItem,ptr.Menu,cstring	rawui: menuAppendCheckItem(m: ptr Menu; name: cstring): ptr MenuItem	
+menuAppendQuitItem	ui/rawui.html#menuAppendQuitItem,ptr.Menu	rawui: menuAppendQuitItem(m: ptr Menu): ptr MenuItem	
+menuAppendPreferencesItem	ui/rawui.html#menuAppendPreferencesItem,ptr.Menu	rawui: menuAppendPreferencesItem(m: ptr Menu): ptr MenuItem	
+menuAppendAboutItem	ui/rawui.html#menuAppendAboutItem,ptr.Menu	rawui: menuAppendAboutItem(m: ptr Menu): ptr MenuItem	
+menuAppendSeparator	ui/rawui.html#menuAppendSeparator,ptr.Menu	rawui: menuAppendSeparator(m: ptr Menu)	
+newMenu	ui/rawui.html#newMenu,cstring	rawui: newMenu(name: cstring): ptr Menu	
+openFile	ui/rawui.html#openFile,ptr.Window	rawui: openFile(parent: ptr Window): cstring	
+openFolder	ui/rawui.html#openFolder,ptr.Window	rawui: openFolder(parent: ptr Window): cstring	
+saveFile	ui/rawui.html#saveFile,ptr.Window	rawui: saveFile(parent: ptr Window): cstring	
+msgBox	ui/rawui.html#msgBox,ptr.Window,cstring,cstring	rawui: msgBox(parent: ptr Window; title: cstring; description: cstring)	
+msgBoxError	ui/rawui.html#msgBoxError,ptr.Window,cstring,cstring	rawui: msgBoxError(parent: ptr Window; title: cstring; description: cstring)	
+Area	ui/rawui.html#Area	rawui: Area	
+Modifiers	ui/rawui.html#Modifiers	rawui: Modifiers	
+ExtKey	ui/rawui.html#ExtKey	rawui: ExtKey	
+AreaDrawParams	ui/rawui.html#AreaDrawParams	rawui: AreaDrawParams	
+AreaMouseEvent	ui/rawui.html#AreaMouseEvent	rawui: AreaMouseEvent	
+AreaKeyEvent	ui/rawui.html#AreaKeyEvent	rawui: AreaKeyEvent	
+DrawContext	ui/rawui.html#DrawContext	rawui: DrawContext	
+AreaHandler	ui/rawui.html#AreaHandler	rawui: AreaHandler	
+WindowResizeEdge	ui/rawui.html#WindowResizeEdge	rawui: WindowResizeEdge	
+area	ui/rawui.html#area.t,untyped	rawui: area(this: untyped): untyped	
+areaSetSize	ui/rawui.html#areaSetSize,ptr.Area,cint,cint	rawui: areaSetSize(a: ptr Area; width: cint; height: cint)	
+areaQueueRedrawAll	ui/rawui.html#areaQueueRedrawAll,ptr.Area	rawui: areaQueueRedrawAll(a: ptr Area)	
+areaScrollTo	ui/rawui.html#areaScrollTo,ptr.Area,cdouble,cdouble,cdouble,cdouble	rawui: areaScrollTo(a: ptr Area; x: cdouble; y: cdouble; width: cdouble;\n             height: cdouble)	
+areaBeginUserWindowMove	ui/rawui.html#areaBeginUserWindowMove,ptr.Area	rawui: areaBeginUserWindowMove(a: ptr Area)	
+areaBeginUserWindowResize	ui/rawui.html#areaBeginUserWindowResize,ptr.Area,WindowResizeEdge	rawui: areaBeginUserWindowResize(a: ptr Area; edge: WindowResizeEdge)	
+newArea	ui/rawui.html#newArea,ptr.AreaHandler	rawui: newArea(ah: ptr AreaHandler): ptr Area	
+newScrollingArea	ui/rawui.html#newScrollingArea,ptr.AreaHandler,cint,cint	rawui: newScrollingArea(ah: ptr AreaHandler; width: cint; height: cint): ptr Area	
+DrawPath	ui/rawui.html#DrawPath	rawui: DrawPath	
+DrawBrushType	ui/rawui.html#DrawBrushType	rawui: DrawBrushType	
+DrawLineCap	ui/rawui.html#DrawLineCap	rawui: DrawLineCap	
+DrawLineJoin	ui/rawui.html#DrawLineJoin	rawui: DrawLineJoin	
+DrawFillMode	ui/rawui.html#DrawFillMode	rawui: DrawFillMode	
+DrawBrush	ui/rawui.html#DrawBrush	rawui: DrawBrush	
+DrawStrokeParams	ui/rawui.html#DrawStrokeParams	rawui: DrawStrokeParams	
+DrawMatrix	ui/rawui.html#DrawMatrix	rawui: DrawMatrix	
+DrawBrushGradientStop	ui/rawui.html#DrawBrushGradientStop	rawui: DrawBrushGradientStop	
+DrawDefaultMiterLimit	ui/rawui.html#DrawDefaultMiterLimit	rawui: DrawDefaultMiterLimit	
+drawNewPath	ui/rawui.html#drawNewPath,DrawFillMode	rawui: drawNewPath(fillMode: DrawFillMode): ptr DrawPath	
+drawFreePath	ui/rawui.html#drawFreePath,ptr.DrawPath	rawui: drawFreePath(p: ptr DrawPath)	
+drawPathNewFigure	ui/rawui.html#drawPathNewFigure,ptr.DrawPath,cdouble,cdouble	rawui: drawPathNewFigure(p: ptr DrawPath; x: cdouble; y: cdouble)	
+drawPathNewFigureWithArc	ui/rawui.html#drawPathNewFigureWithArc,ptr.DrawPath,cdouble,cdouble,cdouble,cdouble,cdouble,cint	rawui: drawPathNewFigureWithArc(p: ptr DrawPath; xCenter: cdouble; yCenter: cdouble;\n                         radius: cdouble; startAngle: cdouble; sweep: cdouble;\n                         negative: cint)	
+drawPathLineTo	ui/rawui.html#drawPathLineTo,ptr.DrawPath,cdouble,cdouble	rawui: drawPathLineTo(p: ptr DrawPath; x: cdouble; y: cdouble)	
+drawPathArcTo	ui/rawui.html#drawPathArcTo,ptr.DrawPath,cdouble,cdouble,cdouble,cdouble,cdouble,cint	rawui: drawPathArcTo(p: ptr DrawPath; xCenter: cdouble; yCenter: cdouble;\n              radius: cdouble; startAngle: cdouble; sweep: cdouble;\n              negative: cint)	
+drawPathBezierTo	ui/rawui.html#drawPathBezierTo,ptr.DrawPath,cdouble,cdouble,cdouble,cdouble,cdouble,cdouble	rawui: drawPathBezierTo(p: ptr DrawPath; c1x: cdouble; c1y: cdouble; c2x: cdouble;\n                 c2y: cdouble; endX: cdouble; endY: cdouble)	
+drawPathCloseFigure	ui/rawui.html#drawPathCloseFigure,ptr.DrawPath	rawui: drawPathCloseFigure(p: ptr DrawPath)	
+drawPathAddRectangle	ui/rawui.html#drawPathAddRectangle,ptr.DrawPath,cdouble,cdouble,cdouble,cdouble	rawui: drawPathAddRectangle(p: ptr DrawPath; x: cdouble; y: cdouble; width: cdouble;\n                     height: cdouble)	
+drawPathEnded	ui/rawui.html#drawPathEnded,ptr.DrawPath	rawui: drawPathEnded(p: ptr DrawPath): cint	
+drawPathEnd	ui/rawui.html#drawPathEnd,ptr.DrawPath	rawui: drawPathEnd(p: ptr DrawPath)	
+drawStroke	ui/rawui.html#drawStroke,ptr.DrawContext,ptr.DrawPath,ptr.DrawBrush,ptr.DrawStrokeParams	rawui: drawStroke(c: ptr DrawContext; path: ptr DrawPath; b: ptr DrawBrush;\n           p: ptr DrawStrokeParams)	
+drawFill	ui/rawui.html#drawFill,ptr.DrawContext,ptr.DrawPath,ptr.DrawBrush	rawui: drawFill(c: ptr DrawContext; path: ptr DrawPath; b: ptr DrawBrush)	
+drawMatrixSetIdentity	ui/rawui.html#drawMatrixSetIdentity,ptr.DrawMatrix	rawui: drawMatrixSetIdentity(m: ptr DrawMatrix)	
+drawMatrixTranslate	ui/rawui.html#drawMatrixTranslate,ptr.DrawMatrix,cdouble,cdouble	rawui: drawMatrixTranslate(m: ptr DrawMatrix; x: cdouble; y: cdouble)	
+drawMatrixScale	ui/rawui.html#drawMatrixScale,ptr.DrawMatrix,cdouble,cdouble,cdouble,cdouble	rawui: drawMatrixScale(m: ptr DrawMatrix; xCenter: cdouble; yCenter: cdouble;\n                x: cdouble; y: cdouble)	
+drawMatrixRotate	ui/rawui.html#drawMatrixRotate,ptr.DrawMatrix,cdouble,cdouble,cdouble	rawui: drawMatrixRotate(m: ptr DrawMatrix; x: cdouble; y: cdouble; amount: cdouble)	
+drawMatrixSkew	ui/rawui.html#drawMatrixSkew,ptr.DrawMatrix,cdouble,cdouble,cdouble,cdouble	rawui: drawMatrixSkew(m: ptr DrawMatrix; x: cdouble; y: cdouble; xamount: cdouble;\n               yamount: cdouble)	
+drawMatrixMultiply	ui/rawui.html#drawMatrixMultiply,ptr.DrawMatrix,ptr.DrawMatrix	rawui: drawMatrixMultiply(dest: ptr DrawMatrix; src: ptr DrawMatrix)	
+drawMatrixInvertible	ui/rawui.html#drawMatrixInvertible,ptr.DrawMatrix	rawui: drawMatrixInvertible(m: ptr DrawMatrix): cint	
+drawMatrixInvert	ui/rawui.html#drawMatrixInvert,ptr.DrawMatrix	rawui: drawMatrixInvert(m: ptr DrawMatrix): cint	
+drawMatrixTransformPoint	ui/rawui.html#drawMatrixTransformPoint,ptr.DrawMatrix,ptr.cdouble,ptr.cdouble	rawui: drawMatrixTransformPoint(m: ptr DrawMatrix; x: ptr cdouble; y: ptr cdouble)	
+drawMatrixTransformSize	ui/rawui.html#drawMatrixTransformSize,ptr.DrawMatrix,ptr.cdouble,ptr.cdouble	rawui: drawMatrixTransformSize(m: ptr DrawMatrix; x: ptr cdouble; y: ptr cdouble)	
+drawTransform	ui/rawui.html#drawTransform,ptr.DrawContext,ptr.DrawMatrix	rawui: drawTransform(c: ptr DrawContext; m: ptr DrawMatrix)	
+drawClip	ui/rawui.html#drawClip,ptr.DrawContext,ptr.DrawPath	rawui: drawClip(c: ptr DrawContext; path: ptr DrawPath)	
+drawSave	ui/rawui.html#drawSave,ptr.DrawContext	rawui: drawSave(c: ptr DrawContext)	
+drawRestore	ui/rawui.html#drawRestore,ptr.DrawContext	rawui: drawRestore(c: ptr DrawContext)	
+Attribute	ui/rawui.html#Attribute	rawui: Attribute	
+AttributedString	ui/rawui.html#AttributedString	rawui: AttributedString	
+AttributeType	ui/rawui.html#AttributeType	rawui: AttributeType	
+freeAttribute	ui/rawui.html#freeAttribute,ptr.Attribute	rawui: freeAttribute(a: ptr Attribute)	
+attributeGetType	ui/rawui.html#attributeGetType,ptr.Attribute	rawui: attributeGetType(a: ptr Attribute): AttributeType	
+newFamilyAttribute	ui/rawui.html#newFamilyAttribute,cstring	rawui: newFamilyAttribute(family: cstring): ptr Attribute	
+attributeFamily	ui/rawui.html#attributeFamily,ptr.Attribute	rawui: attributeFamily(a: ptr Attribute): cstring	
+newSizeAttribute	ui/rawui.html#newSizeAttribute,cdouble	rawui: newSizeAttribute(size: cdouble): ptr Attribute	
+attributeSize	ui/rawui.html#attributeSize,ptr.Attribute	rawui: attributeSize(a: ptr Attribute): cdouble	
+TextWeight	ui/rawui.html#TextWeight	rawui: TextWeight	
+TextItalic	ui/rawui.html#TextItalic	rawui: TextItalic	
+newWeightAttribute	ui/rawui.html#newWeightAttribute,TextWeight	rawui: newWeightAttribute(weight: TextWeight): ptr Attribute	
+attributeWeight	ui/rawui.html#attributeWeight,ptr.Attribute	rawui: attributeWeight(a: ptr Attribute): TextWeight	
+newItalicAttribute	ui/rawui.html#newItalicAttribute,TextItalic	rawui: newItalicAttribute(italic: TextItalic): ptr Attribute	
+attributeItalic	ui/rawui.html#attributeItalic,ptr.Attribute	rawui: attributeItalic(a: ptr Attribute): TextItalic	
+TextStretch	ui/rawui.html#TextStretch	rawui: TextStretch	
+newStretchAttribute	ui/rawui.html#newStretchAttribute,TextStretch	rawui: newStretchAttribute(stretch: TextStretch): ptr Attribute	
+attributeStretch	ui/rawui.html#attributeStretch,ptr.Attribute	rawui: attributeStretch(a: ptr Attribute): TextStretch	
+newColorAttribute	ui/rawui.html#newColorAttribute,cdouble,cdouble,cdouble,cdouble	rawui: newColorAttribute(r: cdouble; g: cdouble; b: cdouble; a: cdouble): ptr Attribute	
+attributeColor	ui/rawui.html#attributeColor,ptr.Attribute,ptr.cdouble,ptr.cdouble,ptr.cdouble,ptr.cdouble	rawui: attributeColor(a: ptr Attribute; r: ptr cdouble; g: ptr cdouble; b: ptr cdouble;\n               alpha: ptr cdouble)	
+newBackgroundAttribute	ui/rawui.html#newBackgroundAttribute,cdouble,cdouble,cdouble,cdouble	rawui: newBackgroundAttribute(r: cdouble; g: cdouble; b: cdouble; a: cdouble): ptr Attribute	
+Underline	ui/rawui.html#Underline	rawui: Underline	
+UnderlineColor	ui/rawui.html#UnderlineColor	rawui: UnderlineColor	
+newUnderlineAttribute	ui/rawui.html#newUnderlineAttribute,Underline	rawui: newUnderlineAttribute(u: Underline): ptr Attribute	
+attributeUnderline	ui/rawui.html#attributeUnderline,ptr.Attribute	rawui: attributeUnderline(a: ptr Attribute): Underline	
+newUnderlineColorAttribute	ui/rawui.html#newUnderlineColorAttribute,UnderlineColor,cdouble,cdouble,cdouble,cdouble	rawui: newUnderlineColorAttribute(u: UnderlineColor; r: cdouble; g: cdouble;\n                           b: cdouble; a: cdouble): ptr Attribute	
+attributeUnderlineColor	ui/rawui.html#attributeUnderlineColor,ptr.Attribute,ptr.UnderlineColor,ptr.cdouble,ptr.cdouble,ptr.cdouble,ptr.cdouble	rawui: attributeUnderlineColor(a: ptr Attribute; u: ptr UnderlineColor; r: ptr cdouble;\n                        g: ptr cdouble; b: ptr cdouble; alpha: ptr cdouble)	
+OpenTypeFeatures	ui/rawui.html#OpenTypeFeatures	rawui: OpenTypeFeatures	
+OpenTypeFeaturesForEachFunc	ui/rawui.html#OpenTypeFeaturesForEachFunc	rawui: OpenTypeFeaturesForEachFunc	
+newOpenTypeFeatures	ui/rawui.html#newOpenTypeFeatures	rawui: newOpenTypeFeatures(): ptr OpenTypeFeatures	
+freeOpenTypeFeatures	ui/rawui.html#freeOpenTypeFeatures,ptr.OpenTypeFeatures	rawui: freeOpenTypeFeatures(otf: ptr OpenTypeFeatures)	
+openTypeFeaturesClone	ui/rawui.html#openTypeFeaturesClone,ptr.OpenTypeFeatures	rawui: openTypeFeaturesClone(otf: ptr OpenTypeFeatures): ptr OpenTypeFeatures	
+openTypeFeaturesAdd	ui/rawui.html#openTypeFeaturesAdd,ptr.OpenTypeFeatures,char,char,char,char,uint32	rawui: openTypeFeaturesAdd(otf: ptr OpenTypeFeatures; a: char; b: char; c: char;\n                    d: char; value: uint32)	
+openTypeFeaturesRemove	ui/rawui.html#openTypeFeaturesRemove,ptr.OpenTypeFeatures,char,char,char,char	rawui: openTypeFeaturesRemove(otf: ptr OpenTypeFeatures; a: char; b: char; c: char;\n                       d: char)	
+openTypeFeaturesGet	ui/rawui.html#openTypeFeaturesGet,ptr.OpenTypeFeatures,char,char,char,char,ptr.uint32	rawui: openTypeFeaturesGet(otf: ptr OpenTypeFeatures; a: char; b: char; c: char;\n                    d: char; value: ptr uint32): cint	
+openTypeFeaturesForEach	ui/rawui.html#openTypeFeaturesForEach,ptr.OpenTypeFeatures,OpenTypeFeaturesForEachFunc,pointer	rawui: openTypeFeaturesForEach(otf: ptr OpenTypeFeatures;\n                        f: OpenTypeFeaturesForEachFunc; data: pointer)	
+newFeaturesAttribute	ui/rawui.html#newFeaturesAttribute,ptr.OpenTypeFeatures	rawui: newFeaturesAttribute(otf: ptr OpenTypeFeatures): ptr Attribute	
+attributeFeatures	ui/rawui.html#attributeFeatures,ptr.Attribute	rawui: attributeFeatures(a: ptr Attribute): ptr OpenTypeFeatures	
+AttributedStringForEachAttributeFunc	ui/rawui.html#AttributedStringForEachAttributeFunc	rawui: AttributedStringForEachAttributeFunc	
+newAttributedString	ui/rawui.html#newAttributedString,cstring	rawui: newAttributedString(initialString: cstring): ptr AttributedString	
+freeAttributedString	ui/rawui.html#freeAttributedString,ptr.AttributedString	rawui: freeAttributedString(s: ptr AttributedString)	
+attributedStringString	ui/rawui.html#attributedStringString,ptr.AttributedString	rawui: attributedStringString(s: ptr AttributedString): cstring	
+attributedStringLen	ui/rawui.html#attributedStringLen,ptr.AttributedString	rawui: attributedStringLen(s: ptr AttributedString): csize_t	
+attributedStringAppendUnattributed	ui/rawui.html#attributedStringAppendUnattributed,ptr.AttributedString,cstring	rawui: attributedStringAppendUnattributed(s: ptr AttributedString; str: cstring)	
+attributedStringInsertAtUnattributed	ui/rawui.html#attributedStringInsertAtUnattributed,ptr.AttributedString,cstring,csize_t	rawui: attributedStringInsertAtUnattributed(s: ptr AttributedString; str: cstring;\n                                     at: csize_t)	
+attributedStringDelete	ui/rawui.html#attributedStringDelete,ptr.AttributedString,csize_t,csize_t	rawui: attributedStringDelete(s: ptr AttributedString; start: csize_t; end: csize_t)	
+attributedStringSetAttribute	ui/rawui.html#attributedStringSetAttribute,ptr.AttributedString,ptr.Attribute,csize_t,csize_t	rawui: attributedStringSetAttribute(s: ptr AttributedString; a: ptr Attribute;\n                             start: csize_t; end: csize_t)	
+attributedStringForEachAttribute	ui/rawui.html#attributedStringForEachAttribute,ptr.AttributedString,AttributedStringForEachAttributeFunc,pointer	rawui: attributedStringForEachAttribute(s: ptr AttributedString;\n                                 f: AttributedStringForEachAttributeFunc;\n                                 data: pointer)	
+attributedStringNumGraphemes	ui/rawui.html#attributedStringNumGraphemes,ptr.AttributedString	rawui: attributedStringNumGraphemes(s: ptr AttributedString): csize_t	
+attributedStringByteIndexToGrapheme	ui/rawui.html#attributedStringByteIndexToGrapheme,ptr.AttributedString,csize_t	rawui: attributedStringByteIndexToGrapheme(s: ptr AttributedString; pos: csize_t): csize_t	
+attributedStringGraphemeToByteIndex	ui/rawui.html#attributedStringGraphemeToByteIndex,ptr.AttributedString,csize_t	rawui: attributedStringGraphemeToByteIndex(s: ptr AttributedString; pos: csize_t): csize_t	
+FontDescriptor	ui/rawui.html#FontDescriptor	rawui: FontDescriptor	
+loadControlFont	ui/rawui.html#loadControlFont,ptr.FontDescriptor	rawui: loadControlFont(f: ptr FontDescriptor)	
+freeFontDescriptor	ui/rawui.html#freeFontDescriptor,ptr.FontDescriptor	rawui: freeFontDescriptor(desc: ptr FontDescriptor)	
+DrawTextLayout	ui/rawui.html#DrawTextLayout	rawui: DrawTextLayout	
+DrawTextAlign	ui/rawui.html#DrawTextAlign	rawui: DrawTextAlign	
+DrawTextLayoutParams	ui/rawui.html#DrawTextLayoutParams	rawui: DrawTextLayoutParams	
+drawNewTextLayout	ui/rawui.html#drawNewTextLayout,ptr.DrawTextLayoutParams	rawui: drawNewTextLayout(params: ptr DrawTextLayoutParams): ptr DrawTextLayout	
+drawFreeTextLayout	ui/rawui.html#drawFreeTextLayout,ptr.DrawTextLayout	rawui: drawFreeTextLayout(tl: ptr DrawTextLayout)	
+drawText	ui/rawui.html#drawText,ptr.DrawContext,ptr.DrawTextLayout,cdouble,cdouble	rawui: drawText(c: ptr DrawContext; tl: ptr DrawTextLayout; x: cdouble; y: cdouble)	
+drawTextLayoutExtents	ui/rawui.html#drawTextLayoutExtents,ptr.DrawTextLayout,ptr.cdouble,ptr.cdouble	rawui: drawTextLayoutExtents(tl: ptr DrawTextLayout; width: ptr cdouble;\n                      height: ptr cdouble)	
+FontButton	ui/rawui.html#FontButton	rawui: FontButton	
+fontButton	ui/rawui.html#fontButton.t,untyped	rawui: fontButton(this: untyped): untyped	
+fontButtonFont	ui/rawui.html#fontButtonFont,ptr.FontButton,ptr.FontDescriptor	rawui: fontButtonFont(b: ptr FontButton; desc: ptr FontDescriptor)	
+fontButtonOnChanged	ui/rawui.html#fontButtonOnChanged,ptr.FontButton,proc(ptr.FontButton,pointer),pointer	rawui: fontButtonOnChanged(b: ptr FontButton; f: proc (sender: ptr FontButton;\n    senderData: pointer) {.cdecl.}; data: pointer)	
+newFontButton	ui/rawui.html#newFontButton	rawui: newFontButton(): ptr FontButton	
+freeFontButtonFont	ui/rawui.html#freeFontButtonFont,ptr.FontDescriptor	rawui: freeFontButtonFont(desc: ptr FontDescriptor)	
+ColorButton	ui/rawui.html#ColorButton	rawui: ColorButton	
+colorButton	ui/rawui.html#colorButton.t,untyped	rawui: colorButton(this: untyped): untyped	
+colorButtonColor	ui/rawui.html#colorButtonColor,ptr.ColorButton,ptr.cdouble,ptr.cdouble,ptr.cdouble,ptr.cdouble	rawui: colorButtonColor(b: ptr ColorButton; r: ptr cdouble; g: ptr cdouble;\n                 bl: ptr cdouble; a: ptr cdouble)	
+colorButtonSetColor	ui/rawui.html#colorButtonSetColor,ptr.ColorButton,cdouble,cdouble,cdouble,cdouble	rawui: colorButtonSetColor(b: ptr ColorButton; r: cdouble; g: cdouble; bl: cdouble;\n                    a: cdouble)	
+colorButtonOnChanged	ui/rawui.html#colorButtonOnChanged,ptr.ColorButton,proc(ptr.ColorButton,pointer),pointer	rawui: colorButtonOnChanged(b: ptr ColorButton; f: proc (sender: ptr ColorButton;\n    senderData: pointer) {.cdecl.}; data: pointer)	
+newColorButton	ui/rawui.html#newColorButton	rawui: newColorButton(): ptr ColorButton	
+Form	ui/rawui.html#Form	rawui: Form	
+form	ui/rawui.html#form.t,untyped	rawui: form(this: untyped): untyped	
+formAppend	ui/rawui.html#formAppend,ptr.Form,cstring,ptr.Control,cint	rawui: formAppend(f: ptr Form; label: cstring; c: ptr Control; stretchy: cint)	
+formNumChildren	ui/rawui.html#formNumChildren,ptr.Form	rawui: formNumChildren(f: ptr Form): cint	
+formDelete	ui/rawui.html#formDelete,ptr.Form,cint	rawui: formDelete(f: ptr Form; index: cint)	
+formPadded	ui/rawui.html#formPadded,ptr.Form	rawui: formPadded(f: ptr Form): cint	
+formSetPadded	ui/rawui.html#formSetPadded,ptr.Form,cint	rawui: formSetPadded(f: ptr Form; padded: cint)	
+newForm	ui/rawui.html#newForm	rawui: newForm(): ptr Form	
+Align	ui/rawui.html#Align	rawui: Align	
+At	ui/rawui.html#At	rawui: At	
+Grid	ui/rawui.html#Grid	rawui: Grid	
+grid	ui/rawui.html#grid.t,untyped	rawui: grid(this: untyped): untyped	
+gridAppend	ui/rawui.html#gridAppend,ptr.Grid,ptr.Control,cint,cint,cint,cint,cint,Align,cint,Align	rawui: gridAppend(g: ptr Grid; c: ptr Control; left: cint; top: cint; xspan: cint;\n           yspan: cint; hexpand: cint; halign: Align; vexpand: cint;\n           valign: Align)	
+gridInsertAt	ui/rawui.html#gridInsertAt,ptr.Grid,ptr.Control,ptr.Control,At,cint,cint,cint,Align,cint,Align	rawui: gridInsertAt(g: ptr Grid; c: ptr Control; existing: ptr Control; at: At;\n             xspan: cint; yspan: cint; hexpand: cint; halign: Align;\n             vexpand: cint; valign: Align)	
+gridPadded	ui/rawui.html#gridPadded,ptr.Grid	rawui: gridPadded(g: ptr Grid): cint	
+gridSetPadded	ui/rawui.html#gridSetPadded,ptr.Grid,cint	rawui: gridSetPadded(g: ptr Grid; padded: cint)	
+newGrid	ui/rawui.html#newGrid	rawui: newGrid(): ptr Grid	
+Image	ui/rawui.html#Image	rawui: Image	
+newImage	ui/rawui.html#newImage,cdouble,cdouble	rawui: newImage(width: cdouble; height: cdouble): ptr Image	
+freeImage	ui/rawui.html#freeImage,ptr.Image	rawui: freeImage(i: ptr Image)	
+imageAppend	ui/rawui.html#imageAppend,ptr.Image,pointer,cint,cint,cint	rawui: imageAppend(i: ptr Image; pixels: pointer; pixelWidth: cint; pixelHeight: cint;\n            byteStride: cint)	
+TableValueType	ui/rawui.html#TableValueType	rawui: TableValueType	
+Color	ui/rawui.html#Color	rawui: Color	
+TableValueInner	ui/rawui.html#TableValueInner	rawui: TableValueInner	
+TableValue	ui/rawui.html#TableValue	rawui: TableValue	
+freeTableValue	ui/rawui.html#freeTableValue,ptr.TableValue	rawui: freeTableValue(v: ptr TableValue)	
+tableValueGetType	ui/rawui.html#tableValueGetType,ptr.TableValue	rawui: tableValueGetType(v: ptr TableValue): TableValueType	
+newTableValueString	ui/rawui.html#newTableValueString,cstring	rawui: newTableValueString(str: cstring): ptr TableValue	
+tableValueString	ui/rawui.html#tableValueString,ptr.TableValue	rawui: tableValueString(v: ptr TableValue): cstring	
+newTableValueImage	ui/rawui.html#newTableValueImage,ptr.Image	rawui: newTableValueImage(img: ptr Image): ptr TableValue	
+tableValueImage	ui/rawui.html#tableValueImage,ptr.TableValue	rawui: tableValueImage(v: ptr TableValue): ptr Image	
+newTableValueInt	ui/rawui.html#newTableValueInt,cint	rawui: newTableValueInt(i: cint): ptr TableValue	
+tableValueInt	ui/rawui.html#tableValueInt,ptr.TableValue	rawui: tableValueInt(v: ptr TableValue): cint	
+newTableValueColor	ui/rawui.html#newTableValueColor,cdouble,cdouble,cdouble,cdouble	rawui: newTableValueColor(r: cdouble; g: cdouble; b: cdouble; a: cdouble): ptr TableValue	
+tableValueColor	ui/rawui.html#tableValueColor,ptr.TableValue,ptr.cdouble,ptr.cdouble,ptr.cdouble,ptr.cdouble	rawui: tableValueColor(v: ptr TableValue; r: ptr cdouble; g: ptr cdouble;\n                b: ptr cdouble; a: ptr cdouble)	
+SortIndicator	ui/rawui.html#SortIndicator	rawui: SortIndicator	
+TableModel	ui/rawui.html#TableModel	rawui: TableModel	
+TableModelHandler	ui/rawui.html#TableModelHandler	rawui: TableModelHandler	
+newTableModel	ui/rawui.html#newTableModel,ptr.TableModelHandler	rawui: newTableModel(mh: ptr TableModelHandler): ptr TableModel	
+freeTableModel	ui/rawui.html#freeTableModel,ptr.TableModel	rawui: freeTableModel(m: ptr TableModel)	
+tableModelRowInserted	ui/rawui.html#tableModelRowInserted,ptr.TableModel,cint	rawui: tableModelRowInserted(m: ptr TableModel; newIndex: cint)	
+tableModelRowChanged	ui/rawui.html#tableModelRowChanged,ptr.TableModel,cint	rawui: tableModelRowChanged(m: ptr TableModel; index: cint)	
+tableModelRowDeleted	ui/rawui.html#tableModelRowDeleted,ptr.TableModel,cint	rawui: tableModelRowDeleted(m: ptr TableModel; oldIndex: cint)	
+TableModelColumnNeverEditable	ui/rawui.html#TableModelColumnNeverEditable	rawui: TableModelColumnNeverEditable	
+TableModelColumnAlwaysEditable	ui/rawui.html#TableModelColumnAlwaysEditable	rawui: TableModelColumnAlwaysEditable	
+Table	ui/rawui.html#Table	rawui: Table	
+TableTextColumnOptionalParams	ui/rawui.html#TableTextColumnOptionalParams	rawui: TableTextColumnOptionalParams	
+TableParams	ui/rawui.html#TableParams	rawui: TableParams	
+table	ui/rawui.html#table.t,untyped	rawui: table(this: untyped): untyped	
+tableAppendTextColumn	ui/rawui.html#tableAppendTextColumn,ptr.Table,cstring,cint,cint,ptr.TableTextColumnOptionalParams	rawui: tableAppendTextColumn(t: ptr Table; name: cstring; textModelColumn: cint;\n                      textEditableModelColumn: cint;\n                      textParams: ptr TableTextColumnOptionalParams)	
+tableAppendImageColumn	ui/rawui.html#tableAppendImageColumn,ptr.Table,cstring,cint	rawui: tableAppendImageColumn(t: ptr Table; name: cstring; imageModelColumn: cint)	
+tableAppendImageTextColumn	ui/rawui.html#tableAppendImageTextColumn,ptr.Table,cstring,cint,cint,cint,ptr.TableTextColumnOptionalParams	rawui: tableAppendImageTextColumn(t: ptr Table; name: cstring; imageModelColumn: cint;\n                           textModelColumn: cint; textEditableModelColumn: cint;\n                           textParams: ptr TableTextColumnOptionalParams)	
+tableAppendCheckboxColumn	ui/rawui.html#tableAppendCheckboxColumn,ptr.Table,cstring,cint,cint	rawui: tableAppendCheckboxColumn(t: ptr Table; name: cstring;\n                          checkboxModelColumn: cint;\n                          checkboxEditableModelColumn: cint)	
+tableAppendCheckboxTextColumn	ui/rawui.html#tableAppendCheckboxTextColumn,ptr.Table,cstring,cint,cint,cint,cint,ptr.TableTextColumnOptionalParams	rawui: tableAppendCheckboxTextColumn(t: ptr Table; name: cstring;\n                              checkboxModelColumn: cint;\n                              checkboxEditableModelColumn: cint;\n                              textModelColumn: cint;\n                              textEditableModelColumn: cint;\n                              textParams: ptr TableTextColumnOptionalParams)	
+tableAppendProgressBarColumn	ui/rawui.html#tableAppendProgressBarColumn,ptr.Table,cstring,cint	rawui: tableAppendProgressBarColumn(t: ptr Table; name: cstring;\n                             progressModelColumn: cint)	
+tableAppendButtonColumn	ui/rawui.html#tableAppendButtonColumn,ptr.Table,cstring,cint,cint	rawui: tableAppendButtonColumn(t: ptr Table; name: cstring; buttonModelColumn: cint;\n                        buttonClickableModelColumn: cint)	
+tableHeaderVisible	ui/rawui.html#tableHeaderVisible,ptr.Table	rawui: tableHeaderVisible(t: ptr Table): cint	
+tableHeaderSetVisible	ui/rawui.html#tableHeaderSetVisible,ptr.Table,cint	rawui: tableHeaderSetVisible(t: ptr Table; visible: cint)	
+newTable	ui/rawui.html#newTable,ptr.TableParams	rawui: newTable(params: ptr TableParams): ptr Table	
+tableOnRowClicked	ui/rawui.html#tableOnRowClicked,ptr.Table,proc(ptr.Table,cint,pointer),pointer	rawui: tableOnRowClicked(t: ptr Table;\n                  f: proc (t: ptr Table; row: cint; data: pointer) {.cdecl.};\n                  data: pointer)	
+tableOnRowDoubleClicked	ui/rawui.html#tableOnRowDoubleClicked,ptr.Table,proc(ptr.Table,cint,pointer),pointer	rawui: tableOnRowDoubleClicked(t: ptr Table; f: proc (t: ptr Table; row: cint;\n    data: pointer) {.cdecl.}; data: pointer)	
+tableHeaderSetSortIndicator	ui/rawui.html#tableHeaderSetSortIndicator,ptr.Table,cint,SortIndicator	rawui: tableHeaderSetSortIndicator(t: ptr Table; column: cint; indicator: SortIndicator)	
+tableHeaderSortIndicator	ui/rawui.html#tableHeaderSortIndicator,ptr.Table,cint	rawui: tableHeaderSortIndicator(t: ptr Table; column: cint): SortIndicator	
+tableHeaderOnClicked	ui/rawui.html#tableHeaderOnClicked,ptr.Table,proc(ptr.Table,cint,pointer),pointer	rawui: tableHeaderOnClicked(t: ptr Table; f: proc (sender: ptr Table; column: cint;\n    senderData: pointer) {.cdecl.}; data: pointer)	
+tableColumnWidth	ui/rawui.html#tableColumnWidth,ptr.Table,cint	rawui: tableColumnWidth(t: ptr Table; column: cint): cint	
+tableColumnSetWidth	ui/rawui.html#tableColumnSetWidth,ptr.Table,cint,cint	rawui: tableColumnSetWidth(t: ptr Table; column: cint; width: cint)	
+TableColumnType	ui/rawui.html#TableColumnType	rawui: TableColumnType	
+TableSelectionMode	ui/rawui.html#TableSelectionMode	rawui: TableSelectionMode	
+TableSelection	ui/rawui.html#TableSelection	rawui: TableSelection	
+tableGetSelectionMode	ui/rawui.html#tableGetSelectionMode,ptr.Table	rawui: tableGetSelectionMode(t: ptr Table): TableSelectionMode	
+tableSetSelectionMode	ui/rawui.html#tableSetSelectionMode,ptr.Table,TableSelectionMode	rawui: tableSetSelectionMode(t: ptr Table; mode: TableSelectionMode)	
+tableOnSelectionChanged	ui/rawui.html#tableOnSelectionChanged,ptr.Table,proc(ptr.Table,pointer),pointer	rawui: tableOnSelectionChanged(t: ptr Table;\n                        f: proc (t: ptr Table; data: pointer) {.cdecl.};\n                        data: pointer)	
+tableGetSelection	ui/rawui.html#tableGetSelection,ptr.Table	rawui: tableGetSelection(t: ptr Table): ptr TableSelection	
+tableSetSelection	ui/rawui.html#tableSetSelection,ptr.Table,ptr.TableSelection	rawui: tableSetSelection(t: ptr Table; sel: ptr TableSelection)	
+freeTableSelection	ui/rawui.html#freeTableSelection,ptr.TableSelection	rawui: freeTableSelection(s: ptr TableSelection)	
