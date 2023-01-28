@@ -1,7 +1,7 @@
 import std/sugar
 import std/times
 
-import ui
+import uing
 
 proc main = 
   let window = newWindow("Date / Time", 320, 240)

@@ -1,4 +1,4 @@
-import ui
+import uing
 
 proc main = 
   let window = newWindow("Hello World!", 300, 25)

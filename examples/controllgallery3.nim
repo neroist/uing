@@ -1,7 +1,7 @@
 import std/sugar
 import std/with
 
-import ui
+import uing
 
 proc makeBasicControlsBox: Box =
   result = newVerticalBox(true)

@@ -1,6 +1,6 @@
 import std/sugar
 
-import ui
+import uing
 
 var 
   area: Area

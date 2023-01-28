@@ -1,4 +1,6 @@
-import ui, random
+import std/random
+
+import uing
 
 
 const

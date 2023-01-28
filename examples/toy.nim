@@ -1,21 +1,21 @@
 
 # Test & show the new high level wrapper
 
-import ui
+import uing
 
 proc main*() =
   var mainwin: Window
 
   var menu = newMenu("File")
   menu.addItem("Open", proc(_: MenuItem) =
-    let filename = ui.openFile(mainwin)
+    let filename = openFile(mainwin)
     if filename.len == 0:
       msgBoxError(mainwin, "No file selected", "Don't be alarmed!")
     else:
       msgBox(mainwin, "File selected", filename)
   )
   menu.addItem("Save", proc(_: MenuItem) =
-    let filename = ui.saveFile(mainwin)
+    let filename = saveFile(mainwin)
     if filename.len == 0:
       msgBoxError(mainwin, "No file selected", "Don't be alarmed!")
     else:
