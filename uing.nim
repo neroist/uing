@@ -96,7 +96,7 @@ proc free*(str: string) = rawui.freeText(str)
 export TextWeight, TextItalic, TextStretch
 
 type
-  FontDescriptor* = ref object # TODO thinking of renaming to "Font"
+  FontDescriptor* = ref object
     ## `FontDescriptor` provides a complete description of a font where
     ## one is needed. Currently, this means as the default font of a
     ## DrawTextLayout and as the data returned by `FontButton <#FontButton>`_.
@@ -140,9 +140,11 @@ proc newFontDescriptor*(
 
 # -------- Area --------
 
+# TODO add documentation for Area
+
 type
   Area* = ref object of Widget
-    handler*: ptr AreaHandler
+    handler: ptr AreaHandler
 
 export 
   WindowResizeEdge, 
@@ -159,6 +161,7 @@ proc `size=`*(a: Area, size: tuple[width, height: int]) = areaSetSize(a.impl, ci
 proc queueRedrawAll*(a: Area) = areaQueueRedrawAll(a.impl)
 proc beginUserWindowMove*(a: Area) = areaBeginUserWindowMove(a.impl)
 proc beginUserWindowResize*(a: Area; edge: WindowResizeEdge) = areaBeginUserWindowResize(a.impl, edge)
+proc handler*(a: Area): ptr AreaHandler = a.handler
 proc newArea*(ah: ptr AreaHandler): Area =
   newFinal result
   result.handler = ah
@@ -171,19 +174,22 @@ proc newScrollingArea*(ah: ptr AreaHandler; width, height: int): Area =
 
 # -------- Drawing --------
 
+# TODO add documentation for all of this
+
 type
   DrawPath* = ref object
     internalImpl: pointer
   
-  DrawMatrix* = ref object
-    m11*, m12*, m21*, m22*, m31*, m32*: float
-
-    internalImpl: pointer
-
-export DrawFillMode, DrawBrushType, DrawLineCap, DrawLineJoin
+export 
+  DrawMatrix,
+  DrawFillMode, 
+  DrawBrushType, 
+  DrawLineCap, 
+  DrawLineJoin,
+  DrawStrokeParams,
+  DrawDefaultMiterLimit
 
 genImplProcs(DrawPath)
-genImplProcs(DrawMatrix)
 
 proc newDrawPath*(fillMode: DrawFillMode): DrawPath =
   newFinal result
@@ -221,35 +227,38 @@ proc stroke*(c: ptr DrawContext; path: DrawPath; b: ptr DrawBrush; p: ptr DrawSt
 proc fill*(c: ptr DrawContext; path: DrawPath; b: ptr DrawBrush) =
   rawui.drawFill(c, path.impl, b)
 
-proc setIdentity*(m: DrawMatrix) = drawMatrixSetIdentity(m.impl)
+proc transform*(c: ptr DrawContext; m: ptr DrawMatrix) =
+  drawTransform(c, m)
 
-proc translate*(m: DrawMatrix; x, y: float) = drawMatrixTranslate(m.impl, cdouble x, cdouble y)
+proc setIdentity*(m: ptr DrawMatrix) = drawMatrixSetIdentity(m)
 
-proc scale*(m: DrawMatrix; xCenter, yCenter, x, y: float) = 
-  drawMatrixScale(m.impl, cdouble xCenter, cdouble yCenter, cdouble x, cdouble y)
+proc translate*(m: ptr DrawMatrix; x, y: float) = drawMatrixTranslate(m, cdouble x, cdouble y)
 
-proc rotate*(m: DrawMatrix; x, y, amount: float) =
-  drawMatrixRotate(m.impl, cdouble x, cdouble y, cdouble amount)
+proc scale*(m: ptr DrawMatrix; xCenter, yCenter, x, y: float) = 
+  drawMatrixScale(m, cdouble xCenter, cdouble yCenter, cdouble x, cdouble y)
 
-proc skew*(m: DrawMatrix; x, y, xamount, yamount: float) =
-  drawMatrixSkew(m.impl, cdouble x, cdouble y, cdouble xamount, cdouble yamount)
+proc rotate*(m: ptr DrawMatrix; x, y, amount: float) =
+  drawMatrixRotate(m, cdouble x, cdouble y, cdouble amount)
 
-proc multiply*(dest: DrawMatrix; src: DrawMatrix) = drawMatrixMultiply(dest.impl, src.impl)
+proc skew*(m: ptr DrawMatrix; x, y, xamount, yamount: float) =
+  drawMatrixSkew(m, cdouble x, cdouble y, cdouble xamount, cdouble yamount)
 
-proc invertible*(m: DrawMatrix): bool = bool drawMatrixInvertible(m.impl)
+proc multiply*(dest, src: ptr DrawMatrix) = drawMatrixMultiply(dest, src)
 
-proc invert*(m: DrawMatrix): int = int drawMatrixInvert(m.impl)
+proc invertible*(m: ptr DrawMatrix): bool = bool drawMatrixInvertible(m)
 
-proc transformPoint*(m: DrawMatrix): tuple[x, y: float] =
+proc invert*(m: ptr DrawMatrix): int = int drawMatrixInvert(m)
+
+proc transformPoint*(m: ptr DrawMatrix): tuple[x, y: float] =
   var x, y: cdouble
 
-  drawMatrixTransformPoint(m.impl, addr x, addr y)
+  drawMatrixTransformPoint(m, addr x, addr y)
   result = (x: float x, y: float y)
 
-proc transformSize*(m: DrawMatrix): tuple [x, y: float] =
+proc transformSize*(m: ptr DrawMatrix): tuple [x, y: float] =
   var x, y: cdouble
 
-  drawMatrixTransformSize(m.impl, addr x, addr y)
+  drawMatrixTransformSize(m, addr x, addr y)
   result = (x: float x, y: float y)
 
 # -------- Attributes --------
@@ -320,17 +329,21 @@ proc newAttributedString*(initialString: string): AttributedString =
   newFinal result
   result.impl = rawui.newAttributedString(cstring initialString)
 
-proc free*(a: AttributedString) = freeAttributedString(a.impl)
+proc free*(a: AttributedString) = 
+  ## Destroys the AttributedString `a`.
+  ## It will also free all Attributes within.
+
+  freeAttributedString(a.impl)
 
 proc `$`*(s: AttributedString): string =
   ## Returns the textual content of `s` as a string.
   
   $attributedStringString(s.impl) 
 
-proc len*(s: AttributedString): BiggestUInt =
+proc len*(s: AttributedString): int =
   ## Returns the number of UTF-8 bytes in the textual content of `s`
   
-  BiggestUInt attributedStringLen(s.impl) 
+  int attributedStringLen(s.impl) 
 
 proc addUnattributed*(s: AttributedString; str: string) =
   ## Adds string `str` to the end of `s`. 
@@ -338,20 +351,20 @@ proc addUnattributed*(s: AttributedString; str: string) =
   
   attributedStringAppendUnattributed(s.impl, cstring str)
 
-proc insertAtUnattributed*(s: AttributedString; str: string; at: BiggestUInt) =
+proc insertAtUnattributed*(s: AttributedString; str: string; at: int) =
   ## Adds the string `str` to `s` at the byte position specified by `at`. 
   ## The new substring will be unattributed; existing attributes will be 
   ## moved along with their text.
   
   attributedStringInsertAtUnattributed(s.impl, cstring str, csize_t at)
 
-proc delete*(s: AttributedString; start, `end`: BiggestUInt) =
+proc delete*(s: AttributedString; start, `end`: int) =
   ## deletes the characters and attributes of `s` in the byte range 
   ## [`start`, `end`).
 
   attributedStringDelete(s.impl, csize_t start, csize_t `end`)
 
-proc setAttribute*(s: AttributedString; a: Attribute; start, `end`: BiggestUInt) =
+proc setAttribute*(s: AttributedString; a: Attribute; start, `end`: int) =
   ## Sets `a` in the byte range [`start`, `end`) of `s`. Any existing 
   ## attributes in that byte range of the same type are removed. You 
   ## should not use `a` after this function returns.
@@ -367,18 +380,28 @@ proc forEachAttribute*(str: AttributedString; fun: AttributedStringForEachAttrib
    
   attributedStringForEachAttribute(str.impl, fun, data)
 
-proc numGraphemes*(s: AttributedString): BiggestUInt =
-  attributedStringNumGraphemes(s.impl)
+proc numGraphemes*(s: AttributedString): int =
+  int attributedStringNumGraphemes(s.impl)
 
-proc byteIndexToGrapheme*(s: AttributedString; pos: BiggestUInt): BiggestUInt =
-  attributedStringByteIndexToGrapheme(s.impl, csize_t pos)
+proc byteIndexToGrapheme*(s: AttributedString; pos: int): int =
+  int attributedStringByteIndexToGrapheme(s.impl, csize_t pos)
 
-proc graphemeToByteIndex*(s: AttributedString; pos: BiggestUInt): BiggestUInt = 
-  attributedStringGraphemeToByteIndex(s.impl, csize_t pos)
+proc graphemeToByteIndex*(s: AttributedString; pos: int): int = 
+  int attributedStringGraphemeToByteIndex(s.impl, csize_t pos)
 
 # attribute 
 
-proc free*(a: Attribute) = freeAttribute(a.impl)
+proc free*(a: Attribute) = 
+  ## Frees a `Attribute`. You generally do not need to
+  ## call this yourself, as `AttributedString` does this for you. 
+  ## 
+  ## .. error:: It is an error to call this function on a `Attribute` 
+  ##         that has been given to a `AttributedString`. 
+  ## 
+  ## You can call this, however, if you created a `Attribute` that 
+  ## you aren't going to use later.
+
+  freeAttribute(a.impl)
 
 proc getType*(a: Attribute): AttributeType = 
   ## Returns the AttributeType of `a`.
@@ -515,7 +538,7 @@ proc underline*(a: Attribute): Underline =
 
   attributeUnderline(a.impl)
 
-proc newUnderlineColorAttribute*(u: UnderlineColor; r, g, b, a: float): Attribute =
+proc newUnderlineColorAttribute*(u: UnderlineColor; r = 0f, g = 0f, b = 0f, a: float = 0f): Attribute =
   ## Creates a new Attribute that changes the color of the underline on 
   ## the text it is applied to.
   ##  
@@ -571,9 +594,15 @@ proc newOpenTypeFeatures*(): OpenTypeFeatures =
   newFinal result
   result.impl = rawui.newOpenTypeFeatures()
 
-proc free*(otf: OpenTypeFeatures) = freeOpenTypeFeatures(otf.impl)
+proc free*(otf: OpenTypeFeatures) = 
+  ## Frees `otf`
+  
+  freeOpenTypeFeatures(otf.impl)
 
 proc clone*(otf: OpenTypeFeatures): OpenTypeFeatures =
+  ## Makes a copy of `otf` and returns it.
+  ## Changing one will not affect the other.
+
   newFinal result
   result.impl = openTypeFeaturesClone(otf.impl)
 
@@ -585,7 +614,7 @@ proc add*(otf: OpenTypeFeatures; a, b, c, d: char, value: uint32) =
   
   openTypeFeaturesAdd(otf.impl, a, b, c, d, value)
 
-proc add*(otf: OpenTypeFeatures; abcd: string, value: uint32) =
+proc add*(otf: OpenTypeFeatures; abcd: string, value: uint32 | bool) =
   ## Alias of `add <#add,OpenTypeFeatures,char,char,char,char,uint32>`_.
   ## `a`, `b`, `c`, and `d` are instead a string of 4 characters, each
   ## character representing `a`, `b`, `c`, and `d` respectively.
@@ -593,7 +622,7 @@ proc add*(otf: OpenTypeFeatures; abcd: string, value: uint32) =
   if abcd.len != 4:
     raise newException(ValueError, "String has an invalid length; it must have a length of 4.")
 
-  openTypeFeaturesAdd(otf.impl, abcd[0], abcd[1], abcd[2], abcd[3], value)
+  openTypeFeaturesAdd(otf.impl, abcd[0], abcd[1], abcd[2], abcd[3], uint32 value)
 
 proc remove*(otf: OpenTypeFeatures; a, b, c, d: char) =
   ## Removes the given feature tag and value from otf. 
@@ -681,7 +710,12 @@ type
     
     internalImpl: pointer
 
-export DrawTextAlign, DrawTextLayoutParams
+export 
+  DrawTextAlign, 
+  DrawTextLayoutParams, 
+  DrawContext, 
+  DrawBrush, 
+  DrawBrushType
 
 genImplProcs(DrawTextLayout)
 
@@ -696,13 +730,13 @@ proc free*(tl: DrawTextLayout) =
   
   drawFreeTextLayout(tl.impl)
 
-proc drawText*(c: ptr DrawContext; tl: DrawTextLayout; x, y: float) =
-  ## Draws `tl` in `c` with the top-left point of tl at (`x`, `y`).
+proc drawText*(c: ptr DrawContext; tl: DrawTextLayout; point: tuple[x, y: float]) =
+  ## Draws `tl` in `c` with the top-left point of `tl` at (`point.x`, `point.y`).
   
-  rawui.drawText(c, tl.impl, cdouble x, cdouble y)
+  rawui.drawText(c, tl.impl, cdouble point.x, cdouble point.y)
 
 proc extents*(tl: DrawTextLayout): tuple[width, height: float] =
-  ## Returns the width and height of `tl` in `width` and `height`. 
+  ## Returns the width and height of `tl`. 
   ## The returned width may be smaller than the width passed 
   ## into `newDrawTextLayout() <#newDrawTextLayout,ptr.DrawTextLayoutParams>`_ 
   ## depending on how the text in `tl` is wrapped. Therefore, 
@@ -816,7 +850,8 @@ type
     ## .. warning:: A Window can NOT be a child of another Widget.
 
     onclosing*: proc (sender: Window): bool
-    onfocuschanged*: proc(sender: Window)
+    onfocuschanged*: proc (sender: Window)
+    onContentSizeChanged*: proc (sender: Window)
     child: Widget
     
 genImplProcs(Window)
@@ -1032,6 +1067,7 @@ proc onClosingWrapper(rw: ptr rawui.Window; data: pointer): cint {.cdecl.} =
       system.quit()
 
 genCallback wrapOnFocusChangedWrapper, Window, onfocuschanged
+genCallback wrapOnContentSizeChangedWrapper, Window, onContentSizeChanged
 
 proc newWindow*(title: string; width, height: int; hasMenubar: bool = false, onfocuschanged: proc (sender: Window) = nil): Window =
   ## Creates and returns a new Window.
@@ -1043,12 +1079,12 @@ proc newWindow*(title: string; width, height: int; hasMenubar: bool = false, onf
   ## | `onfocuschanged`: Callback for when the window focus changes.
 
   newFinal(result)
-  result.impl = rawui.newWindow(title, cint width, cint height,
-                                cint hasMenubar)
+  result.impl = rawui.newWindow(title, cint width, cint height, cint hasMenubar)
   result.onfocuschanged = onfocuschanged
   result.onclosing = proc (_: Window): bool = return true
   windowOnFocusChanged(result.impl, wrapOnFocusChangedWrapper, cast[pointer](result))
   windowOnClosing(result.impl, onClosingWrapper, cast[pointer](result))
+  windowOnContentSizeChanged(result.impl, wrapOnContentSizeChangedWrapper, cast[pointer](result))
 
 
 # ------------------------- Box ------------------------------------------
@@ -1359,7 +1395,7 @@ proc margined*(t: Tab; index: int): bool =
   bool tabMargined(t.impl, index.cint) 
 
 proc setMargined*(t: Tab; index: int; margined: bool) = 
-  ## Sets whether or not the page/tab at @p index has a margin.
+  ## Sets whether or not the page/tab at `index` has a margin.
   ## 
   ## The margin size is determined by the OS defaults.
   ## 
@@ -1687,7 +1723,7 @@ proc clear*(c: Combobox) =
   c.items = @[]
 
 proc delete*(c: Combobox, index: int) = 
-  ## Deletes an item at @p index from the combo box.
+  ## Deletes an item at `index` from the combo box.
   ## 
   ## .. note:: Deleting the index of the item currently selected will move the
   ##        selection to the next item in the combo box or `-1` if no such item exists.
@@ -2227,11 +2263,14 @@ proc `padded=`*(f: Form, padded: bool) =
   
   formSetPadded(f.impl, cint padded)
 
-proc newForm*(): Form = 
+proc newForm*(padded: bool = false): Form = 
   ## Creates a new form.
+  ## 
+  ## `padded`: `true` to make widgets padded, `false` otherwise.
   
   newFinal result
   result.impl = rawui.newForm()
+  result.padded = padded
 
 # -------------------- Grid --------------------------------------
 
@@ -2253,7 +2292,7 @@ type
     ## Widgets can also be placed in relation to other widget using `At <uing/rawui.html#At>`_
     ## attributes.
     
-    children: seq[Widget]
+    #children: seq[Widget]
 
 export Align, At
 
@@ -2274,7 +2313,7 @@ proc add*(g: Grid; w: Widget; left, top, xspan, yspan: int, hexpand: bool; halig
   ## | `valign`: Vertical alignment of the widget within the reserved space.
   
   gridAppend(g.impl, w.impl, cint left, cint top, cint xspan, cint yspan, cint hexpand, halign, cint vexpand, valign)
-  g.children.add w
+  #g.children.add w
 
 proc insertAt*(g: Grid; w, existing: Widget; at: At; left, top, xspan, yspan, hexpand: int; halign: Align; vexpand: int; valign: Align) = 
   ##  Inserts a widget positioned in relation to another widget within the grid.
@@ -2291,7 +2330,7 @@ proc insertAt*(g: Grid; w, existing: Widget; at: At; left, top, xspan, yspan, he
   ##  | `valign`: Vertical alignment of the widget within the reserved space. 
 
   gridInsertAt(g.impl, w.impl, existing.impl, at, cint xspan, cint yspan, cint hexpand, halign, cint vexpand, valign) 
-  g.children.insert w
+  #g.children.insert w
 
 proc padded*(g: Grid): bool = 
   ## Returns whether or not widgets within the grid are padded.
@@ -2890,7 +2929,7 @@ proc enabled*[W: Widget](w: W): bool =
   ## Returns whether or not the widget is enabled.
   ## Defaults to `true`
 
-  rawui.controlEnabled(w.impl)
+  bool rawui.controlEnabled(w.impl)
 
 proc enable*[W: Widget](w: W) =
   ## Enables the widget.
@@ -2898,7 +2937,7 @@ proc enable*[W: Widget](w: W) =
   rawui.controlEnable(w.impl)
 
 proc disable*[W: Widget](w: W) =
-  ## Returns whether or not the widget is visible.
+  ## Disables the widget.
 
   rawui.controlDisable(w.impl)
 

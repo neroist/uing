@@ -3,8 +3,9 @@ import std/sugar
 import uing
 from uing/rawui import nil
 
+# TODO i really dislike these global vars
+
 var 
-  area: Area
   systemFont: Checkbox
   fontButton: FontButton
   alignment: Combobox
@@ -13,17 +14,19 @@ var
 proc appendWithAttribute(what: string; attr, attr2: Attribute = nil) =
   let
     start = attrstr.len
-    `end` = start + uint what.len
+    `end` = start + what.len
 
   attrstr.addUnattributed what
   attrstr.setAttribute attr, start, `end`
+
   if attr2 != nil:
     attrstr.setAttribute attr2, start, `end`
 
 proc makeAttributedString =
   attrstr = newAttributedString(
-    "Drawing strings with libui is done with the uiAttributedString and uiDrawTextLayout objects.\n" &
-    "uiAttributedString lets you have a variety of attributes: ")
+    "Drawing strings with libui-ng is done with the AttributedString and DrawTextLayout objects.\n" &
+    "AttributedString lets you have a variety of attributes: "
+  )
 
   let attr = newFamilyAttribute("Courier New")
   appendWithAttribute("font family", attr, nil)
@@ -49,32 +52,33 @@ proc makeAttributedString =
   appendWithAttribute("text color", attr5, nil)
   attrstr.addUnattributed(", ")
 
-  let attr6 = newBackgroundAttribute(0.5, 0.5, 0.25, 0.5)
+  let attr6 = newBackgroundColorAttribute(0.5, 0.5, 0.25, 0.5)
   appendWithAttribute("text background color", attr6, nil)
   attrstr.addUnattributed(", ")
 
+
   let attr7 = newUnderlineAttribute(UnderlineSingle)
   appendWithAttribute("underline style", attr7, nil)
-  attrstr.addUnattributed("and ")
+  attrstr.addUnattributed(", and, ")
 
   let attr8 = newUnderlineAttribute(UnderlineDouble)
-  let attr82 = newUnderlineColorAttribute(uiUnderlineColorCustom, 1.0, 0.0, 0.5, 1.0)
+  let attr82 = newUnderlineColorAttribute(UnderlineColorCustom, 1.0, 0.0, 0.5, 1.0)
   appendWithAttribute("underline color", attr8, attr82)
   attrstr.addUnattributed(". ")
 
   attrstr.addUnattributed("Furthermore, there are attributes allowing for ")
   let attr9 = newUnderlineAttribute(UnderlineSuggestion)
-  let attr92 = newUnderlineColorAttribute(uiUnderlineColorSpelling, 0, 0, 0, 0)
+  let attr92 = newUnderlineColorAttribute(UnderlineColorSpelling)
   appendWithAttribute("special underlines for indicating spelling errors", attr9, attr92)
   attrstr.addUnattributed(" (and other types of errors) ")
 
   attrstr.addUnattributed("and control over OpenType features such as ligatures (for instance, ")
   let otf = newOpenTypeFeatures()
-  otf.add('l', 'i', 'g', 'a', 0)
+  otf.add("liga", off)
   let attr10 = newFeaturesAttribute(otf)
   appendWithAttribute("afford", attr10, nil)
   attrstr.addUnattributed(" vs. ")
-  otf.add('l', 'i', 'g', 'a', 1)
+  otf.add("liga", on)
   let attr11 = newFeaturesAttribute(otf)
   appendWithAttribute("afford", attr11, nil)
   free otf
@@ -83,61 +87,66 @@ proc makeAttributedString =
   attrstr.addUnattributed("Use the controls opposite to the text to control properties of the text.")
 
 proc drawHandler*(a: ptr AreaHandler; area: ptr rawui.Area; p: ptr AreaDrawParams) {. cdecl .} =
+  echo "draw"
+
   var 
     textLayout: DrawTextLayout
     defaultFont: FontDescriptor
     params: DrawTextLayoutParams
 
-    attrstrImpl = attrstr.impl
-    defaultFontImpl = defaultFont.impl
-
   let useSystemFont = systemFont.checked
 
-  params.string = attrstrImpl
+  params.string = attrstr.impl
 
   if useSystemFont:
     loadControlFont defaultFont
   else:
     defaultFont = fontButton.font
 
-  params.defaultFont = defaultFontImpl
+  params.defaultFont = defaultFont.impl
   params.width = p.areaWidth
   params.align = DrawTextAlign(alignment.selected)
   textLayout = newDrawTextLayout(addr params)
-  drawText p.context, textLayout, 0, 0
+  p.context.drawText textLayout, (0.0, 0.0)
 
   free textLayout
   free defaultFont
 
 proc main =
-  var handler: AreaHandler
-
-  handler.draw = drawHandler
+  var handler = AreaHandler(
+    draw: drawHandler,
+    mouseEvent: (_: ptr AreaHandler, a: ptr rawui.Area, b: ptr AreaMouseEvent) {.cdecl.} => (discard),
+    mouseCrossed: (_: ptr AreaHandler, a: ptr rawui.Area, b: cint) {.cdecl.} => (discard),
+    dragBroken: (_: ptr AreaHandler, a: ptr rawui.Area) {.cdecl.} => (discard),
+    keyEvent: (_: ptr AreaHandler, a: ptr rawui.Area, b: ptr AreaKeyEvent) {.cdecl.} => cint 0
+  )
 
   makeAttributedString()
 
-  var mainwin = newWindow("libui Text-Drawing Example", 640, 480, true)
+  var mainwin = newWindow("libui-ng Text-Drawing Example", 640, 480)
   mainwin.margined = true
 
-  var hbox = newHorizontalBox()
-  hbox.padded = true
+  var hbox = newHorizontalBox(true)
   mainwin.child = hbox
 
-  var vbox = newVerticalBox()
-  vbox.padded = true
+  var vbox = newVerticalBox(true)
   hbox.add vbox
+
+  var area = newArea(addr handler)
+  #area.queueRedrawAll()
+  hbox.add area
 
   fontButton = newFontButton()
   fontButton.onchanged = (_: FontButton) => area.queueRedrawAll()
   vbox.add fontButton
 
-  let form = newForm()
-  form.padded = true
+  let form = newForm(true)
   vbox.add form
 
   alignment = newCombobox()
+  # note that the items match with the values of the uiDrawTextAlign values
   alignment.add "Left", "Center", "Right"
-  alignment.selected = 0
+  alignment.selected = 0 # start with left alignment
   alignment.onselected = (_: Combobox) => area.queueRedrawAll()
   form.add "Alignment", alignment
 
@@ -145,8 +154,7 @@ proc main =
   systemFont.ontoggled = (_: Checkbox) => area.queueRedrawAll()
   form.add "System Font", systemFont
 
-  area = newArea(addr handler)
-  hbox.add area
+  free attrstr
 
   show mainwin
   mainLoop()

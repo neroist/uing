@@ -22,25 +22,6 @@ const
 
 # helper to quickly set a brush color
 
-
-proc renderText(ctx: ptr DrawContext; txt: cstring) =
-  let fontDesc = FontDescriptor(
-    family: "Courier New",
-    size: 12.0,
-    weight: TextWeightNormal,
-    italic: TextItalicNormal,
-    stretch: TextStretchNormal
-  )
-  let textLayoutParams = DrawTextLayoutParams(
-    string: newAttributedString(txt),
-    defaultFont: unsafeAddr fontDesc,
-    width: -1.0,
-    align: DrawTextAlignCenter
-  )
-  let textLayout = drawNewTextLayout(unsafeAddr textLayoutParams)
-  ctx.drawText(textLayout, 10.0.cdouble, 400.0.cdouble)
-  drawFreeTextLayout(textLayout)
-
 proc setSolidBrush*(brush: ptr DrawBrush; color: uint32; alpha: cdouble) {.cdecl.} =
   var component: uint8
   brush.`type` = DrawBrushTypeSolid
@@ -163,7 +144,7 @@ proc handlerDraw*(a: ptr AreaHandler; area: ptr Area; p: ptr AreaDrawParams) {.c
   brush.a = graphA
   drawStroke(p.context, path, addr(brush), addr(sp))
   drawFreePath(path)
-  renderText(p.context, "my example string")
+
   # now draw the point being hovered over
   if currentPoint != - 1:
     var
@@ -196,12 +177,18 @@ proc handlerMouseEvent*(a: ptr AreaHandler; area: ptr Area; e: ptr AreaMouseEven
     ys: array[10, cdouble]
   graphSize(e.areaWidth, e.areaHeight, addr(graphWidth), addr(graphHeight))
   pointLocations(graphWidth, graphHeight, xs, ys)
-  var i = 0.cint
+
+  var i = cint 0
+
   while i < 10:
-    if inPoint(e.x, e.y, xs[i], ys[i]): break
-    inc(i)
+    if inPoint(e.x, e.y, xs[i], ys[i]): 
+      break
+
+    inc i
+
   if i == 10:
-    i = - 1
+    i = -1
+
   currentPoint = i
   # TODO only redraw the relevant area
   areaQueueRedrawAll(histogram)

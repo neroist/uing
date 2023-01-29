@@ -1118,10 +1118,10 @@ type
     ## is specified without an underline type, the underline color
     ## attribute is ignored, but not removed from the `AttributedString`.
 
-    uiUnderlineColorCustom,
-    uiUnderlineColorSpelling,
-    uiUnderlineColorGrammar,
-    uiUnderlineColorAuxiliary, ## for instance, the color used by smart replacements on macOS or in Microsoft Office   
+    UnderlineColorCustom,
+    UnderlineColorSpelling,
+    UnderlineColorGrammar,
+    UnderlineColorAuxiliary, ## for instance, the color used by smart replacements on macOS or in Microsoft Office   
 
 
 proc newUnderlineAttribute*(u: Underline): ptr Attribute {.cdecl,
