@@ -1,6 +1,7 @@
 import std/sugar
 
 import uing
+from uing/rawui import nil
 
 var 
   area: Area
@@ -81,7 +82,7 @@ proc makeAttributedString =
 
   attrstr.addUnattributed("Use the controls opposite to the text to control properties of the text.")
 
-proc drawHandler*(a: ptr AreaHandler; area: ptr Area; p: ptr AreaDrawParams) {.cdecl.} =
+proc drawHandler*(a: ptr AreaHandler; area: ptr rawui.Area; p: ptr AreaDrawParams) {. cdecl .} =
   var 
     textLayout: DrawTextLayout
     defaultFont: FontDescriptor

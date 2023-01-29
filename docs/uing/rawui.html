@@ -148,10 +148,10 @@ window.addEventListener('DOMContentLoaded', main);
   held1To64*: uint64">AreaMouseEvent</a></li>
   <li><a class="reference" href="#At"
     title="At {.size: 4.} = enum
-  AtLeading,                ## Place before control. 
-  AtTop,                    ## Place above control. 
-  AtTrailing,               ## Place behind control. 
-  AtBottom                   ## Place below control.">At</a></li>
+  AtLeading,                ## Place before widget. 
+  AtTop,                    ## Place above widget. 
+  AtTrailing,               ## Place behind widget. 
+  AtBottom                   ## Place below widget.">At</a></li>
   <li><a class="reference" href="#Attribute"
     title="Attribute = object">Attribute</a></li>
   <li><a class="reference" href="#AttributedString"
@@ -274,11 +274,13 @@ window.addEventListener('DOMContentLoaded', main);
     title="ExtKey {.size: 4.} = enum
   ExtKeyEscape = 1, ExtKeyInsert, ## equivalent to &quot;Help&quot; on Apple keyboards 
   ExtKeyDelete, ExtKeyHome, ExtKeyEnd, ExtKeyPageUp, ExtKeyPageDown, ExtKeyUp,
-  ExtKeyDown, ExtKeyLeft, ExtKeyRight, ExtKeyF1, ExtKeyF3, ExtKeyF4, ExtKeyF5,
-  ExtKeyF6, ExtKeyF7, ExtKeyF8, ExtKeyF9, ExtKeyF10, ExtKeyF11, ExtKeyF12,
-  ExtKeyN0, ExtKeyN1, ExtKeyN2, ExtKeyN3, ExtKeyN4, ExtKeyN5, ExtKeyN6,
-  ExtKeyN7, ExtKeyN8, ExtKeyN9, ExtKeyNDot, ExtKeyNEnter, ExtKeyNAdd,
-  ExtKeyNSubtract, ExtKeyNMultiply, ExtKeyNDivide">ExtKey</a></li>
+  ExtKeyDown, ExtKeyLeft, ExtKeyRight, ExtKeyF1, ## F1..F12 are guaranteed to be consecutive
+  ExtKeyF3, ExtKeyF4, ExtKeyF5, ExtKeyF6, ExtKeyF7, ExtKeyF8, ExtKeyF9,
+  ExtKeyF10, ExtKeyF11, ExtKeyF12, ExtKeyN0, ## numpad keys; independent of Num Lock state
+  ExtKeyN1,                 ## N0..N9 are guaranteed to be consecutive
+  ExtKeyN2, ExtKeyN3, ExtKeyN4, ExtKeyN5, ExtKeyN6, ExtKeyN7, ExtKeyN8,
+  ExtKeyN9, ExtKeyNDot, ExtKeyNEnter, ExtKeyNAdd, ExtKeyNSubtract,
+  ExtKeyNMultiply, ExtKeyNDivide">ExtKey</a></li>
   <li><a class="reference" href="#FontButton"
     title="FontButton = object of Control">FontButton</a></li>
   <li><a class="reference" href="#FontDescriptor"
@@ -347,25 +349,59 @@ window.addEventListener('DOMContentLoaded', main);
   <li><a class="reference" href="#TableModelHandler"
     title="TableModelHandler {.bycopy.} = object
   numColumns*: proc (a1: ptr TableModelHandler; a2: ptr TableModel): cint {.
-      cdecl.}
-  columnType*: proc (a1: ptr TableModelHandler; a2: ptr TableModel; column: cint): TableValueType {.
-      cdecl.}
-  numRows*: proc (a1: ptr TableModelHandler; a2: ptr TableModel): cint {.cdecl.}
+      cdecl.} ## Returns the number of columns in the `TableModel`.
+              ## 
+              ## .. warning:: This value **MUST** remain constant throughout the lifetime of the `TableModel`.
+              ## 
+              ## .. warning:: This method is not guaranteed to be called depending on the system
+  columnType*: proc (a1: ptr TableModelHandler; a2: ptr TableModel; col: cint): TableValueType {.
+      cdecl.} ## Returns the column type in for of a `TableValueType`.
+              ## 
+              ## .. warning:: This value **MUST** remain constant throughout the lifetime of the `TableModel`.
+              ## 
+              ## .. warning:: This method is not guaranteed to be called depending on the system
+  numRows*: proc (a1: ptr TableModelHandler; a2: ptr TableModel): cint {.cdecl.} ## Returns the number of rows in the uiTableModel.
   cellValue*: proc (mh: ptr TableModelHandler; m: ptr TableModel; row: cint;
-                    column: cint): ptr TableValue {.cdecl.}
-  setCellValue*: proc (a1: ptr TableModelHandler; a2: ptr TableModel; a3: cint;
-                       a4: cint; a5: ptr TableValue) {.cdecl.}">TableModelHandler</a></li>
+                    col: cint): ptr TableValue {.cdecl.} ## Returns the cell value for (row, col).
+                                                         ## 
+                                                         ## Make sure to use the `TableValue` constructors. The returned value
+                                                         ## must match the `TableValueType` defined in `columnType()`.
+                                                         ## 
+                                                         ## Some columns may return `nil` as a special value. Refer to the
+                                                         ## appropriate `addColumn()` documentation.
+                                                         ## 
+                                                         ## .. note:: `TableValue` objects are automatically freed when requested by
+                                                         ##       a `Table`.
+  setCellValue*: proc (a1: ptr TableModelHandler; a2: ptr TableModel; row: cint;
+                       col: cint; a3: ptr TableValue) {.cdecl.} ## Sets the cell value for (row, column).
+                                                                ## It is up to the handler to decide what to do with the value: change
+                                                                ## the model or reject the change, keeping the old value.
+                                                                ## 
+                                                                ## Some columns may call this function with `nil` as a special value.
+                                                                ## Refer to the appropriate `addColumn()` documentation.
+                                                                ## 
+                                                                ## .. note:: `TableValue` objects are automatically freed upon return when
+                                                                ##        set by a `Table`.">TableModelHandler</a></li>
   <li><a class="reference" href="#TableParams"
     title="TableParams {.bycopy.} = object
-  model*: ptr TableModel
-  rowBackgroundColorModelColumn*: cint">TableParams</a></li>
+  model*: ptr TableModel     ## Model holding the data to be displayed. This can **NOT** be `nil`.
+  rowBackgroundColorModelColumn*: cint ## `TableModel` column that defines background color for each row,
+                                       ## 
+                                       ## `TableValue.color` Background color, `nil` to use the default
+                                       ## background color for that row.
+                                       ## 
+                                       ## `-1` to use the default background color for all rows.">TableParams</a></li>
   <li><a class="reference" href="#TableSelection"
     title="TableSelection {.bycopy.} = object
-  numRows*: cint
-  rows*: ptr cint">TableSelection</a></li>
+  numRows*: cint             ## Number of selected rows.
+  rows*: ptr UncheckedArray[cint] ## Array containing selected row indices, `nil` on empty selection.">TableSelection</a></li>
   <li><a class="reference" href="#TableSelectionMode"
     title="TableSelectionMode {.size: 4.} = enum
-  TableSelectionModeNone, TableSelectionModeZeroOrOne, ## Allow zero or one row to be selected.
+  TableSelectionModeNone, ## Allow no row selection.
+                           ## 
+                           ## .. warning:: This mode disables all editing of text columns. Buttons
+                           ##          and checkboxes keep working though.
+  TableSelectionModeZeroOrOne, ## Allow zero or one row to be selected.
   TableSelectionModeOne,    ## Allow for exactly one row to be selected.
   TableSelectionModeZeroOrMany ## Allow zero or many (multiple) rows to be selected.">TableSelectionMode</a></li>
   <li><a class="reference" href="#TableTextColumnOptionalParams"
@@ -2198,7 +2234,11 @@ window.addEventListener('DOMContentLoaded', main);
   <div class="nine columns" id="content">
   <div id="tocRoot"></div>
   
-  <p class="module-desc"></p>
+  <p class="module-desc"><p>Low level wrapper for libui-ng.</p>
+<p>Documentation mainly from <a class="reference external" href="https://github.com/libui-ng/libui-ng/blob/master/ui.h">ui.h</a></p>
+<p>Documentation is only added when neccessary, see <a class="reference external" href="https://github.com/libui-ng/libui-ng/blob/master/ui.h">ui.h</a> for documentation</p>
+<table class="docinfo" frame="void" rules="none"><col class="docinfo-name" /><col class="docinfo-content" /><tbody valign="top"><tr><th class="docinfo-name">Author:</th><td>Jasmine</td></tr>
+</tbody></table></p>
   <div class="section" id="7">
 <h1><a class="toc-backref" href="#7">Types</a></h1>
 <dl class="item">
@@ -2210,6 +2250,8 @@ window.addEventListener('DOMContentLoaded', main);
   <span class="Identifier">AlignEnd</span>                   <span class="Comment">## Place at end</span></pre></dt>
 <dd>
 
+<p>Alignment specifiers to define placement within the reserved area.</p>
+<p>Used in <tt class="docutils literal"><span class="pre"><span class="Identifier">Grid</span></span></tt></p>
 
 
 </dd>
@@ -2289,12 +2331,14 @@ window.addEventListener('DOMContentLoaded', main);
 </div>
 <div id="At">
 <dt><pre><a href="rawui.html#At"><span class="Identifier">At</span></a> {.<span class="Identifier">size</span><span class="Other">:</span> <span class="DecNumber">4</span>.} <span class="Other">=</span> <span class="Keyword">enum</span>
-  <span class="Identifier">AtLeading</span><span class="Other">,</span>                <span class="Comment">## Place before control. </span>
-  <span class="Identifier">AtTop</span><span class="Other">,</span>                    <span class="Comment">## Place above control. </span>
-  <span class="Identifier">AtTrailing</span><span class="Other">,</span>               <span class="Comment">## Place behind control. </span>
-  <span class="Identifier">AtBottom</span>                   <span class="Comment">## Place below control.</span></pre></dt>
+  <span class="Identifier">AtLeading</span><span class="Other">,</span>                <span class="Comment">## Place before widget. </span>
+  <span class="Identifier">AtTop</span><span class="Other">,</span>                    <span class="Comment">## Place above widget. </span>
+  <span class="Identifier">AtTrailing</span><span class="Other">,</span>               <span class="Comment">## Place behind widget. </span>
+  <span class="Identifier">AtBottom</span>                   <span class="Comment">## Place below widget.</span></pre></dt>
 <dd>
 
+<p>Placement specifier to define placement in relation to another widget.</p>
+<p>Used in <tt class="docutils literal"><span class="pre"><span class="Identifier">Grid</span></span></tt></p>
 
 
 </dd>
@@ -2545,7 +2589,7 @@ Base class for GUI controls providing common methods.
   <span class="Identifier">DrawTextAlignLeft</span><span class="Other">,</span> <span class="Identifier">DrawTextAlignCenter</span><span class="Other">,</span> <span class="Identifier">DrawTextAlignRight</span></pre></dt>
 <dd>
 
-
+<tt class="docutils literal"><span class="pre"><span class="Identifier">DrawTextAlign</span></span></tt> specifies the alignment of lines of text in a <tt class="docutils literal"><span class="pre"><span class="Identifier">DrawTextLayout</span></span></tt>.
 
 </dd>
 </div>
@@ -2566,7 +2610,7 @@ Base class for GUI controls providing common methods.
 </pre></dt>
 <dd>
 
-
+<tt class="docutils literal"><span class="pre"><span class="Identifier">DrawTextLayoutParams</span></span></tt> describes a <tt class="docutils literal"><span class="pre"><span class="Identifier">DrawTextLayout</span></span></tt>. <tt class="docutils literal"><span class="pre"><span class="Identifier">defaultFont</span></span></tt> is used to render any text that is not attributed sufficiently in <tt class="docutils literal"><span class="pre"><span class="Identifier">string</span></span></tt>. <tt class="docutils literal"><span class="pre"><span class="Identifier">width</span></span></tt> determines the width of the bounding box of the text; the height is determined automatically.
 
 </dd>
 </div>
@@ -2590,11 +2634,13 @@ Base class for GUI controls providing common methods.
 <dt><pre><a href="rawui.html#ExtKey"><span class="Identifier">ExtKey</span></a> {.<span class="Identifier">size</span><span class="Other">:</span> <span class="DecNumber">4</span>.} <span class="Other">=</span> <span class="Keyword">enum</span>
   <span class="Identifier">ExtKeyEscape</span> <span class="Other">=</span> <span class="DecNumber">1</span><span class="Other">,</span> <span class="Identifier">ExtKeyInsert</span><span class="Other">,</span> <span class="Comment">## equivalent to &quot;Help&quot; on Apple keyboards </span>
   <span class="Identifier">ExtKeyDelete</span><span class="Other">,</span> <span class="Identifier">ExtKeyHome</span><span class="Other">,</span> <span class="Identifier">ExtKeyEnd</span><span class="Other">,</span> <span class="Identifier">ExtKeyPageUp</span><span class="Other">,</span> <span class="Identifier">ExtKeyPageDown</span><span class="Other">,</span> <span class="Identifier">ExtKeyUp</span><span class="Other">,</span>
-  <span class="Identifier">ExtKeyDown</span><span class="Other">,</span> <span class="Identifier">ExtKeyLeft</span><span class="Other">,</span> <span class="Identifier">ExtKeyRight</span><span class="Other">,</span> <span class="Identifier">ExtKeyF1</span><span class="Other">,</span> <span class="Identifier">ExtKeyF3</span><span class="Other">,</span> <span class="Identifier">ExtKeyF4</span><span class="Other">,</span> <span class="Identifier">ExtKeyF5</span><span class="Other">,</span>
-  <span class="Identifier">ExtKeyF6</span><span class="Other">,</span> <span class="Identifier">ExtKeyF7</span><span class="Other">,</span> <span class="Identifier">ExtKeyF8</span><span class="Other">,</span> <span class="Identifier">ExtKeyF9</span><span class="Other">,</span> <span class="Identifier">ExtKeyF10</span><span class="Other">,</span> <span class="Identifier">ExtKeyF11</span><span class="Other">,</span> <span class="Identifier">ExtKeyF12</span><span class="Other">,</span>
-  <span class="Identifier">ExtKeyN0</span><span class="Other">,</span> <span class="Identifier">ExtKeyN1</span><span class="Other">,</span> <span class="Identifier">ExtKeyN2</span><span class="Other">,</span> <span class="Identifier">ExtKeyN3</span><span class="Other">,</span> <span class="Identifier">ExtKeyN4</span><span class="Other">,</span> <span class="Identifier">ExtKeyN5</span><span class="Other">,</span> <span class="Identifier">ExtKeyN6</span><span class="Other">,</span>
-  <span class="Identifier">ExtKeyN7</span><span class="Other">,</span> <span class="Identifier">ExtKeyN8</span><span class="Other">,</span> <span class="Identifier">ExtKeyN9</span><span class="Other">,</span> <span class="Identifier">ExtKeyNDot</span><span class="Other">,</span> <span class="Identifier">ExtKeyNEnter</span><span class="Other">,</span> <span class="Identifier">ExtKeyNAdd</span><span class="Other">,</span>
-  <span class="Identifier">ExtKeyNSubtract</span><span class="Other">,</span> <span class="Identifier">ExtKeyNMultiply</span><span class="Other">,</span> <span class="Identifier">ExtKeyNDivide</span></pre></dt>
+  <span class="Identifier">ExtKeyDown</span><span class="Other">,</span> <span class="Identifier">ExtKeyLeft</span><span class="Other">,</span> <span class="Identifier">ExtKeyRight</span><span class="Other">,</span> <span class="Identifier">ExtKeyF1</span><span class="Other">,</span> <span class="Comment">## F1..F12 are guaranteed to be consecutive</span>
+  <span class="Identifier">ExtKeyF3</span><span class="Other">,</span> <span class="Identifier">ExtKeyF4</span><span class="Other">,</span> <span class="Identifier">ExtKeyF5</span><span class="Other">,</span> <span class="Identifier">ExtKeyF6</span><span class="Other">,</span> <span class="Identifier">ExtKeyF7</span><span class="Other">,</span> <span class="Identifier">ExtKeyF8</span><span class="Other">,</span> <span class="Identifier">ExtKeyF9</span><span class="Other">,</span>
+  <span class="Identifier">ExtKeyF10</span><span class="Other">,</span> <span class="Identifier">ExtKeyF11</span><span class="Other">,</span> <span class="Identifier">ExtKeyF12</span><span class="Other">,</span> <span class="Identifier">ExtKeyN0</span><span class="Other">,</span> <span class="Comment">## numpad keys; independent of Num Lock state</span>
+  <span class="Identifier">ExtKeyN1</span><span class="Other">,</span>                 <span class="Comment">## N0..N9 are guaranteed to be consecutive</span>
+  <span class="Identifier">ExtKeyN2</span><span class="Other">,</span> <span class="Identifier">ExtKeyN3</span><span class="Other">,</span> <span class="Identifier">ExtKeyN4</span><span class="Other">,</span> <span class="Identifier">ExtKeyN5</span><span class="Other">,</span> <span class="Identifier">ExtKeyN6</span><span class="Other">,</span> <span class="Identifier">ExtKeyN7</span><span class="Other">,</span> <span class="Identifier">ExtKeyN8</span><span class="Other">,</span>
+  <span class="Identifier">ExtKeyN9</span><span class="Other">,</span> <span class="Identifier">ExtKeyNDot</span><span class="Other">,</span> <span class="Identifier">ExtKeyNEnter</span><span class="Other">,</span> <span class="Identifier">ExtKeyNAdd</span><span class="Other">,</span> <span class="Identifier">ExtKeyNSubtract</span><span class="Other">,</span>
+  <span class="Identifier">ExtKeyNMultiply</span><span class="Other">,</span> <span class="Identifier">ExtKeyNDivide</span></pre></dt>
 <dd>
 
 
@@ -2706,6 +2752,8 @@ Base class for GUI controls providing common methods.
   <span class="Identifier">ModifierSuper</span> <span class="Other">=</span> <span class="DecNumber">8</span>          <span class="Comment">## Super/Command/Windows key</span></pre></dt>
 <dd>
 
+<p>Keyboard modifier keys.</p>
+<p>Usable as bitmasks.</p>
 
 
 </dd>
@@ -2821,50 +2869,92 @@ Base class for GUI controls providing common methods.
 <div id="TableModelHandler">
 <dt><pre><a href="rawui.html#TableModelHandler"><span class="Identifier">TableModelHandler</span></a> {.<span class="Identifier">bycopy</span>.} <span class="Other">=</span> <span class="Keyword">object</span>
   <span class="Identifier">numColumns</span><span class="Operator">*</span><span class="Other">:</span> <span class="Keyword">proc</span> <span class="Other">(</span><span class="Identifier">a1</span><span class="Other">:</span> <span class="Keyword">ptr</span> <a href="rawui.html#TableModelHandler"><span class="Identifier">TableModelHandler</span></a><span class="Other">;</span> <span class="Identifier">a2</span><span class="Other">:</span> <span class="Keyword">ptr</span> <a href="rawui.html#TableModel"><span class="Identifier">TableModel</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">cint</span> {.
-      <span class="Identifier">cdecl</span>.}
-  <span class="Identifier">columnType</span><span class="Operator">*</span><span class="Other">:</span> <span class="Keyword">proc</span> <span class="Other">(</span><span class="Identifier">a1</span><span class="Other">:</span> <span class="Keyword">ptr</span> <a href="rawui.html#TableModelHandler"><span class="Identifier">TableModelHandler</span></a><span class="Other">;</span> <span class="Identifier">a2</span><span class="Other">:</span> <span class="Keyword">ptr</span> <a href="rawui.html#TableModel"><span class="Identifier">TableModel</span></a><span class="Other">;</span> <span class="Identifier">column</span><span class="Other">:</span> <span class="Identifier">cint</span><span class="Other">)</span><span class="Other">:</span> <a href="rawui.html#TableValueType"><span class="Identifier">TableValueType</span></a> {.
-      <span class="Identifier">cdecl</span>.}
-  <span class="Identifier">numRows</span><span class="Operator">*</span><span class="Other">:</span> <span class="Keyword">proc</span> <span class="Other">(</span><span class="Identifier">a1</span><span class="Other">:</span> <span class="Keyword">ptr</span> <a href="rawui.html#TableModelHandler"><span class="Identifier">TableModelHandler</span></a><span class="Other">;</span> <span class="Identifier">a2</span><span class="Other">:</span> <span class="Keyword">ptr</span> <a href="rawui.html#TableModel"><span class="Identifier">TableModel</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">cint</span> {.<span class="Identifier">cdecl</span>.}
+      <span class="Identifier">cdecl</span>.} <span class="Comment">## Returns the number of columns in the `TableModel`.</span>
+              <span class="Comment">## </span>
+              <span class="Comment">## .. warning:: This value **MUST** remain constant throughout the lifetime of the `TableModel`.</span>
+              <span class="Comment">## </span>
+              <span class="Comment">## .. warning:: This method is not guaranteed to be called depending on the system</span>
+  <span class="Identifier">columnType</span><span class="Operator">*</span><span class="Other">:</span> <span class="Keyword">proc</span> <span class="Other">(</span><span class="Identifier">a1</span><span class="Other">:</span> <span class="Keyword">ptr</span> <a href="rawui.html#TableModelHandler"><span class="Identifier">TableModelHandler</span></a><span class="Other">;</span> <span class="Identifier">a2</span><span class="Other">:</span> <span class="Keyword">ptr</span> <a href="rawui.html#TableModel"><span class="Identifier">TableModel</span></a><span class="Other">;</span> <span class="Identifier">col</span><span class="Other">:</span> <span class="Identifier">cint</span><span class="Other">)</span><span class="Other">:</span> <a href="rawui.html#TableValueType"><span class="Identifier">TableValueType</span></a> {.
+      <span class="Identifier">cdecl</span>.} <span class="Comment">## Returns the column type in for of a `TableValueType`.</span>
+              <span class="Comment">## </span>
+              <span class="Comment">## .. warning:: This value **MUST** remain constant throughout the lifetime of the `TableModel`.</span>
+              <span class="Comment">## </span>
+              <span class="Comment">## .. warning:: This method is not guaranteed to be called depending on the system</span>
+  <span class="Identifier">numRows</span><span class="Operator">*</span><span class="Other">:</span> <span class="Keyword">proc</span> <span class="Other">(</span><span class="Identifier">a1</span><span class="Other">:</span> <span class="Keyword">ptr</span> <a href="rawui.html#TableModelHandler"><span class="Identifier">TableModelHandler</span></a><span class="Other">;</span> <span class="Identifier">a2</span><span class="Other">:</span> <span class="Keyword">ptr</span> <a href="rawui.html#TableModel"><span class="Identifier">TableModel</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">cint</span> {.<span class="Identifier">cdecl</span>.} <span class="Comment">## Returns the number of rows in the uiTableModel.</span>
   <span class="Identifier">cellValue</span><span class="Operator">*</span><span class="Other">:</span> <span class="Keyword">proc</span> <span class="Other">(</span><span class="Identifier">mh</span><span class="Other">:</span> <span class="Keyword">ptr</span> <a href="rawui.html#TableModelHandler"><span class="Identifier">TableModelHandler</span></a><span class="Other">;</span> <span class="Identifier">m</span><span class="Other">:</span> <span class="Keyword">ptr</span> <a href="rawui.html#TableModel"><span class="Identifier">TableModel</span></a><span class="Other">;</span> <span class="Identifier">row</span><span class="Other">:</span> <span class="Identifier">cint</span><span class="Other">;</span>
-                    <span class="Identifier">column</span><span class="Other">:</span> <span class="Identifier">cint</span><span class="Other">)</span><span class="Other">:</span> <span class="Keyword">ptr</span> <a href="rawui.html#TableValue"><span class="Identifier">TableValue</span></a> {.<span class="Identifier">cdecl</span>.}
-  <span class="Identifier">setCellValue</span><span class="Operator">*</span><span class="Other">:</span> <span class="Keyword">proc</span> <span class="Other">(</span><span class="Identifier">a1</span><span class="Other">:</span> <span class="Keyword">ptr</span> <a href="rawui.html#TableModelHandler"><span class="Identifier">TableModelHandler</span></a><span class="Other">;</span> <span class="Identifier">a2</span><span class="Other">:</span> <span class="Keyword">ptr</span> <a href="rawui.html#TableModel"><span class="Identifier">TableModel</span></a><span class="Other">;</span> <span class="Identifier">a3</span><span class="Other">:</span> <span class="Identifier">cint</span><span class="Other">;</span>
-                       <span class="Identifier">a4</span><span class="Other">:</span> <span class="Identifier">cint</span><span class="Other">;</span> <span class="Identifier">a5</span><span class="Other">:</span> <span class="Keyword">ptr</span> <a href="rawui.html#TableValue"><span class="Identifier">TableValue</span></a><span class="Other">)</span> {.<span class="Identifier">cdecl</span>.}
-</pre></dt>
+                    <span class="Identifier">col</span><span class="Other">:</span> <span class="Identifier">cint</span><span class="Other">)</span><span class="Other">:</span> <span class="Keyword">ptr</span> <a href="rawui.html#TableValue"><span class="Identifier">TableValue</span></a> {.<span class="Identifier">cdecl</span>.} <span class="Comment">## Returns the cell value for (row, col).</span>
+                                                         <span class="Comment">## </span>
+                                                         <span class="Comment">## Make sure to use the `TableValue` constructors. The returned value</span>
+                                                         <span class="Comment">## must match the `TableValueType` defined in `columnType()`.</span>
+                                                         <span class="Comment">## </span>
+                                                         <span class="Comment">## Some columns may return `nil` as a special value. Refer to the</span>
+                                                         <span class="Comment">## appropriate `addColumn()` documentation.</span>
+                                                         <span class="Comment">## </span>
+                                                         <span class="Comment">## .. note:: `TableValue` objects are automatically freed when requested by</span>
+                                                         <span class="Comment">##       a `Table`.</span>
+  <span class="Identifier">setCellValue</span><span class="Operator">*</span><span class="Other">:</span> <span class="Keyword">proc</span> <span class="Other">(</span><span class="Identifier">a1</span><span class="Other">:</span> <span class="Keyword">ptr</span> <a href="rawui.html#TableModelHandler"><span class="Identifier">TableModelHandler</span></a><span class="Other">;</span> <span class="Identifier">a2</span><span class="Other">:</span> <span class="Keyword">ptr</span> <a href="rawui.html#TableModel"><span class="Identifier">TableModel</span></a><span class="Other">;</span> <span class="Identifier">row</span><span class="Other">:</span> <span class="Identifier">cint</span><span class="Other">;</span>
+                       <span class="Identifier">col</span><span class="Other">:</span> <span class="Identifier">cint</span><span class="Other">;</span> <span class="Identifier">a3</span><span class="Other">:</span> <span class="Keyword">ptr</span> <a href="rawui.html#TableValue"><span class="Identifier">TableValue</span></a><span class="Other">)</span> {.<span class="Identifier">cdecl</span>.} <span class="Comment">## Sets the cell value for (row, column).</span>
+                                                                <span class="Comment">## It is up to the handler to decide what to do with the value: change</span>
+                                                                <span class="Comment">## the model or reject the change, keeping the old value.</span>
+                                                                <span class="Comment">## </span>
+                                                                <span class="Comment">## Some columns may call this function with `nil` as a special value.</span>
+                                                                <span class="Comment">## Refer to the appropriate `addColumn()` documentation.</span>
+                                                                <span class="Comment">## </span>
+                                                                <span class="Comment">## .. note:: `TableValue` objects are automatically freed upon return when</span>
+                                                                <span class="Comment">##        set by a `Table`.</span>
+  </pre></dt>
 <dd>
 
+<p>Developer defined methods for data retrieval and setting.</p>
+<p>These methods get called whenever the associated <tt class="docutils literal"><span class="pre"><span class="Identifier">TableModel</span></span></tt> needs to retrieve data or a <tt class="docutils literal"><span class="pre"><span class="Identifier">Table</span></span></tt> wants to set data.</p>
+<div class="admonition admonition-warning"><span class="admonition-warning-text"><b>Warning:</b></span>
+These methods are <strong>NOT</strong> allowed to change as soon as the <tt class="docutils literal"><span class="pre"><span class="Identifier">TableModelHandler</span></span></tt> is associated with a <tt class="docutils literal"><span class="pre"><span class="Identifier">TableModel</span></span></tt>.</div>
 
 
 </dd>
 </div>
 <div id="TableParams">
 <dt><pre><a href="rawui.html#TableParams"><span class="Identifier">TableParams</span></a> {.<span class="Identifier">bycopy</span>.} <span class="Other">=</span> <span class="Keyword">object</span>
-  <span class="Identifier">model</span><span class="Operator">*</span><span class="Other">:</span> <span class="Keyword">ptr</span> <a href="rawui.html#TableModel"><span class="Identifier">TableModel</span></a>
-  <span class="Identifier">rowBackgroundColorModelColumn</span><span class="Operator">*</span><span class="Other">:</span> <span class="Identifier">cint</span>
-</pre></dt>
+  <span class="Identifier">model</span><span class="Operator">*</span><span class="Other">:</span> <span class="Keyword">ptr</span> <a href="rawui.html#TableModel"><span class="Identifier">TableModel</span></a>     <span class="Comment">## Model holding the data to be displayed. This can **NOT** be `nil`.</span>
+  <span class="Identifier">rowBackgroundColorModelColumn</span><span class="Operator">*</span><span class="Other">:</span> <span class="Identifier">cint</span> <span class="Comment">## `TableModel` column that defines background color for each row,</span>
+                                       <span class="Comment">## </span>
+                                       <span class="Comment">## `TableValue.color` Background color, `nil` to use the default</span>
+                                       <span class="Comment">## background color for that row.</span>
+                                       <span class="Comment">## </span>
+                                       <span class="Comment">## `-1` to use the default background color for all rows.</span>
+  </pre></dt>
 <dd>
 
-
+Table parameters passed to <tt class="docutils literal"><span class="pre"><span class="Identifier">newTable</span><span class="Punctuation">(</span><span class="Punctuation">)</span></span></tt>.
 
 </dd>
 </div>
 <div id="TableSelection">
 <dt><pre><a href="rawui.html#TableSelection"><span class="Identifier">TableSelection</span></a> {.<span class="Identifier">bycopy</span>.} <span class="Other">=</span> <span class="Keyword">object</span>
-  <span class="Identifier">numRows</span><span class="Operator">*</span><span class="Other">:</span> <span class="Identifier">cint</span>
-  <span class="Identifier">rows</span><span class="Operator">*</span><span class="Other">:</span> <span class="Keyword">ptr</span> <span class="Identifier">cint</span>
-</pre></dt>
+  <span class="Identifier">numRows</span><span class="Operator">*</span><span class="Other">:</span> <span class="Identifier">cint</span>             <span class="Comment">## Number of selected rows.</span>
+  <span class="Identifier">rows</span><span class="Operator">*</span><span class="Other">:</span> <span class="Keyword">ptr</span> <span class="Identifier">UncheckedArray</span><span class="Other">[</span><span class="Identifier">cint</span><span class="Other">]</span> <span class="Comment">## Array containing selected row indices, `nil` on empty selection.</span>
+  </pre></dt>
 <dd>
 
-
+Holds an array of selected row indices for a table.
 
 </dd>
 </div>
 <div id="TableSelectionMode">
 <dt><pre><a href="rawui.html#TableSelectionMode"><span class="Identifier">TableSelectionMode</span></a> {.<span class="Identifier">size</span><span class="Other">:</span> <span class="DecNumber">4</span>.} <span class="Other">=</span> <span class="Keyword">enum</span>
-  <span class="Identifier">TableSelectionModeNone</span><span class="Other">,</span> <span class="Identifier">TableSelectionModeZeroOrOne</span><span class="Other">,</span> <span class="Comment">## Allow zero or one row to be selected.</span>
+  <span class="Identifier">TableSelectionModeNone</span><span class="Other">,</span> <span class="Comment">## Allow no row selection.</span>
+                           <span class="Comment">## </span>
+                           <span class="Comment">## .. warning:: This mode disables all editing of text columns. Buttons</span>
+                           <span class="Comment">##          and checkboxes keep working though.</span>
+  <span class="Identifier">TableSelectionModeZeroOrOne</span><span class="Other">,</span> <span class="Comment">## Allow zero or one row to be selected.</span>
   <span class="Identifier">TableSelectionModeOne</span><span class="Other">,</span>    <span class="Comment">## Allow for exactly one row to be selected.</span>
   <span class="Identifier">TableSelectionModeZeroOrMany</span> <span class="Comment">## Allow zero or many (multiple) rows to be selected.</span></pre></dt>
 <dd>
 
+<p>Table selection modes.</p>
+<p>Table selection that enforce how a user can interact with a table.</p>
+<div class="admonition admonition-warning"><span class="admonition-warning-text"><b>Warning:</b></span>
+An empty table selection is a valid state for any selection mode. This is in fact the default upon table creation and can otherwise triggered through operations such as row deletion.</div>
 
 
 </dd>
@@ -2875,7 +2965,7 @@ Base class for GUI controls providing common methods.
 </pre></dt>
 <dd>
 
-
+Optional parameters to control the appearance of text columns.
 
 </dd>
 </div>
@@ -2909,7 +2999,7 @@ Base class for GUI controls providing common methods.
   <span class="Identifier">TableValueTypeColor</span></pre></dt>
 <dd>
 
-
+<a class="reference external" href="#TableValue">TableValue</a> types.
 
 </dd>
 </div>
@@ -2918,7 +3008,7 @@ Base class for GUI controls providing common methods.
   <span class="Identifier">TextItalicNormal</span><span class="Other">,</span> <span class="Identifier">TextItalicOblique</span><span class="Other">,</span> <span class="Identifier">TextItalicItalic</span></pre></dt>
 <dd>
 
-
+<tt class="docutils literal"><span class="pre"><span class="Identifier">TextItalic</span></span></tt> represents possible italic modes for a font. Italic represents &quot;true&quot; italics where the slanted glyphs have custom shapes, whereas oblique represents italics that are merely slanted versions of the normal glyphs. Most fonts usually have one or the other.
 
 </dd>
 </div>
@@ -2929,6 +3019,8 @@ Base class for GUI controls providing common methods.
   <span class="Identifier">TextStretchExpanded</span><span class="Other">,</span> <span class="Identifier">TextStretchExtraExpanded</span><span class="Other">,</span> <span class="Identifier">TextStretchUltraExpanded</span></pre></dt>
 <dd>
 
+<p><tt class="docutils literal"><span class="pre"><span class="Identifier">TextStretch</span></span></tt> represents possible stretches (also called &quot;widths&quot;) of a font.</p>
+<p>Note that due to restrictions in early versions of Windows, some fonts have &quot;special&quot; stretches be exposed in many programs as separate font families. This is perhaps most notable with Arial Condensed. libui does not do this, even on Windows (because the DirectWrite API libui-ng uses on Windows does not do this); to specify Arial Condensed, use family Arial and stretch <tt class="docutils literal"><span class="pre"><span class="Identifier">TextStretchCondensed</span></span></tt>.</p>
 
 
 </dd>
@@ -2942,6 +3034,8 @@ Base class for GUI controls providing common methods.
   <span class="Identifier">TextWeightMaximum</span> <span class="Other">=</span> <span class="DecNumber">1000</span></pre></dt>
 <dd>
 
+<p><tt class="docutils literal"><span class="pre"><span class="Identifier">TextWeight</span></span></tt> represents possible text weights. These roughly map to the OS/2 text weight field of TrueType and OpenType fonts, or to CSS weight numbers. The named constants are nominal values; the actual values may vary by font and by OS, though this isn't particularly likely. Any value between <tt class="docutils literal"><span class="pre"><span class="Identifier">TextWeightMinimum</span></span></tt> and <tt class="docutils literal"><span class="pre"><span class="Identifier">TextWeightMaximum</span></span></tt>, inclusive, is allowed.</p>
+<p>Note that due to restrictions in early versions of Windows, some fonts have &quot;special&quot; weights be exposed in many programs as separate font families. This is perhaps most notable with Arial Black. libui-ng does not do this, even on Windows (because the DirectWrite API libui-ng uses on Windows does not do this); to specify Arial Black, use family Arial and weight <tt class="docutils literal"><span class="pre"><span class="Identifier">TextWeightBlack</span></span></tt>.</p>
 
 
 </dd>
@@ -2969,7 +3063,7 @@ Base class for GUI controls providing common methods.
   <span class="Identifier">UnderlineNone</span><span class="Other">,</span> <span class="Identifier">UnderlineSingle</span><span class="Other">,</span> <span class="Identifier">UnderlineDouble</span><span class="Other">,</span> <span class="Identifier">UnderlineSuggestion</span> <span class="Comment">## wavy or dotted underlines used for spelling/grammar checkers </span></pre></dt>
 <dd>
 
-
+<tt class="docutils literal"><span class="pre"><span class="Identifier">Underline</span></span></tt> specifies a type of underline to use on text.
 
 </dd>
 </div>
@@ -2978,6 +3072,8 @@ Base class for GUI controls providing common methods.
   <span class="Identifier">uiUnderlineColorCustom</span><span class="Other">,</span> <span class="Identifier">uiUnderlineColorSpelling</span><span class="Other">,</span> <span class="Identifier">uiUnderlineColorGrammar</span><span class="Other">,</span> <span class="Identifier">uiUnderlineColorAuxiliary</span> <span class="Comment">## for instance, the color used by smart replacements on macOS or in Microsoft Office   </span></pre></dt>
 <dd>
 
+<p><tt class="docutils literal"><span class="pre"><span class="Identifier">UnderlineColor</span></span></tt> specifies the color of any underline on the text it is applied to, regardless of the type of underline. In addition to being able to specify a custom color, you can explicitly specify platform-specific colors for suggestion underlines; to use them correctly, pair them with <tt class="docutils literal"><span class="pre"><span class="Identifier">UnderlineSuggestion</span></span></tt> (though they can be used on other types of underline as well).</p>
+<p>If an underline type is applied but no underline color is specified, the text color is used instead. If an underline color is specified without an underline type, the underline color attribute is ignored, but not removed from the <tt class="docutils literal"><span class="pre"><span class="Identifier">AttributedString</span></span></tt>.</p>
 
 
 </dd>
@@ -3010,7 +3106,7 @@ Base class for GUI controls providing common methods.
 <dt><pre><a href="rawui.html#DrawDefaultMiterLimit"><span class="Identifier">DrawDefaultMiterLimit</span></a> <span class="Other">=</span> <span class="FloatNumber">10.0</span></pre></dt>
 <dd>
 
-
+This is the default for both Cairo and Direct2D 
 
 </dd>
 </div>
@@ -3018,7 +3114,7 @@ Base class for GUI controls providing common methods.
 <dt><pre><a href="rawui.html#TableModelColumnAlwaysEditable"><span class="Identifier">TableModelColumnAlwaysEditable</span></a> <span class="Other">=</span> <span class="DecNumber">-2</span></pre></dt>
 <dd>
 
-
+Parameter to editable model columns to signify all rows are always editable.
 
 </dd>
 </div>
@@ -3026,7 +3122,7 @@ Base class for GUI controls providing common methods.
 <dt><pre><a href="rawui.html#TableModelColumnNeverEditable"><span class="Identifier">TableModelColumnNeverEditable</span></a> <span class="Other">=</span> <span class="DecNumber">-1</span></pre></dt>
 <dd>
 
-
+Parameter to editable model columns to signify all rows are never editable.
 
 </dd>
 </div>
@@ -5961,7 +6057,7 @@ Base class for GUI controls providing common methods.
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small style="color: var(--hint);">Made with Nim. Generated: 2023-01-28 21:38:55 UTC</small>
+        <small style="color: var(--hint);">Made with Nim. Generated: 2023-01-29 17:46:51 UTC</small>
       </div>
     </div>
   </div>

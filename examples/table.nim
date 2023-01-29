@@ -1,7 +1,9 @@
-import std/random
+import std/[random, sugar]
 
 import uing
+from uing/rawui import nil
 
+randomize()
 
 const
   NUM_COLUMNS = 7
@@ -18,40 +20,40 @@ const
 var
   progress: array[NUM_ROWS, array[NUM_COLUMNS, int]]
 
-proc modelNumColumns(mh: ptr TableModelHandler, m: ptr TableModel): cint {.cdecl.} = NUM_COLUMNS
-proc modelNumRows(mh: ptr TableModelHandler, m: ptr TableModel): cint {.cdecl.} = NUM_ROWS
+proc modelNumColumns(mh: ptr TableModelHandler, m: ptr rawui.TableModel): cint {.cdecl.} = NUM_COLUMNS
+proc modelNumRows(mh: ptr TableModelHandler, m: ptr rawui.TableModel): cint {.cdecl.} = NUM_ROWS
 
-proc modelColumnType(mh: ptr TableModelHandler, m: ptr TableModel, col: cint): TableValueType {.cdecl.} =
+proc modelColumnType(mh: ptr TableModelHandler, m: ptr rawui.TableModel, col: cint): TableValueType {.cdecl.} =
   echo "type"
   if col in [COLUMN_ID, COLUMN_PROCESS, COLUMN_PASSED]:
     result = TableValueTypeInt
   else:
     result = TableValueTypeString
 
-proc modelCellValue(mh: ptr TableModelHandler, m: ptr TableModel, row, col: cint): ptr TableValue {.cdecl.} =
+proc modelCellValue(mh: ptr TableModelHandler, m: ptr rawui.TableModel, row, col: cint): ptr rawui.TableValue {.cdecl.} =
   if col == COLUMN_ID:
-    result = newTableValueString($(row+1))
+    result = newTableValue($(row+1)).impl
   elif col == COLUMN_PROCESS:
     if progress[row][col] == 0:
       progress[row][col] = rand(100)
-    result = newTableValueInt(progress[row][col])
+    result = newTableValue(progress[row][col]).impl
   #elif col == COLUMN_PASSED:
   #  if progress[row][col] > 60:
   #    result = newTableValueInt(1)
   #  else:
   #    result = newTableValueInt(0)
   elif col == COLUMN_ACTION:
-    result = newTableValueString("Apply")
+    result = newTableValue("Apply").impl
   else:
-    result = newTableValueString("row " & $row & " x col " & $col)
+    result = newTableValue("row " & $row & " x col " & $col).impl
 
 
-proc modelSetCellValue(mh: ptr TableModelHandler, m: ptr TableModel, row, col: cint, val: ptr TableValue) {.cdecl.} =
+proc modelSetCellValue(mh: ptr TableModelHandler, m: ptr rawui.TableModel, row, col: cint, val: ptr rawui.TableValue) {.cdecl.} =
   echo "setCellValue"
   if col == COLUMN_PASSED:
-    echo tableValueInt(val)
+    echo rawui.tableValueInt(val)
   elif col == COLUMN_ACTION:
-    rowChanged(m, row)
+    rawui.tableModelRowChanged(m, row)
 
 
 var
@@ -79,17 +81,21 @@ proc main*() =
   mh.cellValue  = modelCellValue
   mh.setCellValue = modelSetCellValue
 
-  p.model = newTableModel(addr mh)
+  p.model = rawui.newTableModel(addr mh)
   p.rowBackgroundColorModelColumn = 4
  
   let table = newTable(addr p)
-  table.appendTextColumn("ID", COLUMN_ID, TableModelColumnNeverEditable, nil)
-  table.appendTextColumn("First Name", COLUMN_FIRST_NAME, TableModelColumnAlwaysEditable, nil)
-  table.appendTextColumn("Last Name", COLUMN_LAST_NAME, TableModelColumnAlwaysEditable, nil)
-  table.appendTextColumn("Address", COLUMN_ADRESS, TableModelColumnAlwaysEditable, nil)
-  table.appendProgressBarColumn("Progress", COLUMN_PROCESS)
-  table.appendCheckboxColumn("Passed", COLUMN_PASSED, TableModelColumnAlwaysEditable)
-  table.appendButtonColumn("Action", COLUMN_ACTION, TableModelColumnAlwaysEditable)
+  table.addTextColumn("ID", COLUMN_ID, TableModelColumnNeverEditable, nil)
+  table.addTextColumn("First Name", COLUMN_FIRST_NAME, TableModelColumnAlwaysEditable, nil)
+  table.addTextColumn("Last Name", COLUMN_LAST_NAME, TableModelColumnAlwaysEditable, nil)
+  table.addTextColumn("Address", COLUMN_ADRESS, TableModelColumnAlwaysEditable, nil)
+  table.addProgressBarColumn("Progress", COLUMN_PROCESS)
+  table.addCheckboxColumn("Passed", COLUMN_PASSED, TableModelColumnAlwaysEditable)
+  table.addButtonColumn("Action", COLUMN_ACTION, TableModelColumnAlwaysEditable)
+
+  table.selectionMode = TableSelectionModeZeroOrMany
+
+  table.selection = [2, 3]
 
   box.add(table, true)
   show(mainwin)

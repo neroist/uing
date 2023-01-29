@@ -1,3 +1,12 @@
+## Low level wrapper for libui-ng. 
+## 
+## Documentation mainly from `ui.h <https://github.com/libui-ng/libui-ng/blob/master/ui.h>`_
+## 
+## Documentation is only added when neccessary, see `ui.h <https://github.com/libui-ng/libui-ng/blob/master/ui.h>`_
+## for documentation
+## 
+## :Author: Jasmine
+
 when defined(useLibUiDll):
   when defined(windows):
     const
@@ -709,6 +718,10 @@ type
   Area* = object of Control
 
   Modifiers* {. size: sizeof(cint) .} = enum
+    ## Keyboard modifier keys. 
+    ## 
+    ## Usable as bitmasks.
+    
     ModifierCtrl  = 1 shl 0, ## Control key.
     ModifierAlt   = 1 shl 1, ## Alternate/Option key.
     ModifierShift = 1 shl 2, ## Shift key.
@@ -726,7 +739,7 @@ type
     ExtKeyDown, 
     ExtKeyLeft, 
     ExtKeyRight, 
-    ExtKeyF1,  # F1..F12 are guaranteed to be consecutive uiExtKeyF2 , 
+    ExtKeyF1,     ## F1..F12 are guaranteed to be consecutive
     ExtKeyF3, 
     ExtKeyF4, 
     ExtKeyF5, 
@@ -737,13 +750,13 @@ type
     ExtKeyF10, 
     ExtKeyF11, 
     ExtKeyF12, 
-    ExtKeyN0,  # numpad keys; independent of Num Lock state 
-    ExtKeyN1,  # N0..N9 are guaranteed to be consecutive 
+    ExtKeyN0,     ## numpad keys; independent of Num Lock state
+    ExtKeyN1,     ## N0..N9 are guaranteed to be consecutive
     ExtKeyN2, 
     ExtKeyN3, 
     ExtKeyN4, 
     ExtKeyN5, 
-    ExtKeyN6, 
+    ExtKeyN6,
     ExtKeyN7, 
     ExtKeyN8, 
     ExtKeyN9, 
@@ -775,11 +788,11 @@ type
     held1To64* : uint64
 
   AreaKeyEvent* {.bycopy.} = object
-    key*      : char
-    extKey*   : ExtKey
-    modifier* : Modifiers
-    modifiers*: Modifiers
-    up*       : cint
+    key*       : char
+    extKey*    : ExtKey
+    modifier*  : Modifiers
+    modifiers* : Modifiers
+    up*        : cint
 
   DrawContext* = object
 
@@ -886,7 +899,7 @@ type
     a*  : cdouble
 
 const
-  DrawDefaultMiterLimit* = 10.0
+  DrawDefaultMiterLimit* = 10.0 ## This is the default for both Cairo and Direct2D 
 
 proc drawNewPath*(fillMode: DrawFillMode): ptr DrawPath {.cdecl,
     importc: "uiDrawNewPath", libui.}
@@ -991,6 +1004,21 @@ proc attributeSize*(a: ptr Attribute): cdouble {.cdecl, importc: "uiAttributeSiz
 
 type
   TextWeight* {.size: sizeof(cint).} = enum
+    ## `TextWeight` represents possible text weights. These roughly
+    ## map to the OS/2 text weight field of TrueType and OpenType
+    ## fonts, or to CSS weight numbers. The named constants are
+    ## nominal values; the actual values may vary by font and by OS,
+    ## though this isn't particularly likely. Any value between
+    ## `TextWeightMinimum` and `TextWeightMaximum`, inclusive,
+    ## is allowed.
+    ## 
+    ## Note that due to restrictions in early versions of Windows, some
+    ## fonts have "special" weights be exposed in many programs as
+    ## separate font families. This is perhaps most notable with
+    ## Arial Black. libui-ng does not do this, even on Windows (because the
+    ## DirectWrite API libui-ng uses on Windows does not do this); to
+    ## specify Arial Black, use family Arial and weight `TextWeightBlack`.
+
     TextWeightMinimum      = 0,
     TextWeightThin         = 100,
     TextWeightUltraLight   = 200,
@@ -1006,6 +1034,12 @@ type
     TextWeightMaximum      = 1000
 
   TextItalic* {.size: sizeof(cint).} = enum
+    ## `TextItalic` represents possible italic modes for a font. Italic
+    ## represents "true" italics where the slanted glyphs have custom
+    ## shapes, whereas oblique represents italics that are merely slanted
+    ## versions of the normal glyphs. Most fonts usually have one or the
+    ## other.
+
     TextItalicNormal, 
     TextItalicOblique, 
     TextItalicItalic
@@ -1025,6 +1059,17 @@ proc attributeItalic*(a: ptr Attribute): TextItalic {.cdecl,
 
 type
   TextStretch* {.size: sizeof(cint).} = enum
+    ## `TextStretch` represents possible stretches (also called "widths")
+    ## of a font.
+    ## 
+    ## Note that due to restrictions in early versions of Windows, some
+    ## fonts have "special" stretches be exposed in many programs as
+    ## separate font families. This is perhaps most notable with
+    ## Arial Condensed. libui does not do this, even on Windows (because
+    ## the DirectWrite API libui-ng uses on Windows does not do this); to
+    ## specify Arial Condensed, use family Arial and stretch
+    ## `TextStretchCondensed`.
+
     TextStretchUltraCondensed,
     TextStretchExtraCondensed,
     TextStretchCondensed,
@@ -1053,12 +1098,26 @@ proc newBackgroundAttribute*(r: cdouble; g: cdouble; b: cdouble; a: cdouble): pt
 
 type
   Underline* {.size: sizeof(cint).} = enum
+    ## `Underline` specifies a type of underline to use on text.
+
     UnderlineNone, 
     UnderlineSingle, 
     UnderlineDouble, 
     UnderlineSuggestion, ## wavy or dotted underlines used for spelling/grammar checkers 
 
   UnderlineColor* {.size: sizeof(cint).} = enum
+    ## `UnderlineColor` specifies the color of any underline on the text it
+    ## is applied to, regardless of the type of underline. In addition to
+    ## being able to specify a custom color, you can explicitly specify
+    ## platform-specific colors for suggestion underlines; to use them
+    ## correctly, pair them with `UnderlineSuggestion` (though they can
+    ## be used on other types of underline as well).
+    ## 
+    ## If an underline type is applied but no underline color is
+    ## specified, the text color is used instead. If an underline color
+    ## is specified without an underline type, the underline color
+    ## attribute is ignored, but not removed from the `AttributedString`.
+
     uiUnderlineColorCustom,
     uiUnderlineColorSpelling,
     uiUnderlineColorGrammar,
@@ -1180,15 +1239,23 @@ type
   DrawTextLayout* = object
 
   DrawTextAlign* {.size: sizeof(cint).} = enum
+    ## `DrawTextAlign` specifies the alignment of lines of text in a
+    ## `DrawTextLayout`.
+    
     DrawTextAlignLeft,
     DrawTextAlignCenter
     DrawTextAlignRight
 
   DrawTextLayoutParams* {.bycopy.} = object
-    string*     : ptr AttributedString
-    defaultFont*: ptr FontDescriptor
-    width*      : cdouble
-    align*      : DrawTextAlign
+    ## `DrawTextLayoutParams` describes a `DrawTextLayout`.
+    ## `defaultFont` is used to render any text that is not attributed
+    ## sufficiently in `string`. `width` determines the width of the bounding
+    ## box of the text; the height is determined automatically.
+    
+    string*      : ptr AttributedString
+    defaultFont* : ptr FontDescriptor
+    width*       : cdouble
+    align*       : DrawTextAlign
 
 proc drawNewTextLayout*(params: ptr DrawTextLayoutParams): ptr DrawTextLayout {.cdecl,
     importc: "uiDrawNewTextLayout", libui.}
@@ -1270,16 +1337,24 @@ proc newForm*(): ptr Form {.cdecl, importc: "uiNewForm", libui.}
 
 type
   Align* {.size: sizeof(cint).} = enum
+    ## Alignment specifiers to define placement within the reserved area.
+    ## 
+    ## Used in `Grid`
+    
     AlignFill,   ## Fill area
     AlignStart,  ## Place at start.
     AlignCenter, ## Place in center
     AlignEnd     ## Place at end
 
   At* {.size: sizeof(cint).} = enum
-    AtLeading,  ## Place before control. 
-    AtTop,      ## Place above control. 
-    AtTrailing, ## Place behind control. 
-    AtBottom    ## Place below control.
+    ## Placement specifier to define placement in relation to another widget.
+    ## 
+    ## Used in `Grid`
+    
+    AtLeading,  ## Place before widget. 
+    AtTop,      ## Place above widget. 
+    AtTrailing, ## Place behind widget. 
+    AtBottom    ## Place below widget.
 
 
 type
@@ -1317,26 +1392,28 @@ proc imageAppend*(i: ptr Image; pixels: pointer; pixelWidth: cint; pixelHeight: 
 
 type
   TableValueType* {.size: sizeof(cint).} = enum
+    ## `TableValue <#TableValue>`_ types.
+
     TableValueTypeString, 
     TableValueTypeImage, 
     TableValueTypeInt, 
     TableValueTypeColor 
 
   Color* {.bycopy.} = object
-    r*: cdouble
-    g*: cdouble
-    b*: cdouble
-    a*: cdouble
+    r* : cdouble
+    g* : cdouble
+    b* : cdouble
+    a* : cdouble
 
   TableValueInner* {.bycopy, union.} = object
-    str*  : cstring
-    img*  : ptr Image
-    i*    : cint
-    color*: Color
+    str*   : cstring
+    img*   : ptr Image
+    i*     : cint
+    color* : Color
 
   TableValue* {.bycopy.} = object
-    kind*: TableValueType
-    u*   : TableValueInner
+    kind* : TableValueType
+    u*    : TableValueInner
 
 
 proc freeTableValue*(v: ptr TableValue) {.cdecl, importc: "uiFreeTableValue",
@@ -1381,11 +1458,48 @@ type
 
 type
   TableModelHandler* {.bycopy.} = object
-    numColumns*  : proc (a1: ptr TableModelHandler; a2: ptr TableModel): cint {.cdecl.}
-    columnType*  : proc (a1: ptr TableModelHandler; a2: ptr TableModel; column: cint): TableValueType {.cdecl.}
-    numRows*     : proc (a1: ptr TableModelHandler; a2: ptr TableModel) : cint {.cdecl.}
-    cellValue*   : proc (mh: ptr TableModelHandler; m: ptr TableModel; row: cint; column: cint): ptr TableValue {.cdecl.}
-    setCellValue*: proc (a1: ptr TableModelHandler; a2: ptr TableModel; a3: cint; a4: cint; a5: ptr TableValue) {.cdecl.}
+    ## Developer defined methods for data retrieval and setting.
+    ## 
+    ## These methods get called whenever the associated `TableModel` needs to
+    ## retrieve data or a `Table` wants to set data.
+    ## 
+    ## .. warning:: These methods are **NOT** allowed to change as soon as the
+    ##          `TableModelHandler` is associated with a `TableModel`.
+
+    numColumns*  : proc (a1: ptr TableModelHandler; a2: ptr TableModel): cint {.cdecl.} ## Returns the number of columns in the `TableModel`.
+                                                                                        ##
+                                                                                        ## .. warning:: This value **MUST** remain constant throughout the lifetime of the `TableModel`.
+                                                                                        ## 
+                                                                                        ## .. warning:: This method is not guaranteed to be called depending on the system
+
+    columnType*  : proc (a1: ptr TableModelHandler; a2: ptr TableModel; col: cint): TableValueType {.cdecl.} ## Returns the column type in for of a `TableValueType`.
+                                                                                                                ##
+                                                                                                                ## .. warning:: This value **MUST** remain constant throughout the lifetime of the `TableModel`.
+                                                                                                                ## 
+                                                                                                                ## .. warning:: This method is not guaranteed to be called depending on the system
+                                                                                                                
+    numRows*     : proc (a1: ptr TableModelHandler; a2: ptr TableModel) : cint {.cdecl.} ## Returns the number of rows in the uiTableModel.
+
+    cellValue*   : proc (mh: ptr TableModelHandler; m: ptr TableModel; row: cint; col: cint): ptr TableValue {.cdecl.} ## Returns the cell value for (row, col).
+                                                                                                                          ## 
+                                                                                                                          ## Make sure to use the `TableValue` constructors. The returned value
+                                                                                                                          ## must match the `TableValueType` defined in `columnType()`.
+                                                                                                                          ## 
+                                                                                                                          ## Some columns may return `nil` as a special value. Refer to the
+                                                                                                                          ## appropriate `addColumn()` documentation.
+                                                                                                                          ## 
+                                                                                                                          ## .. note:: `TableValue` objects are automatically freed when requested by
+                                                                                                                          ##       a `Table`.
+
+    setCellValue*: proc (a1: ptr TableModelHandler; a2: ptr TableModel; row: cint; col: cint; a3: ptr TableValue) {.cdecl.} ## Sets the cell value for (row, column).
+                                                                                                                            ## It is up to the handler to decide what to do with the value: change
+                                                                                                                            ## the model or reject the change, keeping the old value.
+                                                                                                                            ## 
+                                                                                                                            ## Some columns may call this function with `nil` as a special value.
+                                                                                                                            ## Refer to the appropriate `addColumn()` documentation.
+                                                                                                                            ## 
+                                                                                                                            ## .. note:: `TableValue` objects are automatically freed upon return when
+                                                                                                                            ##        set by a `Table`.
 
 proc newTableModel*(mh: ptr TableModelHandler): ptr TableModel {.cdecl,
     importc: "uiNewTableModel", libui.}
@@ -1403,18 +1517,28 @@ proc tableModelRowDeleted*(m: ptr TableModel; oldIndex: cint) {.cdecl,
     importc: "uiTableModelRowDeleted", libui.}
 
 const
-  TableModelColumnNeverEditable*  = (-1)
-  TableModelColumnAlwaysEditable* = (-2)
+  TableModelColumnNeverEditable*  = (-1) ## Parameter to editable model columns to signify all rows are never editable.
+  TableModelColumnAlwaysEditable* = (-2) ## Parameter to editable model columns to signify all rows are always editable.
 
 type
   Table* = object of Control
 
   TableTextColumnOptionalParams* {.bycopy.} = object
+    ## Optional parameters to control the appearance of text columns.
+    
     colorModelColumn*: cint
 
   TableParams* {.bycopy.} = object
-    model*                        : ptr TableModel
-    rowBackgroundColorModelColumn*: cint
+    ## Table parameters passed to `newTable()`.
+    
+    model*                         : ptr TableModel ## Model holding the data to be displayed. This can **NOT** be `nil`.
+
+    rowBackgroundColorModelColumn* : cint ## `TableModel` column that defines background color for each row,
+                                          ## 
+                                          ## `TableValue.color` Background color, `nil` to use the default
+                                          ## background color for that row.
+                                          ## 
+                                          ## `-1` to use the default background color for all rows.
 
 template table*(this: untyped): untyped =
   (cast[ptr Table]((this)))
@@ -1489,14 +1613,30 @@ proc tableColumnSetWidth*(t: ptr Table; column: cint; width: cint) {.cdecl,
 type
   TableColumnType* = proc (mh: ptr TableModelHandler, m: TableModel, col: int): TableValueType {.noconv.}
   TableSelectionMode* {. size: sizeof(cint) .} = enum
-    TableSelectionModeNone,
+    ## Table selection modes.
+    ## 
+    ## Table selection that enforce how a user can interact with a table.
+    ## 
+    ## .. warning:: An empty table selection is a valid state for any selection mode.
+    ##          This is in fact the default upon table creation and can otherwise
+    ##          triggered through operations such as row deletion.
+
+    TableSelectionModeNone,       ## Allow no row selection.
+                                  ##
+                                  ## .. warning:: This mode disables all editing of text columns. Buttons
+                                  ##          and checkboxes keep working though.
+
     TableSelectionModeZeroOrOne,  ## Allow zero or one row to be selected.
+
     TableSelectionModeOne,        ## Allow for exactly one row to be selected.
+  
     TableSelectionModeZeroOrMany, ## Allow zero or many (multiple) rows to be selected.
 
   TableSelection* {.bycopy.} = object
-    numRows*: cint
-    rows*   : ptr cint
+    ## Holds an array of selected row indices for a table.
+    
+    numRows* : cint                     ## Number of selected rows.
+    rows*    : ptr UncheckedArray[cint] ## Array containing selected row indices, `nil` on empty selection.
 
 proc tableGetSelectionMode*(t: ptr Table): TableSelectionMode {.cdecl,
     importc: "uiTableGetSelectionMode", libui.}

@@ -1,3 +1,5 @@
+# compile with -d:menus to add a menu bar
+
 import std/[sugar, with]
 
 import uing
@@ -37,8 +39,8 @@ proc makenumbersAndListsBox: Box =
     numbers = newGroup("Numbers", true)
     numbersBox = newVerticalBox(true)
 
-    spin = newSpinbox(0, 100)
-    slide = newSlider(0, 100)
+    spin = newSpinbox(0..100)
+    slide = newSlider(0..100)
     progress = newProgressBar()
     progress2 = newProgressBar()
 
@@ -50,8 +52,7 @@ proc makenumbersAndListsBox: Box =
   spin.onchanged = update
   slide.onchanged = update
 
-  #progress2.value = -1 # set progressbar to be indeterminate
-  progress2.indeterminate= true
+  progress2.value = -1 # set progressbar to be indeterminate
 
   numbers.child = numbersBox
   numbersBox.add spin
@@ -113,11 +114,11 @@ proc makeDataChoosersBox(window: Window): Box =
   with col2:
     padded = true
 
-    add newButton("Open File", (_: Button) => openFileEntry.`text=`(window.openFile())), 0, 0, 1, 1, false, AlignFill, false, AlignCenter
+    add newButton("Open File", (_: Button) => (openFileEntry.text = window.openFile())), 0, 0, 1, 1, false, AlignFill, false, AlignCenter
     add openFileEntry, 1, 0, 1, 1, true, AlignFill, false, AlignCenter
-    add newButton("Open Folder", (_: Button) => openFolderEntry.`text=`(window.openFolder())), 0, 1, 1, 1, false, AlignFill, false, AlignCenter
+    add newButton("Open Folder", (_: Button) => (openFolderEntry.text = window.openFolder())), 0, 1, 1, 1, false, AlignFill, false, AlignCenter
     add openFolderEntry, 1, 1, 1, 1, true, AlignFill, false, AlignCenter
-    add newButton("Save File", (_: Button) => saveFileEntry.`text=`(window.saveFile())), 0, 2, 1, 1, false, AlignFill, false, AlignCenter
+    add newButton("Save File", (_: Button) => (saveFileEntry.text = window.saveFile())), 0, 2, 1, 1, false, AlignFill, false, AlignCenter
     add saveFileEntry, 1, 2, 1, 1, true, AlignFill, false, AlignCenter
 
     add msgBoxBox, 1, 3, 1, 1, false, AlignCenter, false, AlignCenter
@@ -166,10 +167,9 @@ proc main =
     add "Basic Controls", basicControlsBox
     add "Numbers and Lists", numbersAndListsBox
     add "Data Choosers", dataChoosersBox
-    
-    setMargined(0, true)
-    setMargined(1, true)
-    setMargined(2, true)
+
+  for i in 0 ..< tab.tabs.len:
+    tab.setMargined i, true
 
   show window
   mainLoop()

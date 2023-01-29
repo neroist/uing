@@ -74,10 +74,16 @@ window.addEventListener('DOMContentLoaded', main);
 <dl><dt><a name="%60%24%60" href="#%60%24%60"><span>`$`:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
           data-doc-search-tag="uing: `$`(s: AttributedString): string" href="uing.html#%24%2CAttributedString">uing: `$`(s: AttributedString): string</a></li>
+          <li><a class="reference external"
+          data-doc-search-tag="uing: `$`(v: TableValue): string" href="uing.html#%24%2CTableValue">uing: `$`(v: TableValue): string</a></li>
           </ul></dd>
 <dt><a name="%60end%60" href="#%60end%60"><span>`end`:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
           data-doc-search-tag="uing: `end`(p: DrawPath)" href="uing.html#end%2CDrawPath">uing: `end`(p: DrawPath)</a></li>
+          </ul></dd>
+<dt><a name="%60type%60" href="#%60type%60"><span>`type`:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="uing: `type`(v: TableValue): TableValueType" href="uing.html#type%2CTableValue">uing: `type`(v: TableValue): TableValueType</a></li>
           </ul></dd>
 <dt><a name="add" href="#add"><span>add:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
@@ -103,9 +109,11 @@ window.addEventListener('DOMContentLoaded', main);
           <li><a class="reference external"
           data-doc-search-tag="uing: add(otf: OpenTypeFeatures; a, b, c, d: char; value: uint32)" href="uing.html#add%2COpenTypeFeatures%2Cchar%2Cchar%2Cchar%2Cchar%2Cuint32">uing: add(otf: OpenTypeFeatures; a, b, c, d: char; value: uint32)</a></li>
           <li><a class="reference external"
+          data-doc-search-tag="uing: add(otf: OpenTypeFeatures; abcd: string; value: uint32)" href="uing.html#add%2COpenTypeFeatures%2Cstring%2Cuint32">uing: add(otf: OpenTypeFeatures; abcd: string; value: uint32)</a></li>
+          <li><a class="reference external"
           data-doc-search-tag="uing: add(r: RadioButtons; items: varargs[string])" href="uing.html#add%2CRadioButtons%2Cvarargs%5Bstring%5D">uing: add(r: RadioButtons; items: varargs[string])</a></li>
           <li><a class="reference external"
-          data-doc-search-tag="uing: add(t: Tab; name: string; c: Widget)" href="uing.html#add%2CTab%2Cstring%2CWidget">uing: add(t: Tab; name: string; c: Widget)</a></li>
+          data-doc-search-tag="uing: add(t: Tab; name: string; w: Widget)" href="uing.html#add%2CTab%2Cstring%2CWidget">uing: add(t: Tab; name: string; w: Widget)</a></li>
           </ul></dd>
 <dt><a name="addAboutItem" href="#addAboutItem"><span>addAboutItem:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
@@ -113,11 +121,39 @@ window.addEventListener('DOMContentLoaded', main);
     discardable.} = discard ): MenuItem" href="uing.html#addAboutItem%2CMenu%2Cproc%28MenuItem%29">uing: addAboutItem(m: Menu; onclicked: proc (sender: MenuItem) = proc (_: MenuItem) {.
     discardable.} = discard ): MenuItem</a></li>
           </ul></dd>
+<dt><a name="addButtonColumn" href="#addButtonColumn"><span>addButtonColumn:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="uing: addButtonColumn(table: Table; title: string; index, clickableMode: int)" href="uing.html#addButtonColumn%2CTable%2Cstring%2Cint%2Cint">uing: addButtonColumn(table: Table; title: string; index, clickableMode: int)</a></li>
+          </ul></dd>
+<dt><a name="addCheckboxColumn" href="#addCheckboxColumn"><span>addCheckboxColumn:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="uing: addCheckboxColumn(table: Table; title: string; index, editableMode: int)" href="uing.html#addCheckboxColumn%2CTable%2Cstring%2Cint%2Cint">uing: addCheckboxColumn(table: Table; title: string; index, editableMode: int)</a></li>
+          </ul></dd>
+<dt><a name="addCheckboxTextColumn" href="#addCheckboxTextColumn"><span>addCheckboxTextColumn:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="uing: addCheckboxTextColumn(t: Table; name: string; checkboxModelColumn,
+    checkboxEditableModelColumn, textModelColumn, textEditableModelColumn: int;
+                      textParams: ptr TableTextColumnOptionalParams)" href="uing.html#addCheckboxTextColumn%2CTable%2Cstring%2Cint%2Cint%2Cint%2Cint%2Cptr.TableTextColumnOptionalParams">uing: addCheckboxTextColumn(t: Table; name: string; checkboxModelColumn,
+    checkboxEditableModelColumn, textModelColumn, textEditableModelColumn: int;
+                      textParams: ptr TableTextColumnOptionalParams)</a></li>
+          </ul></dd>
 <dt><a name="addCheckItem" href="#addCheckItem"><span>addCheckItem:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
           data-doc-search-tag="uing: addCheckItem(m: Menu; name: string; onclicked: proc (sender: MenuItem) = proc (
     _: MenuItem) = discard ): MenuItem" href="uing.html#addCheckItem%2CMenu%2Cstring%2Cproc%28MenuItem%29">uing: addCheckItem(m: Menu; name: string; onclicked: proc (sender: MenuItem) = proc (
     _: MenuItem) = discard ): MenuItem</a></li>
+          </ul></dd>
+<dt><a name="addImageColumn" href="#addImageColumn"><span>addImageColumn:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="uing: addImageColumn(table: Table; title: string; index: int)" href="uing.html#addImageColumn%2CTable%2Cstring%2Cint">uing: addImageColumn(table: Table; title: string; index: int)</a></li>
+          </ul></dd>
+<dt><a name="addImageTextColumn" href="#addImageTextColumn"><span>addImageTextColumn:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="uing: addImageTextColumn(t: Table; name: string;
+                   imageIndex, textIndex, editableMode: int;
+                   textParams: ptr TableTextColumnOptionalParams)" href="uing.html#addImageTextColumn%2CTable%2Cstring%2Cint%2Cint%2Cint%2Cptr.TableTextColumnOptionalParams">uing: addImageTextColumn(t: Table; name: string;
+                   imageIndex, textIndex, editableMode: int;
+                   textParams: ptr TableTextColumnOptionalParams)</a></li>
           </ul></dd>
 <dt><a name="addItem" href="#addItem"><span>addItem:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
@@ -131,6 +167,10 @@ window.addEventListener('DOMContentLoaded', main);
     _: MenuItem) {.discardable.} = discard ): MenuItem" href="uing.html#addPreferencesItem%2CMenu%2Cproc%28MenuItem%29">uing: addPreferencesItem(m: Menu; onclicked: proc (sender: MenuItem) = proc (
     _: MenuItem) {.discardable.} = discard ): MenuItem</a></li>
           </ul></dd>
+<dt><a name="addProgressBarColumn" href="#addProgressBarColumn"><span>addProgressBarColumn:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="uing: addProgressBarColumn(table: Table; title: string; index: int)" href="uing.html#addProgressBarColumn%2CTable%2Cstring%2Cint">uing: addProgressBarColumn(table: Table; title: string; index: int)</a></li>
+          </ul></dd>
 <dt><a name="addQuitItem" href="#addQuitItem"><span>addQuitItem:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
           data-doc-search-tag="uing: addQuitItem(m: Menu; shouldQuit: proc (): bool): MenuItem" href="uing.html#addQuitItem%2CMenu%2Cproc%29">uing: addQuitItem(m: Menu; shouldQuit: proc (): bool): MenuItem</a></li>
@@ -143,6 +183,14 @@ window.addEventListener('DOMContentLoaded', main);
 <li><a class="reference external"
           data-doc-search-tag="uing: addSeparator(m: Menu)" href="uing.html#addSeparator%2CMenu">uing: addSeparator(m: Menu)</a></li>
           </ul></dd>
+<dt><a name="addTextColumn" href="#addTextColumn"><span>addTextColumn:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="uing: addTextColumn(t: Table; name: string;
+              textModelColumn, textEditableModelColumn: int | bool;
+              textParams: ptr TableTextColumnOptionalParams)" href="uing.html#addTextColumn%2CTable%2Cstring%2C%2C%2Cptr.TableTextColumnOptionalParams">uing: addTextColumn(t: Table; name: string;
+              textModelColumn, textEditableModelColumn: int | bool;
+              textParams: ptr TableTextColumnOptionalParams)</a></li>
+          </ul></dd>
 <dt><a name="addUnattributed" href="#addUnattributed"><span>addUnattributed:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
           data-doc-search-tag="uing: addUnattributed(s: AttributedString; str: string)" href="uing.html#addUnattributed%2CAttributedString%2Cstring">uing: addUnattributed(s: AttributedString; str: string)</a></li>
@@ -154,36 +202,6 @@ window.addEventListener('DOMContentLoaded', main);
 <dt><a name="allocControl" href="#allocControl"><span>allocControl:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
           data-doc-search-tag="rawui: allocControl(n: csize_t; oSsig: uint32; typesig: uint32; typenamestr: cstring): ptr Control" href="uing/rawui.html#allocControl%2Ccsize_t%2Cuint32%2Cuint32%2Ccstring">rawui: allocControl(n: csize_t; oSsig: uint32; typesig: uint32; typenamestr: cstring): ptr Control</a></li>
-          </ul></dd>
-<dt><a name="appendButtonColumn" href="#appendButtonColumn"><span>appendButtonColumn:</span></a></dt><dd><ul class="simple">
-<li><a class="reference external"
-          data-doc-search-tag="uing: appendButtonColumn(table: Table; title: string; index, clickableMode: int)" href="uing.html#appendButtonColumn%2CTable%2Cstring%2Cint%2Cint">uing: appendButtonColumn(table: Table; title: string; index, clickableMode: int)</a></li>
-          </ul></dd>
-<dt><a name="appendCheckboxColumn" href="#appendCheckboxColumn"><span>appendCheckboxColumn:</span></a></dt><dd><ul class="simple">
-<li><a class="reference external"
-          data-doc-search-tag="uing: appendCheckboxColumn(table: Table; title: string; index, editableMode: int)" href="uing.html#appendCheckboxColumn%2CTable%2Cstring%2Cint%2Cint">uing: appendCheckboxColumn(table: Table; title: string; index, editableMode: int)</a></li>
-          </ul></dd>
-<dt><a name="appendImageColumn" href="#appendImageColumn"><span>appendImageColumn:</span></a></dt><dd><ul class="simple">
-<li><a class="reference external"
-          data-doc-search-tag="uing: appendImageColumn(table: Table; title: string; index: int)" href="uing.html#appendImageColumn%2CTable%2Cstring%2Cint">uing: appendImageColumn(table: Table; title: string; index: int)</a></li>
-          </ul></dd>
-<dt><a name="appendImageTextColumn" href="#appendImageTextColumn"><span>appendImageTextColumn:</span></a></dt><dd><ul class="simple">
-<li><a class="reference external"
-          data-doc-search-tag="uing: appendImageTextColumn(table: Table; title: string;
-                      imageIndex, textIndex, editableMode: int;
-                      textParams: ptr TableTextColumnOptionalParams)" href="uing.html#appendImageTextColumn%2CTable%2Cstring%2Cint%2Cint%2Cint%2Cptr.TableTextColumnOptionalParams">uing: appendImageTextColumn(table: Table; title: string;
-                      imageIndex, textIndex, editableMode: int;
-                      textParams: ptr TableTextColumnOptionalParams)</a></li>
-          </ul></dd>
-<dt><a name="appendProgressBarColumn" href="#appendProgressBarColumn"><span>appendProgressBarColumn:</span></a></dt><dd><ul class="simple">
-<li><a class="reference external"
-          data-doc-search-tag="uing: appendProgressBarColumn(table: Table; title: string; index: int)" href="uing.html#appendProgressBarColumn%2CTable%2Cstring%2Cint">uing: appendProgressBarColumn(table: Table; title: string; index: int)</a></li>
-          </ul></dd>
-<dt><a name="appendTextColumn" href="#appendTextColumn"><span>appendTextColumn:</span></a></dt><dd><ul class="simple">
-<li><a class="reference external"
-          data-doc-search-tag="uing: appendTextColumn(table: Table; title: string; index, editableMode: int;
-                 textParams: ptr TableTextColumnOptionalParams)" href="uing.html#appendTextColumn%2CTable%2Cstring%2Cint%2Cint%2Cptr.TableTextColumnOptionalParams">uing: appendTextColumn(table: Table; title: string; index, editableMode: int;
-                 textParams: ptr TableTextColumnOptionalParams)</a></li>
           </ul></dd>
 <dt><a name="arcTo" href="#arcTo"><span>arcTo:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
@@ -479,11 +497,11 @@ window.addEventListener('DOMContentLoaded', main);
 <li><a class="reference external"
           data-doc-search-tag="uing: checked=(c: Checkbox; x: bool)" href="uing.html#checked%3D%2CCheckbox%2Cbool">uing: checked=(c: Checkbox; x: bool)</a></li>
           <li><a class="reference external"
-          data-doc-search-tag="uing: checked=(m: MenuItem; x: bool)" href="uing.html#checked%3D%2CMenuItem%2Cbool">uing: checked=(m: MenuItem; x: bool)</a></li>
+          data-doc-search-tag="uing: checked=(m: MenuItem; checked: bool)" href="uing.html#checked%3D%2CMenuItem%2Cbool">uing: checked=(m: MenuItem; checked: bool)</a></li>
           </ul></dd>
 <dt><a name="child" href="#child"><span>child:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
-          data-doc-search-tag="uing: child(g: Group; c: Widget): Widget" href="uing.html#child%2CGroup%2CWidget">uing: child(g: Group; c: Widget): Widget</a></li>
+          data-doc-search-tag="uing: child(g: Group): Widget" href="uing.html#child%2CGroup">uing: child(g: Group): Widget</a></li>
           <li><a class="reference external"
           data-doc-search-tag="uing: child(w: Window): Widget" href="uing.html#child%2CWindow">uing: child(w: Window): Widget</a></li>
           </ul></dd>
@@ -510,6 +528,8 @@ window.addEventListener('DOMContentLoaded', main);
           data-doc-search-tag="uing: color(a: Attribute): tuple[r, g, b, alpha: float]" href="uing.html#color%2CAttribute">uing: color(a: Attribute): tuple[r, g, b, alpha: float]</a></li>
           <li><a class="reference external"
           data-doc-search-tag="uing: color(c: ColorButton): tuple[r, g, b, a: float]" href="uing.html#color%2CColorButton">uing: color(c: ColorButton): tuple[r, g, b, a: float]</a></li>
+          <li><a class="reference external"
+          data-doc-search-tag="uing: color(v: TableValue): tuple[r, g, b, a: float]" href="uing.html#color%2CTableValue">uing: color(v: TableValue): tuple[r, g, b, a: float]</a></li>
           </ul></dd>
 <dt><a name="Color" href="#Color"><span>Color:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
@@ -1053,9 +1073,7 @@ window.addEventListener('DOMContentLoaded', main);
           </ul></dd>
 <dt><a name="forEach" href="#forEach"><span>forEach:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
-          data-doc-search-tag="uing: forEach(otf: OpenTypeFeatures; f: rawui.OpenTypeFeaturesForEachFunc;
-        data: pointer)" href="uing.html#forEach%2COpenTypeFeatures%2C%2Cpointer">uing: forEach(otf: OpenTypeFeatures; f: rawui.OpenTypeFeaturesForEachFunc;
-        data: pointer)</a></li>
+          data-doc-search-tag="uing: forEach(otf: OpenTypeFeatures; f: OpenTypeFeaturesForEachFunc; data: pointer)" href="uing.html#forEach%2COpenTypeFeatures%2COpenTypeFeaturesForEachFunc%2Cpointer">uing: forEach(otf: OpenTypeFeatures; f: OpenTypeFeaturesForEachFunc; data: pointer)</a></li>
           </ul></dd>
 <dt><a name="ForEach" href="#ForEach"><span>ForEach:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
@@ -1063,9 +1081,9 @@ window.addEventListener('DOMContentLoaded', main);
           </ul></dd>
 <dt><a name="forEachAttribute" href="#forEachAttribute"><span>forEachAttribute:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
-          data-doc-search-tag="uing: forEachAttribute(s: AttributedString;
-                 f: rawui.AttributedStringForEachAttributeFunc; data: pointer)" href="uing.html#forEachAttribute%2CAttributedString%2C%2Cpointer">uing: forEachAttribute(s: AttributedString;
-                 f: rawui.AttributedStringForEachAttributeFunc; data: pointer)</a></li>
+          data-doc-search-tag="uing: forEachAttribute(str: AttributedString;
+                 fun: AttributedStringForEachAttributeFunc; data: pointer)" href="uing.html#forEachAttribute%2CAttributedString%2CAttributedStringForEachAttributeFunc%2Cpointer">uing: forEachAttribute(str: AttributedString;
+                 fun: AttributedStringForEachAttributeFunc; data: pointer)</a></li>
           </ul></dd>
 <dt><a name="Form" href="#Form"><span>Form:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
@@ -1113,13 +1131,13 @@ window.addEventListener('DOMContentLoaded', main);
           <li><a class="reference external"
           data-doc-search-tag="uing: free(otf: OpenTypeFeatures)" href="uing.html#free%2COpenTypeFeatures">uing: free(otf: OpenTypeFeatures)</a></li>
           <li><a class="reference external"
-          data-doc-search-tag="uing: free(t: ptr rawui.TableSelection)" href="uing.html#free%2Cptr.">uing: free(t: ptr rawui.TableSelection)</a></li>
-          <li><a class="reference external"
-          data-doc-search-tag="uing: free(t: ptr TableModel)" href="uing.html#free%2Cptr.TableModel">uing: free(t: ptr TableModel)</a></li>
-          <li><a class="reference external"
-          data-doc-search-tag="uing: free(t: ptr TableValue)" href="uing.html#free%2Cptr.TableValue">uing: free(t: ptr TableValue)</a></li>
+          data-doc-search-tag="uing: free(t: ptr TableSelection)" href="uing.html#free%2Cptr.TableSelection">uing: free(t: ptr TableSelection)</a></li>
           <li><a class="reference external"
           data-doc-search-tag="uing: free(str: string)" href="uing.html#free%2Cstring">uing: free(str: string)</a></li>
+          <li><a class="reference external"
+          data-doc-search-tag="uing: free(t: TableModel)" href="uing.html#free%2CTableModel">uing: free(t: TableModel)</a></li>
+          <li><a class="reference external"
+          data-doc-search-tag="uing: free(t: TableValue)" href="uing.html#free%2CTableValue">uing: free(t: TableValue)</a></li>
           <li><a class="reference external"
           data-doc-search-tag="uing: free[W: Widget](w: W)" href="uing.html#free%2CW">uing: free[W: Widget](w: W)</a></li>
           </ul></dd>
@@ -1137,7 +1155,7 @@ window.addEventListener('DOMContentLoaded', main);
           </ul></dd>
 <dt><a name="freeFont" href="#freeFont"><span>freeFont:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
-          data-doc-search-tag="uing: freeFont(f: FontDescriptor)" href="uing.html#freeFont%2CFontDescriptor">uing: freeFont(f: FontDescriptor)</a></li>
+          data-doc-search-tag="uing: freeFont(desc: FontDescriptor)" href="uing.html#freeFont%2CFontDescriptor">uing: freeFont(desc: FontDescriptor)</a></li>
           </ul></dd>
 <dt><a name="freeFontButtonFont" href="#freeFontButtonFont"><span>freeFontButtonFont:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
@@ -1185,7 +1203,13 @@ window.addEventListener('DOMContentLoaded', main);
           </ul></dd>
 <dt><a name="get" href="#get"><span>get:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
-          data-doc-search-tag="uing: get(otf: OpenTypeFeatures; a, b, c, d: char; value: var uint32): bool" href="uing.html#get%2COpenTypeFeatures%2Cchar%2Cchar%2Cchar%2Cchar%2Cuint32">uing: get(otf: OpenTypeFeatures; a, b, c, d: char; value: var uint32): bool</a></li>
+          data-doc-search-tag="uing: get(otf: OpenTypeFeatures; a, b, c, d: char; value: var uint32): int" href="uing.html#get%2COpenTypeFeatures%2Cchar%2Cchar%2Cchar%2Cchar%2Cuint32">uing: get(otf: OpenTypeFeatures; a, b, c, d: char; value: var uint32): int</a></li>
+          <li><a class="reference external"
+          data-doc-search-tag="uing: get(otf: OpenTypeFeatures; abcd: string; value: var uint32): bool" href="uing.html#get%2COpenTypeFeatures%2Cstring%2Cuint32">uing: get(otf: OpenTypeFeatures; abcd: string; value: var uint32): bool</a></li>
+          </ul></dd>
+<dt><a name="getInt" href="#getInt"><span>getInt:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="uing: getInt(v: TableValue): int" href="uing.html#getInt%2CTableValue">uing: getInt(v: TableValue): int</a></li>
           </ul></dd>
 <dt><a name="getType" href="#getType"><span>getType:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
@@ -1265,11 +1289,7 @@ window.addEventListener('DOMContentLoaded', main);
           </ul></dd>
 <dt><a name="hasToolTip%3D" href="#hasToolTip%3D"><span>hasToolTip=:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
-          data-doc-search-tag="uing: hasToolTip=(s: Slider; hasToolTip: bool): bool" href="uing.html#hasToolTip%3D%2CSlider%2Cbool">uing: hasToolTip=(s: Slider; hasToolTip: bool): bool</a></li>
-          </ul></dd>
-<dt><a name="headerSetVisible" href="#headerSetVisible"><span>headerSetVisible:</span></a></dt><dd><ul class="simple">
-<li><a class="reference external"
-          data-doc-search-tag="uing: headerSetVisible(t: Table; visible: bool)" href="uing.html#headerSetVisible%2CTable%2Cbool">uing: headerSetVisible(t: Table; visible: bool)</a></li>
+          data-doc-search-tag="uing: hasToolTip=(s: Slider; hasToolTip: bool)" href="uing.html#hasToolTip%3D%2CSlider%2Cbool">uing: hasToolTip=(s: Slider; hasToolTip: bool)</a></li>
           </ul></dd>
 <dt><a name="headerVisible" href="#headerVisible"><span>headerVisible:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
@@ -1286,7 +1306,13 @@ window.addEventListener('DOMContentLoaded', main);
 <dt><a name="Image" href="#Image"><span>Image:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
           data-doc-search-tag="uing: Image" href="uing.html#Image">uing: Image</a></li>
-          <li><a class="reference external"
+          </ul></dd>
+<dt><a name="image" href="#image"><span>image:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="uing: image(v: TableValue): Image" href="uing.html#image%2CTableValue">uing: image(v: TableValue): Image</a></li>
+          </ul></dd>
+<dt><a name="Image" href="#Image"><span>Image:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
           data-doc-search-tag="rawui: Image" href="uing/rawui.html#Image">rawui: Image</a></li>
           </ul></dd>
 <dt><a name="imageAppend" href="#imageAppend"><span>imageAppend:</span></a></dt><dd><ul class="simple">
@@ -1361,6 +1387,10 @@ window.addEventListener('DOMContentLoaded', main);
           <li><a class="reference external"
           data-doc-search-tag="uing: impl(b: Table): RawTable" href="uing.html#impl%2CTable">uing: impl(b: Table): RawTable</a></li>
           <li><a class="reference external"
+          data-doc-search-tag="uing: impl(b: TableModel): RawTableModel" href="uing.html#impl%2CTableModel">uing: impl(b: TableModel): RawTableModel</a></li>
+          <li><a class="reference external"
+          data-doc-search-tag="uing: impl(b: TableValue): RawTableValue" href="uing.html#impl%2CTableValue">uing: impl(b: TableValue): RawTableValue</a></li>
+          <li><a class="reference external"
           data-doc-search-tag="uing: impl(w: Widget): ptr [Control]" href="uing.html#impl%2CWidget">uing: impl(w: Widget): ptr [Control]</a></li>
           <li><a class="reference external"
           data-doc-search-tag="uing: impl(b: Window): RawWindow" href="uing.html#impl%2CWindow">uing: impl(b: Window): RawWindow</a></li>
@@ -1431,15 +1461,11 @@ window.addEventListener('DOMContentLoaded', main);
           <li><a class="reference external"
           data-doc-search-tag="uing: impl=(b: Table; r: RawTable)" href="uing.html#impl%3D%2CTable%2CRawTable">uing: impl=(b: Table; r: RawTable)</a></li>
           <li><a class="reference external"
+          data-doc-search-tag="uing: impl=(b: TableModel; r: RawTableModel)" href="uing.html#impl%3D%2CTableModel%2CRawTableModel">uing: impl=(b: TableModel; r: RawTableModel)</a></li>
+          <li><a class="reference external"
+          data-doc-search-tag="uing: impl=(b: TableValue; r: RawTableValue)" href="uing.html#impl%3D%2CTableValue%2CRawTableValue">uing: impl=(b: TableValue; r: RawTableValue)</a></li>
+          <li><a class="reference external"
           data-doc-search-tag="uing: impl=(b: Window; r: RawWindow)" href="uing.html#impl%3D%2CWindow%2CRawWindow">uing: impl=(b: Window; r: RawWindow)</a></li>
-          </ul></dd>
-<dt><a name="indeterminate" href="#indeterminate"><span>indeterminate:</span></a></dt><dd><ul class="simple">
-<li><a class="reference external"
-          data-doc-search-tag="uing: indeterminate(p: ProgressBar): bool" href="uing.html#indeterminate%2CProgressBar">uing: indeterminate(p: ProgressBar): bool</a></li>
-          </ul></dd>
-<dt><a name="indeterminate%3D" href="#indeterminate%3D"><span>indeterminate=:</span></a></dt><dd><ul class="simple">
-<li><a class="reference external"
-          data-doc-search-tag="uing: indeterminate=(p: ProgressBar; indeterminate: bool)" href="uing.html#indeterminate%3D%2CProgressBar%2Cbool">uing: indeterminate=(p: ProgressBar; indeterminate: bool)</a></li>
           </ul></dd>
 <dt><a name="init" href="#init"><span>init:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
@@ -1461,7 +1487,7 @@ window.addEventListener('DOMContentLoaded', main);
          left, top, xspan, yspan, hexpand: int; halign: Align; vexpand: int;
          valign: Align)</a></li>
           <li><a class="reference external"
-          data-doc-search-tag="uing: insertAt(t: Tab; name: string; at: int; c: Widget)" href="uing.html#insertAt%2CTab%2Cstring%2Cint%2CWidget">uing: insertAt(t: Tab; name: string; at: int; c: Widget)</a></li>
+          data-doc-search-tag="uing: insertAt(t: Tab; name: string; index: int; w: Widget)" href="uing.html#insertAt%2CTab%2Cstring%2Cint%2CWidget">uing: insertAt(t: Tab; name: string; index: int; w: Widget)</a></li>
           </ul></dd>
 <dt><a name="insertAtUnattributed" href="#insertAtUnattributed"><span>insertAtUnattributed:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
@@ -1537,7 +1563,7 @@ window.addEventListener('DOMContentLoaded', main);
           </ul></dd>
 <dt><a name="margined%3D" href="#margined%3D"><span>margined=:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
-          data-doc-search-tag="uing: margined=(g: Group; x: bool)" href="uing.html#margined%3D%2CGroup%2Cbool">uing: margined=(g: Group; x: bool)</a></li>
+          data-doc-search-tag="uing: margined=(g: Group; margined: bool)" href="uing.html#margined%3D%2CGroup%2Cbool">uing: margined=(g: Group; margined: bool)</a></li>
           <li><a class="reference external"
           data-doc-search-tag="uing: margined=(w: Window; x: bool)" href="uing.html#margined%3D%2CWindow%2Cbool">uing: margined=(w: Window; x: bool)</a></li>
           </ul></dd>
@@ -1677,9 +1703,11 @@ window.addEventListener('DOMContentLoaded', main);
           </ul></dd>
 <dt><a name="newBackgroundAttribute" href="#newBackgroundAttribute"><span>newBackgroundAttribute:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
-          data-doc-search-tag="uing: newBackgroundAttribute(r, g, b, a: float): Attribute" href="uing.html#newBackgroundAttribute%2Cfloat%2Cfloat%2Cfloat%2Cfloat">uing: newBackgroundAttribute(r, g, b, a: float): Attribute</a></li>
-          <li><a class="reference external"
           data-doc-search-tag="rawui: newBackgroundAttribute(r: cdouble; g: cdouble; b: cdouble; a: cdouble): ptr Attribute" href="uing/rawui.html#newBackgroundAttribute%2Ccdouble%2Ccdouble%2Ccdouble%2Ccdouble">rawui: newBackgroundAttribute(r: cdouble; g: cdouble; b: cdouble; a: cdouble): ptr Attribute</a></li>
+          </ul></dd>
+<dt><a name="newBackgroundColorAttribute" href="#newBackgroundColorAttribute"><span>newBackgroundColorAttribute:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="uing: newBackgroundColorAttribute(r, g, b, a: float = 1.0): Attribute" href="uing.html#newBackgroundColorAttribute%2Cfloat%2Cfloat%2Cfloat%2Cfloat">uing: newBackgroundColorAttribute(r, g, b, a: float = 1.0): Attribute</a></li>
           </ul></dd>
 <dt><a name="newButton" href="#newButton"><span>newButton:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
@@ -1695,7 +1723,7 @@ window.addEventListener('DOMContentLoaded', main);
           </ul></dd>
 <dt><a name="newColorAttribute" href="#newColorAttribute"><span>newColorAttribute:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
-          data-doc-search-tag="uing: newColorAttribute(r: cdouble; g: cdouble; b: cdouble; a: cdouble): Attribute" href="uing.html#newColorAttribute%2Ccdouble%2Ccdouble%2Ccdouble%2Ccdouble">uing: newColorAttribute(r: cdouble; g: cdouble; b: cdouble; a: cdouble): Attribute</a></li>
+          data-doc-search-tag="uing: newColorAttribute(r, g, b, a: float = 1.0): Attribute" href="uing.html#newColorAttribute%2Cfloat%2Cfloat%2Cfloat%2Cfloat">uing: newColorAttribute(r, g, b, a: float = 1.0): Attribute</a></li>
           <li><a class="reference external"
           data-doc-search-tag="rawui: newColorAttribute(r: cdouble; g: cdouble; b: cdouble; a: cdouble): ptr Attribute" href="uing/rawui.html#newColorAttribute%2Ccdouble%2Ccdouble%2Ccdouble%2Ccdouble">rawui: newColorAttribute(r: cdouble; g: cdouble; b: cdouble; a: cdouble): ptr Attribute</a></li>
           </ul></dd>
@@ -1707,7 +1735,9 @@ window.addEventListener('DOMContentLoaded', main);
           </ul></dd>
 <dt><a name="newCombobox" href="#newCombobox"><span>newCombobox:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
-          data-doc-search-tag="uing: newCombobox(onselected: proc (sender: Combobox) = nil): Combobox" href="uing.html#newCombobox%2Cproc%28Combobox%29">uing: newCombobox(onselected: proc (sender: Combobox) = nil): Combobox</a></li>
+          data-doc-search-tag="uing: newCombobox(items: openArray[string] = [];
+            onselected: proc (sender: Combobox) = nil): Combobox" href="uing.html#newCombobox%2CopenArray%5Bstring%5D%2Cproc%28Combobox%29">uing: newCombobox(items: openArray[string] = [];
+            onselected: proc (sender: Combobox) = nil): Combobox</a></li>
           <li><a class="reference external"
           data-doc-search-tag="rawui: newCombobox(): ptr Combobox" href="uing/rawui.html#newCombobox">rawui: newCombobox(): ptr Combobox</a></li>
           </ul></dd>
@@ -1769,7 +1799,7 @@ window.addEventListener('DOMContentLoaded', main);
           </ul></dd>
 <dt><a name="newFontButton" href="#newFontButton"><span>newFontButton:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
-          data-doc-search-tag="uing: newFontButton(onChanged: proc (sender: FontButton) = nil): FontButton" href="uing.html#newFontButton%2Cproc%28FontButton%29">uing: newFontButton(onChanged: proc (sender: FontButton) = nil): FontButton</a></li>
+          data-doc-search-tag="uing: newFontButton(onchanged: proc (sender: FontButton) = nil): FontButton" href="uing.html#newFontButton%2Cproc%28FontButton%29">uing: newFontButton(onchanged: proc (sender: FontButton) = nil): FontButton</a></li>
           <li><a class="reference external"
           data-doc-search-tag="rawui: newFontButton(): ptr FontButton" href="uing/rawui.html#newFontButton">rawui: newFontButton(): ptr FontButton</a></li>
           </ul></dd>
@@ -1797,7 +1827,7 @@ window.addEventListener('DOMContentLoaded', main);
           </ul></dd>
 <dt><a name="newGroup" href="#newGroup"><span>newGroup:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
-          data-doc-search-tag="uing: newGroup(title: string; margined = false): Group" href="uing.html#newGroup%2Cstring">uing: newGroup(title: string; margined = false): Group</a></li>
+          data-doc-search-tag="uing: newGroup(title: string; margined: bool = false): Group" href="uing.html#newGroup%2Cstring%2Cbool">uing: newGroup(title: string; margined: bool = false): Group</a></li>
           <li><a class="reference external"
           data-doc-search-tag="rawui: newGroup(title: cstring): ptr Group" href="uing/rawui.html#newGroup%2Ccstring">rawui: newGroup(title: cstring): ptr Group</a></li>
           </ul></dd>
@@ -1869,13 +1899,13 @@ window.addEventListener('DOMContentLoaded', main);
           </ul></dd>
 <dt><a name="newRadioButtons" href="#newRadioButtons"><span>newRadioButtons:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
-          data-doc-search-tag="uing: newRadioButtons(onSelected: proc (sender: RadioButtons) = nil): RadioButtons" href="uing.html#newRadioButtons%2Cproc%28RadioButtons%29">uing: newRadioButtons(onSelected: proc (sender: RadioButtons) = nil): RadioButtons</a></li>
+          data-doc-search-tag="uing: newRadioButtons(onselected: proc (sender: RadioButtons) = nil): RadioButtons" href="uing.html#newRadioButtons%2Cproc%28RadioButtons%29">uing: newRadioButtons(onselected: proc (sender: RadioButtons) = nil): RadioButtons</a></li>
           <li><a class="reference external"
           data-doc-search-tag="rawui: newRadioButtons(): ptr RadioButtons" href="uing/rawui.html#newRadioButtons">rawui: newRadioButtons(): ptr RadioButtons</a></li>
           </ul></dd>
 <dt><a name="newScrollingArea" href="#newScrollingArea"><span>newScrollingArea:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
-          data-doc-search-tag="uing: newScrollingArea(ah: ptr AreaHandler; width: int; height: int): Area" href="uing.html#newScrollingArea%2Cptr.AreaHandler%2Cint%2Cint">uing: newScrollingArea(ah: ptr AreaHandler; width: int; height: int): Area</a></li>
+          data-doc-search-tag="uing: newScrollingArea(ah: ptr AreaHandler; width, height: int): Area" href="uing.html#newScrollingArea%2Cptr.AreaHandler%2Cint%2Cint">uing: newScrollingArea(ah: ptr AreaHandler; width, height: int): Area</a></li>
           <li><a class="reference external"
           data-doc-search-tag="rawui: newScrollingArea(ah: ptr AreaHandler; width: cint; height: cint): ptr Area" href="uing/rawui.html#newScrollingArea%2Cptr.AreaHandler%2Ccint%2Ccint">rawui: newScrollingArea(ah: ptr AreaHandler; width: cint; height: cint): ptr Area</a></li>
           </ul></dd>
@@ -1893,13 +1923,13 @@ window.addEventListener('DOMContentLoaded', main);
           </ul></dd>
 <dt><a name="newSlider" href="#newSlider"><span>newSlider:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
-          data-doc-search-tag="uing: newSlider(min, max: int; onchanged: proc (sender: Slider) = nil): Slider" href="uing.html#newSlider%2Cint%2Cint%2Cproc%28Slider%29">uing: newSlider(min, max: int; onchanged: proc (sender: Slider) = nil): Slider</a></li>
+          data-doc-search-tag="uing: newSlider(range: Slice[SomeInteger]; onchanged: proc (sender: Slider) = nil): Slider" href="uing.html#newSlider%2CSlice%5BSomeInteger%5D%2Cproc%28Slider%29">uing: newSlider(range: Slice[SomeInteger]; onchanged: proc (sender: Slider) = nil): Slider</a></li>
           <li><a class="reference external"
           data-doc-search-tag="rawui: newSlider(min: cint; max: cint): ptr Slider" href="uing/rawui.html#newSlider%2Ccint%2Ccint">rawui: newSlider(min: cint; max: cint): ptr Slider</a></li>
           </ul></dd>
 <dt><a name="newSpinbox" href="#newSpinbox"><span>newSpinbox:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
-          data-doc-search-tag="uing: newSpinbox(min, max: int; onchanged: proc (sender: Spinbox) = nil): Spinbox" href="uing.html#newSpinbox%2Cint%2Cint%2Cproc%28Spinbox%29">uing: newSpinbox(min, max: int; onchanged: proc (sender: Spinbox) = nil): Spinbox</a></li>
+          data-doc-search-tag="uing: newSpinbox(range: Slice[SomeInteger]; onchanged: proc (sender: Spinbox) = nil): Spinbox" href="uing.html#newSpinbox%2CSlice%5BSomeInteger%5D%2Cproc%28Spinbox%29">uing: newSpinbox(range: Slice[SomeInteger]; onchanged: proc (sender: Spinbox) = nil): Spinbox</a></li>
           <li><a class="reference external"
           data-doc-search-tag="rawui: newSpinbox(min: cint; max: cint): ptr Spinbox" href="uing/rawui.html#newSpinbox%2Ccint%2Ccint">rawui: newSpinbox(min: cint; max: cint): ptr Spinbox</a></li>
           </ul></dd>
@@ -1923,30 +1953,34 @@ window.addEventListener('DOMContentLoaded', main);
           </ul></dd>
 <dt><a name="newTableModel" href="#newTableModel"><span>newTableModel:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
+          data-doc-search-tag="uing: newTableModel(mh: ptr TableModelHandler): TableModel" href="uing.html#newTableModel%2Cptr.TableModelHandler_2">uing: newTableModel(mh: ptr TableModelHandler): TableModel</a></li>
+          <li><a class="reference external"
           data-doc-search-tag="rawui: newTableModel(mh: ptr TableModelHandler): ptr TableModel" href="uing/rawui.html#newTableModel%2Cptr.TableModelHandler">rawui: newTableModel(mh: ptr TableModelHandler): ptr TableModel</a></li>
+          </ul></dd>
+<dt><a name="newTableValue" href="#newTableValue"><span>newTableValue:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="uing: newTableValue(r, g, b, a: float = 1.0): TableValue" href="uing.html#newTableValue%2Cfloat%2Cfloat%2Cfloat%2Cfloat">uing: newTableValue(r, g, b, a: float = 1.0): TableValue</a></li>
+          <li><a class="reference external"
+          data-doc-search-tag="uing: newTableValue(img: Image): TableValue" href="uing.html#newTableValue%2CImage">uing: newTableValue(img: Image): TableValue</a></li>
+          <li><a class="reference external"
+          data-doc-search-tag="uing: newTableValue(i: int): TableValue" href="uing.html#newTableValue%2Cint">uing: newTableValue(i: int): TableValue</a></li>
+          <li><a class="reference external"
+          data-doc-search-tag="uing: newTableValue(str: string): TableValue" href="uing.html#newTableValue%2Cstring">uing: newTableValue(str: string): TableValue</a></li>
           </ul></dd>
 <dt><a name="newTableValueColor" href="#newTableValueColor"><span>newTableValueColor:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
-          data-doc-search-tag="uing: newTableValueColor(r: float; g: float; b: float; a: float): ptr TableValue" href="uing.html#newTableValueColor%2Cfloat%2Cfloat%2Cfloat%2Cfloat">uing: newTableValueColor(r: float; g: float; b: float; a: float): ptr TableValue</a></li>
-          <li><a class="reference external"
           data-doc-search-tag="rawui: newTableValueColor(r: cdouble; g: cdouble; b: cdouble; a: cdouble): ptr TableValue" href="uing/rawui.html#newTableValueColor%2Ccdouble%2Ccdouble%2Ccdouble%2Ccdouble">rawui: newTableValueColor(r: cdouble; g: cdouble; b: cdouble; a: cdouble): ptr TableValue</a></li>
           </ul></dd>
 <dt><a name="newTableValueImage" href="#newTableValueImage"><span>newTableValueImage:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
-          data-doc-search-tag="uing: newTableValueImage(img: Image): ptr TableValue" href="uing.html#newTableValueImage%2CImage">uing: newTableValueImage(img: Image): ptr TableValue</a></li>
-          <li><a class="reference external"
           data-doc-search-tag="rawui: newTableValueImage(img: ptr Image): ptr TableValue" href="uing/rawui.html#newTableValueImage%2Cptr.Image">rawui: newTableValueImage(img: ptr Image): ptr TableValue</a></li>
           </ul></dd>
 <dt><a name="newTableValueInt" href="#newTableValueInt"><span>newTableValueInt:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
-          data-doc-search-tag="uing: newTableValueInt(i: int): ptr TableValue" href="uing.html#newTableValueInt%2Cint">uing: newTableValueInt(i: int): ptr TableValue</a></li>
-          <li><a class="reference external"
           data-doc-search-tag="rawui: newTableValueInt(i: cint): ptr TableValue" href="uing/rawui.html#newTableValueInt%2Ccint">rawui: newTableValueInt(i: cint): ptr TableValue</a></li>
           </ul></dd>
 <dt><a name="newTableValueString" href="#newTableValueString"><span>newTableValueString:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
-          data-doc-search-tag="uing: newTableValueString(s: string): ptr TableValue" href="uing.html#newTableValueString%2Cstring">uing: newTableValueString(s: string): ptr TableValue</a></li>
-          <li><a class="reference external"
           data-doc-search-tag="rawui: newTableValueString(str: cstring): ptr TableValue" href="uing/rawui.html#newTableValueString%2Ccstring">rawui: newTableValueString(str: cstring): ptr TableValue</a></li>
           </ul></dd>
 <dt><a name="newTimePicker" href="#newTimePicker"><span>newTimePicker:</span></a></dt><dd><ul class="simple">
@@ -2002,10 +2036,6 @@ window.addEventListener('DOMContentLoaded', main);
 <dt><a name="numGraphemes" href="#numGraphemes"><span>numGraphemes:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
           data-doc-search-tag="uing: numGraphemes(s: AttributedString): BiggestUInt" href="uing.html#numGraphemes%2CAttributedString">uing: numGraphemes(s: AttributedString): BiggestUInt</a></li>
-          </ul></dd>
-<dt><a name="numItems" href="#numItems"><span>numItems:</span></a></dt><dd><ul class="simple">
-<li><a class="reference external"
-          data-doc-search-tag="uing: numItems(c: Combobox): int" href="uing.html#numItems%2CCombobox">uing: numItems(c: Combobox): int</a></li>
           </ul></dd>
 <dt><a name="onShouldQuit" href="#onShouldQuit"><span>onShouldQuit:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
@@ -2079,7 +2109,7 @@ window.addEventListener('DOMContentLoaded', main);
           </ul></dd>
 <dt><a name="parent%3D" href="#parent%3D"><span>parent=:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
-          data-doc-search-tag="uing: parent=[W: Widget](w: W): W" href="uing.html#parent%3D%2CW">uing: parent=[W: Widget](w: W): W</a></li>
+          data-doc-search-tag="uing: parent=[W: Widget](w: W; parent: W)" href="uing.html#parent%3D%2CW%2CW">uing: parent=[W: Widget](w: W; parent: W)</a></li>
           </ul></dd>
 <dt><a name="pollingMainLoop" href="#pollingMainLoop"><span>pollingMainLoop:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
@@ -2139,8 +2169,6 @@ window.addEventListener('DOMContentLoaded', main);
           </ul></dd>
 <dt><a name="radioButtonsSelected" href="#radioButtonsSelected"><span>radioButtonsSelected:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
-          data-doc-search-tag="uing: radioButtonsSelected(r: RadioButtons): int" href="uing.html#radioButtonsSelected%2CRadioButtons">uing: radioButtonsSelected(r: RadioButtons): int</a></li>
-          <li><a class="reference external"
           data-doc-search-tag="rawui: radioButtonsSelected(r: ptr RadioButtons): cint" href="uing/rawui.html#radioButtonsSelected%2Cptr.RadioButtons">rawui: radioButtonsSelected(r: ptr RadioButtons): cint</a></li>
           </ul></dd>
 <dt><a name="radioButtonsSetSelected" href="#radioButtonsSetSelected"><span>radioButtonsSetSelected:</span></a></dt><dd><ul class="simple">
@@ -2149,7 +2177,7 @@ window.addEventListener('DOMContentLoaded', main);
           </ul></dd>
 <dt><a name="range%3D" href="#range%3D"><span>range=:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
-          data-doc-search-tag="uing: range=(s: Slider; sliderRange: tuple[min, max: int])" href="uing.html#range%3D%2CSlider%2Ctuple%5Bint%2Cint%5D">uing: range=(s: Slider; sliderRange: tuple[min, max: int])</a></li>
+          data-doc-search-tag="uing: range=(s: Slider; sliderRange: Slice[SomeInteger])" href="uing.html#range%3D%2CSlider%2CSlice%5BSomeInteger%5D">uing: range=(s: Slider; sliderRange: Slice[SomeInteger])</a></li>
           </ul></dd>
 <dt><a name="readOnly" href="#readOnly"><span>readOnly:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
@@ -2170,6 +2198,8 @@ window.addEventListener('DOMContentLoaded', main);
 <dt><a name="remove" href="#remove"><span>remove:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
           data-doc-search-tag="uing: remove(otf: OpenTypeFeatures; a, b, c, d: char)" href="uing.html#remove%2COpenTypeFeatures%2Cchar%2Cchar%2Cchar%2Cchar">uing: remove(otf: OpenTypeFeatures; a, b, c, d: char)</a></li>
+          <li><a class="reference external"
+          data-doc-search-tag="uing: remove(otf: OpenTypeFeatures; abcd: string)" href="uing.html#remove%2COpenTypeFeatures%2Cstring">uing: remove(otf: OpenTypeFeatures; abcd: string)</a></li>
           </ul></dd>
 <dt><a name="resizeable" href="#resizeable"><span>resizeable:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
@@ -2185,15 +2215,15 @@ window.addEventListener('DOMContentLoaded', main);
           </ul></dd>
 <dt><a name="rowChanged" href="#rowChanged"><span>rowChanged:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
-          data-doc-search-tag="uing: rowChanged(m: ptr TableModel; index: int)" href="uing.html#rowChanged%2Cptr.TableModel%2Cint">uing: rowChanged(m: ptr TableModel; index: int)</a></li>
+          data-doc-search-tag="uing: rowChanged(m: TableModel; index: int)" href="uing.html#rowChanged%2CTableModel%2Cint">uing: rowChanged(m: TableModel; index: int)</a></li>
           </ul></dd>
 <dt><a name="rowDeleted" href="#rowDeleted"><span>rowDeleted:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
-          data-doc-search-tag="uing: rowDeleted(m: ptr TableModel; oldIndex: int)" href="uing.html#rowDeleted%2Cptr.TableModel%2Cint">uing: rowDeleted(m: ptr TableModel; oldIndex: int)</a></li>
+          data-doc-search-tag="uing: rowDeleted(m: TableModel; oldIndex: int)" href="uing.html#rowDeleted%2CTableModel%2Cint">uing: rowDeleted(m: TableModel; oldIndex: int)</a></li>
           </ul></dd>
 <dt><a name="rowInserted" href="#rowInserted"><span>rowInserted:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
-          data-doc-search-tag="uing: rowInserted(m: ptr TableModel; newIndex: int)" href="uing.html#rowInserted%2Cptr.TableModel%2Cint">uing: rowInserted(m: ptr TableModel; newIndex: int)</a></li>
+          data-doc-search-tag="uing: rowInserted(m: TableModel; newIndex: int)" href="uing.html#rowInserted%2CTableModel%2Cint">uing: rowInserted(m: TableModel; newIndex: int)</a></li>
           </ul></dd>
 <dt><a name="saveFile" href="#saveFile"><span>saveFile:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
@@ -2213,17 +2243,17 @@ window.addEventListener('DOMContentLoaded', main);
           </ul></dd>
 <dt><a name="selected%3D" href="#selected%3D"><span>selected=:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
-          data-doc-search-tag="uing: selected=(c: Combobox; n: int)" href="uing.html#selected%3D%2CCombobox%2Cint">uing: selected=(c: Combobox; n: int)</a></li>
+          data-doc-search-tag="uing: selected=(c: Combobox; index: int)" href="uing.html#selected%3D%2CCombobox%2Cint">uing: selected=(c: Combobox; index: int)</a></li>
           <li><a class="reference external"
           data-doc-search-tag="uing: selected=(r: RadioButtons; index: int)" href="uing.html#selected%3D%2CRadioButtons%2Cint">uing: selected=(r: RadioButtons; index: int)</a></li>
           </ul></dd>
 <dt><a name="selection" href="#selection"><span>selection:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
-          data-doc-search-tag="uing: selection(table: Table): tuple[numRows: int, row: int]" href="uing.html#selection%2CTable">uing: selection(table: Table): tuple[numRows: int, row: int]</a></li>
+          data-doc-search-tag="uing: selection(table: Table): tuple[numRows: int, rows: seq[int]]" href="uing.html#selection%2CTable">uing: selection(table: Table): tuple[numRows: int, rows: seq[int]]</a></li>
           </ul></dd>
 <dt><a name="selection%3D" href="#selection%3D"><span>selection=:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
-          data-doc-search-tag="uing: selection=(table: Table; selection: int)" href="uing.html#selection%3D%2CTable%2Cint">uing: selection=(table: Table; selection: int)</a></li>
+          data-doc-search-tag="uing: selection=(table: Table; sel: openArray[int])" href="uing.html#selection%3D%2CTable%2CopenArray%5Bint%5D">uing: selection=(table: Table; sel: openArray[int])</a></li>
           </ul></dd>
 <dt><a name="selectionMode" href="#selectionMode"><span>selectionMode:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
@@ -2259,17 +2289,9 @@ window.addEventListener('DOMContentLoaded', main);
 <li><a class="reference external"
           data-doc-search-tag="uing: setIdentity(m: DrawMatrix)" href="uing.html#setIdentity%2CDrawMatrix">uing: setIdentity(m: DrawMatrix)</a></li>
           </ul></dd>
-<dt><a name="setIndeterminate" href="#setIndeterminate"><span>setIndeterminate:</span></a></dt><dd><ul class="simple">
-<li><a class="reference external"
-          data-doc-search-tag="uing: setIndeterminate(p: ProgressBar)" href="uing.html#setIndeterminate%2CProgressBar">uing: setIndeterminate(p: ProgressBar)</a></li>
-          </ul></dd>
 <dt><a name="setMargined" href="#setMargined"><span>setMargined:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
           data-doc-search-tag="uing: setMargined(t: Tab; index: int; margined: bool)" href="uing.html#setMargined%2CTab%2Cint%2Cbool">uing: setMargined(t: Tab; index: int; margined: bool)</a></li>
-          </ul></dd>
-<dt><a name="setRange" href="#setRange"><span>setRange:</span></a></dt><dd><ul class="simple">
-<li><a class="reference external"
-          data-doc-search-tag="uing: setRange(s: Slider; min, max: int)" href="uing.html#setRange%2CSlider%2Cint%2Cint">uing: setRange(s: Slider; min, max: int)</a></li>
           </ul></dd>
 <dt><a name="setSortIndicator" href="#setSortIndicator"><span>setSortIndicator:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
@@ -2511,6 +2533,8 @@ window.addEventListener('DOMContentLoaded', main);
           </ul></dd>
 <dt><a name="TableModel" href="#TableModel"><span>TableModel:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
+          data-doc-search-tag="uing: TableModel" href="uing.html#TableModel">uing: TableModel</a></li>
+          <li><a class="reference external"
           data-doc-search-tag="rawui: TableModel" href="uing/rawui.html#TableModel">rawui: TableModel</a></li>
           </ul></dd>
 <dt><a name="TableModelColumnAlwaysEditable" href="#TableModelColumnAlwaysEditable"><span>TableModelColumnAlwaysEditable:</span></a></dt><dd><ul class="simple">
@@ -2585,28 +2609,22 @@ window.addEventListener('DOMContentLoaded', main);
           </ul></dd>
 <dt><a name="TableValue" href="#TableValue"><span>TableValue:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
+          data-doc-search-tag="uing: TableValue" href="uing.html#TableValue">uing: TableValue</a></li>
+          <li><a class="reference external"
           data-doc-search-tag="rawui: TableValue" href="uing/rawui.html#TableValue">rawui: TableValue</a></li>
           </ul></dd>
 <dt><a name="tableValueColor" href="#tableValueColor"><span>tableValueColor:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
-          data-doc-search-tag="uing: tableValueColor(v: ptr TableValue; r: ptr float; g: ptr float; b: ptr float;
-                a: ptr float)" href="uing.html#tableValueColor%2Cptr.TableValue%2Cptr.float%2Cptr.float%2Cptr.float%2Cptr.float">uing: tableValueColor(v: ptr TableValue; r: ptr float; g: ptr float; b: ptr float;
-                a: ptr float)</a></li>
-          <li><a class="reference external"
           data-doc-search-tag="rawui: tableValueColor(v: ptr TableValue; r: ptr cdouble; g: ptr cdouble;
                 b: ptr cdouble; a: ptr cdouble)" href="uing/rawui.html#tableValueColor%2Cptr.TableValue%2Cptr.cdouble%2Cptr.cdouble%2Cptr.cdouble%2Cptr.cdouble">rawui: tableValueColor(v: ptr TableValue; r: ptr cdouble; g: ptr cdouble;
                 b: ptr cdouble; a: ptr cdouble)</a></li>
           </ul></dd>
 <dt><a name="tableValueGetType" href="#tableValueGetType"><span>tableValueGetType:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
-          data-doc-search-tag="uing: tableValueGetType(v: ptr TableValue): TableValueType" href="uing.html#tableValueGetType%2Cptr.TableValue">uing: tableValueGetType(v: ptr TableValue): TableValueType</a></li>
-          <li><a class="reference external"
           data-doc-search-tag="rawui: tableValueGetType(v: ptr TableValue): TableValueType" href="uing/rawui.html#tableValueGetType%2Cptr.TableValue">rawui: tableValueGetType(v: ptr TableValue): TableValueType</a></li>
           </ul></dd>
 <dt><a name="tableValueImage" href="#tableValueImage"><span>tableValueImage:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
-          data-doc-search-tag="uing: tableValueImage(v: ptr TableValue): Image" href="uing.html#tableValueImage%2Cptr.TableValue">uing: tableValueImage(v: ptr TableValue): Image</a></li>
-          <li><a class="reference external"
           data-doc-search-tag="rawui: tableValueImage(v: ptr TableValue): ptr Image" href="uing/rawui.html#tableValueImage%2Cptr.TableValue">rawui: tableValueImage(v: ptr TableValue): ptr Image</a></li>
           </ul></dd>
 <dt><a name="TableValueInner" href="#TableValueInner"><span>TableValueInner:</span></a></dt><dd><ul class="simple">
@@ -2615,14 +2633,10 @@ window.addEventListener('DOMContentLoaded', main);
           </ul></dd>
 <dt><a name="tableValueInt" href="#tableValueInt"><span>tableValueInt:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
-          data-doc-search-tag="uing: tableValueInt(v: ptr TableValue): int" href="uing.html#tableValueInt%2Cptr.TableValue">uing: tableValueInt(v: ptr TableValue): int</a></li>
-          <li><a class="reference external"
           data-doc-search-tag="rawui: tableValueInt(v: ptr TableValue): cint" href="uing/rawui.html#tableValueInt%2Cptr.TableValue">rawui: tableValueInt(v: ptr TableValue): cint</a></li>
           </ul></dd>
 <dt><a name="tableValueString" href="#tableValueString"><span>tableValueString:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
-          data-doc-search-tag="uing: tableValueString(v: ptr TableValue): string" href="uing.html#tableValueString%2Cptr.TableValue">uing: tableValueString(v: ptr TableValue): string</a></li>
-          <li><a class="reference external"
           data-doc-search-tag="rawui: tableValueString(v: ptr TableValue): cstring" href="uing/rawui.html#tableValueString%2Cptr.TableValue">rawui: tableValueString(v: ptr TableValue): cstring</a></li>
           </ul></dd>
 <dt><a name="TableValueType" href="#TableValueType"><span>TableValueType:</span></a></dt><dd><ul class="simple">
@@ -2876,7 +2890,7 @@ window.addEventListener('DOMContentLoaded', main);
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small style="color: var(--hint);">Made with Nim. Generated: 2023-01-28 21:38:55 UTC</small>
+        <small style="color: var(--hint);">Made with Nim. Generated: 2023-01-29 17:46:51 UTC</small>
       </div>
     </div>
   </div>

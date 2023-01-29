@@ -20,7 +20,7 @@ queueRedrawAll	uing.html#queueRedrawAll,Area	uing: queueRedrawAll(a: Area)
 beginUserWindowMove	uing.html#beginUserWindowMove,Area	uing: beginUserWindowMove(a: Area)	
 beginUserWindowResize	uing.html#beginUserWindowResize,Area,WindowResizeEdge	uing: beginUserWindowResize(a: Area; edge: WindowResizeEdge)	
 newArea	uing.html#newArea,ptr.AreaHandler	uing: newArea(ah: ptr AreaHandler): Area	
-newScrollingArea	uing.html#newScrollingArea,ptr.AreaHandler,int,int	uing: newScrollingArea(ah: ptr AreaHandler; width: int; height: int): Area	
+newScrollingArea	uing.html#newScrollingArea,ptr.AreaHandler,int,int	uing: newScrollingArea(ah: ptr AreaHandler; width, height: int): Area	
 DrawPath	uing.html#DrawPath	uing: DrawPath	
 DrawMatrix	uing.html#DrawMatrix	uing: DrawMatrix	
 impl	uing.html#impl,DrawPath	uing: impl(b: DrawPath): RawDrawPath	
@@ -64,7 +64,7 @@ addUnattributed	uing.html#addUnattributed,AttributedString,string	uing: addUnatt
 insertAtUnattributed	uing.html#insertAtUnattributed,AttributedString,string,BiggestUInt	uing: insertAtUnattributed(s: AttributedString; str: string; at: BiggestUInt)	
 delete	uing.html#delete,AttributedString,BiggestUInt,BiggestUInt	uing: delete(s: AttributedString; start, end: BiggestUInt)	
 setAttribute	uing.html#setAttribute,AttributedString,Attribute,BiggestUInt,BiggestUInt	uing: setAttribute(s: AttributedString; a: Attribute; start, end: BiggestUInt)	
-forEachAttribute	uing.html#forEachAttribute,AttributedString,,pointer	uing: forEachAttribute(s: AttributedString;\n                 f: rawui.AttributedStringForEachAttributeFunc; data: pointer)	
+forEachAttribute	uing.html#forEachAttribute,AttributedString,AttributedStringForEachAttributeFunc,pointer	uing: forEachAttribute(str: AttributedString;\n                 fun: AttributedStringForEachAttributeFunc; data: pointer)	
 numGraphemes	uing.html#numGraphemes,AttributedString	uing: numGraphemes(s: AttributedString): BiggestUInt	
 byteIndexToGrapheme	uing.html#byteIndexToGrapheme,AttributedString,BiggestUInt	uing: byteIndexToGrapheme(s: AttributedString; pos: BiggestUInt): BiggestUInt	
 graphemeToByteIndex	uing.html#graphemeToByteIndex,AttributedString,BiggestUInt	uing: graphemeToByteIndex(s: AttributedString; pos: BiggestUInt): BiggestUInt	
@@ -80,9 +80,9 @@ newItalicAttribute	uing.html#newItalicAttribute,TextItalic	uing: newItalicAttrib
 italic	uing.html#italic,Attribute	uing: italic(a: Attribute): TextItalic	
 newStretchAttribute	uing.html#newStretchAttribute,TextStretch	uing: newStretchAttribute(stretch: TextStretch): Attribute	
 stretch	uing.html#stretch,Attribute	uing: stretch(a: Attribute): TextStretch	
-newColorAttribute	uing.html#newColorAttribute,cdouble,cdouble,cdouble,cdouble	uing: newColorAttribute(r: cdouble; g: cdouble; b: cdouble; a: cdouble): Attribute	
+newColorAttribute	uing.html#newColorAttribute,float,float,float,float	uing: newColorAttribute(r, g, b, a: float = 1.0): Attribute	
 color	uing.html#color,Attribute	uing: color(a: Attribute): tuple[r, g, b, alpha: float]	
-newBackgroundAttribute	uing.html#newBackgroundAttribute,float,float,float,float	uing: newBackgroundAttribute(r, g, b, a: float): Attribute	
+newBackgroundColorAttribute	uing.html#newBackgroundColorAttribute,float,float,float,float	uing: newBackgroundColorAttribute(r, g, b, a: float = 1.0): Attribute	
 newUnderlineAttribute	uing.html#newUnderlineAttribute,Underline	uing: newUnderlineAttribute(u: Underline): Attribute	
 underline	uing.html#underline,Attribute	uing: underline(a: Attribute): Underline	
 newUnderlineColorAttribute	uing.html#newUnderlineColorAttribute,UnderlineColor,float,float,float,float	uing: newUnderlineColorAttribute(u: UnderlineColor; r, g, b, a: float): Attribute	
@@ -94,9 +94,12 @@ newOpenTypeFeatures	uing.html#newOpenTypeFeatures	uing: newOpenTypeFeatures(): O
 free	uing.html#free,OpenTypeFeatures	uing: free(otf: OpenTypeFeatures)	
 clone	uing.html#clone,OpenTypeFeatures	uing: clone(otf: OpenTypeFeatures): OpenTypeFeatures	
 add	uing.html#add,OpenTypeFeatures,char,char,char,char,uint32	uing: add(otf: OpenTypeFeatures; a, b, c, d: char; value: uint32)	
+add	uing.html#add,OpenTypeFeatures,string,uint32	uing: add(otf: OpenTypeFeatures; abcd: string; value: uint32)	
 remove	uing.html#remove,OpenTypeFeatures,char,char,char,char	uing: remove(otf: OpenTypeFeatures; a, b, c, d: char)	
-get	uing.html#get,OpenTypeFeatures,char,char,char,char,uint32	uing: get(otf: OpenTypeFeatures; a, b, c, d: char; value: var uint32): bool	
-forEach	uing.html#forEach,OpenTypeFeatures,,pointer	uing: forEach(otf: OpenTypeFeatures; f: rawui.OpenTypeFeaturesForEachFunc;\n        data: pointer)	
+remove	uing.html#remove,OpenTypeFeatures,string	uing: remove(otf: OpenTypeFeatures; abcd: string)	
+get	uing.html#get,OpenTypeFeatures,char,char,char,char,uint32	uing: get(otf: OpenTypeFeatures; a, b, c, d: char; value: var uint32): int	
+get	uing.html#get,OpenTypeFeatures,string,uint32	uing: get(otf: OpenTypeFeatures; abcd: string; value: var uint32): bool	
+forEach	uing.html#forEach,OpenTypeFeatures,OpenTypeFeaturesForEachFunc,pointer	uing: forEach(otf: OpenTypeFeatures; f: OpenTypeFeaturesForEachFunc; data: pointer)	
 newFeaturesAttribute	uing.html#newFeaturesAttribute,OpenTypeFeatures	uing: newFeaturesAttribute(otf: OpenTypeFeatures): Attribute	
 features	uing.html#features,Attribute	uing: features(a: Attribute): OpenTypeFeatures	
 DrawTextLayout	uing.html#DrawTextLayout	uing: DrawTextLayout	
@@ -116,10 +119,9 @@ RadioButtons	uing.html#RadioButtons	uing: RadioButtons
 impl	uing.html#impl,RadioButtons	uing: impl(b: RadioButtons): RawRadioButtons	
 impl=	uing.html#impl=,RadioButtons,RawRadioButtons	uing: impl=(b: RadioButtons; r: RawRadioButtons)	
 add	uing.html#add,RadioButtons,varargs[string]	uing: add(r: RadioButtons; items: varargs[string])	
-radioButtonsSelected	uing.html#radioButtonsSelected,RadioButtons	uing: radioButtonsSelected(r: RadioButtons): int	
 selected	uing.html#selected,RadioButtons	uing: selected(r: RadioButtons): int	
 selected=	uing.html#selected=,RadioButtons,int	uing: selected=(r: RadioButtons; index: int)	
-newRadioButtons	uing.html#newRadioButtons,proc(RadioButtons)	uing: newRadioButtons(onSelected: proc (sender: RadioButtons) = nil): RadioButtons	
+newRadioButtons	uing.html#newRadioButtons,proc(RadioButtons)	uing: newRadioButtons(onselected: proc (sender: RadioButtons) = nil): RadioButtons	
 Window	uing.html#Window	uing: Window	
 impl	uing.html#impl,Window	uing: impl(b: Window): RawWindow	
 impl=	uing.html#impl=,Window,RawWindow	uing: impl=(b: Window; r: RawWindow)	
@@ -182,8 +184,8 @@ newLabel	uing.html#newLabel,string	uing: newLabel(text: string = &quot;&quot;): 
 Tab	uing.html#Tab	uing: Tab	
 impl	uing.html#impl,Tab	uing: impl(b: Tab): RawTab	
 impl=	uing.html#impl=,Tab,RawTab	uing: impl=(b: Tab; r: RawTab)	
-add	uing.html#add,Tab,string,Widget	uing: add(t: Tab; name: string; c: Widget)	
-insertAt	uing.html#insertAt,Tab,string,int,Widget	uing: insertAt(t: Tab; name: string; at: int; c: Widget)	
+add	uing.html#add,Tab,string,Widget	uing: add(t: Tab; name: string; w: Widget)	
+insertAt	uing.html#insertAt,Tab,string,int,Widget	uing: insertAt(t: Tab; name: string; index: int; w: Widget)	
 delete	uing.html#delete,Tab,int	uing: delete(t: Tab; index: int)	
 margined	uing.html#margined,Tab,int	uing: margined(t: Tab; index: int): bool	
 setMargined	uing.html#setMargined,Tab,int,bool	uing: setMargined(t: Tab; index: int; margined: bool)	
@@ -193,35 +195,31 @@ impl	uing.html#impl,Group	uing: impl(b: Group): RawGroup
 impl=	uing.html#impl=,Group,RawGroup	uing: impl=(b: Group; r: RawGroup)	
 title	uing.html#title,Group	uing: title(g: Group): string	
 title=	uing.html#title=,Group,string	uing: title=(g: Group; title: string)	
-child	uing.html#child,Group,Widget	uing: child(g: Group; c: Widget): Widget	
+child	uing.html#child,Group	uing: child(g: Group): Widget	
 child=	uing.html#child=,Group,Widget	uing: child=(g: Group; c: Widget)	
 margined	uing.html#margined,Group	uing: margined(g: Group): bool	
-margined=	uing.html#margined=,Group,bool	uing: margined=(g: Group; x: bool)	
-newGroup	uing.html#newGroup,string	uing: newGroup(title: string; margined = false): Group	
+margined=	uing.html#margined=,Group,bool	uing: margined=(g: Group; margined: bool)	
+newGroup	uing.html#newGroup,string,bool	uing: newGroup(title: string; margined: bool = false): Group	
 Spinbox	uing.html#Spinbox	uing: Spinbox	
 impl	uing.html#impl,Spinbox	uing: impl(b: Spinbox): RawSpinbox	
 impl=	uing.html#impl=,Spinbox,RawSpinbox	uing: impl=(b: Spinbox; r: RawSpinbox)	
 value	uing.html#value,Spinbox	uing: value(s: Spinbox): int	
 value=	uing.html#value=,Spinbox,int	uing: value=(s: Spinbox; value: int)	
-newSpinbox	uing.html#newSpinbox,int,int,proc(Spinbox)	uing: newSpinbox(min, max: int; onchanged: proc (sender: Spinbox) = nil): Spinbox	
+newSpinbox	uing.html#newSpinbox,Slice[SomeInteger],proc(Spinbox)	uing: newSpinbox(range: Slice[SomeInteger]; onchanged: proc (sender: Spinbox) = nil): Spinbox	
 Slider	uing.html#Slider	uing: Slider	
 impl	uing.html#impl,Slider	uing: impl(b: Slider): RawSlider	
 impl=	uing.html#impl=,Slider,RawSlider	uing: impl=(b: Slider; r: RawSlider)	
 value	uing.html#value,Slider	uing: value(s: Slider): int	
 value=	uing.html#value=,Slider,int	uing: value=(s: Slider; value: int)	
-range=	uing.html#range=,Slider,tuple[int,int]	uing: range=(s: Slider; sliderRange: tuple[min, max: int])	
-setRange	uing.html#setRange,Slider,int,int	uing: setRange(s: Slider; min, max: int)	
 hasToolTip	uing.html#hasToolTip,Slider	uing: hasToolTip(s: Slider): bool	
-hasToolTip=	uing.html#hasToolTip=,Slider,bool	uing: hasToolTip=(s: Slider; hasToolTip: bool): bool	
-newSlider	uing.html#newSlider,int,int,proc(Slider)	uing: newSlider(min, max: int; onchanged: proc (sender: Slider) = nil): Slider	
+hasToolTip=	uing.html#hasToolTip=,Slider,bool	uing: hasToolTip=(s: Slider; hasToolTip: bool)	
+range=	uing.html#range=,Slider,Slice[SomeInteger]	uing: range=(s: Slider; sliderRange: Slice[SomeInteger])	
+newSlider	uing.html#newSlider,Slice[SomeInteger],proc(Slider)	uing: newSlider(range: Slice[SomeInteger]; onchanged: proc (sender: Slider) = nil): Slider	
 ProgressBar	uing.html#ProgressBar	uing: ProgressBar	
 impl	uing.html#impl,ProgressBar	uing: impl(b: ProgressBar): RawProgressBar	
 impl=	uing.html#impl=,ProgressBar,RawProgressBar	uing: impl=(b: ProgressBar; r: RawProgressBar)	
 value	uing.html#value,ProgressBar	uing: value(p: ProgressBar): int	
 value=	uing.html#value=,ProgressBar,int	uing: value=(p: ProgressBar; n: int)	
-indeterminate	uing.html#indeterminate,ProgressBar	uing: indeterminate(p: ProgressBar): bool	
-indeterminate=	uing.html#indeterminate=,ProgressBar,bool	uing: indeterminate=(p: ProgressBar; indeterminate: bool)	
-setIndeterminate	uing.html#setIndeterminate,ProgressBar	uing: setIndeterminate(p: ProgressBar)	
 newProgressBar	uing.html#newProgressBar	uing: newProgressBar(): ProgressBar	
 Separator	uing.html#Separator	uing: Separator	
 impl	uing.html#impl,Separator	uing: impl(b: Separator): RawSeparator	
@@ -235,10 +233,9 @@ add	uing.html#add,Combobox,varargs[string]	uing: add(c: Combobox; items: varargs
 insertAt	uing.html#insertAt,Combobox,int,string	uing: insertAt(c: Combobox; index: int; text: string)	
 clear	uing.html#clear,Combobox	uing: clear(c: Combobox)	
 delete	uing.html#delete,Combobox,int	uing: delete(c: Combobox; index: int)	
-numItems	uing.html#numItems,Combobox	uing: numItems(c: Combobox): int	
 selected	uing.html#selected,Combobox	uing: selected(c: Combobox): int	
-selected=	uing.html#selected=,Combobox,int	uing: selected=(c: Combobox; n: int)	
-newCombobox	uing.html#newCombobox,proc(Combobox)	uing: newCombobox(onselected: proc (sender: Combobox) = nil): Combobox	
+selected=	uing.html#selected=,Combobox,int	uing: selected=(c: Combobox; index: int)	
+newCombobox	uing.html#newCombobox,openArray[string],proc(Combobox)	uing: newCombobox(items: openArray[string] = [];\n            onselected: proc (sender: Combobox) = nil): Combobox	
 EditableCombobox	uing.html#EditableCombobox	uing: EditableCombobox	
 impl	uing.html#impl,EditableCombobox	uing: impl(b: EditableCombobox): RawEditableCombobox	
 impl=	uing.html#impl=,EditableCombobox,RawEditableCombobox	uing: impl=(b: EditableCombobox; r: RawEditableCombobox)	
@@ -262,7 +259,7 @@ impl=	uing.html#impl=,MenuItem,RawMenuItem	uing: impl=(b: MenuItem; r: RawMenuIt
 enable	uing.html#enable,MenuItem	uing: enable(m: MenuItem)	
 disable	uing.html#disable,MenuItem	uing: disable(m: MenuItem)	
 checked	uing.html#checked,MenuItem	uing: checked(m: MenuItem): bool	
-checked=	uing.html#checked=,MenuItem,bool	uing: checked=(m: MenuItem; x: bool)	
+checked=	uing.html#checked=,MenuItem,bool	uing: checked=(m: MenuItem; checked: bool)	
 Menu	uing.html#Menu	uing: Menu	
 impl	uing.html#impl,Menu	uing: impl(b: Menu): RawMenu	
 impl=	uing.html#impl=,Menu,RawMenu	uing: impl=(b: Menu; r: RawMenu)	
@@ -277,8 +274,8 @@ FontButton	uing.html#FontButton	uing: FontButton
 impl	uing.html#impl,FontButton	uing: impl(b: FontButton): RawFontButton	
 impl=	uing.html#impl=,FontButton,RawFontButton	uing: impl=(b: FontButton; r: RawFontButton)	
 font	uing.html#font,FontButton	uing: font(f: FontButton): FontDescriptor	
-freeFont	uing.html#freeFont,FontDescriptor	uing: freeFont(f: FontDescriptor)	
-newFontButton	uing.html#newFontButton,proc(FontButton)	uing: newFontButton(onChanged: proc (sender: FontButton) = nil): FontButton	
+freeFont	uing.html#freeFont,FontDescriptor	uing: freeFont(desc: FontDescriptor)	
+newFontButton	uing.html#newFontButton,proc(FontButton)	uing: newFontButton(onchanged: proc (sender: FontButton) = nil): FontButton	
 ColorButton	uing.html#ColorButton	uing: ColorButton	
 impl	uing.html#impl,ColorButton	uing: impl(b: ColorButton): RawColorButton	
 impl=	uing.html#impl=,ColorButton,RawColorButton	uing: impl=(b: ColorButton; r: RawColorButton)	
@@ -309,40 +306,47 @@ add	uing.html#add,Image,pointer,int,int,int	uing: add(i: Image; pixels: pointer;
 free	uing.html#free,Image	uing: free(i: Image)	
 newImage	uing.html#newImage,float,float	uing: newImage(width, height: float): Image	
 Table	uing.html#Table	uing: Table	
+TableValue	uing.html#TableValue	uing: TableValue	
+TableModel	uing.html#TableModel	uing: TableModel	
 impl	uing.html#impl,Table	uing: impl(b: Table): RawTable	
 impl=	uing.html#impl=,Table,RawTable	uing: impl=(b: Table; r: RawTable)	
-free	uing.html#free,ptr.TableValue	uing: free(t: ptr TableValue)	
-free	uing.html#free,ptr.TableModel	uing: free(t: ptr TableModel)	
-free	uing.html#free,ptr.	uing: free(t: ptr rawui.TableSelection)	
-tableValueGetType	uing.html#tableValueGetType,ptr.TableValue	uing: tableValueGetType(v: ptr TableValue): TableValueType	
-newTableValueString	uing.html#newTableValueString,string	uing: newTableValueString(s: string): ptr TableValue	
-tableValueString	uing.html#tableValueString,ptr.TableValue	uing: tableValueString(v: ptr TableValue): string	
-newTableValueImage	uing.html#newTableValueImage,Image	uing: newTableValueImage(img: Image): ptr TableValue	
-tableValueImage	uing.html#tableValueImage,ptr.TableValue	uing: tableValueImage(v: ptr TableValue): Image	
-newTableValueInt	uing.html#newTableValueInt,int	uing: newTableValueInt(i: int): ptr TableValue	
-tableValueInt	uing.html#tableValueInt,ptr.TableValue	uing: tableValueInt(v: ptr TableValue): int	
-newTableValueColor	uing.html#newTableValueColor,float,float,float,float	uing: newTableValueColor(r: float; g: float; b: float; a: float): ptr TableValue	
-tableValueColor	uing.html#tableValueColor,ptr.TableValue,ptr.float,ptr.float,ptr.float,ptr.float	uing: tableValueColor(v: ptr TableValue; r: ptr float; g: ptr float; b: ptr float;\n                a: ptr float)	
-rowInserted	uing.html#rowInserted,ptr.TableModel,int	uing: rowInserted(m: ptr TableModel; newIndex: int)	
-rowChanged	uing.html#rowChanged,ptr.TableModel,int	uing: rowChanged(m: ptr TableModel; index: int)	
-rowDeleted	uing.html#rowDeleted,ptr.TableModel,int	uing: rowDeleted(m: ptr TableModel; oldIndex: int)	
-appendTextColumn	uing.html#appendTextColumn,Table,string,int,int,ptr.TableTextColumnOptionalParams	uing: appendTextColumn(table: Table; title: string; index, editableMode: int;\n                 textParams: ptr TableTextColumnOptionalParams)	
-appendImageColumn	uing.html#appendImageColumn,Table,string,int	uing: appendImageColumn(table: Table; title: string; index: int)	
-appendImageTextColumn	uing.html#appendImageTextColumn,Table,string,int,int,int,ptr.TableTextColumnOptionalParams	uing: appendImageTextColumn(table: Table; title: string;\n                      imageIndex, textIndex, editableMode: int;\n                      textParams: ptr TableTextColumnOptionalParams)	
-appendCheckboxColumn	uing.html#appendCheckboxColumn,Table,string,int,int	uing: appendCheckboxColumn(table: Table; title: string; index, editableMode: int)	
-appendProgressBarColumn	uing.html#appendProgressBarColumn,Table,string,int	uing: appendProgressBarColumn(table: Table; title: string; index: int)	
-appendButtonColumn	uing.html#appendButtonColumn,Table,string,int,int	uing: appendButtonColumn(table: Table; title: string; index, clickableMode: int)	
+impl	uing.html#impl,TableValue	uing: impl(b: TableValue): RawTableValue	
+impl=	uing.html#impl=,TableValue,RawTableValue	uing: impl=(b: TableValue; r: RawTableValue)	
+impl	uing.html#impl,TableModel	uing: impl(b: TableModel): RawTableModel	
+impl=	uing.html#impl=,TableModel,RawTableModel	uing: impl=(b: TableModel; r: RawTableModel)	
+free	uing.html#free,TableValue	uing: free(t: TableValue)	
+free	uing.html#free,TableModel	uing: free(t: TableModel)	
+free	uing.html#free,ptr.TableSelection	uing: free(t: ptr TableSelection)	
+`type`	uing.html#type,TableValue	uing: `type`(v: TableValue): TableValueType	
+newTableValue	uing.html#newTableValue,string	uing: newTableValue(str: string): TableValue	
+`$`	uing.html#$,TableValue	uing: `$`(v: TableValue): string	
+newTableValue	uing.html#newTableValue,Image	uing: newTableValue(img: Image): TableValue	
+image	uing.html#image,TableValue	uing: image(v: TableValue): Image	
+newTableValue	uing.html#newTableValue,int	uing: newTableValue(i: int): TableValue	
+getInt	uing.html#getInt,TableValue	uing: getInt(v: TableValue): int	
+newTableValue	uing.html#newTableValue,float,float,float,float	uing: newTableValue(r, g, b, a: float = 1.0): TableValue	
+color	uing.html#color,TableValue	uing: color(v: TableValue): tuple[r, g, b, a: float]	
+newTableModel	uing.html#newTableModel,ptr.TableModelHandler_2	uing: newTableModel(mh: ptr TableModelHandler): TableModel	
+rowInserted	uing.html#rowInserted,TableModel,int	uing: rowInserted(m: TableModel; newIndex: int)	
+rowChanged	uing.html#rowChanged,TableModel,int	uing: rowChanged(m: TableModel; index: int)	
+rowDeleted	uing.html#rowDeleted,TableModel,int	uing: rowDeleted(m: TableModel; oldIndex: int)	
+addTextColumn	uing.html#addTextColumn,Table,string,,,ptr.TableTextColumnOptionalParams	uing: addTextColumn(t: Table; name: string;\n              textModelColumn, textEditableModelColumn: int | bool;\n              textParams: ptr TableTextColumnOptionalParams)	
+addImageColumn	uing.html#addImageColumn,Table,string,int	uing: addImageColumn(table: Table; title: string; index: int)	
+addCheckboxTextColumn	uing.html#addCheckboxTextColumn,Table,string,int,int,int,int,ptr.TableTextColumnOptionalParams	uing: addCheckboxTextColumn(t: Table; name: string; checkboxModelColumn,\n    checkboxEditableModelColumn, textModelColumn, textEditableModelColumn: int;\n                      textParams: ptr TableTextColumnOptionalParams)	
+addImageTextColumn	uing.html#addImageTextColumn,Table,string,int,int,int,ptr.TableTextColumnOptionalParams	uing: addImageTextColumn(t: Table; name: string;\n                   imageIndex, textIndex, editableMode: int;\n                   textParams: ptr TableTextColumnOptionalParams)	
+addCheckboxColumn	uing.html#addCheckboxColumn,Table,string,int,int	uing: addCheckboxColumn(table: Table; title: string; index, editableMode: int)	
+addProgressBarColumn	uing.html#addProgressBarColumn,Table,string,int	uing: addProgressBarColumn(table: Table; title: string; index: int)	
+addButtonColumn	uing.html#addButtonColumn,Table,string,int,int	uing: addButtonColumn(table: Table; title: string; index, clickableMode: int)	
 headerVisible	uing.html#headerVisible,Table	uing: headerVisible(t: Table): bool	
 headerVisible=	uing.html#headerVisible=,Table,bool	uing: headerVisible=(t: Table; visible: bool)	
-headerSetVisible	uing.html#headerSetVisible,Table,bool	uing: headerSetVisible(t: Table; visible: bool)	
 selectionMode	uing.html#selectionMode,Table	uing: selectionMode(table: Table): TableSelectionMode	
 selectionMode=	uing.html#selectionMode=,Table,TableSelectionMode	uing: selectionMode=(table: Table; mode: TableSelectionMode)	
 columnWidth	uing.html#columnWidth,Table,int	uing: columnWidth(table: Table; column: int): int	
 setColumnWidth	uing.html#setColumnWidth,Table,int,int	uing: setColumnWidth(table: Table; column, width: int)	
 sortIndicator	uing.html#sortIndicator,Table,int	uing: sortIndicator(table: Table; column: int): SortIndicator	
 setSortIndicator	uing.html#setSortIndicator,Table,int,SortIndicator	uing: setSortIndicator(table: Table; column: int; indicator: SortIndicator)	
-selection	uing.html#selection,Table	uing: selection(table: Table): tuple[numRows: int, row: int]	
-selection=	uing.html#selection=,Table,int	uing: selection=(table: Table; selection: int)	
+selection	uing.html#selection,Table	uing: selection(table: Table): tuple[numRows: int, rows: seq[int]]	
+selection=	uing.html#selection=,Table,openArray[int]	uing: selection=(table: Table; sel: openArray[int])	
 newTable	uing.html#newTable,ptr.TableParams	uing: newTable(params: ptr TableParams): Table	
 show	uing.html#show,W	uing: show[W: Widget](w: W)	
 hide	uing.html#hide,W	uing: hide[W: Widget](w: W)	
@@ -350,7 +354,7 @@ enabled	uing.html#enabled,W	uing: enabled[W: Widget](w: W): bool
 enable	uing.html#enable,W	uing: enable[W: Widget](w: W)	
 disable	uing.html#disable,W	uing: disable[W: Widget](w: W)	
 destroy	uing.html#destroy,W	uing: destroy[W: Widget](w: W)	
-parent=	uing.html#parent=,W	uing: parent=[W: Widget](w: W): W	
+parent=	uing.html#parent=,W,W	uing: parent=[W: Widget](w: W; parent: W)	
 topLevel	uing.html#topLevel,W	uing: topLevel[W: Widget](w: W): bool	
 visible	uing.html#visible,W	uing: visible[W: Widget](w: W): bool	
 verifySetParent	uing.html#verifySetParent,W,W	uing: verifySetParent[W: Widget](w, parent: W): bool	
