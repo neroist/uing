@@ -1,5 +1,5 @@
 # UIng
-A fork of [ui](https://github.com/nim-lang/ui) that wraps [libui-ng](https://github.com/libui-ng/libui-ng) instead of the old and unmaintained [`libui`](https://github.com/andlabs/libui)
+A fork of [ui](https://github.com/nim-lang/ui) that wraps [libui-ng](https://github.com/libui-ng/libui-ng) instead of the old and unmaintained [libui](https://github.com/andlabs/libui) library.
 
 
 This package wraps the [libui-ng](https://github.com/libui-ng/libui-ng) C library. It
@@ -8,13 +8,13 @@ also provides a high-level Nim binding for it.
 To get started, install using Nimble:
 
 ```bash
-nimble install uing
+nimble install https://github.com/neroist/uing
 ```
 
 or add it to your project's Nimble file:
 
 ```nim
-requires "uing"
+requires "https://github.com/neroist/uing"
 ```
 
 ### Dependencies

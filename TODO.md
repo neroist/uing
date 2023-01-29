@@ -1,7 +1,7 @@
 # TODOs
 
 - [ ] Finish and improve documentation
-- [ ] Fix [`drawtext.nim`](examples/textdrawing.nim)
+- [ ] Fix [`drawtext.nim`](examples/drawtext.nim)
 - [ ] Provide an example for `timer()` and multithreading
 - [ ] Add `window` parameter `MenuItem`'s `onClicked`
 - [ ] Wrap `Image.add` *properly*
