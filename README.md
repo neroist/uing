@@ -36,5 +36,7 @@ into your application.
 
 Static compilation is the default behaviour, but if you would prefer to depend
 on a DLL instead, pass the `-d:useLibUiDll` to the Nim compiler. You will
-then need to bundle your application with a libui.dll, libui.dylib, or libui.so
+then need to bundle your application with a `libui.dll, `libui.dylib`, or `libui.so`
 for Windows, macOS, and Linux respectively.
+
+Build instructions and requirements can be found in [libui-ng's README](https://github.com/libui-ng/libui-ng#readme)
