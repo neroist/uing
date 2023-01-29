@@ -2817,7 +2817,7 @@ proc setSortIndicator*(table: Table, column: int, indicator: SortIndicator) =
 
   tableHeaderSetSortIndicator(table.impl, cint column, indicator)
 
-proc selection*(table: Table): tuple[numRows: int, rows: seq[int]] =
+proc selection*(table: Table): seq[int] =
   ## Returns the current table selection.
   ## 
   ## .. note:: For empty selections the `rows` pointer will be `@[]`.
@@ -2825,16 +2825,13 @@ proc selection*(table: Table): tuple[numRows: int, rows: seq[int]] =
   ## `t`: Table instance.
 
   let tSelection = tableGetSelection(table.impl)
-  var rows: seq[int]
 
   if tSelection.rows != nil:
     for row in tSelection.rows.toOpenArray(0, tSelection.numRows - 1):
-      rows.add int row
+      result.add int row
 
-  result.numRows = tSelection.numRows
-  result.rows = rows
-
-proc `selection=`*(table: Table; sel: openArray[int]) =
+# TODO let `selection=` accept normal integers and not cint
+proc `selection=`*(table: Table; sel: openArray[cint]) =
   ## Sets the current table selection, clearing any previous selection.
   ## 
   ## .. note:: Selecting more rows than the selection mode allows for 

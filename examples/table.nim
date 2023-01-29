@@ -1,4 +1,4 @@
-import std/[random, sugar]
+import std/[random]
 
 import uing
 from uing/rawui import nil
@@ -59,7 +59,7 @@ proc modelSetCellValue(mh: ptr TableModelHandler, m: ptr rawui.TableModel, row, 
 var
   mh: TableModelHandler
   p: TableParams
-  tp: TableTextColumnOptionalParams
+  tp {.used.}: TableTextColumnOptionalParams 
 
 proc main*() =
   var mainwin: Window
@@ -92,10 +92,6 @@ proc main*() =
   table.addProgressBarColumn("Progress", COLUMN_PROCESS)
   table.addCheckboxColumn("Passed", COLUMN_PASSED, TableModelColumnAlwaysEditable)
   table.addButtonColumn("Action", COLUMN_ACTION, TableModelColumnAlwaysEditable)
-
-  table.selectionMode = TableSelectionModeZeroOrMany
-
-  table.selection = [2, 3]
 
   box.add(table, true)
   show(mainwin)

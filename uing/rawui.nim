@@ -1617,7 +1617,7 @@ type
     ## 
     ## Table selection that enforce how a user can interact with a table.
     ## 
-    ## .. warning:: An empty table selection is a valid state for any selection mode.
+    ## .. note:: An empty table selection is a valid state for any selection mode.
     ##          This is in fact the default upon table creation and can otherwise
     ##          triggered through operations such as row deletion.
 
