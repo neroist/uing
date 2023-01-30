@@ -76,10 +76,10 @@ template genImplProcs(t: untyped) {.dirty.}=
   type `Raw t` = ptr[rawui.t]
 
   func impl*(b: t): `Raw t` = cast[`Raw t`](b.internalImpl)
-    ## Gets internal implementation of b`
+    ## Gets internal implementation of `b`
     
   func `impl=`*(b: t, r: `Raw t`) = b.internalImpl = pointer(r)
-    ## Set internal implementation of b`
+    ## Set internal implementation of `b`
 
 
 # -------------------- Non-Widgets --------------------------------------
