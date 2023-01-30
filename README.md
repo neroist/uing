@@ -42,4 +42,4 @@ Build instructions and requirements can be found in [libui-ng's README](https://
 
 It is reccomended to use dynamic linking, as with static linking, compile times are much longer 
 
-A `libui.dll` can be found in the [release's page](https://github.com/neroist/uing/releases/latest)
+A `libui.dll` and `libui.so` can be found in the [release's page](https://github.com/neroist/uing/releases/latest)
