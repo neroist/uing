@@ -41,3 +41,5 @@ for Windows, macOS, and Linux respectively.
 Build instructions and requirements can be found in [libui-ng's README](https://github.com/libui-ng/libui-ng#readme)
 
 A `libui.dll` and `libui.so` can be found in the [release's page](https://github.com/neroist/uing/releases/latest)
+
+###### Made with ❤️ with Nim
