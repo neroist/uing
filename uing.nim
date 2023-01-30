@@ -1225,7 +1225,14 @@ proc `text=`*(e: Entry; text: string) =
   ## | `e`: Entry instance.
   ## | `text`: Entry text
   
-  entrySetText(e.impl, text)
+  entrySetText(e.impl, cstring text)
+
+proc clear*(e: Entry) = 
+  ## Clears the entry's text
+  ## 
+  ## `e`: Entry instance.
+
+  entrySetText(e.impl, cstring "")
 
 proc readOnly*(e: Entry): bool = 
   ## Returns whether or not the entry's text can be changed.
@@ -1776,7 +1783,7 @@ proc text*(c: EditableCombobox): string =
   $editableComboboxText(c.impl)
 
 proc `text=`*(c: EditableCombobox; text: string) =
-  ## Returns the text of the editable combo box.
+  ## Sets the text of the editable combo box.
   ## 
   ## This text is either the text of one of the predefined list items or the
   ## text manually entered by the user.
@@ -1784,7 +1791,14 @@ proc `text=`*(c: EditableCombobox; text: string) =
   ## | `c`: Combobox instance.
   ## | `text`: Text field text.
 
-  editableComboboxSetText(c.impl, text)
+  editableComboboxSetText(c.impl, cstring text)
+
+proc clear*(e: EditableCombobox) = 
+  ## Clears the editable combobox's text
+  ## 
+  ## `e`: Combobox instance.
+
+  editableComboboxSetText(e.impl, cstring "")
 
 genCallback wrapecbOnchanged, EditableCombobox, onchanged
 
@@ -1823,6 +1837,13 @@ proc `text=`*(e: MultilineEntry; text: string) =
   
   multilineEntrySetText(e.impl, text)
 
+proc clear*(e: MultilineEntry) = 
+  ## Clears the multi line entry's text
+  ## 
+  ## `e`: MultilineEntry instance.
+
+  multilineEntrySetText(e.impl, cstring "")
+
 proc add*(e: MultilineEntry; text: string) = 
   ## Appends text to the multi line entry's text.
   ## 
@@ -1831,14 +1852,14 @@ proc add*(e: MultilineEntry; text: string) =
 
   multilineEntryAppend(e.impl, text)
 
-proc readonly*(e: MultilineEntry): bool = 
+proc readOnly*(e: MultilineEntry): bool = 
   ## Returns whether or not the multi line entry's text can be changed.
   ## 
   ## | `e`: MultilineEntry instance
 
   multilineEntryReadOnly(e.impl) != 0
 
-proc `readonly=`*(e: MultilineEntry; x: bool) = 
+proc `readOnly=`*(e: MultilineEntry; x: bool) = 
   ## Sets whether or not the multi line entry's text is read only.
   ## 
   ## | `e`: MultilineEntry instance
