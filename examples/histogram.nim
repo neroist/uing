@@ -240,7 +240,7 @@ proc main*() {.cdecl.} =
     freeInitError(err)
     return
   onShouldQuit(shouldQuit, nil)
-  mainwin = newWindow("libui Histogram Example", 640, 480, 1)
+  mainwin = newWindow("libui-ng Histogram Example", 640, 480, 1)
   windowSetMargined(mainwin, 1)
   windowOnClosing(mainwin, onClosing, nil)
   hbox = newHorizontalBox()

@@ -65,11 +65,13 @@ proc main*() =
   var mainwin: Window
 
   var menu = newMenu("File")
-  menu.addQuitItem(proc(): bool {.closure.} =
-    mainwin.destroy()
-    return true)
+  menu.addQuitItem(
+    proc(): bool {.closure.} =
+      mainwin.destroy()
+      return true
+  )
 
-  mainwin = newWindow("uiTable", 640, 480, true)
+  mainwin = newWindow("Table", 640, 480, true)
   mainwin.margined = true
 
   let box = newVerticalBox(true)

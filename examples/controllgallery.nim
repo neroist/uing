@@ -100,7 +100,7 @@ proc main*() =
   item = menuAppendItem(menu, "Help")
   item = menuAppendAboutItem(menu)
 
-  mainwin = newWindow("libui Control Gallery", 640, 480, 1)
+  mainwin = newWindow("libui-ng Control Gallery", 640, 480, 1)
   windowSetMargined(mainwin, 1)
   windowOnClosing(mainwin, onClosing, nil)
 
