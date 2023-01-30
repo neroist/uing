@@ -353,6 +353,11 @@ window.addEventListener('DOMContentLoaded', main);
     title="addUnattributed(s: AttributedString; str: string)">addUnattributed(s: AttributedString; str: string)</a></li>
 
   </ul>
+  <ul class="simple nested-toc-section">addWithAttributes
+      <li><a class="reference" href="#addWithAttributes%2CAttributedString%2Cstring%2Cvarargs%5BAttribute%5D"
+    title="addWithAttributes(s: AttributedString; str: string; attrs: varargs[Attribute])">addWithAttributes(s: AttributedString; str: string; attrs: varargs[Attribute])</a></li>
+
+  </ul>
   <ul class="simple nested-toc-section">arcTo
       <li><a class="reference" href="#arcTo%2CDrawPath%2Cfloat%2Cfloat%2Cfloat%2Cfloat%2Cfloat%2Cint"
     title="arcTo(p: DrawPath; xCenter, yCenter, radius, startAngle, sweep: float;
@@ -2304,6 +2309,15 @@ Appends a text column to the table.<p><tt class="docutils literal"><span class="
 <dd>
 
 Adds string <tt class="docutils literal"><span class="pre"><span class="Identifier">str</span></span></tt> to the end of <tt class="docutils literal"><span class="pre"><span class="Identifier">s</span></span></tt>. The new substring will be unattributed.
+
+</dd>
+</div>
+<div id="addWithAttributes,AttributedString,string,varargs[Attribute]">
+<dt><pre><span class="Keyword">proc</span> <a href="#addWithAttributes%2CAttributedString%2Cstring%2Cvarargs%5BAttribute%5D"><span class="Identifier">addWithAttributes</span></a><span class="Other">(</span><span class="Identifier">s</span><span class="Other">:</span> <a href="uing.html#AttributedString"><span class="Identifier">AttributedString</span></a><span class="Other">;</span> <span class="Identifier">str</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span>
+                       <span class="Identifier">attrs</span><span class="Other">:</span> <span class="Identifier">varargs</span><span class="Other">[</span><a href="uing.html#Attribute"><span class="Identifier">Attribute</span></a><span class="Other">]</span><span class="Other">)</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
+<dd>
+
+Adds string <tt class="docutils literal"><span class="pre"><span class="Identifier">str</span></span></tt> to the end of <tt class="docutils literal"><span class="pre"><span class="Identifier">s</span></span></tt>. The new substring will have the attributes <tt class="docutils literal"><span class="pre"><span class="Identifier">attrs</span></span></tt> applied to it.
 
 </dd>
 </div>
@@ -5086,7 +5100,7 @@ It is an error to call this on a Attribute that does not hold a font weight.</di
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small style="color: var(--hint);">Made with Nim. Generated: 2023-01-30 22:03:41 UTC</small>
+        <small style="color: var(--hint);">Made with Nim. Generated: 2023-01-30 23:37:32 UTC</small>
       </div>
     </div>
   </div>

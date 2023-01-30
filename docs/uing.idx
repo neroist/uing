@@ -59,6 +59,7 @@ addUnattributed	uing.html#addUnattributed,AttributedString,string	uing: addUnatt
 insertAtUnattributed	uing.html#insertAtUnattributed,AttributedString,string,int	uing: insertAtUnattributed(s: AttributedString; str: string; at: int)	
 delete	uing.html#delete,AttributedString,int,int	uing: delete(s: AttributedString; start, end: int)	
 setAttribute	uing.html#setAttribute,AttributedString,Attribute,int,int	uing: setAttribute(s: AttributedString; a: Attribute; start, end: int)	
+addWithAttributes	uing.html#addWithAttributes,AttributedString,string,varargs[Attribute]	uing: addWithAttributes(s: AttributedString; str: string; attrs: varargs[Attribute])	
 forEachAttribute	uing.html#forEachAttribute,AttributedString,AttributedStringForEachAttributeFunc,pointer	uing: forEachAttribute(str: AttributedString;\n                 fun: AttributedStringForEachAttributeFunc; data: pointer)	
 numGraphemes	uing.html#numGraphemes,AttributedString	uing: numGraphemes(s: AttributedString): int	
 byteIndexToGrapheme	uing.html#byteIndexToGrapheme,AttributedString,int	uing: byteIndexToGrapheme(s: AttributedString; pos: int): int	
