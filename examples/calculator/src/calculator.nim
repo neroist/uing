@@ -1,0 +1,93 @@
+import std/strformat
+
+import nimkalc
+import uing
+
+var 
+  window: Window
+  input: Entry
+  output: Entry
+  history: MultilineEntry
+
+proc eval(_: Button) = 
+  if input.text.len == 0: return
+
+  try: 
+    let 
+      lexer = initLexer()
+      parser = initParser()
+      visitor = initNodeVisitor()
+
+      tokens = lexer.lex(input.text)
+      parsed = parser.parse(tokens)
+      result = visitor.eval(parsed)
+
+      resultVal = if result.kind == NodeKind.Integer: $int(result.value)
+                  else: $result.value
+
+    output.text = resultVal
+    history.add fmt"{input.text} = {resultVal}" & '\n'
+
+  except ParseError:
+    window.error "A Parsing Error Occurred", getCurrentExceptionMsg()
+  except MathError:
+    window.error "An Arithmetic Error Occurred", getCurrentExceptionMsg()
+  except OverflowDefect:
+    window.error "Value Overflow/Underflow Detected", getCurrentExceptionMsg()
+  except:
+    window.error "An Error Occurred", getCurrentExceptionMsg()
+
+proc main = 
+  let fileMenu = newMenu("File")
+  fileMenu.addItem(
+    "Clear All",
+    proc (_: MenuItem) =
+      input.clear()
+      output.clear()
+      history.clear()
+  )
+  fileMenu.addItem(
+    "Clear History",
+    proc (_: MenuItem) = history.clear()
+  )
+  fileMenu.addQuitItem(
+    proc (): bool =
+      window.destroy()
+      return true
+  )
+
+  window = newWindow("Calculator", 800, 600, true)
+  window.margined = true
+
+  let vbox = newVerticalBox(true)
+  window.child = vbox
+
+  let form = newForm(true)
+  vbox.add form
+
+  let hbox = newHorizontalBox(true)
+  input = newEntry()
+  hbox.add input, true
+  hbox.add newButton("Eval", eval)
+  hbox.add newButton("Clear", proc(_: Button) = input.clear(); output.clear())
+
+  form.add "Input:", hbox, true
+
+
+  output = newEntry()
+  output.readOnly = true
+  form.add "Output:", output, true
+
+  let historyGroup = newGroup("History")
+  history = newNonWrappingMultilineEntry()
+  history.readOnly = true
+  historyGroup.child = history
+
+  vbox.add historyGroup, true
+
+  show window
+  mainLoop()
+
+when isMainModule:
+  init()
+  main()
