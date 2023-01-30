@@ -86,7 +86,8 @@ template genImplProcs(t: untyped) {.dirty.}=
 
 # -------- funcs --------
 
-proc timer*(milliseconds: int; f: proc (data: pointer): cint {.cdecl.}; data: pointer) = 
+# TODO remove need for cint and cdecl
+proc timer*(milliseconds: int; f: proc (data: pointer): cint {.cdecl.}; data: pointer = nil) = 
   rawui.timer(cint milliseconds, f, data)
 
 proc free*(str: string) = rawui.freeText(str) 
