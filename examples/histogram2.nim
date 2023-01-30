@@ -205,7 +205,7 @@ proc main =
   window.child = hbox
 
   var vbox = newVerticalBox(true)
-  hbox.add vbox, true
+  hbox.add vbox
 
   for i in 0..<10:
     datapoints[i] = newSpinbox(0..99)
