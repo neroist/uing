@@ -421,6 +421,12 @@ window.addEventListener('DOMContentLoaded', main);
   <ul class="simple nested-toc-section">clear
       <li><a class="reference" href="#clear%2CCombobox"
     title="clear(c: Combobox)">clear(c: Combobox)</a></li>
+  <li><a class="reference" href="#clear%2CEditableCombobox"
+    title="clear(e: EditableCombobox)">clear(e: EditableCombobox)</a></li>
+  <li><a class="reference" href="#clear%2CEntry"
+    title="clear(e: Entry)">clear(e: Entry)</a></li>
+  <li><a class="reference" href="#clear%2CMultilineEntry"
+    title="clear(e: MultilineEntry)">clear(e: MultilineEntry)</a></li>
 
   </ul>
   <ul class="simple nested-toc-section">clone
@@ -1223,24 +1229,18 @@ window.addEventListener('DOMContentLoaded', main);
     title="range=(s: Slider; sliderRange: Slice[SomeInteger])">range=(s: Slider; sliderRange: Slice[SomeInteger])</a></li>
 
   </ul>
-  <ul class="simple nested-toc-section">readonly
-      <li><a class="reference" href="#readonly%2CMultilineEntry"
-    title="readonly(e: MultilineEntry): bool">readonly(e: MultilineEntry): bool</a></li>
-
-  </ul>
   <ul class="simple nested-toc-section">readOnly
       <li><a class="reference" href="#readOnly%2CEntry"
     title="readOnly(e: Entry): bool">readOnly(e: Entry): bool</a></li>
-
-  </ul>
-  <ul class="simple nested-toc-section">readonly=
-      <li><a class="reference" href="#readonly%3D%2CMultilineEntry%2Cbool"
-    title="readonly=(e: MultilineEntry; x: bool)">readonly=(e: MultilineEntry; x: bool)</a></li>
+  <li><a class="reference" href="#readOnly%2CMultilineEntry"
+    title="readOnly(e: MultilineEntry): bool">readOnly(e: MultilineEntry): bool</a></li>
 
   </ul>
   <ul class="simple nested-toc-section">readOnly=
       <li><a class="reference" href="#readOnly%3D%2CEntry%2Cbool"
     title="readOnly=(e: Entry; readOnly: bool)">readOnly=(e: Entry; readOnly: bool)</a></li>
+  <li><a class="reference" href="#readOnly%3D%2CMultilineEntry%2Cbool"
+    title="readOnly=(e: MultilineEntry; x: bool)">readOnly=(e: MultilineEntry; x: bool)</a></li>
 
   </ul>
   <ul class="simple nested-toc-section">remove
@@ -2303,7 +2303,7 @@ Appends a text column to the table.<p><tt class="docutils literal"><span class="
 <dt><pre><span class="Keyword">proc</span> <a href="#addUnattributed%2CAttributedString%2Cstring"><span class="Identifier">addUnattributed</span></a><span class="Other">(</span><span class="Identifier">s</span><span class="Other">:</span> <a href="uing.html#AttributedString"><span class="Identifier">AttributedString</span></a><span class="Other">;</span> <span class="Identifier">str</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">)</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
 <dd>
 
-Adds string <tt class="docutils literal"><span class="pre"><span class="Identifier">str</span></span></tt> to the end of <tt class="docutils literal"><span class="pre"><span class="Identifier">s</span></span></tt>. The new substring will be unattributed
+Adds string <tt class="docutils literal"><span class="pre"><span class="Identifier">str</span></span></tt> to the end of <tt class="docutils literal"><span class="pre"><span class="Identifier">s</span></span></tt>. The new substring will be unattributed.
 
 </dd>
 </div>
@@ -2451,6 +2451,36 @@ Sets the window's child.<p><tt class="docutils literal"><span class="pre"><span 
 
 <p>Deletes all items from the combo box.</p>
 <p><tt class="docutils literal"><span class="pre"><span class="Identifier">c</span></span></tt>: Combobox instance.</p>
+
+
+</dd>
+</div>
+<div id="clear,EditableCombobox">
+<dt><pre><span class="Keyword">proc</span> <a href="#clear%2CEditableCombobox"><span class="Identifier">clear</span></a><span class="Other">(</span><span class="Identifier">e</span><span class="Other">:</span> <a href="uing.html#EditableCombobox"><span class="Identifier">EditableCombobox</span></a><span class="Other">)</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
+<dd>
+
+<p>Clears the editable combobox's text</p>
+<p><tt class="docutils literal"><span class="pre"><span class="Identifier">e</span></span></tt>: Combobox instance.</p>
+
+
+</dd>
+</div>
+<div id="clear,Entry">
+<dt><pre><span class="Keyword">proc</span> <a href="#clear%2CEntry"><span class="Identifier">clear</span></a><span class="Other">(</span><span class="Identifier">e</span><span class="Other">:</span> <a href="uing.html#Entry"><span class="Identifier">Entry</span></a><span class="Other">)</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
+<dd>
+
+<p>Clears the entry's text</p>
+<p><tt class="docutils literal"><span class="pre"><span class="Identifier">e</span></span></tt>: Entry instance.</p>
+
+
+</dd>
+</div>
+<div id="clear,MultilineEntry">
+<dt><pre><span class="Keyword">proc</span> <a href="#clear%2CMultilineEntry"><span class="Identifier">clear</span></a><span class="Other">(</span><span class="Identifier">e</span><span class="Other">:</span> <a href="uing.html#MultilineEntry"><span class="Identifier">MultilineEntry</span></a><span class="Other">)</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
+<dd>
+
+<p>Clears the multi line entry's text</p>
+<p><tt class="docutils literal"><span class="pre"><span class="Identifier">e</span></span></tt>: MultilineEntry instance.</p>
 
 
 </dd>
@@ -4397,8 +4427,8 @@ Sets the slider range.<p><tt class="docutils literal"><span class="pre"><span cl
 
 </dd>
 </div>
-<div id="readonly,MultilineEntry">
-<dt><pre><span class="Keyword">proc</span> <a href="#readonly%2CMultilineEntry"><span class="Identifier">readonly</span></a><span class="Other">(</span><span class="Identifier">e</span><span class="Other">:</span> <a href="uing.html#MultilineEntry"><span class="Identifier">MultilineEntry</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">bool</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
+<div id="readOnly,MultilineEntry">
+<dt><pre><span class="Keyword">proc</span> <a href="#readOnly%2CMultilineEntry"><span class="Identifier">readOnly</span></a><span class="Other">(</span><span class="Identifier">e</span><span class="Other">:</span> <a href="uing.html#MultilineEntry"><span class="Identifier">MultilineEntry</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">bool</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
 <dd>
 
 Returns whether or not the multi line entry's text can be changed.<p><tt class="docutils literal"><span class="pre"><span class="Identifier">e</span></span></tt>: MultilineEntry instance<br/></p>
@@ -4413,8 +4443,8 @@ Sets whether or not the entry's text is read only.<p><tt class="docutils literal
 
 </dd>
 </div>
-<div id="readonly=,MultilineEntry,bool">
-<dt><pre><span class="Keyword">proc</span> <a href="#readonly%3D%2CMultilineEntry%2Cbool"><span class="Identifier">readonly=</span></a><span class="Other">(</span><span class="Identifier">e</span><span class="Other">:</span> <a href="uing.html#MultilineEntry"><span class="Identifier">MultilineEntry</span></a><span class="Other">;</span> <span class="Identifier">x</span><span class="Other">:</span> <span class="Identifier">bool</span><span class="Other">)</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
+<div id="readOnly=,MultilineEntry,bool">
+<dt><pre><span class="Keyword">proc</span> <a href="#readOnly%3D%2CMultilineEntry%2Cbool"><span class="Identifier">readOnly=</span></a><span class="Other">(</span><span class="Identifier">e</span><span class="Other">:</span> <a href="uing.html#MultilineEntry"><span class="Identifier">MultilineEntry</span></a><span class="Other">;</span> <span class="Identifier">x</span><span class="Other">:</span> <span class="Identifier">bool</span><span class="Other">)</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
 <dd>
 
 Sets whether or not the multi line entry's text is read only.<p><tt class="docutils literal"><span class="pre"><span class="Identifier">e</span></span></tt>: MultilineEntry instance<br/><tt class="docutils literal"><span class="pre"><span class="Identifier">readonly</span></span></tt>: <tt class="docutils literal"><span class="pre"><span class="Identifier">true</span></span></tt> to make read only, <tt class="docutils literal"><span class="pre"><span class="Identifier">false</span></span></tt> otherwise.<br/></p>
@@ -4798,7 +4828,7 @@ Sets the checkbox label text.<p><tt class="docutils literal"><span class="pre"><
 <dt><pre><span class="Keyword">proc</span> <a href="#text%3D%2CEditableCombobox%2Cstring"><span class="Identifier">text=</span></a><span class="Other">(</span><span class="Identifier">c</span><span class="Other">:</span> <a href="uing.html#EditableCombobox"><span class="Identifier">EditableCombobox</span></a><span class="Other">;</span> <span class="Identifier">text</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">)</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
 <dd>
 
-<p>Returns the text of the editable combo box.</p>
+<p>Sets the text of the editable combo box.</p>
 <p>This text is either the text of one of the predefined list items or the text manually entered by the user.</p>
 <p><tt class="docutils literal"><span class="pre"><span class="Identifier">c</span></span></tt>: Combobox instance.<br/><tt class="docutils literal"><span class="pre"><span class="Identifier">text</span></span></tt>: Text field text.<br/></p>
 
@@ -5056,7 +5086,7 @@ It is an error to call this on a Attribute that does not hold a font weight.</di
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small style="color: var(--hint);">Made with Nim. Generated: 2023-01-30 01:01:21 UTC</small>
+        <small style="color: var(--hint);">Made with Nim. Generated: 2023-01-30 22:03:41 UTC</small>
       </div>
     </div>
   </div>

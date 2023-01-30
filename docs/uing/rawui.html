@@ -349,20 +349,25 @@ window.addEventListener('DOMContentLoaded', main);
   <li><a class="reference" href="#TableModelHandler"
     title="TableModelHandler {.bycopy.} = object
   numColumns*: proc (a1: ptr TableModelHandler; a2: ptr TableModel): cint {.
-      cdecl.} ## Returns the number of columns in the `TableModel`.
+      cdecl.} ## \
+              ## Returns the number of columns in the `TableModel`.
               ## 
               ## .. warning:: This value **MUST** remain constant throughout the lifetime of the `TableModel`.
               ## 
               ## .. warning:: This method is not guaranteed to be called depending on the system
   columnType*: proc (a1: ptr TableModelHandler; a2: ptr TableModel; col: cint): TableValueType {.
-      cdecl.} ## Returns the column type in for of a `TableValueType`.
+      cdecl.} ## \
+              ## Returns the column type in for of a `TableValueType`.
               ## 
               ## .. warning:: This value **MUST** remain constant throughout the lifetime of the `TableModel`.
               ## 
               ## .. warning:: This method is not guaranteed to be called depending on the system
-  numRows*: proc (a1: ptr TableModelHandler; a2: ptr TableModel): cint {.cdecl.} ## Returns the number of rows in the uiTableModel.
+  numRows*: proc (a1: ptr TableModelHandler; a2: ptr TableModel): cint {.cdecl.} ## 
+                                                                                 ## \ 
+                                                                                 ## Returns the number of rows in the uiTableModel.
   cellValue*: proc (mh: ptr TableModelHandler; m: ptr TableModel; row: cint;
-                    col: cint): ptr TableValue {.cdecl.} ## Returns the cell value for (row, col).
+                    col: cint): ptr TableValue {.cdecl.} ## \
+                                                         ## Returns the cell value for (row, col).
                                                          ## 
                                                          ## Make sure to use the `TableValue` constructors. The returned value
                                                          ## must match the `TableValueType` defined in `columnType()`.
@@ -373,7 +378,8 @@ window.addEventListener('DOMContentLoaded', main);
                                                          ## .. note:: `TableValue` objects are automatically freed when requested by
                                                          ##       a `Table`.
   setCellValue*: proc (a1: ptr TableModelHandler; a2: ptr TableModel; row: cint;
-                       col: cint; a3: ptr TableValue) {.cdecl.} ## Sets the cell value for (row, column).
+                       col: cint; a3: ptr TableValue) {.cdecl.} ## \
+                                                                ## Sets the cell value for (row, column).
                                                                 ## It is up to the handler to decide what to do with the value: change
                                                                 ## the model or reject the change, keeping the old value.
                                                                 ## 
@@ -384,8 +390,10 @@ window.addEventListener('DOMContentLoaded', main);
                                                                 ##        set by a `Table`.">TableModelHandler</a></li>
   <li><a class="reference" href="#TableParams"
     title="TableParams {.bycopy.} = object
-  model*: ptr TableModel     ## Model holding the data to be displayed. This can **NOT** be `nil`.
-  rowBackgroundColorModelColumn*: cint ## `TableModel` column that defines background color for each row,
+  model*: ptr TableModel     ## \
+                             ## Model holding the data to be displayed. This can **NOT** be `nil`.
+  rowBackgroundColorModelColumn*: cint ## \
+                                       ## `TableModel` column that defines background color for each row,
                                        ## 
                                        ## `TableValue.color` Background color, `nil` to use the default
                                        ## background color for that row.
@@ -2871,20 +2879,25 @@ Base class for GUI controls providing common methods.
 <div id="TableModelHandler">
 <dt><pre><a href="rawui.html#TableModelHandler"><span class="Identifier">TableModelHandler</span></a> {.<span class="Identifier">bycopy</span>.} <span class="Other">=</span> <span class="Keyword">object</span>
   <span class="Identifier">numColumns</span><span class="Operator">*</span><span class="Other">:</span> <span class="Keyword">proc</span> <span class="Other">(</span><span class="Identifier">a1</span><span class="Other">:</span> <span class="Keyword">ptr</span> <a href="rawui.html#TableModelHandler"><span class="Identifier">TableModelHandler</span></a><span class="Other">;</span> <span class="Identifier">a2</span><span class="Other">:</span> <span class="Keyword">ptr</span> <a href="rawui.html#TableModel"><span class="Identifier">TableModel</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">cint</span> {.
-      <span class="Identifier">cdecl</span>.} <span class="Comment">## Returns the number of columns in the `TableModel`.</span>
+      <span class="Identifier">cdecl</span>.} <span class="Comment">## \</span>
+              <span class="Comment">## Returns the number of columns in the `TableModel`.</span>
               <span class="Comment">## </span>
               <span class="Comment">## .. warning:: This value **MUST** remain constant throughout the lifetime of the `TableModel`.</span>
               <span class="Comment">## </span>
               <span class="Comment">## .. warning:: This method is not guaranteed to be called depending on the system</span>
   <span class="Identifier">columnType</span><span class="Operator">*</span><span class="Other">:</span> <span class="Keyword">proc</span> <span class="Other">(</span><span class="Identifier">a1</span><span class="Other">:</span> <span class="Keyword">ptr</span> <a href="rawui.html#TableModelHandler"><span class="Identifier">TableModelHandler</span></a><span class="Other">;</span> <span class="Identifier">a2</span><span class="Other">:</span> <span class="Keyword">ptr</span> <a href="rawui.html#TableModel"><span class="Identifier">TableModel</span></a><span class="Other">;</span> <span class="Identifier">col</span><span class="Other">:</span> <span class="Identifier">cint</span><span class="Other">)</span><span class="Other">:</span> <a href="rawui.html#TableValueType"><span class="Identifier">TableValueType</span></a> {.
-      <span class="Identifier">cdecl</span>.} <span class="Comment">## Returns the column type in for of a `TableValueType`.</span>
+      <span class="Identifier">cdecl</span>.} <span class="Comment">## \</span>
+              <span class="Comment">## Returns the column type in for of a `TableValueType`.</span>
               <span class="Comment">## </span>
               <span class="Comment">## .. warning:: This value **MUST** remain constant throughout the lifetime of the `TableModel`.</span>
               <span class="Comment">## </span>
               <span class="Comment">## .. warning:: This method is not guaranteed to be called depending on the system</span>
-  <span class="Identifier">numRows</span><span class="Operator">*</span><span class="Other">:</span> <span class="Keyword">proc</span> <span class="Other">(</span><span class="Identifier">a1</span><span class="Other">:</span> <span class="Keyword">ptr</span> <a href="rawui.html#TableModelHandler"><span class="Identifier">TableModelHandler</span></a><span class="Other">;</span> <span class="Identifier">a2</span><span class="Other">:</span> <span class="Keyword">ptr</span> <a href="rawui.html#TableModel"><span class="Identifier">TableModel</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">cint</span> {.<span class="Identifier">cdecl</span>.} <span class="Comment">## Returns the number of rows in the uiTableModel.</span>
+  <span class="Identifier">numRows</span><span class="Operator">*</span><span class="Other">:</span> <span class="Keyword">proc</span> <span class="Other">(</span><span class="Identifier">a1</span><span class="Other">:</span> <span class="Keyword">ptr</span> <a href="rawui.html#TableModelHandler"><span class="Identifier">TableModelHandler</span></a><span class="Other">;</span> <span class="Identifier">a2</span><span class="Other">:</span> <span class="Keyword">ptr</span> <a href="rawui.html#TableModel"><span class="Identifier">TableModel</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">cint</span> {.<span class="Identifier">cdecl</span>.} <span class="Comment">## </span>
+                                                                                 <span class="Comment">## \ </span>
+                                                                                 <span class="Comment">## Returns the number of rows in the uiTableModel.</span>
   <span class="Identifier">cellValue</span><span class="Operator">*</span><span class="Other">:</span> <span class="Keyword">proc</span> <span class="Other">(</span><span class="Identifier">mh</span><span class="Other">:</span> <span class="Keyword">ptr</span> <a href="rawui.html#TableModelHandler"><span class="Identifier">TableModelHandler</span></a><span class="Other">;</span> <span class="Identifier">m</span><span class="Other">:</span> <span class="Keyword">ptr</span> <a href="rawui.html#TableModel"><span class="Identifier">TableModel</span></a><span class="Other">;</span> <span class="Identifier">row</span><span class="Other">:</span> <span class="Identifier">cint</span><span class="Other">;</span>
-                    <span class="Identifier">col</span><span class="Other">:</span> <span class="Identifier">cint</span><span class="Other">)</span><span class="Other">:</span> <span class="Keyword">ptr</span> <a href="rawui.html#TableValue"><span class="Identifier">TableValue</span></a> {.<span class="Identifier">cdecl</span>.} <span class="Comment">## Returns the cell value for (row, col).</span>
+                    <span class="Identifier">col</span><span class="Other">:</span> <span class="Identifier">cint</span><span class="Other">)</span><span class="Other">:</span> <span class="Keyword">ptr</span> <a href="rawui.html#TableValue"><span class="Identifier">TableValue</span></a> {.<span class="Identifier">cdecl</span>.} <span class="Comment">## \</span>
+                                                         <span class="Comment">## Returns the cell value for (row, col).</span>
                                                          <span class="Comment">## </span>
                                                          <span class="Comment">## Make sure to use the `TableValue` constructors. The returned value</span>
                                                          <span class="Comment">## must match the `TableValueType` defined in `columnType()`.</span>
@@ -2895,7 +2908,8 @@ Base class for GUI controls providing common methods.
                                                          <span class="Comment">## .. note:: `TableValue` objects are automatically freed when requested by</span>
                                                          <span class="Comment">##       a `Table`.</span>
   <span class="Identifier">setCellValue</span><span class="Operator">*</span><span class="Other">:</span> <span class="Keyword">proc</span> <span class="Other">(</span><span class="Identifier">a1</span><span class="Other">:</span> <span class="Keyword">ptr</span> <a href="rawui.html#TableModelHandler"><span class="Identifier">TableModelHandler</span></a><span class="Other">;</span> <span class="Identifier">a2</span><span class="Other">:</span> <span class="Keyword">ptr</span> <a href="rawui.html#TableModel"><span class="Identifier">TableModel</span></a><span class="Other">;</span> <span class="Identifier">row</span><span class="Other">:</span> <span class="Identifier">cint</span><span class="Other">;</span>
-                       <span class="Identifier">col</span><span class="Other">:</span> <span class="Identifier">cint</span><span class="Other">;</span> <span class="Identifier">a3</span><span class="Other">:</span> <span class="Keyword">ptr</span> <a href="rawui.html#TableValue"><span class="Identifier">TableValue</span></a><span class="Other">)</span> {.<span class="Identifier">cdecl</span>.} <span class="Comment">## Sets the cell value for (row, column).</span>
+                       <span class="Identifier">col</span><span class="Other">:</span> <span class="Identifier">cint</span><span class="Other">;</span> <span class="Identifier">a3</span><span class="Other">:</span> <span class="Keyword">ptr</span> <a href="rawui.html#TableValue"><span class="Identifier">TableValue</span></a><span class="Other">)</span> {.<span class="Identifier">cdecl</span>.} <span class="Comment">## \</span>
+                                                                <span class="Comment">## Sets the cell value for (row, column).</span>
                                                                 <span class="Comment">## It is up to the handler to decide what to do with the value: change</span>
                                                                 <span class="Comment">## the model or reject the change, keeping the old value.</span>
                                                                 <span class="Comment">## </span>
@@ -2917,8 +2931,10 @@ These methods are <strong>NOT</strong> allowed to change as soon as the <tt clas
 </div>
 <div id="TableParams">
 <dt><pre><a href="rawui.html#TableParams"><span class="Identifier">TableParams</span></a> {.<span class="Identifier">bycopy</span>.} <span class="Other">=</span> <span class="Keyword">object</span>
-  <span class="Identifier">model</span><span class="Operator">*</span><span class="Other">:</span> <span class="Keyword">ptr</span> <a href="rawui.html#TableModel"><span class="Identifier">TableModel</span></a>     <span class="Comment">## Model holding the data to be displayed. This can **NOT** be `nil`.</span>
-  <span class="Identifier">rowBackgroundColorModelColumn</span><span class="Operator">*</span><span class="Other">:</span> <span class="Identifier">cint</span> <span class="Comment">## `TableModel` column that defines background color for each row,</span>
+  <span class="Identifier">model</span><span class="Operator">*</span><span class="Other">:</span> <span class="Keyword">ptr</span> <a href="rawui.html#TableModel"><span class="Identifier">TableModel</span></a>     <span class="Comment">## \</span>
+                             <span class="Comment">## Model holding the data to be displayed. This can **NOT** be `nil`.</span>
+  <span class="Identifier">rowBackgroundColorModelColumn</span><span class="Operator">*</span><span class="Other">:</span> <span class="Identifier">cint</span> <span class="Comment">## \</span>
+                                       <span class="Comment">## `TableModel` column that defines background color for each row,</span>
                                        <span class="Comment">## </span>
                                        <span class="Comment">## `TableValue.color` Background color, `nil` to use the default</span>
                                        <span class="Comment">## background color for that row.</span>
@@ -3116,6 +3132,7 @@ This is the default for both Cairo and Direct2D
 <dt><pre><a href="rawui.html#TableModelColumnAlwaysEditable"><span class="Identifier">TableModelColumnAlwaysEditable</span></a> <span class="Other">=</span> <span class="DecNumber">-2</span></pre></dt>
 <dd>
 
+
 Parameter to editable model columns to signify all rows are always editable.
 
 </dd>
@@ -3123,6 +3140,7 @@ Parameter to editable model columns to signify all rows are always editable.
 <div id="TableModelColumnNeverEditable">
 <dt><pre><a href="rawui.html#TableModelColumnNeverEditable"><span class="Identifier">TableModelColumnNeverEditable</span></a> <span class="Other">=</span> <span class="DecNumber">-1</span></pre></dt>
 <dd>
+
 
 Parameter to editable model columns to signify all rows are never editable.
 
@@ -6059,7 +6077,7 @@ Parameter to editable model columns to signify all rows are never editable.
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small style="color: var(--hint);">Made with Nim. Generated: 2023-01-30 01:01:21 UTC</small>
+        <small style="color: var(--hint);">Made with Nim. Generated: 2023-01-30 22:03:41 UTC</small>
       </div>
     </div>
   </div>

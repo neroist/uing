@@ -165,6 +165,7 @@ impl	uing.html#impl,Entry	uing: impl(b: Entry): RawEntry
 impl=	uing.html#impl=,Entry,RawEntry	uing: impl=(b: Entry; r: RawEntry)	
 text	uing.html#text,Entry	uing: text(e: Entry): string	
 text=	uing.html#text=,Entry,string	uing: text=(e: Entry; text: string)	
+clear	uing.html#clear,Entry	uing: clear(e: Entry)	
 readOnly	uing.html#readOnly,Entry	uing: readOnly(e: Entry): bool	
 readOnly=	uing.html#readOnly=,Entry,bool	uing: readOnly=(e: Entry; readOnly: bool)	
 newEntry	uing.html#newEntry,string,proc(Entry)	uing: newEntry(text: string = &quot;&quot;; onchanged: proc (sender: Entry) = nil): Entry	
@@ -237,15 +238,17 @@ impl=	uing.html#impl=,EditableCombobox,RawEditableCombobox	uing: impl=(b: Editab
 add	uing.html#add,EditableCombobox,varargs[string]	uing: add(c: EditableCombobox; items: varargs[string])	
 text	uing.html#text,EditableCombobox	uing: text(c: EditableCombobox): string	
 text=	uing.html#text=,EditableCombobox,string	uing: text=(c: EditableCombobox; text: string)	
+clear	uing.html#clear,EditableCombobox	uing: clear(e: EditableCombobox)	
 newEditableCombobox	uing.html#newEditableCombobox,proc(EditableCombobox)	uing: newEditableCombobox(onchanged: proc (sender: EditableCombobox) = nil): EditableCombobox	
 MultilineEntry	uing.html#MultilineEntry	uing: MultilineEntry	
 impl	uing.html#impl,MultilineEntry	uing: impl(b: MultilineEntry): RawMultilineEntry	
 impl=	uing.html#impl=,MultilineEntry,RawMultilineEntry	uing: impl=(b: MultilineEntry; r: RawMultilineEntry)	
 text	uing.html#text,MultilineEntry	uing: text(e: MultilineEntry): string	
 text=	uing.html#text=,MultilineEntry,string	uing: text=(e: MultilineEntry; text: string)	
+clear	uing.html#clear,MultilineEntry	uing: clear(e: MultilineEntry)	
 add	uing.html#add,MultilineEntry,string	uing: add(e: MultilineEntry; text: string)	
-readonly	uing.html#readonly,MultilineEntry	uing: readonly(e: MultilineEntry): bool	
-readonly=	uing.html#readonly=,MultilineEntry,bool	uing: readonly=(e: MultilineEntry; x: bool)	
+readOnly	uing.html#readOnly,MultilineEntry	uing: readOnly(e: MultilineEntry): bool	
+readOnly=	uing.html#readOnly=,MultilineEntry,bool	uing: readOnly=(e: MultilineEntry; x: bool)	
 newMultilineEntry	uing.html#newMultilineEntry,proc(MultilineEntry)	uing: newMultilineEntry(onchanged: proc (sender: MultilineEntry) = nil): MultilineEntry	
 newNonWrappingMultilineEntry	uing.html#newNonWrappingMultilineEntry,proc(MultilineEntry)	uing: newNonWrappingMultilineEntry(onchanged: proc (sender: MultilineEntry) = nil): MultilineEntry	
 MenuItem	uing.html#MenuItem	uing: MenuItem	

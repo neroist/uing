@@ -11,17 +11,6 @@ var
   alignment: Combobox
   attrstr: AttributedString
 
-proc addWithAttribute(what: string; attr1, attr2: Attribute = nil) =
-  let
-    start = attrstr.len
-    `end` = start + what.len
-
-  attrstr.addUnattributed what
-  attrstr.setAttribute attr1, start, `end`
-
-  if attr2 != nil:
-    attrstr.setAttribute attr2, start, `end`
-
 proc makeAttributedString =
   attrstr = newAttributedString(
     "Drawing strings with libui-ng is done with the AttributedString and DrawTextLayout objects.\n" &
@@ -29,57 +18,57 @@ proc makeAttributedString =
   )
 
   let attr = newFamilyAttribute("Courier New")
-  addWithAttribute("font family", attr)
+  attrstr.addWithAttributes("font family", attr)
   attrstr.addUnattributed(", ")
 
   let attr1 = newSizeAttribute(18)
-  addWithAttribute("font size", attr1)
+  attrstr.addWithAttributes("font size", attr1)
   attrstr.addUnattributed(", ")
 
   let attr2 = newWeightAttribute(TextWeightBold)
-  addWithAttribute("font weight", attr2)
+  attrstr.addWithAttributes("font weight", attr2)
   attrstr.addUnattributed(", ")
 
   let attr3 = newItalicAttribute(TextItalicItalic)
-  addWithAttribute("font italicness", attr3)
+  attrstr.addWithAttributes("font italicness", attr3)
   attrstr.addUnattributed(", ")
 
   let attr4 = newStretchAttribute(TextStretchCondensed)
-  addWithAttribute("font stretch", attr4)
+  attrstr.addWithAttributes("font stretch", attr4)
   attrstr.addUnattributed(", ")
 
   let attr5 = newColorAttribute(0.75, 0.25, 0.5, 0.75)
-  addWithAttribute("text color", attr5)
+  attrstr.addWithAttributes("text color", attr5)
   attrstr.addUnattributed(", ")
 
   let attr6 = newBackgroundColorAttribute(0.5, 0.5, 0.25, 1.0)
-  addWithAttribute("text background color", attr6)
+  attrstr.addWithAttributes("text background color", attr6)
   attrstr.addUnattributed(", ")
 
   let attr7 = newUnderlineAttribute(UnderlineSingle)
-  addWithAttribute("underline style", attr7)
+  attrstr.addWithAttributes("underline style", attr7)
   attrstr.addUnattributed(", and ")
 
   let attr8 = newUnderlineAttribute(UnderlineDouble)
   let attr82 = newUnderlineColorAttribute(UnderlineColorCustom, 1.0, 0.0, 0.5, 1.0)
-  addWithAttribute("underline color", attr8, attr82)
+  attrstr.addWithAttributes("underline color", attr8, attr82)
   attrstr.addUnattributed(". ")
 
   attrstr.addUnattributed("Furthermore, there are attributes allowing for ")
   let attr9 = newUnderlineAttribute(UnderlineSuggestion)
   let attr92 = newUnderlineColorAttribute(UnderlineColorSpelling)
-  addWithAttribute("special underlines for indicating spelling errors", attr9, attr92)
+  attrstr.addWithAttributes("special underlines for indicating spelling errors", attr9, attr92)
   attrstr.addUnattributed(" (and other types of errors) ")
 
   attrstr.addUnattributed("and control over OpenType features such as ligatures (for instance, ")
   let otf = newOpenTypeFeatures()
   otf.add("liga", off)
   let attr10 = newFeaturesAttribute(otf)
-  addWithAttribute("afford", attr10)
+  attrstr.addWithAttributes("afford", attr10)
   attrstr.addUnattributed(" vs. ")
   otf.add("liga", on)
   let attr11 = newFeaturesAttribute(otf)
-  addWithAttribute("afford", attr11)
+  attrstr.addWithAttributes("afford", attr11)
   
   attrstr.addUnattributed(").\n")
 

@@ -333,18 +333,18 @@ proc setAttribute*(s: AttributedString; a: Attribute; start, `end`: int) =
 
   attributedStringSetAttribute(s.impl, a.impl, csize_t start, csize_t `end`)
 
-proc addWithAttributes(s: AttributedString; str: string; attrs: varargs[Attribute]) =
+proc addWithAttributes*(s: AttributedString; str: string; attrs: varargs[Attribute]) =
   ## Adds string `str` to the end of `s`. The new substring will have
   ## the attributes `attrs` applied to it.
   
   let
-    start = attrstr.len
+    start = s.len
     `end` = start + str.len
 
-  attrstr.addUnattributed str
+  s.addUnattributed str
 
   for attr in attrs:
-    attrstr.setAttribute attr, start, `end`
+    s.setAttribute attr, start, `end`
 
 proc forEachAttribute*(str: AttributedString; fun: AttributedStringForEachAttributeFunc; data: pointer) =
   ## enumerates all the Attributes in `str`. Within `fun`, `str` 
