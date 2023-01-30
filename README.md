@@ -40,6 +40,4 @@ then need to bundle your application with a `libui.dll`, `libui.dylib`, or `libu
 for Windows, macOS, and Linux respectively.
 Build instructions and requirements can be found in [libui-ng's README](https://github.com/libui-ng/libui-ng#readme)
 
-It is reccomended to use dynamic linking, as with static linking, compile times are much longer 
-
 A `libui.dll` and `libui.so` can be found in the [release's page](https://github.com/neroist/uing/releases/latest)
