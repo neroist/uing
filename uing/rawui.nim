@@ -1472,40 +1472,45 @@ type
     ## .. warning:: These methods are **NOT** allowed to change as soon as the
     ##          `TableModelHandler` is associated with a `TableModel`.
 
-    numColumns*  : proc (a1: ptr TableModelHandler; a2: ptr TableModel): cint {.cdecl.} ## Returns the number of columns in the `TableModel`.
-                                                                                        ##
-                                                                                        ## .. warning:: This value **MUST** remain constant throughout the lifetime of the `TableModel`.
-                                                                                        ## 
-                                                                                        ## .. warning:: This method is not guaranteed to be called depending on the system
+    numColumns*  : proc (a1: ptr TableModelHandler; a2: ptr TableModel): cint {.cdecl.} ## \
+    ## Returns the number of columns in the `TableModel`.
+    ##
+    ## .. warning:: This value **MUST** remain constant throughout the lifetime of the `TableModel`.
+    ## 
+    ## .. warning:: This method is not guaranteed to be called depending on the system
 
-    columnType*  : proc (a1: ptr TableModelHandler; a2: ptr TableModel; col: cint): TableValueType {.cdecl.} ## Returns the column type in for of a `TableValueType`.
-                                                                                                                ##
-                                                                                                                ## .. warning:: This value **MUST** remain constant throughout the lifetime of the `TableModel`.
-                                                                                                                ## 
-                                                                                                                ## .. warning:: This method is not guaranteed to be called depending on the system
+    columnType*  : proc (a1: ptr TableModelHandler; a2: ptr TableModel; col: cint): TableValueType {.cdecl.} ## \
+    ## Returns the column type in for of a `TableValueType`.
+    ##
+    ## .. warning:: This value **MUST** remain constant throughout the lifetime of the `TableModel`.
+    ## 
+    ## .. warning:: This method is not guaranteed to be called depending on the system
                                                                                                                 
-    numRows*     : proc (a1: ptr TableModelHandler; a2: ptr TableModel) : cint {.cdecl.} ## Returns the number of rows in the uiTableModel.
+    numRows*     : proc (a1: ptr TableModelHandler; a2: ptr TableModel) : cint {.cdecl.} ## \ 
+    ## Returns the number of rows in the uiTableModel.
 
-    cellValue*   : proc (mh: ptr TableModelHandler; m: ptr TableModel; row: cint; col: cint): ptr TableValue {.cdecl.} ## Returns the cell value for (row, col).
-                                                                                                                          ## 
-                                                                                                                          ## Make sure to use the `TableValue` constructors. The returned value
-                                                                                                                          ## must match the `TableValueType` defined in `columnType()`.
-                                                                                                                          ## 
-                                                                                                                          ## Some columns may return `nil` as a special value. Refer to the
-                                                                                                                          ## appropriate `addColumn()` documentation.
-                                                                                                                          ## 
-                                                                                                                          ## .. note:: `TableValue` objects are automatically freed when requested by
-                                                                                                                          ##       a `Table`.
+    cellValue*   : proc (mh: ptr TableModelHandler; m: ptr TableModel; row: cint; col: cint): ptr TableValue {.cdecl.} ## \
+    ## Returns the cell value for (row, col).
+    ## 
+    ## Make sure to use the `TableValue` constructors. The returned value
+    ## must match the `TableValueType` defined in `columnType()`.
+    ## 
+    ## Some columns may return `nil` as a special value. Refer to the
+    ## appropriate `addColumn()` documentation.
+    ## 
+    ## .. note:: `TableValue` objects are automatically freed when requested by
+    ##       a `Table`.
 
-    setCellValue*: proc (a1: ptr TableModelHandler; a2: ptr TableModel; row: cint; col: cint; a3: ptr TableValue) {.cdecl.} ## Sets the cell value for (row, column).
-                                                                                                                            ## It is up to the handler to decide what to do with the value: change
-                                                                                                                            ## the model or reject the change, keeping the old value.
-                                                                                                                            ## 
-                                                                                                                            ## Some columns may call this function with `nil` as a special value.
-                                                                                                                            ## Refer to the appropriate `addColumn()` documentation.
-                                                                                                                            ## 
-                                                                                                                            ## .. note:: `TableValue` objects are automatically freed upon return when
-                                                                                                                            ##        set by a `Table`.
+    setCellValue*: proc (a1: ptr TableModelHandler; a2: ptr TableModel; row: cint; col: cint; a3: ptr TableValue) {.cdecl.} ## \
+    ## Sets the cell value for (row, column).
+    ## It is up to the handler to decide what to do with the value: change
+    ## the model or reject the change, keeping the old value.
+    ## 
+    ## Some columns may call this function with `nil` as a special value.
+    ## Refer to the appropriate `addColumn()` documentation.
+    ## 
+    ## .. note:: `TableValue` objects are automatically freed upon return when
+    ##        set by a `Table`.
 
 proc newTableModel*(mh: ptr TableModelHandler): ptr TableModel {.cdecl,
     importc: "uiNewTableModel", libui.}
@@ -1523,8 +1528,11 @@ proc tableModelRowDeleted*(m: ptr TableModel; oldIndex: cint) {.cdecl,
     importc: "uiTableModelRowDeleted", libui.}
 
 const
-  TableModelColumnNeverEditable*  = (-1) ## Parameter to editable model columns to signify all rows are never editable.
-  TableModelColumnAlwaysEditable* = (-2) ## Parameter to editable model columns to signify all rows are always editable.
+  TableModelColumnNeverEditable*  = (-1) ## \
+  ## Parameter to editable model columns to signify all rows are never editable.
+  
+  TableModelColumnAlwaysEditable* = (-2) ## \
+  ## Parameter to editable model columns to signify all rows are always editable.
 
 type
   Table* = object of Control
@@ -1537,14 +1545,16 @@ type
   TableParams* {.bycopy.} = object
     ## Table parameters passed to `newTable()`.
     
-    model*                         : ptr TableModel ## Model holding the data to be displayed. This can **NOT** be `nil`.
+    model*                         : ptr TableModel ## \
+    ## Model holding the data to be displayed. This can **NOT** be `nil`.
 
-    rowBackgroundColorModelColumn* : cint ## `TableModel` column that defines background color for each row,
-                                          ## 
-                                          ## `TableValue.color` Background color, `nil` to use the default
-                                          ## background color for that row.
-                                          ## 
-                                          ## `-1` to use the default background color for all rows.
+    rowBackgroundColorModelColumn* : cint ## \
+    ## `TableModel` column that defines background color for each row,
+    ## 
+    ## `TableValue.color` Background color, `nil` to use the default
+    ## background color for that row.
+    ## 
+    ## `-1` to use the default background color for all rows.
 
 template table*(this: untyped): untyped =
   (cast[ptr Table]((this)))
