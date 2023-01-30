@@ -1,4 +1,3 @@
-# 13 october 2015
 import std/random
 
 import uing/rawui

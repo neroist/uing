@@ -217,7 +217,7 @@ proc transformPoint*(m: ptr DrawMatrix): tuple[x, y: float] =
   drawMatrixTransformPoint(m, addr x, addr y)
   result = (x: float x, y: float y)
 
-proc transformSize*(m: ptr DrawMatrix): tuple [x, y: float] =
+proc transformSize*(m: ptr DrawMatrix): tuple[x, y: float] =
   var x, y: cdouble
 
   drawMatrixTransformSize(m, addr x, addr y)
@@ -309,7 +309,7 @@ proc len*(s: AttributedString): int =
 
 proc addUnattributed*(s: AttributedString; str: string) =
   ## Adds string `str` to the end of `s`. 
-  ## The new substring will be unattributed
+  ## The new substring will be unattributed.
   
   attributedStringAppendUnattributed(s.impl, cstring str)
 
@@ -333,12 +333,15 @@ proc setAttribute*(s: AttributedString; a: Attribute; start, `end`: int) =
 
   attributedStringSetAttribute(s.impl, a.impl, csize_t start, csize_t `end`)
 
-proc addWithAttributes(s: AttributedString; what: string; attrs: varargs[Attribute]) =
+proc addWithAttributes(s: AttributedString; str: string; attrs: varargs[Attribute]) =
+  ## Adds string `str` to the end of `s`. The new substring will have
+  ## the attributes `attrs` applied to it.
+  
   let
     start = attrstr.len
-    `end` = start + what.len
+    `end` = start + str.len
 
-  attrstr.addUnattributed what
+  attrstr.addUnattributed str
 
   for attr in attrs:
     attrstr.setAttribute attr, start, `end`
