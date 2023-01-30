@@ -333,6 +333,16 @@ proc setAttribute*(s: AttributedString; a: Attribute; start, `end`: int) =
 
   attributedStringSetAttribute(s.impl, a.impl, csize_t start, csize_t `end`)
 
+proc addWithAttributes(s: AttributedString; what: string; attrs: varargs[Attribute]) =
+  let
+    start = attrstr.len
+    `end` = start + what.len
+
+  attrstr.addUnattributed what
+
+  for attr in attrs:
+    attrstr.setAttribute attr, start, `end`
+
 proc forEachAttribute*(str: AttributedString; fun: AttributedStringForEachAttributeFunc; data: pointer) =
   ## enumerates all the Attributes in `str`. Within `fun`, `str` 
   ## still owns the attribute; you can neither free it nor save 

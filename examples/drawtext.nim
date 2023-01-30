@@ -125,8 +125,6 @@ proc main =
   handler.dragBroken = (_: ptr AreaHandler, a: ptr rawui.Area) {.cdecl.} => (discard)
   handler.keyEvent = (_: ptr AreaHandler, a: ptr rawui.Area, b: ptr AreaKeyEvent) {.cdecl.} => cint 0
 
-  
-
   var window = newWindow("libui-ng Text-Drawing Example", 640, 480)
   window.margined = true
 
