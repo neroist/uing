@@ -1223,6 +1223,12 @@ proc attributedStringGraphemeToByteIndex*(s: ptr AttributedString; pos: csize_t)
 
 type
   FontDescriptor* {.bycopy.} = object
+    ## `FontDescriptor` provides a complete description of a font where
+    ## one is needed. Currently, this means as the default font of a
+    ## DrawTextLayout and as the data returned by `FontButton <#FontButton>`_.
+    ## 
+    ## All the members operate like the respective `Attribute`s.
+    
     family* : cstring
     size*   : cdouble
     weight* : TextWeight

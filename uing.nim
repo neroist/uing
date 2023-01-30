@@ -76,7 +76,7 @@ template genImplProcs(t: untyped) {.dirty.}=
   type `Raw t` = ptr[rawui.t]
 
   func impl*(b: t): `Raw t` = cast[`Raw t`](b.internalImpl)
-    ## Internal implementation of `b`
+    ## Gets internal implementation of `b`
     
   func `impl=`*(b: t, r: `Raw t`) = b.internalImpl = pointer(r)
     ## Set internal implementation of `b`
@@ -93,50 +93,10 @@ proc free*(str: string) = rawui.freeText(str)
 
 # -------- Font Descriptor --------
 
-export TextWeight, TextItalic, TextStretch
+export TextWeight, TextItalic, TextStretch, FontDescriptor
 
-type
-  FontDescriptor* = ref object
-    ## `FontDescriptor` provides a complete description of a font where
-    ## one is needed. Currently, this means as the default font of a
-    ## DrawTextLayout and as the data returned by `FontButton <#FontButton>`_.
-    ## 
-    ## All the members operate like the respective `Attribute`s.
-    
-    family*  : string
-    size*    : float
-    weight*  : TextWeight
-    italic*  : TextItalic
-    stretch* : TextStretch
-
-    internalImpl: pointer
-
-genImplProcs(FontDescriptor)
-
-proc loadControlFont*(f: FontDescriptor) = loadControlFont f.impl
-proc free*(f: FontDescriptor) = freeFontDescriptor f.impl
-
-proc newFontDescriptor*(
-  family: string, 
-  size: float | int, 
-  weight: TextWeight = TextWeightNormal, 
-  italic: TextItalic = TextItalicNormal, 
-  stretch: TextStretch = TextStretchNormal): FontDescriptor =
-  ## Create new FontDescriptor
-  newFinal result
-
-  proc impl: RawFontDescriptor =
-    var font = rawui.FontDescriptor(
-      family: cstring family,
-      size: float size, 
-      weight: weight,
-      italic: italic,
-      stretch: stretch
-    )
-
-    return font.addr
-
-  result.impl = impl()
+proc loadControlFont*(f: ptr FontDescriptor) = rawui.loadControlFont f
+proc free*(f: ptr FontDescriptor) = rawui.freeFontDescriptor f
 
 # -------- Area --------
 
@@ -162,6 +122,7 @@ proc queueRedrawAll*(a: Area) = areaQueueRedrawAll(a.impl)
 proc beginUserWindowMove*(a: Area) = areaBeginUserWindowMove(a.impl)
 proc beginUserWindowResize*(a: Area; edge: WindowResizeEdge) = areaBeginUserWindowResize(a.impl, edge)
 proc handler*(a: Area): ptr AreaHandler = a.handler
+
 proc newArea*(ah: ptr AreaHandler): Area =
   newFinal result
   result.handler = ah
@@ -2092,15 +2053,9 @@ proc font*(f: FontButton): FontDescriptor =
   var font: rawui.FontDescriptor
   fontButtonFont(f.impl, addr font)
 
-  result = newFontDescriptor(
-    family = $font.family,
-    size = font.size,
-    weight = font.weight,
-    italic = font.italic,
-    stretch = font.stretch
-  )
+  result = font
 
-proc freeFont*(desc: FontDescriptor) = 
+proc freeFont*(desc: ptr FontDescriptor) = 
   ##  Frees a `FontDescriptor` previously filled by `font() <#font,FontButton>`_.
   ##  
   ##  After calling this function the contents of `desc` should be assumed undefined,
@@ -2111,7 +2066,7 @@ proc freeFont*(desc: FontDescriptor) =
   ##  
   ##  `desc`: Font descriptor to free.
 
-  freeFontButtonFont(desc.impl)
+  freeFontButtonFont(desc)
 
 genCallback fontButtonOnChanged, FontButton, onchanged
 

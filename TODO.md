@@ -1,8 +1,8 @@
 # TODOs
 
 - [ ] Finish and improve documentation
-- [ ] Fix [`drawtext.nim`](examples/drawtext.nim)
+- [x] Fix [`drawtext.nim`](examples/drawtext.nim) 
 - [ ] Provide an example for `timer()` and multithreading
 - [ ] Add `window` parameter `MenuItem`'s `onClicked`
 - [ ] Wrap `Image.add` *properly*
-- [x] Add example(s) using drawing (see [`histogram2.nim`](examples/histogram2.nim))
+- [x] Add example(s) using drawing (see [`histogram2.nim`](examples/histogram2.nim) and [`drawtext.nim`](examples/drawtext.nim))
