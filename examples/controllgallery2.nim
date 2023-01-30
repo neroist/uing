@@ -68,7 +68,7 @@ proc main*() =
 
   var inner2 = newVerticalBox()
   inner2.padded = true
-  hbox.add inner2
+  hbox.add inner2, true
 
   group = newGroup("Numbers", true)
   inner2.add group
