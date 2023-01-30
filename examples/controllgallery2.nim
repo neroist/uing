@@ -22,9 +22,11 @@ proc main*() =
       msgBox(mainwin, "File selected (don't worry, it's still there)", filename)
   )
 
-  menu.addQuitItem(proc(): bool {.closure.} =
-    mainwin.destroy()
-    return true)
+  menu.addQuitItem(
+    proc(): bool {.closure.} =
+      mainwin.destroy()
+      return true
+  )
 
   menu = newMenu("Edit")
   menu.addCheckItem("Checkable Item")
@@ -83,10 +85,10 @@ proc main*() =
     slider.value = sender.value
     progressBar.value = sender.value
 
-  spinbox = newSpinbox(0, 100, update)
+  spinbox = newSpinbox(0..100, update)
   inner.add spinbox
 
-  slider = newSlider(0, 100, update)
+  slider = newSlider(0..100, update)
   inner.add slider
 
   progressbar = newProgressBar()
