@@ -1,4 +1,4 @@
 nimcache/
-nim.cfg
+./nim.cfg
 *.dll
 *.exe
