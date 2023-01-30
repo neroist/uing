@@ -109,7 +109,7 @@ window.addEventListener('DOMContentLoaded', main);
           <li><a class="reference external"
           data-doc-search-tag="uing: add(otf: OpenTypeFeatures; a, b, c, d: char; value: uint32)" href="uing.html#add%2COpenTypeFeatures%2Cchar%2Cchar%2Cchar%2Cchar%2Cuint32">uing: add(otf: OpenTypeFeatures; a, b, c, d: char; value: uint32)</a></li>
           <li><a class="reference external"
-          data-doc-search-tag="uing: add(otf: OpenTypeFeatures; abcd: string; value: uint32)" href="uing.html#add%2COpenTypeFeatures%2Cstring%2Cuint32">uing: add(otf: OpenTypeFeatures; abcd: string; value: uint32)</a></li>
+          data-doc-search-tag="uing: add(otf: OpenTypeFeatures; abcd: string; value: uint32 | bool)" href="uing.html#add%2COpenTypeFeatures%2Cstring%2C">uing: add(otf: OpenTypeFeatures; abcd: string; value: uint32 | bool)</a></li>
           <li><a class="reference external"
           data-doc-search-tag="uing: add(r: RadioButtons; items: varargs[string])" href="uing.html#add%2CRadioButtons%2Cvarargs%5Bstring%5D">uing: add(r: RadioButtons; items: varargs[string])</a></li>
           <li><a class="reference external"
@@ -451,7 +451,7 @@ window.addEventListener('DOMContentLoaded', main);
           </ul></dd>
 <dt><a name="byteIndexToGrapheme" href="#byteIndexToGrapheme"><span>byteIndexToGrapheme:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
-          data-doc-search-tag="uing: byteIndexToGrapheme(s: AttributedString; pos: BiggestUInt): BiggestUInt" href="uing.html#byteIndexToGrapheme%2CAttributedString%2CBiggestUInt">uing: byteIndexToGrapheme(s: AttributedString; pos: BiggestUInt): BiggestUInt</a></li>
+          data-doc-search-tag="uing: byteIndexToGrapheme(s: AttributedString; pos: int): int" href="uing.html#byteIndexToGrapheme%2CAttributedString%2Cint">uing: byteIndexToGrapheme(s: AttributedString; pos: int): int</a></li>
           </ul></dd>
 <dt><a name="Checkbox" href="#Checkbox"><span>Checkbox:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
@@ -705,7 +705,7 @@ window.addEventListener('DOMContentLoaded', main);
           </ul></dd>
 <dt><a name="delete" href="#delete"><span>delete:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
-          data-doc-search-tag="uing: delete(s: AttributedString; start, end: BiggestUInt)" href="uing.html#delete%2CAttributedString%2CBiggestUInt%2CBiggestUInt">uing: delete(s: AttributedString; start, end: BiggestUInt)</a></li>
+          data-doc-search-tag="uing: delete(s: AttributedString; start, end: int)" href="uing.html#delete%2CAttributedString%2Cint%2Cint">uing: delete(s: AttributedString; start, end: int)</a></li>
           <li><a class="reference external"
           data-doc-search-tag="uing: delete(b: Box; index: int)" href="uing.html#delete%2CBox%2Cint">uing: delete(b: Box; index: int)</a></li>
           <li><a class="reference external"
@@ -775,8 +775,6 @@ window.addEventListener('DOMContentLoaded', main);
           </ul></dd>
 <dt><a name="DrawMatrix" href="#DrawMatrix"><span>DrawMatrix:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
-          data-doc-search-tag="uing: DrawMatrix" href="uing.html#DrawMatrix">uing: DrawMatrix</a></li>
-          <li><a class="reference external"
           data-doc-search-tag="rawui: DrawMatrix" href="uing/rawui.html#DrawMatrix">rawui: DrawMatrix</a></li>
           </ul></dd>
 <dt><a name="drawMatrixInvert" href="#drawMatrixInvert"><span>drawMatrixInvert:</span></a></dt><dd><ul class="simple">
@@ -905,7 +903,7 @@ window.addEventListener('DOMContentLoaded', main);
           </ul></dd>
 <dt><a name="drawText" href="#drawText"><span>drawText:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
-          data-doc-search-tag="uing: drawText(c: ptr DrawContext; tl: DrawTextLayout; x, y: float)" href="uing.html#drawText%2Cptr.DrawContext%2CDrawTextLayout%2Cfloat%2Cfloat">uing: drawText(c: ptr DrawContext; tl: DrawTextLayout; x, y: float)</a></li>
+          data-doc-search-tag="uing: drawText(c: ptr DrawContext; tl: DrawTextLayout; point: tuple[x, y: float])" href="uing.html#drawText%2Cptr.DrawContext%2CDrawTextLayout%2Ctuple%5Bfloat%2Cfloat%5D">uing: drawText(c: ptr DrawContext; tl: DrawTextLayout; point: tuple[x, y: float])</a></li>
           <li><a class="reference external"
           data-doc-search-tag="rawui: drawText(c: ptr DrawContext; tl: ptr DrawTextLayout; x: cdouble; y: cdouble)" href="uing/rawui.html#drawText%2Cptr.DrawContext%2Cptr.DrawTextLayout%2Ccdouble%2Ccdouble">rawui: drawText(c: ptr DrawContext; tl: ptr DrawTextLayout; x: cdouble; y: cdouble)</a></li>
           </ul></dd>
@@ -1067,8 +1065,6 @@ window.addEventListener('DOMContentLoaded', main);
           </ul></dd>
 <dt><a name="FontDescriptor" href="#FontDescriptor"><span>FontDescriptor:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
-          data-doc-search-tag="uing: FontDescriptor" href="uing.html#FontDescriptor">uing: FontDescriptor</a></li>
-          <li><a class="reference external"
           data-doc-search-tag="rawui: FontDescriptor" href="uing/rawui.html#FontDescriptor">rawui: FontDescriptor</a></li>
           </ul></dd>
 <dt><a name="forEach" href="#forEach"><span>forEach:</span></a></dt><dd><ul class="simple">
@@ -1125,11 +1121,11 @@ window.addEventListener('DOMContentLoaded', main);
           <li><a class="reference external"
           data-doc-search-tag="uing: free(tl: DrawTextLayout)" href="uing.html#free%2CDrawTextLayout">uing: free(tl: DrawTextLayout)</a></li>
           <li><a class="reference external"
-          data-doc-search-tag="uing: free(f: FontDescriptor)" href="uing.html#free%2CFontDescriptor">uing: free(f: FontDescriptor)</a></li>
-          <li><a class="reference external"
           data-doc-search-tag="uing: free(i: Image)" href="uing.html#free%2CImage">uing: free(i: Image)</a></li>
           <li><a class="reference external"
           data-doc-search-tag="uing: free(otf: OpenTypeFeatures)" href="uing.html#free%2COpenTypeFeatures">uing: free(otf: OpenTypeFeatures)</a></li>
+          <li><a class="reference external"
+          data-doc-search-tag="uing: free(f: ptr FontDescriptor)" href="uing.html#free%2Cptr.FontDescriptor">uing: free(f: ptr FontDescriptor)</a></li>
           <li><a class="reference external"
           data-doc-search-tag="uing: free(t: ptr TableSelection)" href="uing.html#free%2Cptr.TableSelection">uing: free(t: ptr TableSelection)</a></li>
           <li><a class="reference external"
@@ -1155,7 +1151,7 @@ window.addEventListener('DOMContentLoaded', main);
           </ul></dd>
 <dt><a name="freeFont" href="#freeFont"><span>freeFont:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
-          data-doc-search-tag="uing: freeFont(desc: FontDescriptor)" href="uing.html#freeFont%2CFontDescriptor">uing: freeFont(desc: FontDescriptor)</a></li>
+          data-doc-search-tag="uing: freeFont(desc: ptr FontDescriptor)" href="uing.html#freeFont%2Cptr.FontDescriptor">uing: freeFont(desc: ptr FontDescriptor)</a></li>
           </ul></dd>
 <dt><a name="freeFontButtonFont" href="#freeFontButtonFont"><span>freeFontButtonFont:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
@@ -1217,7 +1213,7 @@ window.addEventListener('DOMContentLoaded', main);
           </ul></dd>
 <dt><a name="graphemeToByteIndex" href="#graphemeToByteIndex"><span>graphemeToByteIndex:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
-          data-doc-search-tag="uing: graphemeToByteIndex(s: AttributedString; pos: BiggestUInt): BiggestUInt" href="uing.html#graphemeToByteIndex%2CAttributedString%2CBiggestUInt">uing: graphemeToByteIndex(s: AttributedString; pos: BiggestUInt): BiggestUInt</a></li>
+          data-doc-search-tag="uing: graphemeToByteIndex(s: AttributedString; pos: int): int" href="uing.html#graphemeToByteIndex%2CAttributedString%2Cint">uing: graphemeToByteIndex(s: AttributedString; pos: int): int</a></li>
           </ul></dd>
 <dt><a name="Grid" href="#Grid"><span>Grid:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
@@ -1283,6 +1279,10 @@ window.addEventListener('DOMContentLoaded', main);
 <li><a class="reference external"
           data-doc-search-tag="rawui: groupTitle(g: ptr Group): cstring" href="uing/rawui.html#groupTitle%2Cptr.Group">rawui: groupTitle(g: ptr Group): cstring</a></li>
           </ul></dd>
+<dt><a name="handler" href="#handler"><span>handler:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="uing: handler(a: Area): ptr AreaHandler" href="uing.html#handler%2CArea">uing: handler(a: Area): ptr AreaHandler</a></li>
+          </ul></dd>
 <dt><a name="hasToolTip" href="#hasToolTip"><span>hasToolTip:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
           data-doc-search-tag="uing: hasToolTip(s: Slider): bool" href="uing.html#hasToolTip%2CSlider">uing: hasToolTip(s: Slider): bool</a></li>
@@ -1341,8 +1341,6 @@ window.addEventListener('DOMContentLoaded', main);
           <li><a class="reference external"
           data-doc-search-tag="uing: impl(b: DateTimePicker): RawDateTimePicker" href="uing.html#impl%2CDateTimePicker">uing: impl(b: DateTimePicker): RawDateTimePicker</a></li>
           <li><a class="reference external"
-          data-doc-search-tag="uing: impl(b: DrawMatrix): RawDrawMatrix" href="uing.html#impl%2CDrawMatrix">uing: impl(b: DrawMatrix): RawDrawMatrix</a></li>
-          <li><a class="reference external"
           data-doc-search-tag="uing: impl(b: DrawPath): RawDrawPath" href="uing.html#impl%2CDrawPath">uing: impl(b: DrawPath): RawDrawPath</a></li>
           <li><a class="reference external"
           data-doc-search-tag="uing: impl(b: DrawTextLayout): RawDrawTextLayout" href="uing.html#impl%2CDrawTextLayout">uing: impl(b: DrawTextLayout): RawDrawTextLayout</a></li>
@@ -1352,8 +1350,6 @@ window.addEventListener('DOMContentLoaded', main);
           data-doc-search-tag="uing: impl(b: Entry): RawEntry" href="uing.html#impl%2CEntry">uing: impl(b: Entry): RawEntry</a></li>
           <li><a class="reference external"
           data-doc-search-tag="uing: impl(b: FontButton): RawFontButton" href="uing.html#impl%2CFontButton">uing: impl(b: FontButton): RawFontButton</a></li>
-          <li><a class="reference external"
-          data-doc-search-tag="uing: impl(b: FontDescriptor): RawFontDescriptor" href="uing.html#impl%2CFontDescriptor">uing: impl(b: FontDescriptor): RawFontDescriptor</a></li>
           <li><a class="reference external"
           data-doc-search-tag="uing: impl(b: Form): RawForm" href="uing.html#impl%2CForm">uing: impl(b: Form): RawForm</a></li>
           <li><a class="reference external"
@@ -1415,8 +1411,6 @@ window.addEventListener('DOMContentLoaded', main);
           <li><a class="reference external"
           data-doc-search-tag="uing: impl=(b: DateTimePicker; r: RawDateTimePicker)" href="uing.html#impl%3D%2CDateTimePicker%2CRawDateTimePicker">uing: impl=(b: DateTimePicker; r: RawDateTimePicker)</a></li>
           <li><a class="reference external"
-          data-doc-search-tag="uing: impl=(b: DrawMatrix; r: RawDrawMatrix)" href="uing.html#impl%3D%2CDrawMatrix%2CRawDrawMatrix">uing: impl=(b: DrawMatrix; r: RawDrawMatrix)</a></li>
-          <li><a class="reference external"
           data-doc-search-tag="uing: impl=(b: DrawPath; r: RawDrawPath)" href="uing.html#impl%3D%2CDrawPath%2CRawDrawPath">uing: impl=(b: DrawPath; r: RawDrawPath)</a></li>
           <li><a class="reference external"
           data-doc-search-tag="uing: impl=(b: DrawTextLayout; r: RawDrawTextLayout)" href="uing.html#impl%3D%2CDrawTextLayout%2CRawDrawTextLayout">uing: impl=(b: DrawTextLayout; r: RawDrawTextLayout)</a></li>
@@ -1426,8 +1420,6 @@ window.addEventListener('DOMContentLoaded', main);
           data-doc-search-tag="uing: impl=(b: Entry; r: RawEntry)" href="uing.html#impl%3D%2CEntry%2CRawEntry">uing: impl=(b: Entry; r: RawEntry)</a></li>
           <li><a class="reference external"
           data-doc-search-tag="uing: impl=(b: FontButton; r: RawFontButton)" href="uing.html#impl%3D%2CFontButton%2CRawFontButton">uing: impl=(b: FontButton; r: RawFontButton)</a></li>
-          <li><a class="reference external"
-          data-doc-search-tag="uing: impl=(b: FontDescriptor; r: RawFontDescriptor)" href="uing.html#impl%3D%2CFontDescriptor%2CRawFontDescriptor">uing: impl=(b: FontDescriptor; r: RawFontDescriptor)</a></li>
           <li><a class="reference external"
           data-doc-search-tag="uing: impl=(b: Form; r: RawForm)" href="uing.html#impl%3D%2CForm%2CRawForm">uing: impl=(b: Form; r: RawForm)</a></li>
           <li><a class="reference external"
@@ -1491,15 +1483,15 @@ window.addEventListener('DOMContentLoaded', main);
           </ul></dd>
 <dt><a name="insertAtUnattributed" href="#insertAtUnattributed"><span>insertAtUnattributed:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
-          data-doc-search-tag="uing: insertAtUnattributed(s: AttributedString; str: string; at: BiggestUInt)" href="uing.html#insertAtUnattributed%2CAttributedString%2Cstring%2CBiggestUInt">uing: insertAtUnattributed(s: AttributedString; str: string; at: BiggestUInt)</a></li>
+          data-doc-search-tag="uing: insertAtUnattributed(s: AttributedString; str: string; at: int)" href="uing.html#insertAtUnattributed%2CAttributedString%2Cstring%2Cint">uing: insertAtUnattributed(s: AttributedString; str: string; at: int)</a></li>
           </ul></dd>
 <dt><a name="invert" href="#invert"><span>invert:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
-          data-doc-search-tag="uing: invert(m: DrawMatrix): int" href="uing.html#invert%2CDrawMatrix">uing: invert(m: DrawMatrix): int</a></li>
+          data-doc-search-tag="uing: invert(m: ptr DrawMatrix): int" href="uing.html#invert%2Cptr.DrawMatrix">uing: invert(m: ptr DrawMatrix): int</a></li>
           </ul></dd>
 <dt><a name="invertible" href="#invertible"><span>invertible:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
-          data-doc-search-tag="uing: invertible(m: DrawMatrix): bool" href="uing.html#invertible%2CDrawMatrix">uing: invertible(m: DrawMatrix): bool</a></li>
+          data-doc-search-tag="uing: invertible(m: ptr DrawMatrix): bool" href="uing.html#invertible%2Cptr.DrawMatrix">uing: invertible(m: ptr DrawMatrix): bool</a></li>
           </ul></dd>
 <dt><a name="italic" href="#italic"><span>italic:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
@@ -1525,7 +1517,7 @@ window.addEventListener('DOMContentLoaded', main);
           </ul></dd>
 <dt><a name="len" href="#len"><span>len:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
-          data-doc-search-tag="uing: len(s: AttributedString): BiggestUInt" href="uing.html#len%2CAttributedString">uing: len(s: AttributedString): BiggestUInt</a></li>
+          data-doc-search-tag="uing: len(s: AttributedString): int" href="uing.html#len%2CAttributedString">uing: len(s: AttributedString): int</a></li>
           </ul></dd>
 <dt><a name="lineTo" href="#lineTo"><span>lineTo:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
@@ -1533,7 +1525,7 @@ window.addEventListener('DOMContentLoaded', main);
           </ul></dd>
 <dt><a name="loadControlFont" href="#loadControlFont"><span>loadControlFont:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
-          data-doc-search-tag="uing: loadControlFont(f: FontDescriptor)" href="uing.html#loadControlFont%2CFontDescriptor">uing: loadControlFont(f: FontDescriptor)</a></li>
+          data-doc-search-tag="uing: loadControlFont(f: ptr FontDescriptor)" href="uing.html#loadControlFont%2Cptr.FontDescriptor">uing: loadControlFont(f: ptr FontDescriptor)</a></li>
           <li><a class="reference external"
           data-doc-search-tag="rawui: loadControlFont(f: ptr FontDescriptor)" href="uing/rawui.html#loadControlFont%2Cptr.FontDescriptor">rawui: loadControlFont(f: ptr FontDescriptor)</a></li>
           </ul></dd>
@@ -1687,7 +1679,7 @@ window.addEventListener('DOMContentLoaded', main);
           </ul></dd>
 <dt><a name="multiply" href="#multiply"><span>multiply:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
-          data-doc-search-tag="uing: multiply(dest: DrawMatrix; src: DrawMatrix)" href="uing.html#multiply%2CDrawMatrix%2CDrawMatrix">uing: multiply(dest: DrawMatrix; src: DrawMatrix)</a></li>
+          data-doc-search-tag="uing: multiply(dest, src: ptr DrawMatrix)" href="uing.html#multiply%2Cptr.DrawMatrix%2Cptr.DrawMatrix">uing: multiply(dest, src: ptr DrawMatrix)</a></li>
           </ul></dd>
 <dt><a name="newArea" href="#newArea"><span>newArea:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
@@ -1803,19 +1795,9 @@ window.addEventListener('DOMContentLoaded', main);
           <li><a class="reference external"
           data-doc-search-tag="rawui: newFontButton(): ptr FontButton" href="uing/rawui.html#newFontButton">rawui: newFontButton(): ptr FontButton</a></li>
           </ul></dd>
-<dt><a name="newFontDescriptor" href="#newFontDescriptor"><span>newFontDescriptor:</span></a></dt><dd><ul class="simple">
-<li><a class="reference external"
-          data-doc-search-tag="uing: newFontDescriptor(family: string; size: float | int;
-                  weight: TextWeight = TextWeightNormal;
-                  italic: TextItalic = TextItalicNormal;
-                  stretch: TextStretch = TextStretchNormal): FontDescriptor" href="uing.html#newFontDescriptor%2Cstring%2C%2CTextWeight%2CTextItalic%2CTextStretch">uing: newFontDescriptor(family: string; size: float | int;
-                  weight: TextWeight = TextWeightNormal;
-                  italic: TextItalic = TextItalicNormal;
-                  stretch: TextStretch = TextStretchNormal): FontDescriptor</a></li>
-          </ul></dd>
 <dt><a name="newForm" href="#newForm"><span>newForm:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
-          data-doc-search-tag="uing: newForm(): Form" href="uing.html#newForm">uing: newForm(): Form</a></li>
+          data-doc-search-tag="uing: newForm(padded: bool = false): Form" href="uing.html#newForm%2Cbool">uing: newForm(padded: bool = false): Form</a></li>
           <li><a class="reference external"
           data-doc-search-tag="rawui: newForm(): ptr Form" href="uing/rawui.html#newForm">rawui: newForm(): ptr Form</a></li>
           </ul></dd>
@@ -1997,7 +1979,9 @@ window.addEventListener('DOMContentLoaded', main);
           </ul></dd>
 <dt><a name="newUnderlineColorAttribute" href="#newUnderlineColorAttribute"><span>newUnderlineColorAttribute:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
-          data-doc-search-tag="uing: newUnderlineColorAttribute(u: UnderlineColor; r, g, b, a: float): Attribute" href="uing.html#newUnderlineColorAttribute%2CUnderlineColor%2Cfloat%2Cfloat%2Cfloat%2Cfloat">uing: newUnderlineColorAttribute(u: UnderlineColor; r, g, b, a: float): Attribute</a></li>
+          data-doc-search-tag="uing: newUnderlineColorAttribute(u: UnderlineColor; r = 0.0&apos;f32; g = 0.0&apos;f32;
+                           b = 0.0&apos;f32; a: float = 0.0&apos;f32): Attribute" href="uing.html#newUnderlineColorAttribute%2CUnderlineColor%2Cfloat32%2Cfloat32%2Cfloat32%2Cfloat">uing: newUnderlineColorAttribute(u: UnderlineColor; r = 0.0&apos;f32; g = 0.0&apos;f32;
+                           b = 0.0&apos;f32; a: float = 0.0&apos;f32): Attribute</a></li>
           <li><a class="reference external"
           data-doc-search-tag="rawui: newUnderlineColorAttribute(u: UnderlineColor; r: cdouble; g: cdouble;
                            b: cdouble; a: cdouble): ptr Attribute" href="uing/rawui.html#newUnderlineColorAttribute%2CUnderlineColor%2Ccdouble%2Ccdouble%2Ccdouble%2Ccdouble">rawui: newUnderlineColorAttribute(u: UnderlineColor; r: cdouble; g: cdouble;
@@ -2035,7 +2019,7 @@ window.addEventListener('DOMContentLoaded', main);
           </ul></dd>
 <dt><a name="numGraphemes" href="#numGraphemes"><span>numGraphemes:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
-          data-doc-search-tag="uing: numGraphemes(s: AttributedString): BiggestUInt" href="uing.html#numGraphemes%2CAttributedString">uing: numGraphemes(s: AttributedString): BiggestUInt</a></li>
+          data-doc-search-tag="uing: numGraphemes(s: AttributedString): int" href="uing.html#numGraphemes%2CAttributedString">uing: numGraphemes(s: AttributedString): int</a></li>
           </ul></dd>
 <dt><a name="onShouldQuit" href="#onShouldQuit"><span>onShouldQuit:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
@@ -2211,7 +2195,7 @@ window.addEventListener('DOMContentLoaded', main);
           </ul></dd>
 <dt><a name="rotate" href="#rotate"><span>rotate:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
-          data-doc-search-tag="uing: rotate(m: DrawMatrix; x, y, amount: float)" href="uing.html#rotate%2CDrawMatrix%2Cfloat%2Cfloat%2Cfloat">uing: rotate(m: DrawMatrix; x, y, amount: float)</a></li>
+          data-doc-search-tag="uing: rotate(m: ptr DrawMatrix; x, y, amount: float)" href="uing.html#rotate%2Cptr.DrawMatrix%2Cfloat%2Cfloat%2Cfloat">uing: rotate(m: ptr DrawMatrix; x, y, amount: float)</a></li>
           </ul></dd>
 <dt><a name="rowChanged" href="#rowChanged"><span>rowChanged:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
@@ -2233,7 +2217,7 @@ window.addEventListener('DOMContentLoaded', main);
           </ul></dd>
 <dt><a name="scale" href="#scale"><span>scale:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
-          data-doc-search-tag="uing: scale(m: DrawMatrix; xCenter, yCenter, x, y: float)" href="uing.html#scale%2CDrawMatrix%2Cfloat%2Cfloat%2Cfloat%2Cfloat">uing: scale(m: DrawMatrix; xCenter, yCenter, x, y: float)</a></li>
+          data-doc-search-tag="uing: scale(m: ptr DrawMatrix; xCenter, yCenter, x, y: float)" href="uing.html#scale%2Cptr.DrawMatrix%2Cfloat%2Cfloat%2Cfloat%2Cfloat">uing: scale(m: ptr DrawMatrix; xCenter, yCenter, x, y: float)</a></li>
           </ul></dd>
 <dt><a name="selected" href="#selected"><span>selected:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
@@ -2249,11 +2233,11 @@ window.addEventListener('DOMContentLoaded', main);
           </ul></dd>
 <dt><a name="selection" href="#selection"><span>selection:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
-          data-doc-search-tag="uing: selection(table: Table): tuple[numRows: int, rows: seq[int]]" href="uing.html#selection%2CTable">uing: selection(table: Table): tuple[numRows: int, rows: seq[int]]</a></li>
+          data-doc-search-tag="uing: selection(table: Table): seq[int]" href="uing.html#selection%2CTable">uing: selection(table: Table): seq[int]</a></li>
           </ul></dd>
 <dt><a name="selection%3D" href="#selection%3D"><span>selection=:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
-          data-doc-search-tag="uing: selection=(table: Table; sel: openArray[int])" href="uing.html#selection%3D%2CTable%2CopenArray%5Bint%5D">uing: selection=(table: Table; sel: openArray[int])</a></li>
+          data-doc-search-tag="uing: selection=(table: Table; sel: openArray[cint])" href="uing.html#selection%3D%2CTable%2CopenArray%5Bcint%5D">uing: selection=(table: Table; sel: openArray[cint])</a></li>
           </ul></dd>
 <dt><a name="selectionMode" href="#selectionMode"><span>selectionMode:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
@@ -2275,7 +2259,7 @@ window.addEventListener('DOMContentLoaded', main);
           </ul></dd>
 <dt><a name="setAttribute" href="#setAttribute"><span>setAttribute:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
-          data-doc-search-tag="uing: setAttribute(s: AttributedString; a: Attribute; start, end: BiggestUInt)" href="uing.html#setAttribute%2CAttributedString%2CAttribute%2CBiggestUInt%2CBiggestUInt">uing: setAttribute(s: AttributedString; a: Attribute; start, end: BiggestUInt)</a></li>
+          data-doc-search-tag="uing: setAttribute(s: AttributedString; a: Attribute; start, end: int)" href="uing.html#setAttribute%2CAttributedString%2CAttribute%2Cint%2Cint">uing: setAttribute(s: AttributedString; a: Attribute; start, end: int)</a></li>
           </ul></dd>
 <dt><a name="setColor" href="#setColor"><span>setColor:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
@@ -2287,7 +2271,7 @@ window.addEventListener('DOMContentLoaded', main);
           </ul></dd>
 <dt><a name="setIdentity" href="#setIdentity"><span>setIdentity:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
-          data-doc-search-tag="uing: setIdentity(m: DrawMatrix)" href="uing.html#setIdentity%2CDrawMatrix">uing: setIdentity(m: DrawMatrix)</a></li>
+          data-doc-search-tag="uing: setIdentity(m: ptr DrawMatrix)" href="uing.html#setIdentity%2Cptr.DrawMatrix">uing: setIdentity(m: ptr DrawMatrix)</a></li>
           </ul></dd>
 <dt><a name="setMargined" href="#setMargined"><span>setMargined:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
@@ -2311,7 +2295,7 @@ window.addEventListener('DOMContentLoaded', main);
           </ul></dd>
 <dt><a name="skew" href="#skew"><span>skew:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
-          data-doc-search-tag="uing: skew(m: DrawMatrix; x, y, xamount, yamount: float)" href="uing.html#skew%2CDrawMatrix%2Cfloat%2Cfloat%2Cfloat%2Cfloat">uing: skew(m: DrawMatrix; x, y, xamount, yamount: float)</a></li>
+          data-doc-search-tag="uing: skew(m: ptr DrawMatrix; x, y, xamount, yamount: float)" href="uing.html#skew%2Cptr.DrawMatrix%2Cfloat%2Cfloat%2Cfloat%2Cfloat">uing: skew(m: ptr DrawMatrix; x, y, xamount, yamount: float)</a></li>
           </ul></dd>
 <dt><a name="Slider" href="#Slider"><span>Slider:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
@@ -2705,7 +2689,9 @@ window.addEventListener('DOMContentLoaded', main);
           </ul></dd>
 <dt><a name="timer" href="#timer"><span>timer:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
-          data-doc-search-tag="uing: timer(milliseconds: int; f: proc (data: pointer): cint {.cdecl.}; data: pointer)" href="uing.html#timer%2Cint%2Cproc%28pointer%29%2Cpointer">uing: timer(milliseconds: int; f: proc (data: pointer): cint {.cdecl.}; data: pointer)</a></li>
+          data-doc-search-tag="uing: timer(milliseconds: int; f: proc (data: pointer): cint {.cdecl.};
+      data: pointer = nil)" href="uing.html#timer%2Cint%2Cproc%28pointer%29%2Cpointer">uing: timer(milliseconds: int; f: proc (data: pointer): cint {.cdecl.};
+      data: pointer = nil)</a></li>
           <li><a class="reference external"
           data-doc-search-tag="rawui: timer(milliseconds: cint; f: proc (data: pointer): cint {.cdecl.}; data: pointer)" href="uing/rawui.html#timer%2Ccint%2Cproc%28pointer%29%2Cpointer">rawui: timer(milliseconds: cint; f: proc (data: pointer): cint {.cdecl.}; data: pointer)</a></li>
           </ul></dd>
@@ -2729,17 +2715,21 @@ window.addEventListener('DOMContentLoaded', main);
 <li><a class="reference external"
           data-doc-search-tag="uing: topLevel[W: Widget](w: W): bool" href="uing.html#topLevel%2CW">uing: topLevel[W: Widget](w: W): bool</a></li>
           </ul></dd>
+<dt><a name="transform" href="#transform"><span>transform:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="uing: transform(c: ptr DrawContext; m: ptr DrawMatrix)" href="uing.html#transform%2Cptr.DrawContext%2Cptr.DrawMatrix">uing: transform(c: ptr DrawContext; m: ptr DrawMatrix)</a></li>
+          </ul></dd>
 <dt><a name="transformPoint" href="#transformPoint"><span>transformPoint:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
-          data-doc-search-tag="uing: transformPoint(m: DrawMatrix): tuple[x, y: float]" href="uing.html#transformPoint%2CDrawMatrix">uing: transformPoint(m: DrawMatrix): tuple[x, y: float]</a></li>
+          data-doc-search-tag="uing: transformPoint(m: ptr DrawMatrix): tuple[x, y: float]" href="uing.html#transformPoint%2Cptr.DrawMatrix">uing: transformPoint(m: ptr DrawMatrix): tuple[x, y: float]</a></li>
           </ul></dd>
 <dt><a name="transformSize" href="#transformSize"><span>transformSize:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
-          data-doc-search-tag="uing: transformSize(m: DrawMatrix): tuple[x, y: float]" href="uing.html#transformSize%2CDrawMatrix">uing: transformSize(m: DrawMatrix): tuple[x, y: float]</a></li>
+          data-doc-search-tag="uing: transformSize(m: ptr DrawMatrix): tuple[x, y: float]" href="uing.html#transformSize%2Cptr.DrawMatrix">uing: transformSize(m: ptr DrawMatrix): tuple[x, y: float]</a></li>
           </ul></dd>
 <dt><a name="translate" href="#translate"><span>translate:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
-          data-doc-search-tag="uing: translate(m: DrawMatrix; x, y: float)" href="uing.html#translate%2CDrawMatrix%2Cfloat%2Cfloat">uing: translate(m: DrawMatrix; x, y: float)</a></li>
+          data-doc-search-tag="uing: translate(m: ptr DrawMatrix; x, y: float)" href="uing.html#translate%2Cptr.DrawMatrix%2Cfloat%2Cfloat">uing: translate(m: ptr DrawMatrix; x, y: float)</a></li>
           </ul></dd>
 <dt><a name="underline" href="#underline"><span>underline:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
@@ -2890,7 +2880,7 @@ window.addEventListener('DOMContentLoaded', main);
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small style="color: var(--hint);">Made with Nim. Generated: 2023-01-29 17:46:51 UTC</small>
+        <small style="color: var(--hint);">Made with Nim. Generated: 2023-01-30 01:01:21 UTC</small>
       </div>
     </div>
   </div>

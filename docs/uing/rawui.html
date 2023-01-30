@@ -452,7 +452,7 @@ window.addEventListener('DOMContentLoaded', main);
   UnderlineNone, UnderlineSingle, UnderlineDouble, UnderlineSuggestion ## wavy or dotted underlines used for spelling/grammar checkers">Underline</a></li>
   <li><a class="reference" href="#UnderlineColor"
     title="UnderlineColor {.size: 4.} = enum
-  uiUnderlineColorCustom, uiUnderlineColorSpelling, uiUnderlineColorGrammar, uiUnderlineColorAuxiliary ## for instance, the color used by smart replacements on macOS or in Microsoft Office">UnderlineColor</a></li>
+  UnderlineColorCustom, UnderlineColorSpelling, UnderlineColorGrammar, UnderlineColorAuxiliary ## for instance, the color used by smart replacements on macOS or in Microsoft Office">UnderlineColor</a></li>
   <li><a class="reference" href="#Window"
     title="Window = object of Control">Window</a></li>
   <li><a class="reference" href="#WindowResizeEdge"
@@ -2665,6 +2665,8 @@ Base class for GUI controls providing common methods.
 </pre></dt>
 <dd>
 
+<p><tt class="docutils literal"><span class="pre"><span class="Identifier">FontDescriptor</span></span></tt> provides a complete description of a font where one is needed. Currently, this means as the default font of a DrawTextLayout and as the data returned by <a class="reference external" href="#FontButton">FontButton</a>.</p>
+<p>All the members operate like the respective <tt class="docutils literal"><span class="pre"><span class="Identifier">Attribute</span></span></tt>s.</p>
 
 
 </dd>
@@ -2953,7 +2955,7 @@ Holds an array of selected row indices for a table.
 
 <p>Table selection modes.</p>
 <p>Table selection that enforce how a user can interact with a table.</p>
-<div class="admonition admonition-warning"><span class="admonition-warning-text"><b>Warning:</b></span>
+<div class="admonition admonition-info"><span class="admonition-info-text"><b>Note:</b></span>
 An empty table selection is a valid state for any selection mode. This is in fact the default upon table creation and can otherwise triggered through operations such as row deletion.</div>
 
 
@@ -3069,7 +3071,7 @@ Optional parameters to control the appearance of text columns.
 </div>
 <div id="UnderlineColor">
 <dt><pre><a href="rawui.html#UnderlineColor"><span class="Identifier">UnderlineColor</span></a> {.<span class="Identifier">size</span><span class="Other">:</span> <span class="DecNumber">4</span>.} <span class="Other">=</span> <span class="Keyword">enum</span>
-  <span class="Identifier">uiUnderlineColorCustom</span><span class="Other">,</span> <span class="Identifier">uiUnderlineColorSpelling</span><span class="Other">,</span> <span class="Identifier">uiUnderlineColorGrammar</span><span class="Other">,</span> <span class="Identifier">uiUnderlineColorAuxiliary</span> <span class="Comment">## for instance, the color used by smart replacements on macOS or in Microsoft Office   </span></pre></dt>
+  <span class="Identifier">UnderlineColorCustom</span><span class="Other">,</span> <span class="Identifier">UnderlineColorSpelling</span><span class="Other">,</span> <span class="Identifier">UnderlineColorGrammar</span><span class="Other">,</span> <span class="Identifier">UnderlineColorAuxiliary</span> <span class="Comment">## for instance, the color used by smart replacements on macOS or in Microsoft Office   </span></pre></dt>
 <dd>
 
 <p><tt class="docutils literal"><span class="pre"><span class="Identifier">UnderlineColor</span></span></tt> specifies the color of any underline on the text it is applied to, regardless of the type of underline. In addition to being able to specify a custom color, you can explicitly specify platform-specific colors for suggestion underlines; to use them correctly, pair them with <tt class="docutils literal"><span class="pre"><span class="Identifier">UnderlineSuggestion</span></span></tt> (though they can be used on other types of underline as well).</p>
@@ -6057,7 +6059,7 @@ Parameter to editable model columns to signify all rows are never editable.
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small style="color: var(--hint);">Made with Nim. Generated: 2023-01-29 17:46:51 UTC</small>
+        <small style="color: var(--hint);">Made with Nim. Generated: 2023-01-30 01:01:21 UTC</small>
       </div>
     </div>
   </div>

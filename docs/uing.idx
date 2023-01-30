@@ -4,14 +4,10 @@ init	uing.html#init	uing: init()
 quit	uing.html#quit	uing: quit()	
 mainLoop	uing.html#mainLoop	uing: mainLoop()	
 pollingMainLoop	uing.html#pollingMainLoop,proc(int),int	uing: pollingMainLoop(poll: proc (timeout: int); timeout: int)	
-timer	uing.html#timer,int,proc(pointer),pointer	uing: timer(milliseconds: int; f: proc (data: pointer): cint {.cdecl.}; data: pointer)	
+timer	uing.html#timer,int,proc(pointer),pointer	uing: timer(milliseconds: int; f: proc (data: pointer): cint {.cdecl.};\n      data: pointer = nil)	
 free	uing.html#free,string	uing: free(str: string)	
-FontDescriptor	uing.html#FontDescriptor	uing: FontDescriptor	
-impl	uing.html#impl,FontDescriptor	uing: impl(b: FontDescriptor): RawFontDescriptor	
-impl=	uing.html#impl=,FontDescriptor,RawFontDescriptor	uing: impl=(b: FontDescriptor; r: RawFontDescriptor)	
-loadControlFont	uing.html#loadControlFont,FontDescriptor	uing: loadControlFont(f: FontDescriptor)	
-free	uing.html#free,FontDescriptor	uing: free(f: FontDescriptor)	
-newFontDescriptor	uing.html#newFontDescriptor,string,,TextWeight,TextItalic,TextStretch	uing: newFontDescriptor(family: string; size: float | int;\n                  weight: TextWeight = TextWeightNormal;\n                  italic: TextItalic = TextItalicNormal;\n                  stretch: TextStretch = TextStretchNormal): FontDescriptor	
+loadControlFont	uing.html#loadControlFont,ptr.FontDescriptor	uing: loadControlFont(f: ptr FontDescriptor)	
+free	uing.html#free,ptr.FontDescriptor	uing: free(f: ptr FontDescriptor)	
 Area	uing.html#Area	uing: Area	
 impl	uing.html#impl,Area	uing: impl(b: Area): RawArea	
 impl=	uing.html#impl=,Area,RawArea	uing: impl=(b: Area; r: RawArea)	
@@ -19,14 +15,12 @@ size=	uing.html#size=,Area,tuple[int,int]	uing: size=(a: Area; size: tuple[width
 queueRedrawAll	uing.html#queueRedrawAll,Area	uing: queueRedrawAll(a: Area)	
 beginUserWindowMove	uing.html#beginUserWindowMove,Area	uing: beginUserWindowMove(a: Area)	
 beginUserWindowResize	uing.html#beginUserWindowResize,Area,WindowResizeEdge	uing: beginUserWindowResize(a: Area; edge: WindowResizeEdge)	
+handler	uing.html#handler,Area	uing: handler(a: Area): ptr AreaHandler	
 newArea	uing.html#newArea,ptr.AreaHandler	uing: newArea(ah: ptr AreaHandler): Area	
 newScrollingArea	uing.html#newScrollingArea,ptr.AreaHandler,int,int	uing: newScrollingArea(ah: ptr AreaHandler; width, height: int): Area	
 DrawPath	uing.html#DrawPath	uing: DrawPath	
-DrawMatrix	uing.html#DrawMatrix	uing: DrawMatrix	
 impl	uing.html#impl,DrawPath	uing: impl(b: DrawPath): RawDrawPath	
 impl=	uing.html#impl=,DrawPath,RawDrawPath	uing: impl=(b: DrawPath; r: RawDrawPath)	
-impl	uing.html#impl,DrawMatrix	uing: impl(b: DrawMatrix): RawDrawMatrix	
-impl=	uing.html#impl=,DrawMatrix,RawDrawMatrix	uing: impl=(b: DrawMatrix; r: RawDrawMatrix)	
 newDrawPath	uing.html#newDrawPath,DrawFillMode	uing: newDrawPath(fillMode: DrawFillMode): DrawPath	
 free	uing.html#free,DrawPath	uing: free(p: DrawPath)	
 newFigure	uing.html#newFigure,DrawPath,float,float	uing: newFigure(p: DrawPath; x: float; y: float)	
@@ -40,16 +34,17 @@ ended	uing.html#ended,DrawPath	uing: ended(p: DrawPath): bool
 `end`	uing.html#end,DrawPath	uing: `end`(p: DrawPath)	
 stroke	uing.html#stroke,ptr.DrawContext,DrawPath,ptr.DrawBrush,ptr.DrawStrokeParams	uing: stroke(c: ptr DrawContext; path: DrawPath; b: ptr DrawBrush;\n       p: ptr DrawStrokeParams)	
 fill	uing.html#fill,ptr.DrawContext,DrawPath,ptr.DrawBrush	uing: fill(c: ptr DrawContext; path: DrawPath; b: ptr DrawBrush)	
-setIdentity	uing.html#setIdentity,DrawMatrix	uing: setIdentity(m: DrawMatrix)	
-translate	uing.html#translate,DrawMatrix,float,float	uing: translate(m: DrawMatrix; x, y: float)	
-scale	uing.html#scale,DrawMatrix,float,float,float,float	uing: scale(m: DrawMatrix; xCenter, yCenter, x, y: float)	
-rotate	uing.html#rotate,DrawMatrix,float,float,float	uing: rotate(m: DrawMatrix; x, y, amount: float)	
-skew	uing.html#skew,DrawMatrix,float,float,float,float	uing: skew(m: DrawMatrix; x, y, xamount, yamount: float)	
-multiply	uing.html#multiply,DrawMatrix,DrawMatrix	uing: multiply(dest: DrawMatrix; src: DrawMatrix)	
-invertible	uing.html#invertible,DrawMatrix	uing: invertible(m: DrawMatrix): bool	
-invert	uing.html#invert,DrawMatrix	uing: invert(m: DrawMatrix): int	
-transformPoint	uing.html#transformPoint,DrawMatrix	uing: transformPoint(m: DrawMatrix): tuple[x, y: float]	
-transformSize	uing.html#transformSize,DrawMatrix	uing: transformSize(m: DrawMatrix): tuple[x, y: float]	
+transform	uing.html#transform,ptr.DrawContext,ptr.DrawMatrix	uing: transform(c: ptr DrawContext; m: ptr DrawMatrix)	
+setIdentity	uing.html#setIdentity,ptr.DrawMatrix	uing: setIdentity(m: ptr DrawMatrix)	
+translate	uing.html#translate,ptr.DrawMatrix,float,float	uing: translate(m: ptr DrawMatrix; x, y: float)	
+scale	uing.html#scale,ptr.DrawMatrix,float,float,float,float	uing: scale(m: ptr DrawMatrix; xCenter, yCenter, x, y: float)	
+rotate	uing.html#rotate,ptr.DrawMatrix,float,float,float	uing: rotate(m: ptr DrawMatrix; x, y, amount: float)	
+skew	uing.html#skew,ptr.DrawMatrix,float,float,float,float	uing: skew(m: ptr DrawMatrix; x, y, xamount, yamount: float)	
+multiply	uing.html#multiply,ptr.DrawMatrix,ptr.DrawMatrix	uing: multiply(dest, src: ptr DrawMatrix)	
+invertible	uing.html#invertible,ptr.DrawMatrix	uing: invertible(m: ptr DrawMatrix): bool	
+invert	uing.html#invert,ptr.DrawMatrix	uing: invert(m: ptr DrawMatrix): int	
+transformPoint	uing.html#transformPoint,ptr.DrawMatrix	uing: transformPoint(m: ptr DrawMatrix): tuple[x, y: float]	
+transformSize	uing.html#transformSize,ptr.DrawMatrix	uing: transformSize(m: ptr DrawMatrix): tuple[x, y: float]	
 Attribute	uing.html#Attribute	uing: Attribute	
 AttributedString	uing.html#AttributedString	uing: AttributedString	
 impl	uing.html#impl,Attribute	uing: impl(b: Attribute): RawAttribute	
@@ -59,15 +54,15 @@ impl=	uing.html#impl=,AttributedString,RawAttributedString	uing: impl=(b: Attrib
 newAttributedString	uing.html#newAttributedString,string	uing: newAttributedString(initialString: string): AttributedString	
 free	uing.html#free,AttributedString	uing: free(a: AttributedString)	
 `$`	uing.html#$,AttributedString	uing: `$`(s: AttributedString): string	
-len	uing.html#len,AttributedString	uing: len(s: AttributedString): BiggestUInt	
+len	uing.html#len,AttributedString	uing: len(s: AttributedString): int	
 addUnattributed	uing.html#addUnattributed,AttributedString,string	uing: addUnattributed(s: AttributedString; str: string)	
-insertAtUnattributed	uing.html#insertAtUnattributed,AttributedString,string,BiggestUInt	uing: insertAtUnattributed(s: AttributedString; str: string; at: BiggestUInt)	
-delete	uing.html#delete,AttributedString,BiggestUInt,BiggestUInt	uing: delete(s: AttributedString; start, end: BiggestUInt)	
-setAttribute	uing.html#setAttribute,AttributedString,Attribute,BiggestUInt,BiggestUInt	uing: setAttribute(s: AttributedString; a: Attribute; start, end: BiggestUInt)	
+insertAtUnattributed	uing.html#insertAtUnattributed,AttributedString,string,int	uing: insertAtUnattributed(s: AttributedString; str: string; at: int)	
+delete	uing.html#delete,AttributedString,int,int	uing: delete(s: AttributedString; start, end: int)	
+setAttribute	uing.html#setAttribute,AttributedString,Attribute,int,int	uing: setAttribute(s: AttributedString; a: Attribute; start, end: int)	
 forEachAttribute	uing.html#forEachAttribute,AttributedString,AttributedStringForEachAttributeFunc,pointer	uing: forEachAttribute(str: AttributedString;\n                 fun: AttributedStringForEachAttributeFunc; data: pointer)	
-numGraphemes	uing.html#numGraphemes,AttributedString	uing: numGraphemes(s: AttributedString): BiggestUInt	
-byteIndexToGrapheme	uing.html#byteIndexToGrapheme,AttributedString,BiggestUInt	uing: byteIndexToGrapheme(s: AttributedString; pos: BiggestUInt): BiggestUInt	
-graphemeToByteIndex	uing.html#graphemeToByteIndex,AttributedString,BiggestUInt	uing: graphemeToByteIndex(s: AttributedString; pos: BiggestUInt): BiggestUInt	
+numGraphemes	uing.html#numGraphemes,AttributedString	uing: numGraphemes(s: AttributedString): int	
+byteIndexToGrapheme	uing.html#byteIndexToGrapheme,AttributedString,int	uing: byteIndexToGrapheme(s: AttributedString; pos: int): int	
+graphemeToByteIndex	uing.html#graphemeToByteIndex,AttributedString,int	uing: graphemeToByteIndex(s: AttributedString; pos: int): int	
 free	uing.html#free,Attribute	uing: free(a: Attribute)	
 getType	uing.html#getType,Attribute	uing: getType(a: Attribute): AttributeType	
 newFamilyAttribute	uing.html#newFamilyAttribute,string	uing: newFamilyAttribute(family: string): Attribute	
@@ -85,7 +80,7 @@ color	uing.html#color,Attribute	uing: color(a: Attribute): tuple[r, g, b, alpha:
 newBackgroundColorAttribute	uing.html#newBackgroundColorAttribute,float,float,float,float	uing: newBackgroundColorAttribute(r, g, b, a: float = 1.0): Attribute	
 newUnderlineAttribute	uing.html#newUnderlineAttribute,Underline	uing: newUnderlineAttribute(u: Underline): Attribute	
 underline	uing.html#underline,Attribute	uing: underline(a: Attribute): Underline	
-newUnderlineColorAttribute	uing.html#newUnderlineColorAttribute,UnderlineColor,float,float,float,float	uing: newUnderlineColorAttribute(u: UnderlineColor; r, g, b, a: float): Attribute	
+newUnderlineColorAttribute	uing.html#newUnderlineColorAttribute,UnderlineColor,float32,float32,float32,float	uing: newUnderlineColorAttribute(u: UnderlineColor; r = 0.0&apos;f32; g = 0.0&apos;f32;\n                           b = 0.0&apos;f32; a: float = 0.0&apos;f32): Attribute	
 underlineColor	uing.html#underlineColor,Attribute	uing: underlineColor(a: Attribute): tuple[u: UnderlineColor, r, g, b, alpha: float]	
 OpenTypeFeatures	uing.html#OpenTypeFeatures	uing: OpenTypeFeatures	
 impl	uing.html#impl,OpenTypeFeatures	uing: impl(b: OpenTypeFeatures): RawOpenTypeFeatures	
@@ -94,7 +89,7 @@ newOpenTypeFeatures	uing.html#newOpenTypeFeatures	uing: newOpenTypeFeatures(): O
 free	uing.html#free,OpenTypeFeatures	uing: free(otf: OpenTypeFeatures)	
 clone	uing.html#clone,OpenTypeFeatures	uing: clone(otf: OpenTypeFeatures): OpenTypeFeatures	
 add	uing.html#add,OpenTypeFeatures,char,char,char,char,uint32	uing: add(otf: OpenTypeFeatures; a, b, c, d: char; value: uint32)	
-add	uing.html#add,OpenTypeFeatures,string,uint32	uing: add(otf: OpenTypeFeatures; abcd: string; value: uint32)	
+add	uing.html#add,OpenTypeFeatures,string,	uing: add(otf: OpenTypeFeatures; abcd: string; value: uint32 | bool)	
 remove	uing.html#remove,OpenTypeFeatures,char,char,char,char	uing: remove(otf: OpenTypeFeatures; a, b, c, d: char)	
 remove	uing.html#remove,OpenTypeFeatures,string	uing: remove(otf: OpenTypeFeatures; abcd: string)	
 get	uing.html#get,OpenTypeFeatures,char,char,char,char,uint32	uing: get(otf: OpenTypeFeatures; a, b, c, d: char; value: var uint32): int	
@@ -107,7 +102,7 @@ impl	uing.html#impl,DrawTextLayout	uing: impl(b: DrawTextLayout): RawDrawTextLay
 impl=	uing.html#impl=,DrawTextLayout,RawDrawTextLayout	uing: impl=(b: DrawTextLayout; r: RawDrawTextLayout)	
 newDrawTextLayout	uing.html#newDrawTextLayout,ptr.DrawTextLayoutParams	uing: newDrawTextLayout(params: ptr DrawTextLayoutParams): DrawTextLayout	
 free	uing.html#free,DrawTextLayout	uing: free(tl: DrawTextLayout)	
-drawText	uing.html#drawText,ptr.DrawContext,DrawTextLayout,float,float	uing: drawText(c: ptr DrawContext; tl: DrawTextLayout; x, y: float)	
+drawText	uing.html#drawText,ptr.DrawContext,DrawTextLayout,tuple[float,float]	uing: drawText(c: ptr DrawContext; tl: DrawTextLayout; point: tuple[x, y: float])	
 extents	uing.html#extents,DrawTextLayout	uing: extents(tl: DrawTextLayout): tuple[width, height: float]	
 Button	uing.html#Button	uing: Button	
 impl	uing.html#impl,Button	uing: impl(b: Button): RawButton	
@@ -274,7 +269,7 @@ FontButton	uing.html#FontButton	uing: FontButton
 impl	uing.html#impl,FontButton	uing: impl(b: FontButton): RawFontButton	
 impl=	uing.html#impl=,FontButton,RawFontButton	uing: impl=(b: FontButton; r: RawFontButton)	
 font	uing.html#font,FontButton	uing: font(f: FontButton): FontDescriptor	
-freeFont	uing.html#freeFont,FontDescriptor	uing: freeFont(desc: FontDescriptor)	
+freeFont	uing.html#freeFont,ptr.FontDescriptor	uing: freeFont(desc: ptr FontDescriptor)	
 newFontButton	uing.html#newFontButton,proc(FontButton)	uing: newFontButton(onchanged: proc (sender: FontButton) = nil): FontButton	
 ColorButton	uing.html#ColorButton	uing: ColorButton	
 impl	uing.html#impl,ColorButton	uing: impl(b: ColorButton): RawColorButton	
@@ -290,7 +285,7 @@ numChildren	uing.html#numChildren,Form	uing: numChildren(f: Form): int
 delete	uing.html#delete,Form,int	uing: delete(f: Form; index: int)	
 padded	uing.html#padded,Form	uing: padded(f: Form): bool	
 padded=	uing.html#padded=,Form,bool	uing: padded=(f: Form; padded: bool)	
-newForm	uing.html#newForm	uing: newForm(): Form	
+newForm	uing.html#newForm,bool	uing: newForm(padded: bool = false): Form	
 Grid	uing.html#Grid	uing: Grid	
 impl	uing.html#impl,Grid	uing: impl(b: Grid): RawGrid	
 impl=	uing.html#impl=,Grid,RawGrid	uing: impl=(b: Grid; r: RawGrid)	
@@ -345,8 +340,8 @@ columnWidth	uing.html#columnWidth,Table,int	uing: columnWidth(table: Table; colu
 setColumnWidth	uing.html#setColumnWidth,Table,int,int	uing: setColumnWidth(table: Table; column, width: int)	
 sortIndicator	uing.html#sortIndicator,Table,int	uing: sortIndicator(table: Table; column: int): SortIndicator	
 setSortIndicator	uing.html#setSortIndicator,Table,int,SortIndicator	uing: setSortIndicator(table: Table; column: int; indicator: SortIndicator)	
-selection	uing.html#selection,Table	uing: selection(table: Table): tuple[numRows: int, rows: seq[int]]	
-selection=	uing.html#selection=,Table,openArray[int]	uing: selection=(table: Table; sel: openArray[int])	
+selection	uing.html#selection,Table	uing: selection(table: Table): seq[int]	
+selection=	uing.html#selection=,Table,openArray[cint]	uing: selection=(table: Table; sel: openArray[cint])	
 newTable	uing.html#newTable,ptr.TableParams	uing: newTable(params: ptr TableParams): Table	
 show	uing.html#show,W	uing: show[W: Widget](w: W)	
 hide	uing.html#hide,W	uing: hide[W: Widget](w: W)	

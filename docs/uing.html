@@ -109,7 +109,7 @@ window.addEventListener('DOMContentLoaded', main);
   <ul class="simple simple-toc-section">
       <li><a class="reference" href="#Area"
     title="Area = ref object of Widget
-  handler*: ptr AreaHandler">Area</a></li>
+  handler: ptr AreaHandler">Area</a></li>
   <li><a class="reference" href="#Attribute"
     title="Attribute = ref object
   internalImpl: pointer">Attribute</a></li>
@@ -135,10 +135,6 @@ window.addEventListener('DOMContentLoaded', main);
   <li><a class="reference" href="#DateTimePicker"
     title="DateTimePicker = ref object of Widget
   onchanged*: proc (sender: DateTimePicker) ## Callback for when the date time picker value is changed by the user.">DateTimePicker</a></li>
-  <li><a class="reference" href="#DrawMatrix"
-    title="DrawMatrix = ref object
-  m11*, m12*, m21*, m22*, m31*, m32*: float
-  internalImpl: pointer">DrawMatrix</a></li>
   <li><a class="reference" href="#DrawPath"
     title="DrawPath = ref object
   internalImpl: pointer">DrawPath</a></li>
@@ -155,20 +151,11 @@ window.addEventListener('DOMContentLoaded', main);
   <li><a class="reference" href="#FontButton"
     title="FontButton = ref object of Widget
   onchanged*: proc (sender: FontButton) ## Callback for when the font is changed.">FontButton</a></li>
-  <li><a class="reference" href="#FontDescriptor"
-    title="FontDescriptor = ref object
-  family*: string
-  size*: float
-  weight*: TextWeight
-  italic*: TextItalic
-  stretch*: TextStretch
-  internalImpl: pointer">FontDescriptor</a></li>
   <li><a class="reference" href="#Form"
     title="Form = ref object of Widget
   chlidren*: seq[tuple[label: string, widget: Widget]]">Form</a></li>
   <li><a class="reference" href="#Grid"
-    title="Grid = ref object of Widget
-  children: seq[Widget]">Grid</a></li>
+    title="Grid = ref object of Widget">Grid</a></li>
   <li><a class="reference" href="#Group"
     title="Group = ref object of Widget
   child: Widget">Group</a></li>
@@ -225,6 +212,7 @@ window.addEventListener('DOMContentLoaded', main);
     title="Window = ref object of Widget
   onclosing*: proc (sender: Window): bool
   onfocuschanged*: proc (sender: Window)
+  onContentSizeChanged*: proc (sender: Window)
   child: Widget">Window</a></li>
 
   </ul>
@@ -262,8 +250,8 @@ window.addEventListener('DOMContentLoaded', main);
     byteStride: int)</a></li>
   <li><a class="reference" href="#add%2COpenTypeFeatures%2Cchar%2Cchar%2Cchar%2Cchar%2Cuint32"
     title="add(otf: OpenTypeFeatures; a, b, c, d: char; value: uint32)">add(otf: OpenTypeFeatures; a, b, c, d: char; value: uint32)</a></li>
-  <li><a class="reference" href="#add%2COpenTypeFeatures%2Cstring%2Cuint32"
-    title="add(otf: OpenTypeFeatures; abcd: string; value: uint32)">add(otf: OpenTypeFeatures; abcd: string; value: uint32)</a></li>
+  <li><a class="reference" href="#add%2COpenTypeFeatures%2Cstring%2C"
+    title="add(otf: OpenTypeFeatures; abcd: string; value: uint32 | bool)">add(otf: OpenTypeFeatures; abcd: string; value: uint32 | bool)</a></li>
   <li><a class="reference" href="#add%2CRadioButtons%2Cvarargs%5Bstring%5D"
     title="add(r: RadioButtons; items: varargs[string])">add(r: RadioButtons; items: varargs[string])</a></li>
   <li><a class="reference" href="#add%2CTab%2Cstring%2CWidget"
@@ -398,8 +386,8 @@ window.addEventListener('DOMContentLoaded', main);
 
   </ul>
   <ul class="simple nested-toc-section">byteIndexToGrapheme
-      <li><a class="reference" href="#byteIndexToGrapheme%2CAttributedString%2CBiggestUInt"
-    title="byteIndexToGrapheme(s: AttributedString; pos: BiggestUInt): BiggestUInt">byteIndexToGrapheme(s: AttributedString; pos: BiggestUInt): BiggestUInt</a></li>
+      <li><a class="reference" href="#byteIndexToGrapheme%2CAttributedString%2Cint"
+    title="byteIndexToGrapheme(s: AttributedString; pos: int): int">byteIndexToGrapheme(s: AttributedString; pos: int): int</a></li>
 
   </ul>
   <ul class="simple nested-toc-section">checked
@@ -476,8 +464,8 @@ window.addEventListener('DOMContentLoaded', main);
     title="delete(c: Combobox; index: int)">delete(c: Combobox; index: int)</a></li>
   <li><a class="reference" href="#delete%2CForm%2Cint"
     title="delete(f: Form; index: int)">delete(f: Form; index: int)</a></li>
-  <li><a class="reference" href="#delete%2CAttributedString%2CBiggestUInt%2CBiggestUInt"
-    title="delete(s: AttributedString; start, end: BiggestUInt)">delete(s: AttributedString; start, end: BiggestUInt)</a></li>
+  <li><a class="reference" href="#delete%2CAttributedString%2Cint%2Cint"
+    title="delete(s: AttributedString; start, end: int)">delete(s: AttributedString; start, end: int)</a></li>
   <li><a class="reference" href="#delete%2CTab%2Cint"
     title="delete(t: Tab; index: int)">delete(t: Tab; index: int)</a></li>
 
@@ -495,8 +483,8 @@ window.addEventListener('DOMContentLoaded', main);
 
   </ul>
   <ul class="simple nested-toc-section">drawText
-      <li><a class="reference" href="#drawText%2Cptr.DrawContext%2CDrawTextLayout%2Cfloat%2Cfloat"
-    title="drawText(c: ptr DrawContext; tl: DrawTextLayout; x, y: float)">drawText(c: ptr DrawContext; tl: DrawTextLayout; x, y: float)</a></li>
+      <li><a class="reference" href="#drawText%2Cptr.DrawContext%2CDrawTextLayout%2Ctuple%5Bfloat%2Cfloat%5D"
+    title="drawText(c: ptr DrawContext; tl: DrawTextLayout; point: tuple[x, y: float])">drawText(c: ptr DrawContext; tl: DrawTextLayout; point: tuple[x, y: float])</a></li>
 
   </ul>
   <ul class="simple nested-toc-section">enable
@@ -578,8 +566,8 @@ window.addEventListener('DOMContentLoaded', main);
     title="free(a: Attribute)">free(a: Attribute)</a></li>
   <li><a class="reference" href="#free%2CAttributedString"
     title="free(a: AttributedString)">free(a: AttributedString)</a></li>
-  <li><a class="reference" href="#free%2CFontDescriptor"
-    title="free(f: FontDescriptor)">free(f: FontDescriptor)</a></li>
+  <li><a class="reference" href="#free%2Cptr.FontDescriptor"
+    title="free(f: ptr FontDescriptor)">free(f: ptr FontDescriptor)</a></li>
   <li><a class="reference" href="#free%2CImage"
     title="free(i: Image)">free(i: Image)</a></li>
   <li><a class="reference" href="#free%2COpenTypeFeatures"
@@ -601,8 +589,8 @@ window.addEventListener('DOMContentLoaded', main);
 
   </ul>
   <ul class="simple nested-toc-section">freeFont
-      <li><a class="reference" href="#freeFont%2CFontDescriptor"
-    title="freeFont(desc: FontDescriptor)">freeFont(desc: FontDescriptor)</a></li>
+      <li><a class="reference" href="#freeFont%2Cptr.FontDescriptor"
+    title="freeFont(desc: ptr FontDescriptor)">freeFont(desc: ptr FontDescriptor)</a></li>
 
   </ul>
   <ul class="simple nested-toc-section">fullscreen
@@ -633,8 +621,13 @@ window.addEventListener('DOMContentLoaded', main);
 
   </ul>
   <ul class="simple nested-toc-section">graphemeToByteIndex
-      <li><a class="reference" href="#graphemeToByteIndex%2CAttributedString%2CBiggestUInt"
-    title="graphemeToByteIndex(s: AttributedString; pos: BiggestUInt): BiggestUInt">graphemeToByteIndex(s: AttributedString; pos: BiggestUInt): BiggestUInt</a></li>
+      <li><a class="reference" href="#graphemeToByteIndex%2CAttributedString%2Cint"
+    title="graphemeToByteIndex(s: AttributedString; pos: int): int">graphemeToByteIndex(s: AttributedString; pos: int): int</a></li>
+
+  </ul>
+  <ul class="simple nested-toc-section">handler
+      <li><a class="reference" href="#handler%2CArea"
+    title="handler(a: Area): ptr AreaHandler">handler(a: Area): ptr AreaHandler</a></li>
 
   </ul>
   <ul class="simple nested-toc-section">hasToolTip
@@ -686,8 +679,6 @@ window.addEventListener('DOMContentLoaded', main);
     title="impl(b: Combobox): RawCombobox">impl(b: Combobox): RawCombobox</a></li>
   <li><a class="reference" href="#impl%2CDateTimePicker"
     title="impl(b: DateTimePicker): RawDateTimePicker">impl(b: DateTimePicker): RawDateTimePicker</a></li>
-  <li><a class="reference" href="#impl%2CDrawMatrix"
-    title="impl(b: DrawMatrix): RawDrawMatrix">impl(b: DrawMatrix): RawDrawMatrix</a></li>
   <li><a class="reference" href="#impl%2CDrawPath"
     title="impl(b: DrawPath): RawDrawPath">impl(b: DrawPath): RawDrawPath</a></li>
   <li><a class="reference" href="#impl%2CDrawTextLayout"
@@ -698,8 +689,6 @@ window.addEventListener('DOMContentLoaded', main);
     title="impl(b: Entry): RawEntry">impl(b: Entry): RawEntry</a></li>
   <li><a class="reference" href="#impl%2CFontButton"
     title="impl(b: FontButton): RawFontButton">impl(b: FontButton): RawFontButton</a></li>
-  <li><a class="reference" href="#impl%2CFontDescriptor"
-    title="impl(b: FontDescriptor): RawFontDescriptor">impl(b: FontDescriptor): RawFontDescriptor</a></li>
   <li><a class="reference" href="#impl%2CForm"
     title="impl(b: Form): RawForm">impl(b: Form): RawForm</a></li>
   <li><a class="reference" href="#impl%2CGrid"
@@ -761,8 +750,6 @@ window.addEventListener('DOMContentLoaded', main);
     title="impl=(b: Combobox; r: RawCombobox)">impl=(b: Combobox; r: RawCombobox)</a></li>
   <li><a class="reference" href="#impl%3D%2CDateTimePicker%2CRawDateTimePicker"
     title="impl=(b: DateTimePicker; r: RawDateTimePicker)">impl=(b: DateTimePicker; r: RawDateTimePicker)</a></li>
-  <li><a class="reference" href="#impl%3D%2CDrawMatrix%2CRawDrawMatrix"
-    title="impl=(b: DrawMatrix; r: RawDrawMatrix)">impl=(b: DrawMatrix; r: RawDrawMatrix)</a></li>
   <li><a class="reference" href="#impl%3D%2CDrawPath%2CRawDrawPath"
     title="impl=(b: DrawPath; r: RawDrawPath)">impl=(b: DrawPath; r: RawDrawPath)</a></li>
   <li><a class="reference" href="#impl%3D%2CDrawTextLayout%2CRawDrawTextLayout"
@@ -773,8 +760,6 @@ window.addEventListener('DOMContentLoaded', main);
     title="impl=(b: Entry; r: RawEntry)">impl=(b: Entry; r: RawEntry)</a></li>
   <li><a class="reference" href="#impl%3D%2CFontButton%2CRawFontButton"
     title="impl=(b: FontButton; r: RawFontButton)">impl=(b: FontButton; r: RawFontButton)</a></li>
-  <li><a class="reference" href="#impl%3D%2CFontDescriptor%2CRawFontDescriptor"
-    title="impl=(b: FontDescriptor; r: RawFontDescriptor)">impl=(b: FontDescriptor; r: RawFontDescriptor)</a></li>
   <li><a class="reference" href="#impl%3D%2CForm%2CRawForm"
     title="impl=(b: Form; r: RawForm)">impl=(b: Form; r: RawForm)</a></li>
   <li><a class="reference" href="#impl%3D%2CGrid%2CRawGrid"
@@ -834,18 +819,18 @@ window.addEventListener('DOMContentLoaded', main);
 
   </ul>
   <ul class="simple nested-toc-section">insertAtUnattributed
-      <li><a class="reference" href="#insertAtUnattributed%2CAttributedString%2Cstring%2CBiggestUInt"
-    title="insertAtUnattributed(s: AttributedString; str: string; at: BiggestUInt)">insertAtUnattributed(s: AttributedString; str: string; at: BiggestUInt)</a></li>
+      <li><a class="reference" href="#insertAtUnattributed%2CAttributedString%2Cstring%2Cint"
+    title="insertAtUnattributed(s: AttributedString; str: string; at: int)">insertAtUnattributed(s: AttributedString; str: string; at: int)</a></li>
 
   </ul>
   <ul class="simple nested-toc-section">invert
-      <li><a class="reference" href="#invert%2CDrawMatrix"
-    title="invert(m: DrawMatrix): int">invert(m: DrawMatrix): int</a></li>
+      <li><a class="reference" href="#invert%2Cptr.DrawMatrix"
+    title="invert(m: ptr DrawMatrix): int">invert(m: ptr DrawMatrix): int</a></li>
 
   </ul>
   <ul class="simple nested-toc-section">invertible
-      <li><a class="reference" href="#invertible%2CDrawMatrix"
-    title="invertible(m: DrawMatrix): bool">invertible(m: DrawMatrix): bool</a></li>
+      <li><a class="reference" href="#invertible%2Cptr.DrawMatrix"
+    title="invertible(m: ptr DrawMatrix): bool">invertible(m: ptr DrawMatrix): bool</a></li>
 
   </ul>
   <ul class="simple nested-toc-section">italic
@@ -855,7 +840,7 @@ window.addEventListener('DOMContentLoaded', main);
   </ul>
   <ul class="simple nested-toc-section">len
       <li><a class="reference" href="#len%2CAttributedString"
-    title="len(s: AttributedString): BiggestUInt">len(s: AttributedString): BiggestUInt</a></li>
+    title="len(s: AttributedString): int">len(s: AttributedString): int</a></li>
 
   </ul>
   <ul class="simple nested-toc-section">lineTo
@@ -864,8 +849,8 @@ window.addEventListener('DOMContentLoaded', main);
 
   </ul>
   <ul class="simple nested-toc-section">loadControlFont
-      <li><a class="reference" href="#loadControlFont%2CFontDescriptor"
-    title="loadControlFont(f: FontDescriptor)">loadControlFont(f: FontDescriptor)</a></li>
+      <li><a class="reference" href="#loadControlFont%2Cptr.FontDescriptor"
+    title="loadControlFont(f: ptr FontDescriptor)">loadControlFont(f: ptr FontDescriptor)</a></li>
 
   </ul>
   <ul class="simple nested-toc-section">mainLoop
@@ -900,8 +885,8 @@ window.addEventListener('DOMContentLoaded', main);
 
   </ul>
   <ul class="simple nested-toc-section">multiply
-      <li><a class="reference" href="#multiply%2CDrawMatrix%2CDrawMatrix"
-    title="multiply(dest: DrawMatrix; src: DrawMatrix)">multiply(dest: DrawMatrix; src: DrawMatrix)</a></li>
+      <li><a class="reference" href="#multiply%2Cptr.DrawMatrix%2Cptr.DrawMatrix"
+    title="multiply(dest, src: ptr DrawMatrix)">multiply(dest, src: ptr DrawMatrix)</a></li>
 
   </ul>
   <ul class="simple nested-toc-section">newArea
@@ -1005,20 +990,9 @@ window.addEventListener('DOMContentLoaded', main);
     title="newFontButton(onchanged: proc (sender: FontButton) = nil): FontButton">newFontButton(onchanged: proc (sender: FontButton) = nil): FontButton</a></li>
 
   </ul>
-  <ul class="simple nested-toc-section">newFontDescriptor
-      <li><a class="reference" href="#newFontDescriptor%2Cstring%2C%2CTextWeight%2CTextItalic%2CTextStretch"
-    title="newFontDescriptor(family: string; size: float | int;
-                  weight: TextWeight = TextWeightNormal;
-                  italic: TextItalic = TextItalicNormal;
-                  stretch: TextStretch = TextStretchNormal): FontDescriptor">newFontDescriptor(family: string; size: float | int;
-                  weight: TextWeight = TextWeightNormal;
-                  italic: TextItalic = TextItalicNormal;
-                  stretch: TextStretch = TextStretchNormal): FontDescriptor</a></li>
-
-  </ul>
   <ul class="simple nested-toc-section">newForm
-      <li><a class="reference" href="#newForm"
-    title="newForm(): Form">newForm(): Form</a></li>
+      <li><a class="reference" href="#newForm%2Cbool"
+    title="newForm(padded: bool = false): Form">newForm(padded: bool = false): Form</a></li>
 
   </ul>
   <ul class="simple nested-toc-section">newGrid
@@ -1158,8 +1132,10 @@ window.addEventListener('DOMContentLoaded', main);
 
   </ul>
   <ul class="simple nested-toc-section">newUnderlineColorAttribute
-      <li><a class="reference" href="#newUnderlineColorAttribute%2CUnderlineColor%2Cfloat%2Cfloat%2Cfloat%2Cfloat"
-    title="newUnderlineColorAttribute(u: UnderlineColor; r, g, b, a: float): Attribute">newUnderlineColorAttribute(u: UnderlineColor; r, g, b, a: float): Attribute</a></li>
+      <li><a class="reference" href="#newUnderlineColorAttribute%2CUnderlineColor%2Cfloat32%2Cfloat32%2Cfloat32%2Cfloat"
+    title="newUnderlineColorAttribute(u: UnderlineColor; r = 0.0'f32; g = 0.0'f32;
+                           b = 0.0'f32; a: float = 0.0'f32): Attribute">newUnderlineColorAttribute(u: UnderlineColor; r = 0.0'f32; g = 0.0'f32;
+                           b = 0.0'f32; a: float = 0.0'f32): Attribute</a></li>
 
   </ul>
   <ul class="simple nested-toc-section">newVerticalBox
@@ -1191,7 +1167,7 @@ window.addEventListener('DOMContentLoaded', main);
   </ul>
   <ul class="simple nested-toc-section">numGraphemes
       <li><a class="reference" href="#numGraphemes%2CAttributedString"
-    title="numGraphemes(s: AttributedString): BiggestUInt">numGraphemes(s: AttributedString): BiggestUInt</a></li>
+    title="numGraphemes(s: AttributedString): int">numGraphemes(s: AttributedString): int</a></li>
 
   </ul>
   <ul class="simple nested-toc-section">openFile
@@ -1285,8 +1261,8 @@ window.addEventListener('DOMContentLoaded', main);
 
   </ul>
   <ul class="simple nested-toc-section">rotate
-      <li><a class="reference" href="#rotate%2CDrawMatrix%2Cfloat%2Cfloat%2Cfloat"
-    title="rotate(m: DrawMatrix; x, y, amount: float)">rotate(m: DrawMatrix; x, y, amount: float)</a></li>
+      <li><a class="reference" href="#rotate%2Cptr.DrawMatrix%2Cfloat%2Cfloat%2Cfloat"
+    title="rotate(m: ptr DrawMatrix; x, y, amount: float)">rotate(m: ptr DrawMatrix; x, y, amount: float)</a></li>
 
   </ul>
   <ul class="simple nested-toc-section">rowChanged
@@ -1310,8 +1286,8 @@ window.addEventListener('DOMContentLoaded', main);
 
   </ul>
   <ul class="simple nested-toc-section">scale
-      <li><a class="reference" href="#scale%2CDrawMatrix%2Cfloat%2Cfloat%2Cfloat%2Cfloat"
-    title="scale(m: DrawMatrix; xCenter, yCenter, x, y: float)">scale(m: DrawMatrix; xCenter, yCenter, x, y: float)</a></li>
+      <li><a class="reference" href="#scale%2Cptr.DrawMatrix%2Cfloat%2Cfloat%2Cfloat%2Cfloat"
+    title="scale(m: ptr DrawMatrix; xCenter, yCenter, x, y: float)">scale(m: ptr DrawMatrix; xCenter, yCenter, x, y: float)</a></li>
 
   </ul>
   <ul class="simple nested-toc-section">selected
@@ -1330,12 +1306,12 @@ window.addEventListener('DOMContentLoaded', main);
   </ul>
   <ul class="simple nested-toc-section">selection
       <li><a class="reference" href="#selection%2CTable"
-    title="selection(table: Table): tuple[numRows: int, rows: seq[int]]">selection(table: Table): tuple[numRows: int, rows: seq[int]]</a></li>
+    title="selection(table: Table): seq[int]">selection(table: Table): seq[int]</a></li>
 
   </ul>
   <ul class="simple nested-toc-section">selection=
-      <li><a class="reference" href="#selection%3D%2CTable%2CopenArray%5Bint%5D"
-    title="selection=(table: Table; sel: openArray[int])">selection=(table: Table; sel: openArray[int])</a></li>
+      <li><a class="reference" href="#selection%3D%2CTable%2CopenArray%5Bcint%5D"
+    title="selection=(table: Table; sel: openArray[cint])">selection=(table: Table; sel: openArray[cint])</a></li>
 
   </ul>
   <ul class="simple nested-toc-section">selectionMode
@@ -1349,8 +1325,8 @@ window.addEventListener('DOMContentLoaded', main);
 
   </ul>
   <ul class="simple nested-toc-section">setAttribute
-      <li><a class="reference" href="#setAttribute%2CAttributedString%2CAttribute%2CBiggestUInt%2CBiggestUInt"
-    title="setAttribute(s: AttributedString; a: Attribute; start, end: BiggestUInt)">setAttribute(s: AttributedString; a: Attribute; start, end: BiggestUInt)</a></li>
+      <li><a class="reference" href="#setAttribute%2CAttributedString%2CAttribute%2Cint%2Cint"
+    title="setAttribute(s: AttributedString; a: Attribute; start, end: int)">setAttribute(s: AttributedString; a: Attribute; start, end: int)</a></li>
 
   </ul>
   <ul class="simple nested-toc-section">setColor
@@ -1364,8 +1340,8 @@ window.addEventListener('DOMContentLoaded', main);
 
   </ul>
   <ul class="simple nested-toc-section">setIdentity
-      <li><a class="reference" href="#setIdentity%2CDrawMatrix"
-    title="setIdentity(m: DrawMatrix)">setIdentity(m: DrawMatrix)</a></li>
+      <li><a class="reference" href="#setIdentity%2Cptr.DrawMatrix"
+    title="setIdentity(m: ptr DrawMatrix)">setIdentity(m: ptr DrawMatrix)</a></li>
 
   </ul>
   <ul class="simple nested-toc-section">setMargined
@@ -1394,8 +1370,8 @@ window.addEventListener('DOMContentLoaded', main);
 
   </ul>
   <ul class="simple nested-toc-section">skew
-      <li><a class="reference" href="#skew%2CDrawMatrix%2Cfloat%2Cfloat%2Cfloat%2Cfloat"
-    title="skew(m: DrawMatrix; x, y, xamount, yamount: float)">skew(m: DrawMatrix; x, y, xamount, yamount: float)</a></li>
+      <li><a class="reference" href="#skew%2Cptr.DrawMatrix%2Cfloat%2Cfloat%2Cfloat%2Cfloat"
+    title="skew(m: ptr DrawMatrix; x, y, xamount, yamount: float)">skew(m: ptr DrawMatrix; x, y, xamount, yamount: float)</a></li>
 
   </ul>
   <ul class="simple nested-toc-section">sortIndicator
@@ -1457,7 +1433,9 @@ window.addEventListener('DOMContentLoaded', main);
   </ul>
   <ul class="simple nested-toc-section">timer
       <li><a class="reference" href="#timer%2Cint%2Cproc%28pointer%29%2Cpointer"
-    title="timer(milliseconds: int; f: proc (data: pointer): cint {.cdecl.}; data: pointer)">timer(milliseconds: int; f: proc (data: pointer): cint {.cdecl.}; data: pointer)</a></li>
+    title="timer(milliseconds: int; f: proc (data: pointer): cint {.cdecl.};
+      data: pointer = nil)">timer(milliseconds: int; f: proc (data: pointer): cint {.cdecl.};
+      data: pointer = nil)</a></li>
 
   </ul>
   <ul class="simple nested-toc-section">title
@@ -1479,19 +1457,24 @@ window.addEventListener('DOMContentLoaded', main);
     title="topLevel[W: Widget](w: W): bool">topLevel[W: Widget](w: W): bool</a></li>
 
   </ul>
+  <ul class="simple nested-toc-section">transform
+      <li><a class="reference" href="#transform%2Cptr.DrawContext%2Cptr.DrawMatrix"
+    title="transform(c: ptr DrawContext; m: ptr DrawMatrix)">transform(c: ptr DrawContext; m: ptr DrawMatrix)</a></li>
+
+  </ul>
   <ul class="simple nested-toc-section">transformPoint
-      <li><a class="reference" href="#transformPoint%2CDrawMatrix"
-    title="transformPoint(m: DrawMatrix): tuple[x, y: float]">transformPoint(m: DrawMatrix): tuple[x, y: float]</a></li>
+      <li><a class="reference" href="#transformPoint%2Cptr.DrawMatrix"
+    title="transformPoint(m: ptr DrawMatrix): tuple[x, y: float]">transformPoint(m: ptr DrawMatrix): tuple[x, y: float]</a></li>
 
   </ul>
   <ul class="simple nested-toc-section">transformSize
-      <li><a class="reference" href="#transformSize%2CDrawMatrix"
-    title="transformSize(m: DrawMatrix): tuple[x, y: float]">transformSize(m: DrawMatrix): tuple[x, y: float]</a></li>
+      <li><a class="reference" href="#transformSize%2Cptr.DrawMatrix"
+    title="transformSize(m: ptr DrawMatrix): tuple[x, y: float]">transformSize(m: ptr DrawMatrix): tuple[x, y: float]</a></li>
 
   </ul>
   <ul class="simple nested-toc-section">translate
-      <li><a class="reference" href="#translate%2CDrawMatrix%2Cfloat%2Cfloat"
-    title="translate(m: DrawMatrix; x, y: float)">translate(m: DrawMatrix; x, y: float)</a></li>
+      <li><a class="reference" href="#translate%2Cptr.DrawMatrix%2Cfloat%2Cfloat"
+    title="translate(m: ptr DrawMatrix; x, y: float)">translate(m: ptr DrawMatrix; x, y: float)</a></li>
 
   </ul>
   <ul class="simple nested-toc-section">type
@@ -1573,7 +1556,7 @@ window.addEventListener('DOMContentLoaded', main);
 <dl class="item">
 <div id="Area">
 <dt><pre><a href="uing.html#Area"><span class="Identifier">Area</span></a> <span class="Other">=</span> <span class="Keyword">ref</span> <span class="Keyword">object</span> <span class="Keyword">of</span> <a href="uing.html#Widget"><span class="Identifier">Widget</span></a>
-  <span class="Identifier">handler</span><span class="Operator">*</span><span class="Other">:</span> <span class="Keyword">ptr</span> <a href="uing/rawui.html#AreaHandler"><span class="Identifier">AreaHandler</span></a>
+  <span class="Identifier">handler</span><span class="Other">:</span> <span class="Keyword">ptr</span> <a href="uing/rawui.html#AreaHandler"><span class="Identifier">AreaHandler</span></a>
 </pre></dt>
 <dd>
 
@@ -1678,17 +1661,6 @@ A widget to select one item from a predefined list of items via a drop down menu
 
 </dd>
 </div>
-<div id="DrawMatrix">
-<dt><pre><a href="uing.html#DrawMatrix"><span class="Identifier">DrawMatrix</span></a> <span class="Other">=</span> <span class="Keyword">ref</span> <span class="Keyword">object</span>
-  <span class="Identifier">m11</span><span class="Operator">*</span><span class="Other">,</span> <span class="Identifier">m12</span><span class="Operator">*</span><span class="Other">,</span> <span class="Identifier">m21</span><span class="Operator">*</span><span class="Other">,</span> <span class="Identifier">m22</span><span class="Operator">*</span><span class="Other">,</span> <span class="Identifier">m31</span><span class="Operator">*</span><span class="Other">,</span> <span class="Identifier">m32</span><span class="Operator">*</span><span class="Other">:</span> <span class="Identifier">float</span>
-  <span class="Identifier">internalImpl</span><span class="Other">:</span> <span class="Identifier">pointer</span>
-</pre></dt>
-<dd>
-
-
-
-</dd>
-</div>
 <div id="DrawPath">
 <dt><pre><a href="uing.html#DrawPath"><span class="Identifier">DrawPath</span></a> <span class="Other">=</span> <span class="Keyword">ref</span> <span class="Keyword">object</span>
   <span class="Identifier">internalImpl</span><span class="Other">:</span> <span class="Identifier">pointer</span>
@@ -1747,23 +1719,6 @@ A button-like widget that opens a font chooser when clicked.
 
 </dd>
 </div>
-<div id="FontDescriptor">
-<dt><pre><a href="uing.html#FontDescriptor"><span class="Identifier">FontDescriptor</span></a> <span class="Other">=</span> <span class="Keyword">ref</span> <span class="Keyword">object</span>
-  <span class="Identifier">family</span><span class="Operator">*</span><span class="Other">:</span> <span class="Identifier">string</span>
-  <span class="Identifier">size</span><span class="Operator">*</span><span class="Other">:</span> <span class="Identifier">float</span>
-  <span class="Identifier">weight</span><span class="Operator">*</span><span class="Other">:</span> <a href="uing/rawui.html#TextWeight"><span class="Identifier">TextWeight</span></a>
-  <span class="Identifier">italic</span><span class="Operator">*</span><span class="Other">:</span> <a href="uing/rawui.html#TextItalic"><span class="Identifier">TextItalic</span></a>
-  <span class="Identifier">stretch</span><span class="Operator">*</span><span class="Other">:</span> <a href="uing/rawui.html#TextStretch"><span class="Identifier">TextStretch</span></a>
-  <span class="Identifier">internalImpl</span><span class="Other">:</span> <span class="Identifier">pointer</span>
-</pre></dt>
-<dd>
-
-<p><tt class="docutils literal"><span class="pre"><span class="Identifier">FontDescriptor</span></span></tt> provides a complete description of a font where one is needed. Currently, this means as the default font of a DrawTextLayout and as the data returned by <a class="reference external" href="#FontButton">FontButton</a>.</p>
-<p>All the members operate like the respective <tt class="docutils literal"><span class="pre"><span class="Identifier">Attribute</span></span></tt>s.</p>
-
-
-</dd>
-</div>
 <div id="Form">
 <dt><pre><a href="uing.html#Form"><span class="Identifier">Form</span></a> <span class="Other">=</span> <span class="Keyword">ref</span> <span class="Keyword">object</span> <span class="Keyword">of</span> <a href="uing.html#Widget"><span class="Identifier">Widget</span></a>
   <span class="Identifier">chlidren</span><span class="Operator">*</span><span class="Other">:</span> <span class="Identifier">seq</span><span class="Other">[</span><span class="Keyword">tuple</span><span class="Other">[</span><span class="Identifier">label</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">,</span> <span class="Identifier">widget</span><span class="Other">:</span> <a href="uing.html#Widget"><span class="Identifier">Widget</span></a><span class="Other">]</span><span class="Other">]</span>
@@ -1780,8 +1735,7 @@ A button-like widget that opens a font chooser when clicked.
 </div>
 <div id="Grid">
 <dt><pre><a href="uing.html#Grid"><span class="Identifier">Grid</span></a> <span class="Other">=</span> <span class="Keyword">ref</span> <span class="Keyword">object</span> <span class="Keyword">of</span> <a href="uing.html#Widget"><span class="Identifier">Widget</span></a>
-  <span class="Identifier">children</span><span class="Other">:</span> <span class="Identifier">seq</span><span class="Other">[</span><a href="uing.html#Widget"><span class="Identifier">Widget</span></a><span class="Other">]</span>
-</pre></dt>
+  </pre></dt>
 <dd>
 
 <p>A widget container to arrange containing widgets in a grid.</p>
@@ -2030,6 +1984,7 @@ abstract Widget base class.
 <dt><pre><a href="uing.html#Window"><span class="Identifier">Window</span></a> <span class="Other">=</span> <span class="Keyword">ref</span> <span class="Keyword">object</span> <span class="Keyword">of</span> <a href="uing.html#Widget"><span class="Identifier">Widget</span></a>
   <span class="Identifier">onclosing</span><span class="Operator">*</span><span class="Other">:</span> <span class="Keyword">proc</span> <span class="Other">(</span><span class="Identifier">sender</span><span class="Other">:</span> <a href="uing.html#Window"><span class="Identifier">Window</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">bool</span>
   <span class="Identifier">onfocuschanged</span><span class="Operator">*</span><span class="Other">:</span> <span class="Keyword">proc</span> <span class="Other">(</span><span class="Identifier">sender</span><span class="Other">:</span> <a href="uing.html#Window"><span class="Identifier">Window</span></a><span class="Other">)</span>
+  <span class="Identifier">onContentSizeChanged</span><span class="Operator">*</span><span class="Other">:</span> <span class="Keyword">proc</span> <span class="Other">(</span><span class="Identifier">sender</span><span class="Other">:</span> <a href="uing.html#Window"><span class="Identifier">Window</span></a><span class="Other">)</span>
   <span class="Identifier">child</span><span class="Other">:</span> <a href="uing.html#Widget"><span class="Identifier">Widget</span></a>
 </pre></dt>
 <dd>
@@ -2167,9 +2122,8 @@ Adds the given feature tag and value to otf. The feature tag is specified by a, 
 
 </dd>
 </div>
-<div id="add,OpenTypeFeatures,string,uint32">
-<dt><pre><span class="Keyword">proc</span> <a href="#add%2COpenTypeFeatures%2Cstring%2Cuint32"><span class="Identifier">add</span></a><span class="Other">(</span><span class="Identifier">otf</span><span class="Other">:</span> <a href="uing.html#OpenTypeFeatures"><span class="Identifier">OpenTypeFeatures</span></a><span class="Other">;</span> <span class="Identifier">abcd</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span> <span class="Identifier">value</span><span class="Other">:</span> <span class="Identifier">uint32</span><span class="Other">)</span> {.
-    <span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">ValueError</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
+<div id="add,OpenTypeFeatures,string,">
+<dt><pre><span class="Keyword">proc</span> <a href="#add%2COpenTypeFeatures%2Cstring%2C"><span class="Identifier">add</span></a><span class="Other">(</span><span class="Identifier">otf</span><span class="Other">:</span> <a href="uing.html#OpenTypeFeatures"><span class="Identifier">OpenTypeFeatures</span></a><span class="Other">;</span> <span class="Identifier">abcd</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span> <span class="Identifier">value</span><span class="Other">:</span> <span class="Identifier">uint32</span> <span class="Operator">|</span> <span class="Identifier">bool</span><span class="Other">)</span></pre></dt>
 <dd>
 
 Alias of <a class="reference external" href="#add,OpenTypeFeatures,char,char,char,char,uint32">add</a>. <tt class="docutils literal"><span class="pre"><span class="Identifier">a</span></span></tt>, <tt class="docutils literal"><span class="pre"><span class="Identifier">b</span></span></tt>, <tt class="docutils literal"><span class="pre"><span class="Identifier">c</span></span></tt>, and <tt class="docutils literal"><span class="pre"><span class="Identifier">d</span></span></tt> are instead a string of 4 characters, each character representing <tt class="docutils literal"><span class="pre"><span class="Identifier">a</span></span></tt>, <tt class="docutils literal"><span class="pre"><span class="Identifier">b</span></span></tt>, <tt class="docutils literal"><span class="pre"><span class="Identifier">c</span></span></tt>, and <tt class="docutils literal"><span class="pre"><span class="Identifier">d</span></span></tt> respectively.
@@ -2408,9 +2362,9 @@ This method is merely a hint and may be ignored by the system.</div>
 
 </dd>
 </div>
-<div id="byteIndexToGrapheme,AttributedString,BiggestUInt">
-<dt><pre><span class="Keyword">proc</span> <a href="#byteIndexToGrapheme%2CAttributedString%2CBiggestUInt"><span class="Identifier">byteIndexToGrapheme</span></a><span class="Other">(</span><span class="Identifier">s</span><span class="Other">:</span> <a href="uing.html#AttributedString"><span class="Identifier">AttributedString</span></a><span class="Other">;</span> <span class="Identifier">pos</span><span class="Other">:</span> <span class="Identifier">BiggestUInt</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">BiggestUInt</span> {.
-    <span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
+<div id="byteIndexToGrapheme,AttributedString,int">
+<dt><pre><span class="Keyword">proc</span> <a href="#byteIndexToGrapheme%2CAttributedString%2Cint"><span class="Identifier">byteIndexToGrapheme</span></a><span class="Other">(</span><span class="Identifier">s</span><span class="Other">:</span> <a href="uing.html#AttributedString"><span class="Identifier">AttributedString</span></a><span class="Other">;</span> <span class="Identifier">pos</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">int</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span>
+    <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
 <dd>
 
 
@@ -2505,7 +2459,7 @@ Sets the window's child.<p><tt class="docutils literal"><span class="pre"><span 
 <dt><pre><span class="Keyword">proc</span> <a href="#clone%2COpenTypeFeatures"><span class="Identifier">clone</span></a><span class="Other">(</span><span class="Identifier">otf</span><span class="Other">:</span> <a href="uing.html#OpenTypeFeatures"><span class="Identifier">OpenTypeFeatures</span></a><span class="Other">)</span><span class="Other">:</span> <a href="uing.html#OpenTypeFeatures"><span class="Identifier">OpenTypeFeatures</span></a> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
 <dd>
 
-
+Makes a copy of <tt class="docutils literal"><span class="pre"><span class="Identifier">otf</span></span></tt> and returns it. Changing one will not affect the other.
 
 </dd>
 </div>
@@ -2596,7 +2550,7 @@ The widget is neither destroyed nor freed.</div>
 <dt><pre><span class="Keyword">proc</span> <a href="#delete%2CCombobox%2Cint"><span class="Identifier">delete</span></a><span class="Other">(</span><span class="Identifier">c</span><span class="Other">:</span> <a href="uing.html#Combobox"><span class="Identifier">Combobox</span></a><span class="Other">;</span> <span class="Identifier">index</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">)</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
 <dd>
 
-Deletes an item at @p index from the combo box.<div class="admonition admonition-info"><span class="admonition-info-text"><b>Note:</b></span>
+Deletes an item at <tt class="docutils literal"><span class="pre"><span class="Identifier">index</span></span></tt> from the combo box.<div class="admonition admonition-info"><span class="admonition-info-text"><b>Note:</b></span>
 Deleting the index of the item currently selected will move the selection to the next item in the combo box or <tt class="docutils literal"><span class="pre"><span class="Operator">-</span><span class="DecNumber">1</span></span></tt> if no such item exists.</div>
 <p><tt class="docutils literal"><span class="pre"><span class="Identifier">c</span></span></tt>: Combobox instance.<br/><tt class="docutils literal"><span class="pre"><span class="Identifier">index</span></span></tt>: Index of the item to be deleted.<br/></p>
 
@@ -2612,8 +2566,8 @@ The widget is neither destroyed nor freed.</div>
 
 </dd>
 </div>
-<div id="delete,AttributedString,BiggestUInt,BiggestUInt">
-<dt><pre><span class="Keyword">proc</span> <a href="#delete%2CAttributedString%2CBiggestUInt%2CBiggestUInt"><span class="Identifier">delete</span></a><span class="Other">(</span><span class="Identifier">s</span><span class="Other">:</span> <a href="uing.html#AttributedString"><span class="Identifier">AttributedString</span></a><span class="Other">;</span> <span class="Identifier">start</span><span class="Other">,</span> <span class="Identifier">end</span><span class="Other">:</span> <span class="Identifier">BiggestUInt</span><span class="Other">)</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
+<div id="delete,AttributedString,int,int">
+<dt><pre><span class="Keyword">proc</span> <a href="#delete%2CAttributedString%2Cint%2Cint"><span class="Identifier">delete</span></a><span class="Other">(</span><span class="Identifier">s</span><span class="Other">:</span> <a href="uing.html#AttributedString"><span class="Identifier">AttributedString</span></a><span class="Other">;</span> <span class="Identifier">start</span><span class="Other">,</span> <span class="Identifier">end</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">)</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
 <dd>
 
 deletes the characters and attributes of <tt class="docutils literal"><span class="pre"><span class="Identifier">s</span></span></tt> in the byte range [<tt class="docutils literal"><span class="pre"><span class="Identifier">start</span></span></tt>, <tt class="docutils literal"><span class="pre"><span class="Keyword">end</span></span></tt>).
@@ -2653,16 +2607,16 @@ Dispose and free all allocated resources.
 <dt><pre><span class="Keyword">proc</span> <a href="#disable%2CW"><span class="Identifier">disable</span></a><span class="Other">[</span><span class="Identifier">W</span><span class="Other">:</span> <a href="uing.html#Widget"><span class="Identifier">Widget</span></a><span class="Other">]</span><span class="Other">(</span><span class="Identifier">w</span><span class="Other">:</span> <span class="Identifier">W</span><span class="Other">)</span></pre></dt>
 <dd>
 
-Returns whether or not the widget is visible.
+Disables the widget.
 
 </dd>
 </div>
-<div id="drawText,ptr.DrawContext,DrawTextLayout,float,float">
-<dt><pre><span class="Keyword">proc</span> <a href="#drawText%2Cptr.DrawContext%2CDrawTextLayout%2Cfloat%2Cfloat"><span class="Identifier">drawText</span></a><span class="Other">(</span><span class="Identifier">c</span><span class="Other">:</span> <span class="Keyword">ptr</span> <a href="uing/rawui.html#DrawContext"><span class="Identifier">DrawContext</span></a><span class="Other">;</span> <span class="Identifier">tl</span><span class="Other">:</span> <a href="uing.html#DrawTextLayout"><span class="Identifier">DrawTextLayout</span></a><span class="Other">;</span> <span class="Identifier">x</span><span class="Other">,</span> <span class="Identifier">y</span><span class="Other">:</span> <span class="Identifier">float</span><span class="Other">)</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span>
-    <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
+<div id="drawText,ptr.DrawContext,DrawTextLayout,tuple[float,float]">
+<dt><pre><span class="Keyword">proc</span> <a href="#drawText%2Cptr.DrawContext%2CDrawTextLayout%2Ctuple%5Bfloat%2Cfloat%5D"><span class="Identifier">drawText</span></a><span class="Other">(</span><span class="Identifier">c</span><span class="Other">:</span> <span class="Keyword">ptr</span> <a href="uing/rawui.html#DrawContext"><span class="Identifier">DrawContext</span></a><span class="Other">;</span> <span class="Identifier">tl</span><span class="Other">:</span> <a href="uing.html#DrawTextLayout"><span class="Identifier">DrawTextLayout</span></a><span class="Other">;</span> <span class="Identifier">point</span><span class="Other">:</span> <span class="Keyword">tuple</span><span class="Other">[</span><span class="Identifier">x</span><span class="Other">,</span> <span class="Identifier">y</span><span class="Other">:</span> <span class="Identifier">float</span><span class="Other">]</span><span class="Other">)</span> {.
+    <span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
 <dd>
 
-Draws <tt class="docutils literal"><span class="pre"><span class="Identifier">tl</span></span></tt> in <tt class="docutils literal"><span class="pre"><span class="Identifier">c</span></span></tt> with the top-left point of tl at (<tt class="docutils literal"><span class="pre"><span class="Identifier">x</span></span></tt>, <tt class="docutils literal"><span class="pre"><span class="Identifier">y</span></span></tt>).
+Draws <tt class="docutils literal"><span class="pre"><span class="Identifier">tl</span></span></tt> in <tt class="docutils literal"><span class="pre"><span class="Identifier">c</span></span></tt> with the top-left point of <tt class="docutils literal"><span class="pre"><span class="Identifier">tl</span></span></tt> at (<tt class="docutils literal"><span class="pre"><span class="Identifier">point</span><span class="Operator">.</span><span class="Identifier">x</span></span></tt>, <tt class="docutils literal"><span class="pre"><span class="Identifier">point</span><span class="Operator">.</span><span class="Identifier">y</span></span></tt>).
 
 </dd>
 </div>
@@ -2723,7 +2677,7 @@ Alias for <a class="reference external" href="#msgBoxError,Window,string,string"
     <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
 <dd>
 
-Returns the width and height of <tt class="docutils literal"><span class="pre"><span class="Identifier">tl</span></span></tt> in <tt class="docutils literal"><span class="pre"><span class="Identifier">width</span></span></tt> and <tt class="docutils literal"><span class="pre"><span class="Identifier">height</span></span></tt>. The returned width may be smaller than the width passed into <a class="reference external" href="#newDrawTextLayout,ptr.DrawTextLayoutParams">newDrawTextLayout()</a> depending on how the text in <tt class="docutils literal"><span class="pre"><span class="Identifier">tl</span></span></tt> is wrapped. Therefore, you can use this function to get the actual size of the text layout.
+Returns the width and height of <tt class="docutils literal"><span class="pre"><span class="Identifier">tl</span></span></tt>. The returned width may be smaller than the width passed into <a class="reference external" href="#newDrawTextLayout,ptr.DrawTextLayoutParams">newDrawTextLayout()</a> depending on how the text in <tt class="docutils literal"><span class="pre"><span class="Identifier">tl</span></span></tt> is wrapped. Therefore, you can use this function to get the actual size of the text layout.
 
 </dd>
 </div>
@@ -2765,7 +2719,7 @@ Returns the OpenType features stored in <tt class="docutils literal"><span class
 </dd>
 </div>
 <div id="font,FontButton">
-<dt><pre><span class="Keyword">proc</span> <a href="#font%2CFontButton"><span class="Identifier">font</span></a><span class="Other">(</span><span class="Identifier">f</span><span class="Other">:</span> <a href="uing.html#FontButton"><span class="Identifier">FontButton</span></a><span class="Other">)</span><span class="Other">:</span> <a href="uing.html#FontDescriptor"><span class="Identifier">FontDescriptor</span></a> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
+<dt><pre><span class="Keyword">proc</span> <a href="#font%2CFontButton"><span class="Identifier">font</span></a><span class="Other">(</span><span class="Identifier">f</span><span class="Other">:</span> <a href="uing.html#FontButton"><span class="Identifier">FontButton</span></a><span class="Other">)</span><span class="Other">:</span> <a href="uing/rawui.html#FontDescriptor"><span class="Identifier">FontDescriptor</span></a> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
 <dd>
 
 <p>Returns the selected font.</p>
@@ -2801,6 +2755,9 @@ You cannot modify <tt class="docutils literal"><span class="pre"><span class="Id
 <dt><pre><span class="Keyword">proc</span> <a href="#free%2CAttribute"><span class="Identifier">free</span></a><span class="Other">(</span><span class="Identifier">a</span><span class="Other">:</span> <a href="uing.html#Attribute"><span class="Identifier">Attribute</span></a><span class="Other">)</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
 <dd>
 
+Frees a <tt class="docutils literal"><span class="pre"><span class="Identifier">Attribute</span></span></tt>. You generally do not need to call this yourself, as <tt class="docutils literal"><span class="pre"><span class="Identifier">AttributedString</span></span></tt> does this for you.<div class="admonition admonition-error"><span class="admonition-error-text"><b>Error:</b></span>
+It is an error to call this function on a <tt class="docutils literal"><span class="pre"><span class="Identifier">Attribute</span></span></tt> that has been given to a <tt class="docutils literal"><span class="pre"><span class="Identifier">AttributedString</span></span></tt>.</div>
+<p>You can call this, however, if you created a <tt class="docutils literal"><span class="pre"><span class="Identifier">Attribute</span></span></tt> that you aren't going to use later.</p>
 
 
 </dd>
@@ -2809,12 +2766,12 @@ You cannot modify <tt class="docutils literal"><span class="pre"><span class="Id
 <dt><pre><span class="Keyword">proc</span> <a href="#free%2CAttributedString"><span class="Identifier">free</span></a><span class="Other">(</span><span class="Identifier">a</span><span class="Other">:</span> <a href="uing.html#AttributedString"><span class="Identifier">AttributedString</span></a><span class="Other">)</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
 <dd>
 
-
+Destroys the AttributedString <tt class="docutils literal"><span class="pre"><span class="Identifier">a</span></span></tt>. It will also free all Attributes within.
 
 </dd>
 </div>
-<div id="free,FontDescriptor">
-<dt><pre><span class="Keyword">proc</span> <a href="#free%2CFontDescriptor"><span class="Identifier">free</span></a><span class="Other">(</span><span class="Identifier">f</span><span class="Other">:</span> <a href="uing.html#FontDescriptor"><span class="Identifier">FontDescriptor</span></a><span class="Other">)</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
+<div id="free,ptr.FontDescriptor">
+<dt><pre><span class="Keyword">proc</span> <a href="#free%2Cptr.FontDescriptor"><span class="Identifier">free</span></a><span class="Other">(</span><span class="Identifier">f</span><span class="Other">:</span> <span class="Keyword">ptr</span> <a href="uing/rawui.html#FontDescriptor"><span class="Identifier">FontDescriptor</span></a><span class="Other">)</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
 <dd>
 
 
@@ -2835,7 +2792,7 @@ You cannot modify <tt class="docutils literal"><span class="pre"><span class="Id
 <dt><pre><span class="Keyword">proc</span> <a href="#free%2COpenTypeFeatures"><span class="Identifier">free</span></a><span class="Other">(</span><span class="Identifier">otf</span><span class="Other">:</span> <a href="uing.html#OpenTypeFeatures"><span class="Identifier">OpenTypeFeatures</span></a><span class="Other">)</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
 <dd>
 
-
+Frees <tt class="docutils literal"><span class="pre"><span class="Identifier">otf</span></span></tt>
 
 </dd>
 </div>
@@ -2905,8 +2862,8 @@ Frees the widget.
 
 </dd>
 </div>
-<div id="freeFont,FontDescriptor">
-<dt><pre><span class="Keyword">proc</span> <a href="#freeFont%2CFontDescriptor"><span class="Identifier">freeFont</span></a><span class="Other">(</span><span class="Identifier">desc</span><span class="Other">:</span> <a href="uing.html#FontDescriptor"><span class="Identifier">FontDescriptor</span></a><span class="Other">)</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
+<div id="freeFont,ptr.FontDescriptor">
+<dt><pre><span class="Keyword">proc</span> <a href="#freeFont%2Cptr.FontDescriptor"><span class="Identifier">freeFont</span></a><span class="Other">(</span><span class="Identifier">desc</span><span class="Other">:</span> <span class="Keyword">ptr</span> <a href="uing/rawui.html#FontDescriptor"><span class="Identifier">FontDescriptor</span></a><span class="Other">)</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
 <dd>
 
 <p>Frees a <tt class="docutils literal"><span class="pre"><span class="Identifier">FontDescriptor</span></span></tt> previously filled by <a class="reference external" href="#font,FontButton">font()</a>.</p>
@@ -2976,9 +2933,17 @@ Returns the AttributeType of <tt class="docutils literal"><span class="pre"><spa
 
 </dd>
 </div>
-<div id="graphemeToByteIndex,AttributedString,BiggestUInt">
-<dt><pre><span class="Keyword">proc</span> <a href="#graphemeToByteIndex%2CAttributedString%2CBiggestUInt"><span class="Identifier">graphemeToByteIndex</span></a><span class="Other">(</span><span class="Identifier">s</span><span class="Other">:</span> <a href="uing.html#AttributedString"><span class="Identifier">AttributedString</span></a><span class="Other">;</span> <span class="Identifier">pos</span><span class="Other">:</span> <span class="Identifier">BiggestUInt</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">BiggestUInt</span> {.
-    <span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
+<div id="graphemeToByteIndex,AttributedString,int">
+<dt><pre><span class="Keyword">proc</span> <a href="#graphemeToByteIndex%2CAttributedString%2Cint"><span class="Identifier">graphemeToByteIndex</span></a><span class="Other">(</span><span class="Identifier">s</span><span class="Other">:</span> <a href="uing.html#AttributedString"><span class="Identifier">AttributedString</span></a><span class="Other">;</span> <span class="Identifier">pos</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">int</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span>
+    <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
+<dd>
+
+
+
+</dd>
+</div>
+<div id="handler,Area">
+<dt><pre><span class="Keyword">proc</span> <a href="#handler%2CArea"><span class="Identifier">handler</span></a><span class="Other">(</span><span class="Identifier">a</span><span class="Other">:</span> <a href="uing.html#Area"><span class="Identifier">Area</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Keyword">ptr</span> <a href="uing/rawui.html#AreaHandler"><span class="Identifier">AreaHandler</span></a> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
 <dd>
 
 
@@ -3048,7 +3013,7 @@ The image returned is not owned by the object <tt class="docutils literal"><span
 <dt><pre><span class="Keyword">func</span> <a href="#impl%2CArea"><span class="Identifier">impl</span></a><span class="Other">(</span><span class="Identifier">b</span><span class="Other">:</span> <a href="uing.html#Area"><span class="Identifier">Area</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">RawArea</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
 <dd>
 
-Internal implementation of <tt class="docutils literal"><span class="pre"><span class="Identifier">b</span></span></tt>
+Gets internal implementation of <tt class="docutils literal"><span class="pre"><span class="Identifier">b</span></span></tt>
 
 </dd>
 </div>
@@ -3056,7 +3021,7 @@ Internal implementation of <tt class="docutils literal"><span class="pre"><span 
 <dt><pre><span class="Keyword">func</span> <a href="#impl%2CAttribute"><span class="Identifier">impl</span></a><span class="Other">(</span><span class="Identifier">b</span><span class="Other">:</span> <a href="uing.html#Attribute"><span class="Identifier">Attribute</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">RawAttribute</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
 <dd>
 
-Internal implementation of <tt class="docutils literal"><span class="pre"><span class="Identifier">b</span></span></tt>
+Gets internal implementation of <tt class="docutils literal"><span class="pre"><span class="Identifier">b</span></span></tt>
 
 </dd>
 </div>
@@ -3064,7 +3029,7 @@ Internal implementation of <tt class="docutils literal"><span class="pre"><span 
 <dt><pre><span class="Keyword">func</span> <a href="#impl%2CAttributedString"><span class="Identifier">impl</span></a><span class="Other">(</span><span class="Identifier">b</span><span class="Other">:</span> <a href="uing.html#AttributedString"><span class="Identifier">AttributedString</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">RawAttributedString</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
 <dd>
 
-Internal implementation of <tt class="docutils literal"><span class="pre"><span class="Identifier">b</span></span></tt>
+Gets internal implementation of <tt class="docutils literal"><span class="pre"><span class="Identifier">b</span></span></tt>
 
 </dd>
 </div>
@@ -3072,7 +3037,7 @@ Internal implementation of <tt class="docutils literal"><span class="pre"><span 
 <dt><pre><span class="Keyword">func</span> <a href="#impl%2CBox"><span class="Identifier">impl</span></a><span class="Other">(</span><span class="Identifier">b</span><span class="Other">:</span> <a href="uing.html#Box"><span class="Identifier">Box</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">RawBox</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
 <dd>
 
-Internal implementation of <tt class="docutils literal"><span class="pre"><span class="Identifier">b</span></span></tt>
+Gets internal implementation of <tt class="docutils literal"><span class="pre"><span class="Identifier">b</span></span></tt>
 
 </dd>
 </div>
@@ -3080,7 +3045,7 @@ Internal implementation of <tt class="docutils literal"><span class="pre"><span 
 <dt><pre><span class="Keyword">func</span> <a href="#impl%2CButton"><span class="Identifier">impl</span></a><span class="Other">(</span><span class="Identifier">b</span><span class="Other">:</span> <a href="uing.html#Button"><span class="Identifier">Button</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">RawButton</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
 <dd>
 
-Internal implementation of <tt class="docutils literal"><span class="pre"><span class="Identifier">b</span></span></tt>
+Gets internal implementation of <tt class="docutils literal"><span class="pre"><span class="Identifier">b</span></span></tt>
 
 </dd>
 </div>
@@ -3088,7 +3053,7 @@ Internal implementation of <tt class="docutils literal"><span class="pre"><span 
 <dt><pre><span class="Keyword">func</span> <a href="#impl%2CCheckbox"><span class="Identifier">impl</span></a><span class="Other">(</span><span class="Identifier">b</span><span class="Other">:</span> <a href="uing.html#Checkbox"><span class="Identifier">Checkbox</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">RawCheckbox</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
 <dd>
 
-Internal implementation of <tt class="docutils literal"><span class="pre"><span class="Identifier">b</span></span></tt>
+Gets internal implementation of <tt class="docutils literal"><span class="pre"><span class="Identifier">b</span></span></tt>
 
 </dd>
 </div>
@@ -3096,7 +3061,7 @@ Internal implementation of <tt class="docutils literal"><span class="pre"><span 
 <dt><pre><span class="Keyword">func</span> <a href="#impl%2CColorButton"><span class="Identifier">impl</span></a><span class="Other">(</span><span class="Identifier">b</span><span class="Other">:</span> <a href="uing.html#ColorButton"><span class="Identifier">ColorButton</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">RawColorButton</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
 <dd>
 
-Internal implementation of <tt class="docutils literal"><span class="pre"><span class="Identifier">b</span></span></tt>
+Gets internal implementation of <tt class="docutils literal"><span class="pre"><span class="Identifier">b</span></span></tt>
 
 </dd>
 </div>
@@ -3104,7 +3069,7 @@ Internal implementation of <tt class="docutils literal"><span class="pre"><span 
 <dt><pre><span class="Keyword">func</span> <a href="#impl%2CCombobox"><span class="Identifier">impl</span></a><span class="Other">(</span><span class="Identifier">b</span><span class="Other">:</span> <a href="uing.html#Combobox"><span class="Identifier">Combobox</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">RawCombobox</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
 <dd>
 
-Internal implementation of <tt class="docutils literal"><span class="pre"><span class="Identifier">b</span></span></tt>
+Gets internal implementation of <tt class="docutils literal"><span class="pre"><span class="Identifier">b</span></span></tt>
 
 </dd>
 </div>
@@ -3112,15 +3077,7 @@ Internal implementation of <tt class="docutils literal"><span class="pre"><span 
 <dt><pre><span class="Keyword">func</span> <a href="#impl%2CDateTimePicker"><span class="Identifier">impl</span></a><span class="Other">(</span><span class="Identifier">b</span><span class="Other">:</span> <a href="uing.html#DateTimePicker"><span class="Identifier">DateTimePicker</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">RawDateTimePicker</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
 <dd>
 
-Internal implementation of <tt class="docutils literal"><span class="pre"><span class="Identifier">b</span></span></tt>
-
-</dd>
-</div>
-<div id="impl,DrawMatrix">
-<dt><pre><span class="Keyword">func</span> <a href="#impl%2CDrawMatrix"><span class="Identifier">impl</span></a><span class="Other">(</span><span class="Identifier">b</span><span class="Other">:</span> <a href="uing.html#DrawMatrix"><span class="Identifier">DrawMatrix</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">RawDrawMatrix</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
-<dd>
-
-Internal implementation of <tt class="docutils literal"><span class="pre"><span class="Identifier">b</span></span></tt>
+Gets internal implementation of <tt class="docutils literal"><span class="pre"><span class="Identifier">b</span></span></tt>
 
 </dd>
 </div>
@@ -3128,7 +3085,7 @@ Internal implementation of <tt class="docutils literal"><span class="pre"><span 
 <dt><pre><span class="Keyword">func</span> <a href="#impl%2CDrawPath"><span class="Identifier">impl</span></a><span class="Other">(</span><span class="Identifier">b</span><span class="Other">:</span> <a href="uing.html#DrawPath"><span class="Identifier">DrawPath</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">RawDrawPath</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
 <dd>
 
-Internal implementation of <tt class="docutils literal"><span class="pre"><span class="Identifier">b</span></span></tt>
+Gets internal implementation of <tt class="docutils literal"><span class="pre"><span class="Identifier">b</span></span></tt>
 
 </dd>
 </div>
@@ -3136,7 +3093,7 @@ Internal implementation of <tt class="docutils literal"><span class="pre"><span 
 <dt><pre><span class="Keyword">func</span> <a href="#impl%2CDrawTextLayout"><span class="Identifier">impl</span></a><span class="Other">(</span><span class="Identifier">b</span><span class="Other">:</span> <a href="uing.html#DrawTextLayout"><span class="Identifier">DrawTextLayout</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">RawDrawTextLayout</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
 <dd>
 
-Internal implementation of <tt class="docutils literal"><span class="pre"><span class="Identifier">b</span></span></tt>
+Gets internal implementation of <tt class="docutils literal"><span class="pre"><span class="Identifier">b</span></span></tt>
 
 </dd>
 </div>
@@ -3144,7 +3101,7 @@ Internal implementation of <tt class="docutils literal"><span class="pre"><span 
 <dt><pre><span class="Keyword">func</span> <a href="#impl%2CEditableCombobox"><span class="Identifier">impl</span></a><span class="Other">(</span><span class="Identifier">b</span><span class="Other">:</span> <a href="uing.html#EditableCombobox"><span class="Identifier">EditableCombobox</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">RawEditableCombobox</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
 <dd>
 
-Internal implementation of <tt class="docutils literal"><span class="pre"><span class="Identifier">b</span></span></tt>
+Gets internal implementation of <tt class="docutils literal"><span class="pre"><span class="Identifier">b</span></span></tt>
 
 </dd>
 </div>
@@ -3152,7 +3109,7 @@ Internal implementation of <tt class="docutils literal"><span class="pre"><span 
 <dt><pre><span class="Keyword">func</span> <a href="#impl%2CEntry"><span class="Identifier">impl</span></a><span class="Other">(</span><span class="Identifier">b</span><span class="Other">:</span> <a href="uing.html#Entry"><span class="Identifier">Entry</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">RawEntry</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
 <dd>
 
-Internal implementation of <tt class="docutils literal"><span class="pre"><span class="Identifier">b</span></span></tt>
+Gets internal implementation of <tt class="docutils literal"><span class="pre"><span class="Identifier">b</span></span></tt>
 
 </dd>
 </div>
@@ -3160,15 +3117,7 @@ Internal implementation of <tt class="docutils literal"><span class="pre"><span 
 <dt><pre><span class="Keyword">func</span> <a href="#impl%2CFontButton"><span class="Identifier">impl</span></a><span class="Other">(</span><span class="Identifier">b</span><span class="Other">:</span> <a href="uing.html#FontButton"><span class="Identifier">FontButton</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">RawFontButton</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
 <dd>
 
-Internal implementation of <tt class="docutils literal"><span class="pre"><span class="Identifier">b</span></span></tt>
-
-</dd>
-</div>
-<div id="impl,FontDescriptor">
-<dt><pre><span class="Keyword">func</span> <a href="#impl%2CFontDescriptor"><span class="Identifier">impl</span></a><span class="Other">(</span><span class="Identifier">b</span><span class="Other">:</span> <a href="uing.html#FontDescriptor"><span class="Identifier">FontDescriptor</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">RawFontDescriptor</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
-<dd>
-
-Internal implementation of <tt class="docutils literal"><span class="pre"><span class="Identifier">b</span></span></tt>
+Gets internal implementation of <tt class="docutils literal"><span class="pre"><span class="Identifier">b</span></span></tt>
 
 </dd>
 </div>
@@ -3176,7 +3125,7 @@ Internal implementation of <tt class="docutils literal"><span class="pre"><span 
 <dt><pre><span class="Keyword">func</span> <a href="#impl%2CForm"><span class="Identifier">impl</span></a><span class="Other">(</span><span class="Identifier">b</span><span class="Other">:</span> <a href="uing.html#Form"><span class="Identifier">Form</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">RawForm</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
 <dd>
 
-Internal implementation of <tt class="docutils literal"><span class="pre"><span class="Identifier">b</span></span></tt>
+Gets internal implementation of <tt class="docutils literal"><span class="pre"><span class="Identifier">b</span></span></tt>
 
 </dd>
 </div>
@@ -3184,7 +3133,7 @@ Internal implementation of <tt class="docutils literal"><span class="pre"><span 
 <dt><pre><span class="Keyword">func</span> <a href="#impl%2CGrid"><span class="Identifier">impl</span></a><span class="Other">(</span><span class="Identifier">b</span><span class="Other">:</span> <a href="uing.html#Grid"><span class="Identifier">Grid</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">RawGrid</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
 <dd>
 
-Internal implementation of <tt class="docutils literal"><span class="pre"><span class="Identifier">b</span></span></tt>
+Gets internal implementation of <tt class="docutils literal"><span class="pre"><span class="Identifier">b</span></span></tt>
 
 </dd>
 </div>
@@ -3192,7 +3141,7 @@ Internal implementation of <tt class="docutils literal"><span class="pre"><span 
 <dt><pre><span class="Keyword">func</span> <a href="#impl%2CGroup"><span class="Identifier">impl</span></a><span class="Other">(</span><span class="Identifier">b</span><span class="Other">:</span> <a href="uing.html#Group"><span class="Identifier">Group</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">RawGroup</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
 <dd>
 
-Internal implementation of <tt class="docutils literal"><span class="pre"><span class="Identifier">b</span></span></tt>
+Gets internal implementation of <tt class="docutils literal"><span class="pre"><span class="Identifier">b</span></span></tt>
 
 </dd>
 </div>
@@ -3200,7 +3149,7 @@ Internal implementation of <tt class="docutils literal"><span class="pre"><span 
 <dt><pre><span class="Keyword">func</span> <a href="#impl%2CImage"><span class="Identifier">impl</span></a><span class="Other">(</span><span class="Identifier">b</span><span class="Other">:</span> <a href="uing.html#Image"><span class="Identifier">Image</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">RawImage</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
 <dd>
 
-Internal implementation of <tt class="docutils literal"><span class="pre"><span class="Identifier">b</span></span></tt>
+Gets internal implementation of <tt class="docutils literal"><span class="pre"><span class="Identifier">b</span></span></tt>
 
 </dd>
 </div>
@@ -3208,7 +3157,7 @@ Internal implementation of <tt class="docutils literal"><span class="pre"><span 
 <dt><pre><span class="Keyword">func</span> <a href="#impl%2CLabel"><span class="Identifier">impl</span></a><span class="Other">(</span><span class="Identifier">b</span><span class="Other">:</span> <a href="uing.html#Label"><span class="Identifier">Label</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">RawLabel</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
 <dd>
 
-Internal implementation of <tt class="docutils literal"><span class="pre"><span class="Identifier">b</span></span></tt>
+Gets internal implementation of <tt class="docutils literal"><span class="pre"><span class="Identifier">b</span></span></tt>
 
 </dd>
 </div>
@@ -3216,7 +3165,7 @@ Internal implementation of <tt class="docutils literal"><span class="pre"><span 
 <dt><pre><span class="Keyword">func</span> <a href="#impl%2CMenu"><span class="Identifier">impl</span></a><span class="Other">(</span><span class="Identifier">b</span><span class="Other">:</span> <a href="uing.html#Menu"><span class="Identifier">Menu</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">RawMenu</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
 <dd>
 
-Internal implementation of <tt class="docutils literal"><span class="pre"><span class="Identifier">b</span></span></tt>
+Gets internal implementation of <tt class="docutils literal"><span class="pre"><span class="Identifier">b</span></span></tt>
 
 </dd>
 </div>
@@ -3224,7 +3173,7 @@ Internal implementation of <tt class="docutils literal"><span class="pre"><span 
 <dt><pre><span class="Keyword">func</span> <a href="#impl%2CMenuItem"><span class="Identifier">impl</span></a><span class="Other">(</span><span class="Identifier">b</span><span class="Other">:</span> <a href="uing.html#MenuItem"><span class="Identifier">MenuItem</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">RawMenuItem</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
 <dd>
 
-Internal implementation of <tt class="docutils literal"><span class="pre"><span class="Identifier">b</span></span></tt>
+Gets internal implementation of <tt class="docutils literal"><span class="pre"><span class="Identifier">b</span></span></tt>
 
 </dd>
 </div>
@@ -3232,7 +3181,7 @@ Internal implementation of <tt class="docutils literal"><span class="pre"><span 
 <dt><pre><span class="Keyword">func</span> <a href="#impl%2CMultilineEntry"><span class="Identifier">impl</span></a><span class="Other">(</span><span class="Identifier">b</span><span class="Other">:</span> <a href="uing.html#MultilineEntry"><span class="Identifier">MultilineEntry</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">RawMultilineEntry</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
 <dd>
 
-Internal implementation of <tt class="docutils literal"><span class="pre"><span class="Identifier">b</span></span></tt>
+Gets internal implementation of <tt class="docutils literal"><span class="pre"><span class="Identifier">b</span></span></tt>
 
 </dd>
 </div>
@@ -3240,7 +3189,7 @@ Internal implementation of <tt class="docutils literal"><span class="pre"><span 
 <dt><pre><span class="Keyword">func</span> <a href="#impl%2COpenTypeFeatures"><span class="Identifier">impl</span></a><span class="Other">(</span><span class="Identifier">b</span><span class="Other">:</span> <a href="uing.html#OpenTypeFeatures"><span class="Identifier">OpenTypeFeatures</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">RawOpenTypeFeatures</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
 <dd>
 
-Internal implementation of <tt class="docutils literal"><span class="pre"><span class="Identifier">b</span></span></tt>
+Gets internal implementation of <tt class="docutils literal"><span class="pre"><span class="Identifier">b</span></span></tt>
 
 </dd>
 </div>
@@ -3248,7 +3197,7 @@ Internal implementation of <tt class="docutils literal"><span class="pre"><span 
 <dt><pre><span class="Keyword">func</span> <a href="#impl%2CProgressBar"><span class="Identifier">impl</span></a><span class="Other">(</span><span class="Identifier">b</span><span class="Other">:</span> <a href="uing.html#ProgressBar"><span class="Identifier">ProgressBar</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">RawProgressBar</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
 <dd>
 
-Internal implementation of <tt class="docutils literal"><span class="pre"><span class="Identifier">b</span></span></tt>
+Gets internal implementation of <tt class="docutils literal"><span class="pre"><span class="Identifier">b</span></span></tt>
 
 </dd>
 </div>
@@ -3256,7 +3205,7 @@ Internal implementation of <tt class="docutils literal"><span class="pre"><span 
 <dt><pre><span class="Keyword">func</span> <a href="#impl%2CRadioButtons"><span class="Identifier">impl</span></a><span class="Other">(</span><span class="Identifier">b</span><span class="Other">:</span> <a href="uing.html#RadioButtons"><span class="Identifier">RadioButtons</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">RawRadioButtons</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
 <dd>
 
-Internal implementation of <tt class="docutils literal"><span class="pre"><span class="Identifier">b</span></span></tt>
+Gets internal implementation of <tt class="docutils literal"><span class="pre"><span class="Identifier">b</span></span></tt>
 
 </dd>
 </div>
@@ -3264,7 +3213,7 @@ Internal implementation of <tt class="docutils literal"><span class="pre"><span 
 <dt><pre><span class="Keyword">func</span> <a href="#impl%2CSeparator"><span class="Identifier">impl</span></a><span class="Other">(</span><span class="Identifier">b</span><span class="Other">:</span> <a href="uing.html#Separator"><span class="Identifier">Separator</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">RawSeparator</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
 <dd>
 
-Internal implementation of <tt class="docutils literal"><span class="pre"><span class="Identifier">b</span></span></tt>
+Gets internal implementation of <tt class="docutils literal"><span class="pre"><span class="Identifier">b</span></span></tt>
 
 </dd>
 </div>
@@ -3272,7 +3221,7 @@ Internal implementation of <tt class="docutils literal"><span class="pre"><span 
 <dt><pre><span class="Keyword">func</span> <a href="#impl%2CSlider"><span class="Identifier">impl</span></a><span class="Other">(</span><span class="Identifier">b</span><span class="Other">:</span> <a href="uing.html#Slider"><span class="Identifier">Slider</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">RawSlider</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
 <dd>
 
-Internal implementation of <tt class="docutils literal"><span class="pre"><span class="Identifier">b</span></span></tt>
+Gets internal implementation of <tt class="docutils literal"><span class="pre"><span class="Identifier">b</span></span></tt>
 
 </dd>
 </div>
@@ -3280,7 +3229,7 @@ Internal implementation of <tt class="docutils literal"><span class="pre"><span 
 <dt><pre><span class="Keyword">func</span> <a href="#impl%2CSpinbox"><span class="Identifier">impl</span></a><span class="Other">(</span><span class="Identifier">b</span><span class="Other">:</span> <a href="uing.html#Spinbox"><span class="Identifier">Spinbox</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">RawSpinbox</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
 <dd>
 
-Internal implementation of <tt class="docutils literal"><span class="pre"><span class="Identifier">b</span></span></tt>
+Gets internal implementation of <tt class="docutils literal"><span class="pre"><span class="Identifier">b</span></span></tt>
 
 </dd>
 </div>
@@ -3288,7 +3237,7 @@ Internal implementation of <tt class="docutils literal"><span class="pre"><span 
 <dt><pre><span class="Keyword">func</span> <a href="#impl%2CTab"><span class="Identifier">impl</span></a><span class="Other">(</span><span class="Identifier">b</span><span class="Other">:</span> <a href="uing.html#Tab"><span class="Identifier">Tab</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">RawTab</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
 <dd>
 
-Internal implementation of <tt class="docutils literal"><span class="pre"><span class="Identifier">b</span></span></tt>
+Gets internal implementation of <tt class="docutils literal"><span class="pre"><span class="Identifier">b</span></span></tt>
 
 </dd>
 </div>
@@ -3296,7 +3245,7 @@ Internal implementation of <tt class="docutils literal"><span class="pre"><span 
 <dt><pre><span class="Keyword">func</span> <a href="#impl%2CTable"><span class="Identifier">impl</span></a><span class="Other">(</span><span class="Identifier">b</span><span class="Other">:</span> <a href="uing.html#Table"><span class="Identifier">Table</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">RawTable</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
 <dd>
 
-Internal implementation of <tt class="docutils literal"><span class="pre"><span class="Identifier">b</span></span></tt>
+Gets internal implementation of <tt class="docutils literal"><span class="pre"><span class="Identifier">b</span></span></tt>
 
 </dd>
 </div>
@@ -3304,7 +3253,7 @@ Internal implementation of <tt class="docutils literal"><span class="pre"><span 
 <dt><pre><span class="Keyword">func</span> <a href="#impl%2CTableModel"><span class="Identifier">impl</span></a><span class="Other">(</span><span class="Identifier">b</span><span class="Other">:</span> <a href="uing.html#TableModel"><span class="Identifier">TableModel</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">RawTableModel</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
 <dd>
 
-Internal implementation of <tt class="docutils literal"><span class="pre"><span class="Identifier">b</span></span></tt>
+Gets internal implementation of <tt class="docutils literal"><span class="pre"><span class="Identifier">b</span></span></tt>
 
 </dd>
 </div>
@@ -3312,7 +3261,7 @@ Internal implementation of <tt class="docutils literal"><span class="pre"><span 
 <dt><pre><span class="Keyword">func</span> <a href="#impl%2CTableValue"><span class="Identifier">impl</span></a><span class="Other">(</span><span class="Identifier">b</span><span class="Other">:</span> <a href="uing.html#TableValue"><span class="Identifier">TableValue</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">RawTableValue</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
 <dd>
 
-Internal implementation of <tt class="docutils literal"><span class="pre"><span class="Identifier">b</span></span></tt>
+Gets internal implementation of <tt class="docutils literal"><span class="pre"><span class="Identifier">b</span></span></tt>
 
 </dd>
 </div>
@@ -3320,7 +3269,7 @@ Internal implementation of <tt class="docutils literal"><span class="pre"><span 
 <dt><pre><span class="Keyword">func</span> <a href="#impl%2CWindow"><span class="Identifier">impl</span></a><span class="Other">(</span><span class="Identifier">b</span><span class="Other">:</span> <a href="uing.html#Window"><span class="Identifier">Window</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">RawWindow</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
 <dd>
 
-Internal implementation of <tt class="docutils literal"><span class="pre"><span class="Identifier">b</span></span></tt>
+Gets internal implementation of <tt class="docutils literal"><span class="pre"><span class="Identifier">b</span></span></tt>
 
 </dd>
 </div>
@@ -3404,14 +3353,6 @@ Set internal implementation of <tt class="docutils literal"><span class="pre"><s
 
 </dd>
 </div>
-<div id="impl=,DrawMatrix,RawDrawMatrix">
-<dt><pre><span class="Keyword">func</span> <a href="#impl%3D%2CDrawMatrix%2CRawDrawMatrix"><span class="Identifier">impl=</span></a><span class="Other">(</span><span class="Identifier">b</span><span class="Other">:</span> <a href="uing.html#DrawMatrix"><span class="Identifier">DrawMatrix</span></a><span class="Other">;</span> <span class="Identifier">r</span><span class="Other">:</span> <span class="Identifier">RawDrawMatrix</span><span class="Other">)</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
-<dd>
-
-Set internal implementation of <tt class="docutils literal"><span class="pre"><span class="Identifier">b</span></span></tt>
-
-</dd>
-</div>
 <div id="impl=,DrawPath,RawDrawPath">
 <dt><pre><span class="Keyword">func</span> <a href="#impl%3D%2CDrawPath%2CRawDrawPath"><span class="Identifier">impl=</span></a><span class="Other">(</span><span class="Identifier">b</span><span class="Other">:</span> <a href="uing.html#DrawPath"><span class="Identifier">DrawPath</span></a><span class="Other">;</span> <span class="Identifier">r</span><span class="Other">:</span> <span class="Identifier">RawDrawPath</span><span class="Other">)</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
 <dd>
@@ -3446,14 +3387,6 @@ Set internal implementation of <tt class="docutils literal"><span class="pre"><s
 </div>
 <div id="impl=,FontButton,RawFontButton">
 <dt><pre><span class="Keyword">func</span> <a href="#impl%3D%2CFontButton%2CRawFontButton"><span class="Identifier">impl=</span></a><span class="Other">(</span><span class="Identifier">b</span><span class="Other">:</span> <a href="uing.html#FontButton"><span class="Identifier">FontButton</span></a><span class="Other">;</span> <span class="Identifier">r</span><span class="Other">:</span> <span class="Identifier">RawFontButton</span><span class="Other">)</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
-<dd>
-
-Set internal implementation of <tt class="docutils literal"><span class="pre"><span class="Identifier">b</span></span></tt>
-
-</dd>
-</div>
-<div id="impl=,FontDescriptor,RawFontDescriptor">
-<dt><pre><span class="Keyword">func</span> <a href="#impl%3D%2CFontDescriptor%2CRawFontDescriptor"><span class="Identifier">impl=</span></a><span class="Other">(</span><span class="Identifier">b</span><span class="Other">:</span> <a href="uing.html#FontDescriptor"><span class="Identifier">FontDescriptor</span></a><span class="Other">;</span> <span class="Identifier">r</span><span class="Other">:</span> <span class="Identifier">RawFontDescriptor</span><span class="Other">)</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
 <dd>
 
 Set internal implementation of <tt class="docutils literal"><span class="pre"><span class="Identifier">b</span></span></tt>
@@ -3647,8 +3580,8 @@ Inserts a widget in form of a page/tab with label at <tt class="docutils literal
 
 </dd>
 </div>
-<div id="insertAtUnattributed,AttributedString,string,BiggestUInt">
-<dt><pre><span class="Keyword">proc</span> <a href="#insertAtUnattributed%2CAttributedString%2Cstring%2CBiggestUInt"><span class="Identifier">insertAtUnattributed</span></a><span class="Other">(</span><span class="Identifier">s</span><span class="Other">:</span> <a href="uing.html#AttributedString"><span class="Identifier">AttributedString</span></a><span class="Other">;</span> <span class="Identifier">str</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span> <span class="Identifier">at</span><span class="Other">:</span> <span class="Identifier">BiggestUInt</span><span class="Other">)</span> {.
+<div id="insertAtUnattributed,AttributedString,string,int">
+<dt><pre><span class="Keyword">proc</span> <a href="#insertAtUnattributed%2CAttributedString%2Cstring%2Cint"><span class="Identifier">insertAtUnattributed</span></a><span class="Other">(</span><span class="Identifier">s</span><span class="Other">:</span> <a href="uing.html#AttributedString"><span class="Identifier">AttributedString</span></a><span class="Other">;</span> <span class="Identifier">str</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span> <span class="Identifier">at</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">)</span> {.
     <span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
 <dd>
 
@@ -3656,16 +3589,16 @@ Adds the string <tt class="docutils literal"><span class="pre"><span class="Iden
 
 </dd>
 </div>
-<div id="invert,DrawMatrix">
-<dt><pre><span class="Keyword">proc</span> <a href="#invert%2CDrawMatrix"><span class="Identifier">invert</span></a><span class="Other">(</span><span class="Identifier">m</span><span class="Other">:</span> <a href="uing.html#DrawMatrix"><span class="Identifier">DrawMatrix</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">int</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
+<div id="invert,ptr.DrawMatrix">
+<dt><pre><span class="Keyword">proc</span> <a href="#invert%2Cptr.DrawMatrix"><span class="Identifier">invert</span></a><span class="Other">(</span><span class="Identifier">m</span><span class="Other">:</span> <span class="Keyword">ptr</span> <a href="uing/rawui.html#DrawMatrix"><span class="Identifier">DrawMatrix</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">int</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
 <dd>
 
 
 
 </dd>
 </div>
-<div id="invertible,DrawMatrix">
-<dt><pre><span class="Keyword">proc</span> <a href="#invertible%2CDrawMatrix"><span class="Identifier">invertible</span></a><span class="Other">(</span><span class="Identifier">m</span><span class="Other">:</span> <a href="uing.html#DrawMatrix"><span class="Identifier">DrawMatrix</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">bool</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
+<div id="invertible,ptr.DrawMatrix">
+<dt><pre><span class="Keyword">proc</span> <a href="#invertible%2Cptr.DrawMatrix"><span class="Identifier">invertible</span></a><span class="Other">(</span><span class="Identifier">m</span><span class="Other">:</span> <span class="Keyword">ptr</span> <a href="uing/rawui.html#DrawMatrix"><span class="Identifier">DrawMatrix</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">bool</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
 <dd>
 
 
@@ -3683,7 +3616,7 @@ It is an error to call this on a Attribute that does not hold a font italic mode
 </dd>
 </div>
 <div id="len,AttributedString">
-<dt><pre><span class="Keyword">proc</span> <a href="#len%2CAttributedString"><span class="Identifier">len</span></a><span class="Other">(</span><span class="Identifier">s</span><span class="Other">:</span> <a href="uing.html#AttributedString"><span class="Identifier">AttributedString</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">BiggestUInt</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
+<dt><pre><span class="Keyword">proc</span> <a href="#len%2CAttributedString"><span class="Identifier">len</span></a><span class="Other">(</span><span class="Identifier">s</span><span class="Other">:</span> <a href="uing.html#AttributedString"><span class="Identifier">AttributedString</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">int</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
 <dd>
 
 Returns the number of UTF-8 bytes in the textual content of <tt class="docutils literal"><span class="pre"><span class="Identifier">s</span></span></tt>
@@ -3698,8 +3631,8 @@ Returns the number of UTF-8 bytes in the textual content of <tt class="docutils 
 
 </dd>
 </div>
-<div id="loadControlFont,FontDescriptor">
-<dt><pre><span class="Keyword">proc</span> <a href="#loadControlFont%2CFontDescriptor"><span class="Identifier">loadControlFont</span></a><span class="Other">(</span><span class="Identifier">f</span><span class="Other">:</span> <a href="uing.html#FontDescriptor"><span class="Identifier">FontDescriptor</span></a><span class="Other">)</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
+<div id="loadControlFont,ptr.FontDescriptor">
+<dt><pre><span class="Keyword">proc</span> <a href="#loadControlFont%2Cptr.FontDescriptor"><span class="Identifier">loadControlFont</span></a><span class="Other">(</span><span class="Identifier">f</span><span class="Other">:</span> <span class="Keyword">ptr</span> <a href="uing/rawui.html#FontDescriptor"><span class="Identifier">FontDescriptor</span></a><span class="Other">)</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
 <dd>
 
 
@@ -3780,8 +3713,8 @@ Sets whether or not the window has a margin. The margin size is determined by th
 
 </dd>
 </div>
-<div id="multiply,DrawMatrix,DrawMatrix">
-<dt><pre><span class="Keyword">proc</span> <a href="#multiply%2CDrawMatrix%2CDrawMatrix"><span class="Identifier">multiply</span></a><span class="Other">(</span><span class="Identifier">dest</span><span class="Other">:</span> <a href="uing.html#DrawMatrix"><span class="Identifier">DrawMatrix</span></a><span class="Other">;</span> <span class="Identifier">src</span><span class="Other">:</span> <a href="uing.html#DrawMatrix"><span class="Identifier">DrawMatrix</span></a><span class="Other">)</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
+<div id="multiply,ptr.DrawMatrix,ptr.DrawMatrix">
+<dt><pre><span class="Keyword">proc</span> <a href="#multiply%2Cptr.DrawMatrix%2Cptr.DrawMatrix"><span class="Identifier">multiply</span></a><span class="Other">(</span><span class="Identifier">dest</span><span class="Other">,</span> <span class="Identifier">src</span><span class="Other">:</span> <span class="Keyword">ptr</span> <a href="uing/rawui.html#DrawMatrix"><span class="Identifier">DrawMatrix</span></a><span class="Other">)</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
 <dd>
 
 
@@ -3968,22 +3901,13 @@ Creates a and returns new Attribute that changes the font family of the text it 
 
 </dd>
 </div>
-<div id="newFontDescriptor,string,,TextWeight,TextItalic,TextStretch">
-<dt><pre><span class="Keyword">proc</span> <a href="#newFontDescriptor%2Cstring%2C%2CTextWeight%2CTextItalic%2CTextStretch"><span class="Identifier">newFontDescriptor</span></a><span class="Other">(</span><span class="Identifier">family</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span> <span class="Identifier">size</span><span class="Other">:</span> <span class="Identifier">float</span> <span class="Operator">|</span> <span class="Identifier">int</span><span class="Other">;</span>
-                       <span class="Identifier">weight</span><span class="Other">:</span> <a href="uing/rawui.html#TextWeight"><span class="Identifier">TextWeight</span></a> <span class="Other">=</span> <span class="Identifier">TextWeightNormal</span><span class="Other">;</span>
-                       <span class="Identifier">italic</span><span class="Other">:</span> <a href="uing/rawui.html#TextItalic"><span class="Identifier">TextItalic</span></a> <span class="Other">=</span> <span class="Identifier">TextItalicNormal</span><span class="Other">;</span>
-                       <span class="Identifier">stretch</span><span class="Other">:</span> <a href="uing/rawui.html#TextStretch"><span class="Identifier">TextStretch</span></a> <span class="Other">=</span> <span class="Identifier">TextStretchNormal</span><span class="Other">)</span><span class="Other">:</span> <a href="uing.html#FontDescriptor"><span class="Identifier">FontDescriptor</span></a></pre></dt>
+<div id="newForm,bool">
+<dt><pre><span class="Keyword">proc</span> <a href="#newForm%2Cbool"><span class="Identifier">newForm</span></a><span class="Other">(</span><span class="Identifier">padded</span><span class="Other">:</span> <span class="Identifier">bool</span> <span class="Other">=</span> <span class="Identifier">false</span><span class="Other">)</span><span class="Other">:</span> <a href="uing.html#Form"><span class="Identifier">Form</span></a> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
 <dd>
 
-Create new FontDescriptor
+<p>Creates a new form.</p>
+<p><tt class="docutils literal"><span class="pre"><span class="Identifier">padded</span></span></tt>: <tt class="docutils literal"><span class="pre"><span class="Identifier">true</span></span></tt> to make widgets padded, <tt class="docutils literal"><span class="pre"><span class="Identifier">false</span></span></tt> otherwise.</p>
 
-</dd>
-</div>
-<div id="newForm">
-<dt><pre><span class="Keyword">proc</span> <a href="#newForm"><span class="Identifier">newForm</span></a><span class="Other">(</span><span class="Other">)</span><span class="Other">:</span> <a href="uing.html#Form"><span class="Identifier">Form</span></a> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
-<dd>
-
-Creates a new form.
 
 </dd>
 </div>
@@ -4269,8 +4193,9 @@ Creates a new Attribute that changes the type of underline on the text it is app
 
 </dd>
 </div>
-<div id="newUnderlineColorAttribute,UnderlineColor,float,float,float,float">
-<dt><pre><span class="Keyword">proc</span> <a href="#newUnderlineColorAttribute%2CUnderlineColor%2Cfloat%2Cfloat%2Cfloat%2Cfloat"><span class="Identifier">newUnderlineColorAttribute</span></a><span class="Other">(</span><span class="Identifier">u</span><span class="Other">:</span> <a href="uing/rawui.html#UnderlineColor"><span class="Identifier">UnderlineColor</span></a><span class="Other">;</span> <span class="Identifier">r</span><span class="Other">,</span> <span class="Identifier">g</span><span class="Other">,</span> <span class="Identifier">b</span><span class="Other">,</span> <span class="Identifier">a</span><span class="Other">:</span> <span class="Identifier">float</span><span class="Other">)</span><span class="Other">:</span> <a href="uing.html#Attribute"><span class="Identifier">Attribute</span></a> {.
+<div id="newUnderlineColorAttribute,UnderlineColor,float32,float32,float32,float">
+<dt><pre><span class="Keyword">proc</span> <a href="#newUnderlineColorAttribute%2CUnderlineColor%2Cfloat32%2Cfloat32%2Cfloat32%2Cfloat"><span class="Identifier">newUnderlineColorAttribute</span></a><span class="Other">(</span><span class="Identifier">u</span><span class="Other">:</span> <a href="uing/rawui.html#UnderlineColor"><span class="Identifier">UnderlineColor</span></a><span class="Other">;</span> <span class="Identifier">r</span> <span class="Other">=</span> <span class="FloatNumber">0.0'f32</span><span class="Other">;</span> <span class="Identifier">g</span> <span class="Other">=</span> <span class="FloatNumber">0.0'f32</span><span class="Other">;</span>
+                                <span class="Identifier">b</span> <span class="Other">=</span> <span class="FloatNumber">0.0'f32</span><span class="Other">;</span> <span class="Identifier">a</span><span class="Other">:</span> <span class="Identifier">float</span> <span class="Other">=</span> <span class="FloatNumber">0.0'f32</span><span class="Other">)</span><span class="Other">:</span> <a href="uing.html#Attribute"><span class="Identifier">Attribute</span></a> {.
     <span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
 <dd>
 
@@ -4328,7 +4253,7 @@ Creates and returns a new Window.<p><tt class="docutils literal"><span class="pr
 </dd>
 </div>
 <div id="numGraphemes,AttributedString">
-<dt><pre><span class="Keyword">proc</span> <a href="#numGraphemes%2CAttributedString"><span class="Identifier">numGraphemes</span></a><span class="Other">(</span><span class="Identifier">s</span><span class="Other">:</span> <a href="uing.html#AttributedString"><span class="Identifier">AttributedString</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">BiggestUInt</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
+<dt><pre><span class="Keyword">proc</span> <a href="#numGraphemes%2CAttributedString"><span class="Identifier">numGraphemes</span></a><span class="Other">(</span><span class="Identifier">s</span><span class="Other">:</span> <a href="uing.html#AttributedString"><span class="Identifier">AttributedString</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">int</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
 <dd>
 
 
@@ -4533,8 +4458,8 @@ This method is merely a hint and may be ignored by the system.</div>
 
 </dd>
 </div>
-<div id="rotate,DrawMatrix,float,float,float">
-<dt><pre><span class="Keyword">proc</span> <a href="#rotate%2CDrawMatrix%2Cfloat%2Cfloat%2Cfloat"><span class="Identifier">rotate</span></a><span class="Other">(</span><span class="Identifier">m</span><span class="Other">:</span> <a href="uing.html#DrawMatrix"><span class="Identifier">DrawMatrix</span></a><span class="Other">;</span> <span class="Identifier">x</span><span class="Other">,</span> <span class="Identifier">y</span><span class="Other">,</span> <span class="Identifier">amount</span><span class="Other">:</span> <span class="Identifier">float</span><span class="Other">)</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
+<div id="rotate,ptr.DrawMatrix,float,float,float">
+<dt><pre><span class="Keyword">proc</span> <a href="#rotate%2Cptr.DrawMatrix%2Cfloat%2Cfloat%2Cfloat"><span class="Identifier">rotate</span></a><span class="Other">(</span><span class="Identifier">m</span><span class="Other">:</span> <span class="Keyword">ptr</span> <a href="uing/rawui.html#DrawMatrix"><span class="Identifier">DrawMatrix</span></a><span class="Other">;</span> <span class="Identifier">x</span><span class="Other">,</span> <span class="Identifier">y</span><span class="Other">,</span> <span class="Identifier">amount</span><span class="Other">:</span> <span class="Identifier">float</span><span class="Other">)</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
 <dd>
 
 
@@ -4586,8 +4511,9 @@ File paths are separated by the underlying OS file path separator.</div>
 
 </dd>
 </div>
-<div id="scale,DrawMatrix,float,float,float,float">
-<dt><pre><span class="Keyword">proc</span> <a href="#scale%2CDrawMatrix%2Cfloat%2Cfloat%2Cfloat%2Cfloat"><span class="Identifier">scale</span></a><span class="Other">(</span><span class="Identifier">m</span><span class="Other">:</span> <a href="uing.html#DrawMatrix"><span class="Identifier">DrawMatrix</span></a><span class="Other">;</span> <span class="Identifier">xCenter</span><span class="Other">,</span> <span class="Identifier">yCenter</span><span class="Other">,</span> <span class="Identifier">x</span><span class="Other">,</span> <span class="Identifier">y</span><span class="Other">:</span> <span class="Identifier">float</span><span class="Other">)</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
+<div id="scale,ptr.DrawMatrix,float,float,float,float">
+<dt><pre><span class="Keyword">proc</span> <a href="#scale%2Cptr.DrawMatrix%2Cfloat%2Cfloat%2Cfloat%2Cfloat"><span class="Identifier">scale</span></a><span class="Other">(</span><span class="Identifier">m</span><span class="Other">:</span> <span class="Keyword">ptr</span> <a href="uing/rawui.html#DrawMatrix"><span class="Identifier">DrawMatrix</span></a><span class="Other">;</span> <span class="Identifier">xCenter</span><span class="Other">,</span> <span class="Identifier">yCenter</span><span class="Other">,</span> <span class="Identifier">x</span><span class="Other">,</span> <span class="Identifier">y</span><span class="Other">:</span> <span class="Identifier">float</span><span class="Other">)</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span>
+    <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
 <dd>
 
 
@@ -4627,8 +4553,7 @@ Sets the item selected.<p><tt class="docutils literal"><span class="pre"><span c
 </dd>
 </div>
 <div id="selection,Table">
-<dt><pre><span class="Keyword">proc</span> <a href="#selection%2CTable"><span class="Identifier">selection</span></a><span class="Other">(</span><span class="Identifier">table</span><span class="Other">:</span> <a href="uing.html#Table"><span class="Identifier">Table</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Keyword">tuple</span><span class="Other">[</span><span class="Identifier">numRows</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">,</span> <span class="Identifier">rows</span><span class="Other">:</span> <span class="Identifier">seq</span><span class="Other">[</span><span class="Identifier">int</span><span class="Other">]</span><span class="Other">]</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span>
-    <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
+<dt><pre><span class="Keyword">proc</span> <a href="#selection%2CTable"><span class="Identifier">selection</span></a><span class="Other">(</span><span class="Identifier">table</span><span class="Other">:</span> <a href="uing.html#Table"><span class="Identifier">Table</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">seq</span><span class="Other">[</span><span class="Identifier">int</span><span class="Other">]</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
 <dd>
 
 Returns the current table selection.<div class="admonition admonition-info"><span class="admonition-info-text"><b>Note:</b></span>
@@ -4638,8 +4563,8 @@ For empty selections the <tt class="docutils literal"><span class="pre"><span cl
 
 </dd>
 </div>
-<div id="selection=,Table,openArray[int]">
-<dt><pre><span class="Keyword">proc</span> <a href="#selection%3D%2CTable%2CopenArray%5Bint%5D"><span class="Identifier">selection=</span></a><span class="Other">(</span><span class="Identifier">table</span><span class="Other">:</span> <a href="uing.html#Table"><span class="Identifier">Table</span></a><span class="Other">;</span> <span class="Identifier">sel</span><span class="Other">:</span> <span class="Identifier">openArray</span><span class="Other">[</span><span class="Identifier">int</span><span class="Other">]</span><span class="Other">)</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
+<div id="selection=,Table,openArray[cint]">
+<dt><pre><span class="Keyword">proc</span> <a href="#selection%3D%2CTable%2CopenArray%5Bcint%5D"><span class="Identifier">selection=</span></a><span class="Other">(</span><span class="Identifier">table</span><span class="Other">:</span> <a href="uing.html#Table"><span class="Identifier">Table</span></a><span class="Other">;</span> <span class="Identifier">sel</span><span class="Other">:</span> <span class="Identifier">openArray</span><span class="Other">[</span><span class="Identifier">cint</span><span class="Other">]</span><span class="Other">)</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
 <dd>
 
 Sets the current table selection, clearing any previous selection.<div class="admonition admonition-info"><span class="admonition-info-text"><b>Note:</b></span>
@@ -4669,8 +4594,8 @@ All rows will be deselected if the existing selection is illegal in the new sele
 
 </dd>
 </div>
-<div id="setAttribute,AttributedString,Attribute,BiggestUInt,BiggestUInt">
-<dt><pre><span class="Keyword">proc</span> <a href="#setAttribute%2CAttributedString%2CAttribute%2CBiggestUInt%2CBiggestUInt"><span class="Identifier">setAttribute</span></a><span class="Other">(</span><span class="Identifier">s</span><span class="Other">:</span> <a href="uing.html#AttributedString"><span class="Identifier">AttributedString</span></a><span class="Other">;</span> <span class="Identifier">a</span><span class="Other">:</span> <a href="uing.html#Attribute"><span class="Identifier">Attribute</span></a><span class="Other">;</span> <span class="Identifier">start</span><span class="Other">,</span> <span class="Identifier">end</span><span class="Other">:</span> <span class="Identifier">BiggestUInt</span><span class="Other">)</span> {.
+<div id="setAttribute,AttributedString,Attribute,int,int">
+<dt><pre><span class="Keyword">proc</span> <a href="#setAttribute%2CAttributedString%2CAttribute%2Cint%2Cint"><span class="Identifier">setAttribute</span></a><span class="Other">(</span><span class="Identifier">s</span><span class="Other">:</span> <a href="uing.html#AttributedString"><span class="Identifier">AttributedString</span></a><span class="Other">;</span> <span class="Identifier">a</span><span class="Other">:</span> <a href="uing.html#Attribute"><span class="Identifier">Attribute</span></a><span class="Other">;</span> <span class="Identifier">start</span><span class="Other">,</span> <span class="Identifier">end</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">)</span> {.
     <span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
 <dd>
 
@@ -4699,8 +4624,8 @@ Darwin currently only resizes to the column header width on <tt class="docutils 
 
 </dd>
 </div>
-<div id="setIdentity,DrawMatrix">
-<dt><pre><span class="Keyword">proc</span> <a href="#setIdentity%2CDrawMatrix"><span class="Identifier">setIdentity</span></a><span class="Other">(</span><span class="Identifier">m</span><span class="Other">:</span> <a href="uing.html#DrawMatrix"><span class="Identifier">DrawMatrix</span></a><span class="Other">)</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
+<div id="setIdentity,ptr.DrawMatrix">
+<dt><pre><span class="Keyword">proc</span> <a href="#setIdentity%2Cptr.DrawMatrix"><span class="Identifier">setIdentity</span></a><span class="Other">(</span><span class="Identifier">m</span><span class="Other">:</span> <span class="Keyword">ptr</span> <a href="uing/rawui.html#DrawMatrix"><span class="Identifier">DrawMatrix</span></a><span class="Other">)</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
 <dd>
 
 
@@ -4711,7 +4636,7 @@ Darwin currently only resizes to the column header width on <tt class="docutils 
 <dt><pre><span class="Keyword">proc</span> <a href="#setMargined%2CTab%2Cint%2Cbool"><span class="Identifier">setMargined</span></a><span class="Other">(</span><span class="Identifier">t</span><span class="Other">:</span> <a href="uing.html#Tab"><span class="Identifier">Tab</span></a><span class="Other">;</span> <span class="Identifier">index</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">;</span> <span class="Identifier">margined</span><span class="Other">:</span> <span class="Identifier">bool</span><span class="Other">)</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
 <dd>
 
-<p>Sets whether or not the page/tab at @p index has a margin.</p>
+<p>Sets whether or not the page/tab at <tt class="docutils literal"><span class="pre"><span class="Identifier">index</span></span></tt> has a margin.</p>
 <p>The margin size is determined by the OS defaults.</p>
 <p><tt class="docutils literal"><span class="pre"><span class="Identifier">t</span></span></tt>: Tab instance. <tt class="docutils literal"><span class="pre"><span class="Identifier">index</span></span></tt>: Index of the tab/page to un/set margin for. <tt class="docutils literal"><span class="pre"><span class="Identifier">margined</span></span></tt>: <tt class="docutils literal"><span class="pre"><span class="Identifier">true</span></span></tt> to set a margin for tab at <tt class="docutils literal"><span class="pre"><span class="Identifier">index</span></span></tt>, <tt class="docutils literal"><span class="pre"><span class="Identifier">false</span></span></tt> otherwise.</p>
 
@@ -4757,8 +4682,9 @@ It is an error to call this on a <tt class="docutils literal"><span class="pre">
 
 </dd>
 </div>
-<div id="skew,DrawMatrix,float,float,float,float">
-<dt><pre><span class="Keyword">proc</span> <a href="#skew%2CDrawMatrix%2Cfloat%2Cfloat%2Cfloat%2Cfloat"><span class="Identifier">skew</span></a><span class="Other">(</span><span class="Identifier">m</span><span class="Other">:</span> <a href="uing.html#DrawMatrix"><span class="Identifier">DrawMatrix</span></a><span class="Other">;</span> <span class="Identifier">x</span><span class="Other">,</span> <span class="Identifier">y</span><span class="Other">,</span> <span class="Identifier">xamount</span><span class="Other">,</span> <span class="Identifier">yamount</span><span class="Other">:</span> <span class="Identifier">float</span><span class="Other">)</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
+<div id="skew,ptr.DrawMatrix,float,float,float,float">
+<dt><pre><span class="Keyword">proc</span> <a href="#skew%2Cptr.DrawMatrix%2Cfloat%2Cfloat%2Cfloat%2Cfloat"><span class="Identifier">skew</span></a><span class="Other">(</span><span class="Identifier">m</span><span class="Other">:</span> <span class="Keyword">ptr</span> <a href="uing/rawui.html#DrawMatrix"><span class="Identifier">DrawMatrix</span></a><span class="Other">;</span> <span class="Identifier">x</span><span class="Other">,</span> <span class="Identifier">y</span><span class="Other">,</span> <span class="Identifier">xamount</span><span class="Other">,</span> <span class="Identifier">yamount</span><span class="Other">:</span> <span class="Identifier">float</span><span class="Other">)</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span>
+    <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
 <dd>
 
 
@@ -4922,7 +4848,7 @@ Sets date and time of the data time picker.<p><tt class="docutils literal"><span
 </div>
 <div id="timer,int,proc(pointer),pointer">
 <dt><pre><span class="Keyword">proc</span> <a href="#timer%2Cint%2Cproc%28pointer%29%2Cpointer"><span class="Identifier">timer</span></a><span class="Other">(</span><span class="Identifier">milliseconds</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">;</span> <span class="Identifier">f</span><span class="Other">:</span> <span class="Keyword">proc</span> <span class="Other">(</span><span class="Identifier">data</span><span class="Other">:</span> <span class="Identifier">pointer</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">cint</span> {.<span class="Identifier">cdecl</span>.}<span class="Other">;</span>
-           <span class="Identifier">data</span><span class="Other">:</span> <span class="Identifier">pointer</span><span class="Other">)</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
+           <span class="Identifier">data</span><span class="Other">:</span> <span class="Identifier">pointer</span> <span class="Other">=</span> <span class="Keyword">nil</span><span class="Other">)</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
 <dd>
 
 
@@ -4975,24 +4901,33 @@ Returns whether or not the widget is a top level widget.
 
 </dd>
 </div>
-<div id="transformPoint,DrawMatrix">
-<dt><pre><span class="Keyword">proc</span> <a href="#transformPoint%2CDrawMatrix"><span class="Identifier">transformPoint</span></a><span class="Other">(</span><span class="Identifier">m</span><span class="Other">:</span> <a href="uing.html#DrawMatrix"><span class="Identifier">DrawMatrix</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Keyword">tuple</span><span class="Other">[</span><span class="Identifier">x</span><span class="Other">,</span> <span class="Identifier">y</span><span class="Other">:</span> <span class="Identifier">float</span><span class="Other">]</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
+<div id="transform,ptr.DrawContext,ptr.DrawMatrix">
+<dt><pre><span class="Keyword">proc</span> <a href="#transform%2Cptr.DrawContext%2Cptr.DrawMatrix"><span class="Identifier">transform</span></a><span class="Other">(</span><span class="Identifier">c</span><span class="Other">:</span> <span class="Keyword">ptr</span> <a href="uing/rawui.html#DrawContext"><span class="Identifier">DrawContext</span></a><span class="Other">;</span> <span class="Identifier">m</span><span class="Other">:</span> <span class="Keyword">ptr</span> <a href="uing/rawui.html#DrawMatrix"><span class="Identifier">DrawMatrix</span></a><span class="Other">)</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
 <dd>
 
 
 
 </dd>
 </div>
-<div id="transformSize,DrawMatrix">
-<dt><pre><span class="Keyword">proc</span> <a href="#transformSize%2CDrawMatrix"><span class="Identifier">transformSize</span></a><span class="Other">(</span><span class="Identifier">m</span><span class="Other">:</span> <a href="uing.html#DrawMatrix"><span class="Identifier">DrawMatrix</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Keyword">tuple</span><span class="Other">[</span><span class="Identifier">x</span><span class="Other">,</span> <span class="Identifier">y</span><span class="Other">:</span> <span class="Identifier">float</span><span class="Other">]</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
+<div id="transformPoint,ptr.DrawMatrix">
+<dt><pre><span class="Keyword">proc</span> <a href="#transformPoint%2Cptr.DrawMatrix"><span class="Identifier">transformPoint</span></a><span class="Other">(</span><span class="Identifier">m</span><span class="Other">:</span> <span class="Keyword">ptr</span> <a href="uing/rawui.html#DrawMatrix"><span class="Identifier">DrawMatrix</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Keyword">tuple</span><span class="Other">[</span><span class="Identifier">x</span><span class="Other">,</span> <span class="Identifier">y</span><span class="Other">:</span> <span class="Identifier">float</span><span class="Other">]</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span>
+    <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
 <dd>
 
 
 
 </dd>
 </div>
-<div id="translate,DrawMatrix,float,float">
-<dt><pre><span class="Keyword">proc</span> <a href="#translate%2CDrawMatrix%2Cfloat%2Cfloat"><span class="Identifier">translate</span></a><span class="Other">(</span><span class="Identifier">m</span><span class="Other">:</span> <a href="uing.html#DrawMatrix"><span class="Identifier">DrawMatrix</span></a><span class="Other">;</span> <span class="Identifier">x</span><span class="Other">,</span> <span class="Identifier">y</span><span class="Other">:</span> <span class="Identifier">float</span><span class="Other">)</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
+<div id="transformSize,ptr.DrawMatrix">
+<dt><pre><span class="Keyword">proc</span> <a href="#transformSize%2Cptr.DrawMatrix"><span class="Identifier">transformSize</span></a><span class="Other">(</span><span class="Identifier">m</span><span class="Other">:</span> <span class="Keyword">ptr</span> <a href="uing/rawui.html#DrawMatrix"><span class="Identifier">DrawMatrix</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Keyword">tuple</span><span class="Other">[</span><span class="Identifier">x</span><span class="Other">,</span> <span class="Identifier">y</span><span class="Other">:</span> <span class="Identifier">float</span><span class="Other">]</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
+<dd>
+
+
+
+</dd>
+</div>
+<div id="translate,ptr.DrawMatrix,float,float">
+<dt><pre><span class="Keyword">proc</span> <a href="#translate%2Cptr.DrawMatrix%2Cfloat%2Cfloat"><span class="Identifier">translate</span></a><span class="Other">(</span><span class="Identifier">m</span><span class="Other">:</span> <span class="Keyword">ptr</span> <a href="uing/rawui.html#DrawMatrix"><span class="Identifier">DrawMatrix</span></a><span class="Other">;</span> <span class="Identifier">x</span><span class="Other">,</span> <span class="Identifier">y</span><span class="Other">:</span> <span class="Identifier">float</span><span class="Other">)</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
 <dd>
 
 
@@ -5111,7 +5046,7 @@ It is an error to call this on a Attribute that does not hold a font weight.</di
 <div class="section" id="19">
 <h1><a class="toc-backref" href="#19">Exports</a></h1>
 <dl class="item">
-<a href="uing/rawui.html#TextWeight"><span class="Identifier">TextWeight</span></a>, <a href="uing/rawui.html#TextItalic"><span class="Identifier">TextItalic</span></a>, <a href="uing/rawui.html#TextStretch"><span class="Identifier">TextStretch</span></a>, <a href="uing/rawui.html#WindowResizeEdge"><span class="Identifier">WindowResizeEdge</span></a>, <a href="uing/rawui.html#Modifiers"><span class="Identifier">Modifiers</span></a>, <a href="uing/rawui.html#ExtKey"><span class="Identifier">ExtKey</span></a>, <a href="uing/rawui.html#AreaDrawParams"><span class="Identifier">AreaDrawParams</span></a>, <a href="uing/rawui.html#AreaMouseEvent"><span class="Identifier">AreaMouseEvent</span></a>, <a href="uing/rawui.html#AreaKeyEvent"><span class="Identifier">AreaKeyEvent</span></a>, <a href="uing/rawui.html#AreaHandler"><span class="Identifier">AreaHandler</span></a>, <a href="uing/rawui.html#DrawFillMode"><span class="Identifier">DrawFillMode</span></a>, <a href="uing/rawui.html#DrawBrushType"><span class="Identifier">DrawBrushType</span></a>, <a href="uing/rawui.html#DrawLineCap"><span class="Identifier">DrawLineCap</span></a>, <a href="uing/rawui.html#DrawLineJoin"><span class="Identifier">DrawLineJoin</span></a>, <a href="uing/rawui.html#AttributeType"><span class="Identifier">AttributeType</span></a>, <a href="uing/rawui.html#TextWeight_2"><span class="Identifier">TextWeight</span></a>, <a href="uing/rawui.html#TextItalic_2"><span class="Identifier">TextItalic</span></a>, <a href="uing/rawui.html#TextStretch_2"><span class="Identifier">TextStretch</span></a>, <a href="uing/rawui.html#Underline"><span class="Identifier">Underline</span></a>, <a href="uing/rawui.html#UnderlineColor"><span class="Identifier">UnderlineColor</span></a>, <a href="uing/rawui.html#DrawTextAlign"><span class="Identifier">DrawTextAlign</span></a>, <a href="uing/rawui.html#DrawTextLayoutParams"><span class="Identifier">DrawTextLayoutParams</span></a>, <a href="uing/rawui.html#Align"><span class="Identifier">Align</span></a>, <a href="uing/rawui.html#At"><span class="Identifier">At</span></a>, <a href="uing/rawui.html#TableSelection"><span class="Identifier">TableSelection</span></a>, <a href="uing/rawui.html#TableSelectionMode"><span class="Identifier">TableSelectionMode</span></a>, <a href="uing/rawui.html#TableModelHandler"><span class="Identifier">TableModelHandler</span></a>, <a href="uing/rawui.html#TableParams"><span class="Identifier">TableParams</span></a>, <a href="uing/rawui.html#TableTextColumnOptionalParams"><span class="Identifier">TableTextColumnOptionalParams</span></a>, <a href="uing/rawui.html#TableColumnType"><span class="Identifier">TableColumnType</span></a>, <a href="uing/rawui.html#TableValueType"><span class="Identifier">TableValueType</span></a>, <a href="uing/rawui.html#newTableModel,ptr.TableModelHandler"><span class="Identifier">newTableModel</span></a>, <a href="uing/rawui.html#freeTableModel,ptr.TableModel"><span class="Identifier">freeTableModel</span></a>, <a href="uing/rawui.html#TableModelColumnNeverEditable"><span class="Identifier">TableModelColumnNeverEditable</span></a>, <a href="uing/rawui.html#TableModelColumnAlwaysEditable"><span class="Identifier">TableModelColumnAlwaysEditable</span></a>, <a href="uing/rawui.html#SortIndicator"><span class="Identifier">SortIndicator</span></a>
+<a href="uing/rawui.html#TextWeight"><span class="Identifier">TextWeight</span></a>, <a href="uing/rawui.html#TextItalic"><span class="Identifier">TextItalic</span></a>, <a href="uing/rawui.html#TextStretch"><span class="Identifier">TextStretch</span></a>, <a href="uing/rawui.html#FontDescriptor"><span class="Identifier">FontDescriptor</span></a>, <a href="uing/rawui.html#WindowResizeEdge"><span class="Identifier">WindowResizeEdge</span></a>, <a href="uing/rawui.html#Modifiers"><span class="Identifier">Modifiers</span></a>, <a href="uing/rawui.html#ExtKey"><span class="Identifier">ExtKey</span></a>, <a href="uing/rawui.html#AreaDrawParams"><span class="Identifier">AreaDrawParams</span></a>, <a href="uing/rawui.html#AreaMouseEvent"><span class="Identifier">AreaMouseEvent</span></a>, <a href="uing/rawui.html#AreaKeyEvent"><span class="Identifier">AreaKeyEvent</span></a>, <a href="uing/rawui.html#AreaHandler"><span class="Identifier">AreaHandler</span></a>, <a href="uing/rawui.html#DrawMatrix"><span class="Identifier">DrawMatrix</span></a>, <a href="uing/rawui.html#DrawFillMode"><span class="Identifier">DrawFillMode</span></a>, <a href="uing/rawui.html#DrawBrushType"><span class="Identifier">DrawBrushType</span></a>, <a href="uing/rawui.html#DrawLineCap"><span class="Identifier">DrawLineCap</span></a>, <a href="uing/rawui.html#DrawLineJoin"><span class="Identifier">DrawLineJoin</span></a>, <a href="uing/rawui.html#DrawStrokeParams"><span class="Identifier">DrawStrokeParams</span></a>, <a href="uing/rawui.html#DrawDefaultMiterLimit"><span class="Identifier">DrawDefaultMiterLimit</span></a>, <a href="uing/rawui.html#AttributeType"><span class="Identifier">AttributeType</span></a>, <a href="uing/rawui.html#TextWeight_2"><span class="Identifier">TextWeight</span></a>, <a href="uing/rawui.html#TextItalic_2"><span class="Identifier">TextItalic</span></a>, <a href="uing/rawui.html#TextStretch_2"><span class="Identifier">TextStretch</span></a>, <a href="uing/rawui.html#Underline"><span class="Identifier">Underline</span></a>, <a href="uing/rawui.html#UnderlineColor"><span class="Identifier">UnderlineColor</span></a>, <a href="uing/rawui.html#DrawTextAlign"><span class="Identifier">DrawTextAlign</span></a>, <a href="uing/rawui.html#DrawTextLayoutParams"><span class="Identifier">DrawTextLayoutParams</span></a>, <a href="uing/rawui.html#DrawContext"><span class="Identifier">DrawContext</span></a>, <a href="uing/rawui.html#DrawBrush"><span class="Identifier">DrawBrush</span></a>, <a href="uing/rawui.html#DrawBrushType_2"><span class="Identifier">DrawBrushType</span></a>, <a href="uing/rawui.html#Align"><span class="Identifier">Align</span></a>, <a href="uing/rawui.html#At"><span class="Identifier">At</span></a>, <a href="uing/rawui.html#TableSelection"><span class="Identifier">TableSelection</span></a>, <a href="uing/rawui.html#TableSelectionMode"><span class="Identifier">TableSelectionMode</span></a>, <a href="uing/rawui.html#TableModelHandler"><span class="Identifier">TableModelHandler</span></a>, <a href="uing/rawui.html#TableParams"><span class="Identifier">TableParams</span></a>, <a href="uing/rawui.html#TableTextColumnOptionalParams"><span class="Identifier">TableTextColumnOptionalParams</span></a>, <a href="uing/rawui.html#TableColumnType"><span class="Identifier">TableColumnType</span></a>, <a href="uing/rawui.html#TableValueType"><span class="Identifier">TableValueType</span></a>, <a href="uing/rawui.html#newTableModel,ptr.TableModelHandler"><span class="Identifier">newTableModel</span></a>, <a href="uing/rawui.html#freeTableModel,ptr.TableModel"><span class="Identifier">freeTableModel</span></a>, <a href="uing/rawui.html#TableModelColumnNeverEditable"><span class="Identifier">TableModelColumnNeverEditable</span></a>, <a href="uing/rawui.html#TableModelColumnAlwaysEditable"><span class="Identifier">TableModelColumnAlwaysEditable</span></a>, <a href="uing/rawui.html#SortIndicator"><span class="Identifier">SortIndicator</span></a>
 </dl></div>
 
   </div>
@@ -5121,7 +5056,7 @@ It is an error to call this on a Attribute that does not hold a font weight.</di
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small style="color: var(--hint);">Made with Nim. Generated: 2023-01-29 17:46:51 UTC</small>
+        <small style="color: var(--hint);">Made with Nim. Generated: 2023-01-30 01:01:21 UTC</small>
       </div>
     </div>
   </div>
