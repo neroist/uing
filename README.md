@@ -36,7 +36,10 @@ into your application.
 
 Static compilation is the default behaviour, but if you would prefer to depend
 on a DLL instead, pass the `-d:useLibUiDll` to the Nim compiler. You will
-then need to bundle your application with a `libui.dll, `libui.dylib`, or `libui.so`
+then need to bundle your application with a `libui.dll`, `libui.dylib`, or `libui.so`
 for Windows, macOS, and Linux respectively.
-
 Build instructions and requirements can be found in [libui-ng's README](https://github.com/libui-ng/libui-ng#readme)
+
+It is reccomended to use dynamic linking, as with static linking, compile times are much longer 
+
+A `libui.dll` can be found in the [release's page](https://github.com/neroist/uing/releases/latest)
