@@ -208,7 +208,7 @@ proc main =
   hbox.add vbox
 
   for i in 0..<10:
-    datapoints[i] = newSpinbox(0..99)
+    datapoints[i] = newSpinbox(0..100)
     datapoints[i].value = (rand(100))
     datapoints[i].onchanged = (_: Spinbox) => histogram.queueRedrawAll()
     vbox.add datapoints[i]
