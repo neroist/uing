@@ -11,5 +11,5 @@ bin           = @["calculator"]
 # Dependencies
 
 requires "nim >= 1.2.0"
-requires "uing >= 0.2.0" 
+requires "https://github.com/neroist/uing >= 0.2.0" 
 requires "nimkalc"
