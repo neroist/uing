@@ -1515,7 +1515,7 @@ proc newSpinbox*(range: Slice[SomeInteger]; onchanged: proc (sender: Spinbox) = 
   ## 
   ## The initial spinbox value equals the minimum value.
   ## 
-  ## In the current implementation `min` and `,ax` are swapped if `min>max`.
+  ## In the current implementation `min` and `max` are swapped if `min>max`.
   ## This may change in the future though.
   ## 
   ## `range`: Range of allowed values as `min..max`.
@@ -1621,7 +1621,7 @@ proc value*(p: ProgressBar): int =
   
   int progressBarValue(p.impl)
 
-proc `value=`*(p: ProgressBar; n: int) =
+proc `value=`*(p: ProgressBar; n: -1..100) =
   ## Sets the progress bar value.
   ## 
   ## Valid values are `[0, 100]` for displaying a solid bar imitating a percent
@@ -1632,9 +1632,6 @@ proc `value=`*(p: ProgressBar; n: int) =
   ## 
   ## | `p`: ProgressBar instance.
   ## | `n`: Value to set. Integer in the range of `[-1, 100]`.
-
-  if n < -1:
-    raise newException(ValueError, "ProgressBar value can not be lower than -1")
 
   progressBarSetValue p.impl, n.cint
 
@@ -2153,7 +2150,7 @@ proc color*(c: ColorButton): tuple[r, g, b, a: float] =
 #
 #  result = rgb(r * 255, g * 255, b * 255)
 
-proc setColor*(c: ColorButton; r, g, b, alpha: float = 1.0) = 
+proc setColor*(c: ColorButton; r, g, b, alpha: 0.0..1.0 = 1.0) = 
   ## Sets the color button color.
   ##   
   ## | `c`: ColorButton instance.
@@ -2592,7 +2589,7 @@ proc getInt*(v: TableValue): int =
 
   int rawui.tableValueInt(v.impl)
 
-proc newTableValue*(r, g, b, a: float = 1.0): TableValue = 
+proc newTableValue*(r, g, b, a: 0.0..1.0 = 1.0): TableValue = 
   ## Creates a new table value to store a color in.
   ## 
   ## | `r`: Red. Float in range of [0, 1.0].
@@ -2601,7 +2598,7 @@ proc newTableValue*(r, g, b, a: float = 1.0): TableValue =
   ## | `a`: Alpha. Float in range of [0, 1.0].
 
   newFinal result
-  result.impl = rawui.newTableValueColor(r, g, b, a)
+  result.impl = rawui.newTableValueColor(cdouble r, cdouble g, cdouble b, cdouble a)
 
 proc color*(v: TableValue): tuple[r, g, b, a: float] = 
   ## Returns the color value held internally.
