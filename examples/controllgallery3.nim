@@ -140,8 +140,7 @@ proc main =
 
     let settingsMenu = newMenu("Settings")
     settingsMenu.addCheckItem("Checkable Item")
-    let disabledItem = settingsMenu.addItem("Disabled Item")
-    disabledItem.disable()
+    disable settingsMenu.addItem("Disabled Item")
     settingsMenu.addPreferencesItem()
 
     let helpMenu = newMenu("Help")

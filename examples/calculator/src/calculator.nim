@@ -41,14 +41,14 @@ proc main =
   let fileMenu = newMenu("File")
   fileMenu.addItem(
     "Clear All",
-    proc (_: MenuItem) =
+    proc (_: MenuItem, win: Window) =
       input.clear()
       output.clear()
       history.clear()
   )
   fileMenu.addItem(
     "Clear History",
-    proc (_: MenuItem) = history.clear()
+    proc (_: MenuItem, win: Window) = history.clear()
   )
   fileMenu.addQuitItem(
     proc (): bool =

@@ -1906,7 +1906,7 @@ type
   MenuItem* = ref object of Widget
     ## A menu item used in conjunction with `Menu <#Menu>`_.
     
-    onclicked*: proc (sender: MenuItem) ## Callback for when the menu item is clicked.
+    onclicked*: proc (sender: MenuItem, window: Window) ## Callback for when the menu item is clicked.
     
 genImplProcs(MenuItem)
 
@@ -1929,7 +1929,10 @@ proc disable*(m: MenuItem) =
 proc wrapmeOnclicked(sender: ptr rawui.MenuItem;
                      window: ptr rawui.Window; data: pointer) {.cdecl.} =
   let m = cast[MenuItem](data)
-  if m.onclicked != nil: m.onclicked(m)
+  var win: Window
+  newFinal win
+  win.impl = window
+  if m.onclicked != nil: m.onclicked(m, win)
 
 proc checked*(m: MenuItem): bool = 
   ## Returns whether or not the menu item's checkbox is checked.
@@ -1988,7 +1991,7 @@ template addMenuItemImpl(ex) =
   menuItemOnClicked(result.impl, wrapmeOnclicked, cast[pointer](result))
   m.children.add result
 
-proc addItem*(m: Menu; name: string, onclicked: proc(sender: MenuItem) = proc(_: MenuItem) = discard): MenuItem {.discardable.} =
+proc addItem*(m: Menu; name: string, onclicked: proc(sender: MenuItem, window: Window) = nil): MenuItem {.discardable.} =
   ## Appends a generic menu item.
   ## 
   ## | `m`: Menu instance.
@@ -2000,7 +2003,7 @@ proc addItem*(m: Menu; name: string, onclicked: proc(sender: MenuItem) = proc(_:
 
   m.children.add result
 
-proc addCheckItem*(m: Menu; name: string, onclicked: proc(sender: MenuItem) = proc(_: MenuItem) = discard): MenuItem {.discardable.} =
+proc addCheckItem*(m: Menu; name: string, onclicked: proc(sender: MenuItem, window: Window) = nil): MenuItem {.discardable.} =
   ## Appends a generic menu item with a checkbox.
   ## 
   ## | `m`: Menu instance.
@@ -2042,7 +2045,7 @@ proc addQuitItem*(m: Menu, shouldQuit: proc(): bool): MenuItem =
   GC_ref cl
   onShouldQuit(wrapOnShouldQuit, cast[pointer](cl))
 
-proc addPreferencesItem*(m: Menu, onclicked: proc(sender: MenuItem) = proc(_: MenuItem) = discard): MenuItem  =
+proc addPreferencesItem*(m: Menu, onclicked: proc(sender: MenuItem, window: Window) = nil): MenuItem  =
   ## Appends a new `Preferences` menu item.
   ## 
   ## .. warning:: Only one such menu item may exist per application.
@@ -2055,7 +2058,7 @@ proc addPreferencesItem*(m: Menu, onclicked: proc(sender: MenuItem) = proc(_: Me
 
   m.children.add result
 
-proc addAboutItem*(m: Menu, onclicked: proc(sender: MenuItem) = proc(_: MenuItem) = discard): MenuItem =
+proc addAboutItem*(m: Menu, onclicked: proc(sender: MenuItem, window: Window) = nil): MenuItem =
   ## Appends a new `About` menu item.
   ## 
   ## .. warning:: Only one such menu item may exist per application.

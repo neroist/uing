@@ -1,5 +1,3 @@
-# 2 september 2015
-
 import uing/rawui
 
 # TODOs

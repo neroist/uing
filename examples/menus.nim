@@ -10,7 +10,7 @@ proc main =
 
   let fileMenu = newMenu("File")
   fileMenu.addItem("New")
-  fileMenu.addItem("Open")
+  fileMenu.addItem("Open", (_: MenuItem, win: Window) => (discard win.openFile()))
   fileMenu.addSeparator()
   fileMenu.addCheckItem("Should Quit")
   let quitItem = fileMenu.addQuitItem(
@@ -29,42 +29,42 @@ proc main =
   let testMenu = newMenu("Test")
   let enable = testMenu.addCheckItem(
     "Enable Below item", 
-    proc (s: MenuItem) = 
+    proc (s: MenuItem, _: Window) = 
       if s.checked: enable enb
       else: disable enb
   )
   enable.checked = true
   enb = testMenu.addCheckItem("This Will Be Enabled")
-  testMenu.addItem("Force Above Checked", (_: MenuItem) => (enable.checked = true))
-  testMenu.addItem("Force Above Unchecked", (_: MenuItem) => (enable.checked = false))
+  testMenu.addItem("Force Above Checked", (_: MenuItem, win: Window) => (enable.checked = true))
+  testMenu.addItem("Force Above Unchecked", (_: MenuItem, win: Window) => (enable.checked = false))
   testMenu.addSeparator()
-  testMenu.addItem("What Window?", (s: MenuItem) => (echo "menu item clicked on window"))
-  let resize = testMenu.addCheckItem("Enable Resize", (s: MenuItem) => (window.resizeable = s.checked))
+  testMenu.addItem("What Window?", (s: MenuItem, _: Window) => (echo "menu item clicked on window"))
+  let resize = testMenu.addCheckItem("Enable Resize", (s: MenuItem, win: Window) => (window.resizeable = s.checked))
   resize.checked = true
 
   let moreTestsMenu = newMenu("More Tests")
   moreTestsMenu.addCheckItem(
     "Quit Item Enabled",
-    proc (s: MenuItem) =
+    proc (s: MenuItem, _: Window) =
       if s.checked: enable quitItem
       else: disable quitItem
   ).checked = true
   moreTestsMenu.addCheckItem(
     "Preferences Item Enabled",
-    proc (s: MenuItem) =
+    proc (s: MenuItem, _: Window) =
       if s.checked: enable preferences
       else: disable preferences
   ).checked = true
   moreTestsMenu.addCheckItem(
     "About Item Enabled",
-    proc (s: MenuItem) =
+    proc (s: MenuItem, _: Window) =
       if s.checked: enable about
       else: disable about
   ).checked = true
   moreTestsMenu.addSeparator()
   moreTestsMenu.addCheckItem(
     "Check Me Item Enabled",
-    proc (s: MenuItem) =
+    proc (s: MenuItem, _: Window) =
       if s.checked: enable checkMe
       else: disable checkMe
   ).checked = true

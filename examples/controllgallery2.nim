@@ -6,7 +6,7 @@ proc main*() =
 
   var menu = newMenu("File")
 
-  menu.addItem("Open", proc(_: MenuItem) =
+  menu.addItem("Open", proc(_: MenuItem, win: Window) =
     let filename = openFile(mainwin)
     if filename.len == 0:
       msgBoxError(mainwin, "No file selected", "Don't be alarmed!")
@@ -14,7 +14,7 @@ proc main*() =
       msgBox(mainwin, "File selected", filename)
   )
 
-  menu.addItem("Save", proc(_: MenuItem) =
+  menu.addItem("Save", proc(_: MenuItem, win: Window) =
     let filename = saveFile(mainwin)
     if filename.len == 0:
       msgBoxError(mainwin, "No file selected", "Don't be alarmed!")
