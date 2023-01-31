@@ -98,6 +98,9 @@ proc wrapTimerProc(data: pointer): cint {.cdecl.} =
     GC_unref f
 
 proc timer*(milliseconds: int; fun: proc (): bool) = 
+  ## Call `fun` after `milliseconds` milliseconds.
+  ## This is repeated until `fun` returns `false`. 
+  
   var fn = TimerProc(fn: fun)
   GC_ref fn
 
