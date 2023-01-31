@@ -785,7 +785,7 @@ type
   RadioButtons* = ref object of Widget
     ## A multiple choice widget of check buttons from which only one can be selected at a time.
 
-    items: seq[string] ## Seq of text of the radio buttons 
+    items*: seq[string] ## Seq of text of the radio buttons 
     onselected*: proc(sender: RadioButtons) ## Callback for when radio button is selected.
 
 genImplProcs(RadioButtons)
@@ -798,6 +798,7 @@ proc add*(r: RadioButtons; items: varargs[string]) =
   
   for text in items:
     radioButtonsAppend(r.impl, cstring text)
+    r.items.add text
 
 proc selected*(r: RadioButtons): int =
   ## Returns the index of the item selected.
@@ -1997,6 +1998,8 @@ proc addItem*(m: Menu; name: string, onclicked: proc(sender: MenuItem) = proc(_:
   addMenuItemImpl(menuAppendItem(m.impl, name))
   result.onclicked = onclicked
 
+  m.children.add result
+
 proc addCheckItem*(m: Menu; name: string, onclicked: proc(sender: MenuItem) = proc(_: MenuItem) = discard): MenuItem {.discardable.} =
   ## Appends a generic menu item with a checkbox.
   ## 
@@ -2006,6 +2009,8 @@ proc addCheckItem*(m: Menu; name: string, onclicked: proc(sender: MenuItem) = pr
   
   addMenuItemImpl(menuAppendCheckItem(m.impl, name))
   result.onclicked = onclicked
+
+  m.children.add result
 
 type
   ShouldQuitClosure = ref object
@@ -2048,6 +2053,8 @@ proc addPreferencesItem*(m: Menu, onclicked: proc(sender: MenuItem) = proc(_: Me
   addMenuItemImpl(menuAppendPreferencesItem(m.impl))
   result.onclicked = onclicked
 
+  m.children.add result
+
 proc addAboutItem*(m: Menu, onclicked: proc(sender: MenuItem) = proc(_: MenuItem) = discard): MenuItem =
   ## Appends a new `About` menu item.
   ## 
@@ -2058,6 +2065,8 @@ proc addAboutItem*(m: Menu, onclicked: proc(sender: MenuItem) = proc(_: MenuItem
   
   addMenuItemImpl(menuAppendAboutItem(m.impl))
   result.onclicked = onclicked
+
+  m.children.add result
 
 {. pop .}
 
@@ -2080,7 +2089,7 @@ proc newMenu*(name: string): Menu =
   ## `name`: Menu label.
 
   newFinal result
-  result.impl = rawui.newMenu(name)
+  result.impl = rawui.newMenu(cstring name)
   result.children = @[]
 
 # -------------------- Font Button --------------------------------------
@@ -2295,7 +2304,7 @@ type
     ## Widgets can also be placed in relation to other widget using `At <uing/rawui.html#At>`_
     ## attributes.
     
-    #children: seq[Widget]
+    children: seq[Widget]
 
 export Align, At
 
@@ -2316,7 +2325,7 @@ proc add*(g: Grid; w: Widget; left, top, xspan, yspan: int, hexpand: bool; halig
   ## | `valign`: Vertical alignment of the widget within the reserved space.
   
   gridAppend(g.impl, w.impl, cint left, cint top, cint xspan, cint yspan, cint hexpand, halign, cint vexpand, valign)
-  #g.children.add w
+  g.children.add w
 
 proc insertAt*(g: Grid; w, existing: Widget; at: At; left, top, xspan, yspan, hexpand: int; halign: Align; vexpand: int; valign: Align) = 
   ##  Inserts a widget positioned in relation to another widget within the grid.
@@ -2333,7 +2342,7 @@ proc insertAt*(g: Grid; w, existing: Widget; at: At; left, top, xspan, yspan, he
   ##  | `valign`: Vertical alignment of the widget within the reserved space. 
 
   gridInsertAt(g.impl, w.impl, existing.impl, at, cint xspan, cint yspan, cint hexpand, halign, cint vexpand, valign) 
-  #g.children.insert w
+  g.children.add w
 
 proc padded*(g: Grid): bool = 
   ## Returns whether or not widgets within the grid are padded.
