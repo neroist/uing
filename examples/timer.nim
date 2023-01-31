@@ -5,9 +5,10 @@ import uing
 
 var entry: MultilineEntry
 
-proc sayTime(_: pointer): cint {.cdecl.} = 
-  entry.add(now().format("ddd MMM d HH:mm:ss UUUU") & '\n')
-  return cint 1
+proc sayTime(): bool = 
+  entry.add now().format("ddd MMM d HH:mm:ss UUUU") & '\n'
+
+  return true
 
 proc main =
   let window = newWindow("Hello", 320, 240)
@@ -16,7 +17,7 @@ proc main =
   let vbox = newVerticalBox(true)
   window.child = vbox
 
-  let btn = newButton("Say Something", (_: Button) => (entry.add "Saying something\n"))
+  let btn = newButton("Say Something", (_: Button) => entry.add "Saying something\n")
   vbox.add btn
 
   entry = newMultilineEntry()

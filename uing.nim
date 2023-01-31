@@ -86,9 +86,22 @@ template genImplProcs(t: untyped) {.dirty.}=
 
 # -------- funcs --------
 
-# TODO remove need for cint and cdecl
-proc timer*(milliseconds: int; f: proc (data: pointer): cint {.cdecl.}; data: pointer = nil) = 
-  rawui.timer(cint milliseconds, f, data)
+type
+  TimerProc = ref object
+    fn: proc(): bool
+
+proc wrapTimerProc(data: pointer): cint {.cdecl.} =
+  var f = cast[TimerProc](data)
+  result = cint f.fn() 
+
+  if result == 0: # a result of 0 means to stop the timer
+    GC_unref f
+
+proc timer*(milliseconds: int; fun: proc (): bool) = 
+  var fn = TimerProc(fn: fun)
+  GC_ref fn
+
+  rawui.timer(cint milliseconds, wrapTimerProc, cast[pointer](fn))
 
 proc free*(str: string) = rawui.freeText(str) 
 
@@ -2568,7 +2581,7 @@ proc newTableValue*(i: int): TableValue =
   ## Creates a new table value to store an integer.
   ## 
   ## This value type can be used in conjunction with properties like
-  ## column editable [`TRUE`, `FALSE`] or widget like progress bars and
+  ## column editable [`true`, `false`] or widget like progress bars and
   ## checkboxes. For these, consult ProgressBar and Checkbox for the allowed
   ## integer ranges.
   ## 
@@ -2603,7 +2616,7 @@ proc newTableValue*(r, g, b, a: 0.0..1.0 = 1.0): TableValue =
 proc color*(v: TableValue): tuple[r, g, b, a: float] = 
   ## Returns the color value held internally.
   ## 
-  ## To be used only on `TableValue objects of type `TableValueTypeColor`.
+  ## To be used only on `TableValue` objects of type `TableValueTypeColor`.
   ## 
   ## `v`: Table value.
 
@@ -2914,7 +2927,7 @@ proc hide*[W: Widget](w: W) =
 
 proc enabled*[W: Widget](w: W): bool =
   ## Returns whether or not the widget is enabled.
-  ## Defaults to `true`
+  ## Defaults to `true`.
 
   bool rawui.controlEnabled(w.impl)
 
@@ -2959,7 +2972,6 @@ proc topLevel*[W: Widget](w: W): bool =
 proc visible*[W: Widget](w: W): bool =
   ## Returns whether or not the widget is visible.
   
-
   bool rawui.controlVisible(w.impl)
 
 proc verifySetParent*[W: Widget](w, parent: W): bool =
@@ -3038,7 +3050,9 @@ proc `time=`*(d: DateTimePicker, dateTime: DateTime) =
 genCallback dateTimePickerOnChangedCallback, DateTimePicker, onchanged
 
 proc newDateTimePicker*(onchanged: proc(sender: DateTimePicker) = nil): DateTimePicker =
-  ## Creates a new date picker.
+  ## Creates a new date and time picker.
+  ## 
+  ## `onchanged`: Callback for when the date time picker value is changed by the user.
 
   newFinal result
   result.impl = rawui.newDateTimePicker()
@@ -3046,7 +3060,9 @@ proc newDateTimePicker*(onchanged: proc(sender: DateTimePicker) = nil): DateTime
   dateTimePickerOnChanged(result.impl, dateTimePickerOnChangedCallback, cast[pointer](result))
 
 proc newDatePicker*(onchanged: proc(sender: DateTimePicker) = nil): DateTimePicker =
-  ## Creates a new time picker
+  ## Creates a new date picker
+  ## 
+  ## `onchanged`: Callback for when the date time picker value is changed by the user.
 
   newFinal result
   result.impl = rawui.newDatePicker()
@@ -3054,7 +3070,9 @@ proc newDatePicker*(onchanged: proc(sender: DateTimePicker) = nil): DateTimePick
   dateTimePickerOnChanged(result.impl, dateTimePickerOnChangedCallback, cast[pointer](result))
 
 proc newTimePicker*(onchanged: proc(sender: DateTimePicker) = nil): DateTimePicker = 
-  ## Creates a new date and time picker.
+  ## Creates a new time picker.
+  ## 
+  ## `onchanged`: Callback for when the date time picker value is changed by the user.
 
   newFinal result
   result.impl = rawui.newTimePicker()

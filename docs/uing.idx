@@ -4,7 +4,7 @@ init	uing.html#init	uing: init()
 quit	uing.html#quit	uing: quit()	
 mainLoop	uing.html#mainLoop	uing: mainLoop()	
 pollingMainLoop	uing.html#pollingMainLoop,proc(int),int	uing: pollingMainLoop(poll: proc (timeout: int); timeout: int)	
-timer	uing.html#timer,int,proc(pointer),pointer	uing: timer(milliseconds: int; f: proc (data: pointer): cint {.cdecl.};\n      data: pointer = nil)	
+timer	uing.html#timer,int,proc)	uing: timer(milliseconds: int; fun: proc (): bool)	
 free	uing.html#free,string	uing: free(str: string)	
 loadControlFont	uing.html#loadControlFont,ptr.FontDescriptor	uing: loadControlFont(f: ptr FontDescriptor)	
 free	uing.html#free,ptr.FontDescriptor	uing: free(f: ptr FontDescriptor)	
@@ -216,7 +216,7 @@ ProgressBar	uing.html#ProgressBar	uing: ProgressBar
 impl	uing.html#impl,ProgressBar	uing: impl(b: ProgressBar): RawProgressBar	
 impl=	uing.html#impl=,ProgressBar,RawProgressBar	uing: impl=(b: ProgressBar; r: RawProgressBar)	
 value	uing.html#value,ProgressBar	uing: value(p: ProgressBar): int	
-value=	uing.html#value=,ProgressBar,int	uing: value=(p: ProgressBar; n: int)	
+value=	uing.html#value=,ProgressBar,	uing: value=(p: ProgressBar; n: -1 .. 100)	
 newProgressBar	uing.html#newProgressBar	uing: newProgressBar(): ProgressBar	
 Separator	uing.html#Separator	uing: Separator	
 impl	uing.html#impl,Separator	uing: impl(b: Separator): RawSeparator	
@@ -279,7 +279,7 @@ ColorButton	uing.html#ColorButton	uing: ColorButton
 impl	uing.html#impl,ColorButton	uing: impl(b: ColorButton): RawColorButton	
 impl=	uing.html#impl=,ColorButton,RawColorButton	uing: impl=(b: ColorButton; r: RawColorButton)	
 color	uing.html#color,ColorButton	uing: color(c: ColorButton): tuple[r, g, b, a: float]	
-setColor	uing.html#setColor,ColorButton,float,float,float,float	uing: setColor(c: ColorButton; r, g, b, alpha: float = 1.0)	
+setColor	uing.html#setColor,ColorButton,float,float,float,float	uing: setColor(c: ColorButton; r, g, b, alpha: 0.0 .. 1.0 = 1.0)	
 newColorButton	uing.html#newColorButton,proc(ColorButton)	uing: newColorButton(onchanged: proc (sender: ColorButton) = nil): ColorButton	
 Form	uing.html#Form	uing: Form	
 impl	uing.html#impl,Form	uing: impl(b: Form): RawForm	
@@ -323,7 +323,7 @@ newTableValue	uing.html#newTableValue,Image	uing: newTableValue(img: Image): Tab
 image	uing.html#image,TableValue	uing: image(v: TableValue): Image	
 newTableValue	uing.html#newTableValue,int	uing: newTableValue(i: int): TableValue	
 getInt	uing.html#getInt,TableValue	uing: getInt(v: TableValue): int	
-newTableValue	uing.html#newTableValue,float,float,float,float	uing: newTableValue(r, g, b, a: float = 1.0): TableValue	
+newTableValue	uing.html#newTableValue,float,float,float,float	uing: newTableValue(r, g, b, a: 0.0 .. 1.0 = 1.0): TableValue	
 color	uing.html#color,TableValue	uing: color(v: TableValue): tuple[r, g, b, a: float]	
 newTableModel	uing.html#newTableModel,ptr.TableModelHandler_2	uing: newTableModel(mh: ptr TableModelHandler): TableModel	
 rowInserted	uing.html#rowInserted,TableModel,int	uing: rowInserted(m: TableModel; newIndex: int)	

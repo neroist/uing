@@ -1127,7 +1127,7 @@ window.addEventListener('DOMContentLoaded', main);
   <li><a class="reference" href="#newTableValue%2CImage"
     title="newTableValue(img: Image): TableValue">newTableValue(img: Image): TableValue</a></li>
   <li><a class="reference" href="#newTableValue%2Cfloat%2Cfloat%2Cfloat%2Cfloat"
-    title="newTableValue(r, g, b, a: float = 1.0): TableValue">newTableValue(r, g, b, a: float = 1.0): TableValue</a></li>
+    title="newTableValue(r, g, b, a: 0.0 .. 1.0 = 1.0): TableValue">newTableValue(r, g, b, a: 0.0 .. 1.0 = 1.0): TableValue</a></li>
   <li><a class="reference" href="#newTableValue%2Cstring"
     title="newTableValue(str: string): TableValue">newTableValue(str: string): TableValue</a></li>
 
@@ -1336,7 +1336,7 @@ window.addEventListener('DOMContentLoaded', main);
   </ul>
   <ul class="simple nested-toc-section">setColor
       <li><a class="reference" href="#setColor%2CColorButton%2Cfloat%2Cfloat%2Cfloat%2Cfloat"
-    title="setColor(c: ColorButton; r, g, b, alpha: float = 1.0)">setColor(c: ColorButton; r, g, b, alpha: float = 1.0)</a></li>
+    title="setColor(c: ColorButton; r, g, b, alpha: 0.0 .. 1.0 = 1.0)">setColor(c: ColorButton; r, g, b, alpha: 0.0 .. 1.0 = 1.0)</a></li>
 
   </ul>
   <ul class="simple nested-toc-section">setColumnWidth
@@ -1437,10 +1437,8 @@ window.addEventListener('DOMContentLoaded', main);
 
   </ul>
   <ul class="simple nested-toc-section">timer
-      <li><a class="reference" href="#timer%2Cint%2Cproc%28pointer%29%2Cpointer"
-    title="timer(milliseconds: int; f: proc (data: pointer): cint {.cdecl.};
-      data: pointer = nil)">timer(milliseconds: int; f: proc (data: pointer): cint {.cdecl.};
-      data: pointer = nil)</a></li>
+      <li><a class="reference" href="#timer%2Cint%2Cproc%29"
+    title="timer(milliseconds: int; fun: proc (): bool)">timer(milliseconds: int; fun: proc (): bool)</a></li>
 
   </ul>
   <ul class="simple nested-toc-section">title
@@ -1507,8 +1505,8 @@ window.addEventListener('DOMContentLoaded', main);
 
   </ul>
   <ul class="simple nested-toc-section">value=
-      <li><a class="reference" href="#value%3D%2CProgressBar%2Cint"
-    title="value=(p: ProgressBar; n: int)">value=(p: ProgressBar; n: int)</a></li>
+      <li><a class="reference" href="#value%3D%2CProgressBar%2C"
+    title="value=(p: ProgressBar; n: -1 .. 100)">value=(p: ProgressBar; n: -1 .. 100)</a></li>
   <li><a class="reference" href="#value%3D%2CSlider%2Cint"
     title="value=(s: Slider; value: int)">value=(s: Slider; value: int)</a></li>
   <li><a class="reference" href="#value%3D%2CSpinbox%2Cint"
@@ -2541,7 +2539,7 @@ It is an error to call this on a Attribute that does not hold a text color.</div
 <dd>
 
 <p>Returns the color value held internally.</p>
-<p>To be used only on <tt class="docutils literal"><span class="pre"><span class="Identifier">TableValue</span> <span class="Identifier">objects</span> <span class="Keyword">of</span> <span class="Keyword">type</span> <span class="Punctuation">`</span><span class="Identifier">TableValueTypeColor</span></span></tt>.</p>
+<p>To be used only on <tt class="docutils literal"><span class="pre"><span class="Identifier">TableValue</span></span></tt> objects of type <tt class="docutils literal"><span class="pre"><span class="Identifier">TableValueTypeColor</span></span></tt>.</p>
 <p><tt class="docutils literal"><span class="pre"><span class="Identifier">v</span></span></tt>: Table value.</p>
 
 
@@ -2686,7 +2684,7 @@ Enables the widget.
 <dt><pre><span class="Keyword">proc</span> <a href="#enabled%2CW"><span class="Identifier">enabled</span></a><span class="Other">[</span><span class="Identifier">W</span><span class="Other">:</span> <a href="uing.html#Widget"><span class="Identifier">Widget</span></a><span class="Other">]</span><span class="Other">(</span><span class="Identifier">w</span><span class="Other">:</span> <span class="Identifier">W</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">bool</span></pre></dt>
 <dd>
 
-Returns whether or not the widget is enabled. Defaults to <tt class="docutils literal"><span class="pre"><span class="Identifier">true</span></span></tt>
+Returns whether or not the widget is enabled. Defaults to <tt class="docutils literal"><span class="pre"><span class="Identifier">true</span></span></tt>.
 
 </dd>
 </div>
@@ -3848,7 +3846,9 @@ Creates a new combo box.<p><tt class="docutils literal"><span class="pre"><span 
     <span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">Exception</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">RootEffect</span><span class="Other">]</span></span>.}</pre></dt>
 <dd>
 
-Creates a new time picker
+<p>Creates a new date picker</p>
+<p><tt class="docutils literal"><span class="pre"><span class="Identifier">onchanged</span></span></tt>: Callback for when the date time picker value is changed by the user.</p>
+
 
 </dd>
 </div>
@@ -3857,7 +3857,9 @@ Creates a new time picker
     <span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">Exception</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">RootEffect</span><span class="Other">]</span></span>.}</pre></dt>
 <dd>
 
-Creates a new date picker.
+<p>Creates a new date and time picker.</p>
+<p><tt class="docutils literal"><span class="pre"><span class="Identifier">onchanged</span></span></tt>: Callback for when the date time picker value is changed by the user.</p>
+
 
 </dd>
 </div>
@@ -4135,7 +4137,7 @@ Creates a new <tt class="docutils literal"><span class="pre"><span class="Identi
 
 <p>Creates a new spinbox.</p>
 <p>The initial spinbox value equals the minimum value.</p>
-<p>In the current implementation <tt class="docutils literal"><span class="pre"><span class="Identifier">min</span></span></tt> and <tt class="docutils literal"><span class="pre"><span class="Punctuation">,</span><span class="Identifier">ax</span></span></tt> are swapped if <tt class="docutils literal"><span class="pre"><span class="Identifier">min</span><span class="Operator">&gt;</span><span class="Identifier">max</span></span></tt>. This may change in the future though.</p>
+<p>In the current implementation <tt class="docutils literal"><span class="pre"><span class="Identifier">min</span></span></tt> and <tt class="docutils literal"><span class="pre"><span class="Identifier">max</span></span></tt> are swapped if <tt class="docutils literal"><span class="pre"><span class="Identifier">min</span><span class="Operator">&gt;</span><span class="Identifier">max</span></span></tt>. This may change in the future though.</p>
 <p><tt class="docutils literal"><span class="pre"><span class="Identifier">range</span></span></tt>: Range of allowed values as <tt class="docutils literal"><span class="pre"><span class="Identifier">min</span><span class="Operator">..</span><span class="Identifier">max</span></span></tt>. <tt class="docutils literal"><span class="pre"><span class="Identifier">onchanged</span></span></tt>: Callback for when the spinbox value is changed by the user.</p>
 
 
@@ -4183,7 +4185,7 @@ Creates a new tab container.
 <dd>
 
 <p>Creates a new table value to store an integer.</p>
-<p>This value type can be used in conjunction with properties like column editable [<tt class="docutils literal"><span class="pre"><span class="Identifier">TRUE</span></span></tt>, <tt class="docutils literal"><span class="pre"><span class="Identifier">FALSE</span></span></tt>] or widget like progress bars and checkboxes. For these, consult ProgressBar and Checkbox for the allowed integer ranges.</p>
+<p>This value type can be used in conjunction with properties like column editable [<tt class="docutils literal"><span class="pre"><span class="Identifier">true</span></span></tt>, <tt class="docutils literal"><span class="pre"><span class="Identifier">false</span></span></tt>] or widget like progress bars and checkboxes. For these, consult ProgressBar and Checkbox for the allowed integer ranges.</p>
 <p><tt class="docutils literal"><span class="pre"><span class="Identifier">i</span></span></tt>: Integer value.</p>
 
 
@@ -4203,7 +4205,8 @@ Unlike other <tt class="docutils literal"><span class="pre"><span class="Identif
 </dd>
 </div>
 <div id="newTableValue,float,float,float,float">
-<dt><pre><span class="Keyword">proc</span> <a href="#newTableValue%2Cfloat%2Cfloat%2Cfloat%2Cfloat"><span class="Identifier">newTableValue</span></a><span class="Other">(</span><span class="Identifier">r</span><span class="Other">,</span> <span class="Identifier">g</span><span class="Other">,</span> <span class="Identifier">b</span><span class="Other">,</span> <span class="Identifier">a</span><span class="Other">:</span> <span class="Identifier">float</span> <span class="Other">=</span> <span class="FloatNumber">1.0</span><span class="Other">)</span><span class="Other">:</span> <a href="uing.html#TableValue"><span class="Identifier">TableValue</span></a> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
+<dt><pre><span class="Keyword">proc</span> <a href="#newTableValue%2Cfloat%2Cfloat%2Cfloat%2Cfloat"><span class="Identifier">newTableValue</span></a><span class="Other">(</span><span class="Identifier">r</span><span class="Other">,</span> <span class="Identifier">g</span><span class="Other">,</span> <span class="Identifier">b</span><span class="Other">,</span> <span class="Identifier">a</span><span class="Other">:</span> <span class="FloatNumber">0.0</span> <span class="Operator">..</span> <span class="FloatNumber">1.0</span> <span class="Other">=</span> <span class="FloatNumber">1.0</span><span class="Other">)</span><span class="Other">:</span> <a href="uing.html#TableValue"><span class="Identifier">TableValue</span></a> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span>
+    <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
 <dd>
 
 Creates a new table value to store a color in.<p><tt class="docutils literal"><span class="pre"><span class="Identifier">r</span></span></tt>: Red. Float in range of [0, 1.0].<br/><tt class="docutils literal"><span class="pre"><span class="Identifier">g</span></span></tt>: Green. Float in range of [0, 1.0].<br/><tt class="docutils literal"><span class="pre"><span class="Identifier">b</span></span></tt>: Blue. Float in range of [0, 1.0].<br/><tt class="docutils literal"><span class="pre"><span class="Identifier">a</span></span></tt>: Alpha. Float in range of [0, 1.0].<br/></p>
@@ -4225,7 +4228,9 @@ Creates a new table value to store a color in.<p><tt class="docutils literal"><s
     <span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">Exception</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">RootEffect</span><span class="Other">]</span></span>.}</pre></dt>
 <dd>
 
-Creates a new date and time picker.
+<p>Creates a new time picker.</p>
+<p><tt class="docutils literal"><span class="pre"><span class="Identifier">onchanged</span></span></tt>: Callback for when the date time picker value is changed by the user.</p>
+
 
 </dd>
 </div>
@@ -4648,7 +4653,7 @@ Sets <tt class="docutils literal"><span class="pre"><span class="Identifier">a</
 </dd>
 </div>
 <div id="setColor,ColorButton,float,float,float,float">
-<dt><pre><span class="Keyword">proc</span> <a href="#setColor%2CColorButton%2Cfloat%2Cfloat%2Cfloat%2Cfloat"><span class="Identifier">setColor</span></a><span class="Other">(</span><span class="Identifier">c</span><span class="Other">:</span> <a href="uing.html#ColorButton"><span class="Identifier">ColorButton</span></a><span class="Other">;</span> <span class="Identifier">r</span><span class="Other">,</span> <span class="Identifier">g</span><span class="Other">,</span> <span class="Identifier">b</span><span class="Other">,</span> <span class="Identifier">alpha</span><span class="Other">:</span> <span class="Identifier">float</span> <span class="Other">=</span> <span class="FloatNumber">1.0</span><span class="Other">)</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span>
+<dt><pre><span class="Keyword">proc</span> <a href="#setColor%2CColorButton%2Cfloat%2Cfloat%2Cfloat%2Cfloat"><span class="Identifier">setColor</span></a><span class="Other">(</span><span class="Identifier">c</span><span class="Other">:</span> <a href="uing.html#ColorButton"><span class="Identifier">ColorButton</span></a><span class="Other">;</span> <span class="Identifier">r</span><span class="Other">,</span> <span class="Identifier">g</span><span class="Other">,</span> <span class="Identifier">b</span><span class="Other">,</span> <span class="Identifier">alpha</span><span class="Other">:</span> <span class="FloatNumber">0.0</span> <span class="Operator">..</span> <span class="FloatNumber">1.0</span> <span class="Other">=</span> <span class="FloatNumber">1.0</span><span class="Other">)</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span>
     <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
 <dd>
 
@@ -4890,9 +4895,9 @@ Sets date and time of the data time picker.<p><tt class="docutils literal"><span
 
 </dd>
 </div>
-<div id="timer,int,proc(pointer),pointer">
-<dt><pre><span class="Keyword">proc</span> <a href="#timer%2Cint%2Cproc%28pointer%29%2Cpointer"><span class="Identifier">timer</span></a><span class="Other">(</span><span class="Identifier">milliseconds</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">;</span> <span class="Identifier">f</span><span class="Other">:</span> <span class="Keyword">proc</span> <span class="Other">(</span><span class="Identifier">data</span><span class="Other">:</span> <span class="Identifier">pointer</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">cint</span> {.<span class="Identifier">cdecl</span>.}<span class="Other">;</span>
-           <span class="Identifier">data</span><span class="Other">:</span> <span class="Identifier">pointer</span> <span class="Other">=</span> <span class="Keyword">nil</span><span class="Other">)</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
+<div id="timer,int,proc)">
+<dt><pre><span class="Keyword">proc</span> <a href="#timer%2Cint%2Cproc%29"><span class="Identifier">timer</span></a><span class="Other">(</span><span class="Identifier">milliseconds</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">;</span> <span class="Identifier">fun</span><span class="Other">:</span> <span class="Keyword">proc</span> <span class="Other">(</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">bool</span><span class="Other">)</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">Exception</span><span class="Other">]</span><span class="Other">,</span>
+    <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">RootEffect</span><span class="Other">]</span></span>.}</pre></dt>
 <dd>
 
 
@@ -5027,8 +5032,8 @@ It is an error to call this on a Attribute that does not hold an underline color
 
 </dd>
 </div>
-<div id="value=,ProgressBar,int">
-<dt><pre><span class="Keyword">proc</span> <a href="#value%3D%2CProgressBar%2Cint"><span class="Identifier">value=</span></a><span class="Other">(</span><span class="Identifier">p</span><span class="Other">:</span> <a href="uing.html#ProgressBar"><span class="Identifier">ProgressBar</span></a><span class="Other">;</span> <span class="Identifier">n</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">)</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">ValueError</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
+<div id="value=,ProgressBar,">
+<dt><pre><span class="Keyword">proc</span> <a href="#value%3D%2CProgressBar%2C"><span class="Identifier">value=</span></a><span class="Other">(</span><span class="Identifier">p</span><span class="Other">:</span> <a href="uing.html#ProgressBar"><span class="Identifier">ProgressBar</span></a><span class="Other">;</span> <span class="Identifier">n</span><span class="Other">:</span> <span class="DecNumber">-1</span> <span class="Operator">..</span> <span class="DecNumber">100</span><span class="Other">)</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
 <dd>
 
 <p>Sets the progress bar value.</p>
@@ -5100,7 +5105,7 @@ It is an error to call this on a Attribute that does not hold a font weight.</di
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small style="color: var(--hint);">Made with Nim. Generated: 2023-01-30 23:37:32 UTC</small>
+        <small style="color: var(--hint);">Made with Nim. Generated: 2023-01-31 01:35:57 UTC</small>
       </div>
     </div>
   </div>

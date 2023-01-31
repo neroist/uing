@@ -1951,7 +1951,7 @@ window.addEventListener('DOMContentLoaded', main);
           </ul></dd>
 <dt><a name="newTableValue" href="#newTableValue"><span>newTableValue:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
-          data-doc-search-tag="uing: newTableValue(r, g, b, a: float = 1.0): TableValue" href="uing.html#newTableValue%2Cfloat%2Cfloat%2Cfloat%2Cfloat">uing: newTableValue(r, g, b, a: float = 1.0): TableValue</a></li>
+          data-doc-search-tag="uing: newTableValue(r, g, b, a: 0.0 .. 1.0 = 1.0): TableValue" href="uing.html#newTableValue%2Cfloat%2Cfloat%2Cfloat%2Cfloat">uing: newTableValue(r, g, b, a: 0.0 .. 1.0 = 1.0): TableValue</a></li>
           <li><a class="reference external"
           data-doc-search-tag="uing: newTableValue(img: Image): TableValue" href="uing.html#newTableValue%2CImage">uing: newTableValue(img: Image): TableValue</a></li>
           <li><a class="reference external"
@@ -2269,7 +2269,7 @@ window.addEventListener('DOMContentLoaded', main);
           </ul></dd>
 <dt><a name="setColor" href="#setColor"><span>setColor:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
-          data-doc-search-tag="uing: setColor(c: ColorButton; r, g, b, alpha: float = 1.0)" href="uing.html#setColor%2CColorButton%2Cfloat%2Cfloat%2Cfloat%2Cfloat">uing: setColor(c: ColorButton; r, g, b, alpha: float = 1.0)</a></li>
+          data-doc-search-tag="uing: setColor(c: ColorButton; r, g, b, alpha: 0.0 .. 1.0 = 1.0)" href="uing.html#setColor%2CColorButton%2Cfloat%2Cfloat%2Cfloat%2Cfloat">uing: setColor(c: ColorButton; r, g, b, alpha: 0.0 .. 1.0 = 1.0)</a></li>
           </ul></dd>
 <dt><a name="setColumnWidth" href="#setColumnWidth"><span>setColumnWidth:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
@@ -2695,9 +2695,7 @@ window.addEventListener('DOMContentLoaded', main);
           </ul></dd>
 <dt><a name="timer" href="#timer"><span>timer:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
-          data-doc-search-tag="uing: timer(milliseconds: int; f: proc (data: pointer): cint {.cdecl.};
-      data: pointer = nil)" href="uing.html#timer%2Cint%2Cproc%28pointer%29%2Cpointer">uing: timer(milliseconds: int; f: proc (data: pointer): cint {.cdecl.};
-      data: pointer = nil)</a></li>
+          data-doc-search-tag="uing: timer(milliseconds: int; fun: proc (): bool)" href="uing.html#timer%2Cint%2Cproc%29">uing: timer(milliseconds: int; fun: proc (): bool)</a></li>
           <li><a class="reference external"
           data-doc-search-tag="rawui: timer(milliseconds: cint; f: proc (data: pointer): cint {.cdecl.}; data: pointer)" href="uing/rawui.html#timer%2Ccint%2Cproc%28pointer%29%2Cpointer">rawui: timer(milliseconds: cint; f: proc (data: pointer): cint {.cdecl.}; data: pointer)</a></li>
           </ul></dd>
@@ -2771,7 +2769,7 @@ window.addEventListener('DOMContentLoaded', main);
           </ul></dd>
 <dt><a name="value%3D" href="#value%3D"><span>value=:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
-          data-doc-search-tag="uing: value=(p: ProgressBar; n: int)" href="uing.html#value%3D%2CProgressBar%2Cint">uing: value=(p: ProgressBar; n: int)</a></li>
+          data-doc-search-tag="uing: value=(p: ProgressBar; n: -1 .. 100)" href="uing.html#value%3D%2CProgressBar%2C">uing: value=(p: ProgressBar; n: -1 .. 100)</a></li>
           <li><a class="reference external"
           data-doc-search-tag="uing: value=(s: Slider; value: int)" href="uing.html#value%3D%2CSlider%2Cint">uing: value=(s: Slider; value: int)</a></li>
           <li><a class="reference external"
@@ -2886,7 +2884,7 @@ window.addEventListener('DOMContentLoaded', main);
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small style="color: var(--hint);">Made with Nim. Generated: 2023-01-30 23:37:32 UTC</small>
+        <small style="color: var(--hint);">Made with Nim. Generated: 2023-01-31 01:35:58 UTC</small>
       </div>
     </div>
   </div>
