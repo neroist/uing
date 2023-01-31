@@ -2856,7 +2856,7 @@ proc selection*(table: Table): seq[int] =
     for row in tSelection.rows.toOpenArray(0, tSelection.numRows - 1):
       result.add int row
 
-# TODO let `selection=` accept normal integers and not cint
+# TODO let `selection=` accept int and not cint
 proc `selection=`*(table: Table; sel: openArray[cint]) =
   ## Sets the current table selection, clearing any previous selection.
   ## 
