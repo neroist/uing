@@ -262,11 +262,11 @@ checked=	uing.html#checked=,MenuItem,bool	uing: checked=(m: MenuItem; checked: b
 Menu	uing.html#Menu	uing: Menu	
 impl	uing.html#impl,Menu	uing: impl(b: Menu): RawMenu	
 impl=	uing.html#impl=,Menu,RawMenu	uing: impl=(b: Menu; r: RawMenu)	
-addItem	uing.html#addItem,Menu,string,proc(MenuItem)	uing: addItem(m: Menu; name: string; onclicked: proc (sender: MenuItem) = proc (\n    _: MenuItem) = discard ): MenuItem	
-addCheckItem	uing.html#addCheckItem,Menu,string,proc(MenuItem)	uing: addCheckItem(m: Menu; name: string; onclicked: proc (sender: MenuItem) = proc (\n    _: MenuItem) = discard ): MenuItem	
+addItem	uing.html#addItem,Menu,string,proc(MenuItem,Window)	uing: addItem(m: Menu; name: string;\n        onclicked: proc (sender: MenuItem; window: Window) = nil): MenuItem	
+addCheckItem	uing.html#addCheckItem,Menu,string,proc(MenuItem,Window)	uing: addCheckItem(m: Menu; name: string;\n             onclicked: proc (sender: MenuItem; window: Window) = nil): MenuItem	
 addQuitItem	uing.html#addQuitItem,Menu,proc)	uing: addQuitItem(m: Menu; shouldQuit: proc (): bool): MenuItem	
-addPreferencesItem	uing.html#addPreferencesItem,Menu,proc(MenuItem)	uing: addPreferencesItem(m: Menu; onclicked: proc (sender: MenuItem) = proc (\n    _: MenuItem) {.discardable.} = discard ): MenuItem	
-addAboutItem	uing.html#addAboutItem,Menu,proc(MenuItem)	uing: addAboutItem(m: Menu; onclicked: proc (sender: MenuItem) = proc (_: MenuItem) {.\n    discardable.} = discard ): MenuItem	
+addPreferencesItem	uing.html#addPreferencesItem,Menu,proc(MenuItem,Window)	uing: addPreferencesItem(m: Menu;\n                   onclicked: proc (sender: MenuItem; window: Window) = nil): MenuItem	
+addAboutItem	uing.html#addAboutItem,Menu,proc(MenuItem,Window)	uing: addAboutItem(m: Menu; onclicked: proc (sender: MenuItem; window: Window) = nil): MenuItem	
 addSeparator	uing.html#addSeparator,Menu	uing: addSeparator(m: Menu)	
 newMenu	uing.html#newMenu,string	uing: newMenu(name: string): Menu	
 FontButton	uing.html#FontButton	uing: FontButton	

@@ -155,7 +155,8 @@ window.addEventListener('DOMContentLoaded', main);
     title="Form = ref object of Widget
   chlidren*: seq[tuple[label: string, widget: Widget]]">Form</a></li>
   <li><a class="reference" href="#Grid"
-    title="Grid = ref object of Widget">Grid</a></li>
+    title="Grid = ref object of Widget
+  children: seq[Widget]">Grid</a></li>
   <li><a class="reference" href="#Group"
     title="Group = ref object of Widget
   child: Widget">Group</a></li>
@@ -168,7 +169,7 @@ window.addEventListener('DOMContentLoaded', main);
   children*: seq[MenuItem]">Menu</a></li>
   <li><a class="reference" href="#MenuItem"
     title="MenuItem = ref object of Widget
-  onclicked*: proc (sender: MenuItem) ## Callback for when the menu item is clicked.">MenuItem</a></li>
+  onclicked*: proc (sender: MenuItem; window: Window) ## Callback for when the menu item is clicked.">MenuItem</a></li>
   <li><a class="reference" href="#MultilineEntry"
     title="MultilineEntry = ref object of Widget
   onchanged*: proc (sender: MultilineEntry) ## Callback for when the user changes the multi line entry's text.">MultilineEntry</a></li>
@@ -179,7 +180,7 @@ window.addEventListener('DOMContentLoaded', main);
     title="ProgressBar = ref object of Widget">ProgressBar</a></li>
   <li><a class="reference" href="#RadioButtons"
     title="RadioButtons = ref object of Widget
-  items: seq[string]         ## Seq of text of the radio buttons 
+  items*: seq[string]        ## Seq of text of the radio buttons 
   onselected*: proc (sender: RadioButtons) ## Callback for when radio button is selected.">RadioButtons</a></li>
   <li><a class="reference" href="#Separator"
     title="Separator = ref object of Widget">Separator</a></li>
@@ -259,10 +260,8 @@ window.addEventListener('DOMContentLoaded', main);
 
   </ul>
   <ul class="simple nested-toc-section">addAboutItem
-      <li><a class="reference" href="#addAboutItem%2CMenu%2Cproc%28MenuItem%29"
-    title="addAboutItem(m: Menu; onclicked: proc (sender: MenuItem) = proc (_: MenuItem) {.
-    discardable.} = discard ): MenuItem">addAboutItem(m: Menu; onclicked: proc (sender: MenuItem) = proc (_: MenuItem) {.
-    discardable.} = discard ): MenuItem</a></li>
+      <li><a class="reference" href="#addAboutItem%2CMenu%2Cproc%28MenuItem%2CWindow%29"
+    title="addAboutItem(m: Menu; onclicked: proc (sender: MenuItem; window: Window) = nil): MenuItem">addAboutItem(m: Menu; onclicked: proc (sender: MenuItem; window: Window) = nil): MenuItem</a></li>
 
   </ul>
   <ul class="simple nested-toc-section">addButtonColumn
@@ -285,10 +284,10 @@ window.addEventListener('DOMContentLoaded', main);
 
   </ul>
   <ul class="simple nested-toc-section">addCheckItem
-      <li><a class="reference" href="#addCheckItem%2CMenu%2Cstring%2Cproc%28MenuItem%29"
-    title="addCheckItem(m: Menu; name: string; onclicked: proc (sender: MenuItem) = proc (
-    _: MenuItem) = discard ): MenuItem">addCheckItem(m: Menu; name: string; onclicked: proc (sender: MenuItem) = proc (
-    _: MenuItem) = discard ): MenuItem</a></li>
+      <li><a class="reference" href="#addCheckItem%2CMenu%2Cstring%2Cproc%28MenuItem%2CWindow%29"
+    title="addCheckItem(m: Menu; name: string;
+             onclicked: proc (sender: MenuItem; window: Window) = nil): MenuItem">addCheckItem(m: Menu; name: string;
+             onclicked: proc (sender: MenuItem; window: Window) = nil): MenuItem</a></li>
 
   </ul>
   <ul class="simple nested-toc-section">addImageColumn
@@ -306,17 +305,17 @@ window.addEventListener('DOMContentLoaded', main);
 
   </ul>
   <ul class="simple nested-toc-section">addItem
-      <li><a class="reference" href="#addItem%2CMenu%2Cstring%2Cproc%28MenuItem%29"
-    title="addItem(m: Menu; name: string; onclicked: proc (sender: MenuItem) = proc (
-    _: MenuItem) = discard ): MenuItem">addItem(m: Menu; name: string; onclicked: proc (sender: MenuItem) = proc (
-    _: MenuItem) = discard ): MenuItem</a></li>
+      <li><a class="reference" href="#addItem%2CMenu%2Cstring%2Cproc%28MenuItem%2CWindow%29"
+    title="addItem(m: Menu; name: string;
+        onclicked: proc (sender: MenuItem; window: Window) = nil): MenuItem">addItem(m: Menu; name: string;
+        onclicked: proc (sender: MenuItem; window: Window) = nil): MenuItem</a></li>
 
   </ul>
   <ul class="simple nested-toc-section">addPreferencesItem
-      <li><a class="reference" href="#addPreferencesItem%2CMenu%2Cproc%28MenuItem%29"
-    title="addPreferencesItem(m: Menu; onclicked: proc (sender: MenuItem) = proc (
-    _: MenuItem) {.discardable.} = discard ): MenuItem">addPreferencesItem(m: Menu; onclicked: proc (sender: MenuItem) = proc (
-    _: MenuItem) {.discardable.} = discard ): MenuItem</a></li>
+      <li><a class="reference" href="#addPreferencesItem%2CMenu%2Cproc%28MenuItem%2CWindow%29"
+    title="addPreferencesItem(m: Menu;
+                   onclicked: proc (sender: MenuItem; window: Window) = nil): MenuItem">addPreferencesItem(m: Menu;
+                   onclicked: proc (sender: MenuItem; window: Window) = nil): MenuItem</a></li>
 
   </ul>
   <ul class="simple nested-toc-section">addProgressBarColumn
@@ -1738,7 +1737,8 @@ A button-like widget that opens a font chooser when clicked.
 </div>
 <div id="Grid">
 <dt><pre><a href="uing.html#Grid"><span class="Identifier">Grid</span></a> <span class="Other">=</span> <span class="Keyword">ref</span> <span class="Keyword">object</span> <span class="Keyword">of</span> <a href="uing.html#Widget"><span class="Identifier">Widget</span></a>
-  </pre></dt>
+  <span class="Identifier">children</span><span class="Other">:</span> <span class="Identifier">seq</span><span class="Other">[</span><a href="uing.html#Widget"><span class="Identifier">Widget</span></a><span class="Other">]</span>
+</pre></dt>
 <dd>
 
 <p>A widget container to arrange containing widgets in a grid.</p>
@@ -1821,7 +1821,7 @@ A widget that displays non interactive text.
 </div>
 <div id="MenuItem">
 <dt><pre><a href="uing.html#MenuItem"><span class="Identifier">MenuItem</span></a> <span class="Other">=</span> <span class="Keyword">ref</span> <span class="Keyword">object</span> <span class="Keyword">of</span> <a href="uing.html#Widget"><span class="Identifier">Widget</span></a>
-  <span class="Identifier">onclicked</span><span class="Operator">*</span><span class="Other">:</span> <span class="Keyword">proc</span> <span class="Other">(</span><span class="Identifier">sender</span><span class="Other">:</span> <a href="uing.html#MenuItem"><span class="Identifier">MenuItem</span></a><span class="Other">)</span> <span class="Comment">## Callback for when the menu item is clicked.</span>
+  <span class="Identifier">onclicked</span><span class="Operator">*</span><span class="Other">:</span> <span class="Keyword">proc</span> <span class="Other">(</span><span class="Identifier">sender</span><span class="Other">:</span> <a href="uing.html#MenuItem"><span class="Identifier">MenuItem</span></a><span class="Other">;</span> <span class="Identifier">window</span><span class="Other">:</span> <a href="uing.html#Window"><span class="Identifier">Window</span></a><span class="Other">)</span> <span class="Comment">## Callback for when the menu item is clicked.</span>
   </pre></dt>
 <dd>
 
@@ -1865,7 +1865,7 @@ A widget with a multi line text entry field.
 </div>
 <div id="RadioButtons">
 <dt><pre><a href="uing.html#RadioButtons"><span class="Identifier">RadioButtons</span></a> <span class="Other">=</span> <span class="Keyword">ref</span> <span class="Keyword">object</span> <span class="Keyword">of</span> <a href="uing.html#Widget"><span class="Identifier">Widget</span></a>
-  <span class="Identifier">items</span><span class="Other">:</span> <span class="Identifier">seq</span><span class="Other">[</span><span class="Identifier">string</span><span class="Other">]</span>         <span class="Comment">## Seq of text of the radio buttons </span>
+  <span class="Identifier">items</span><span class="Operator">*</span><span class="Other">:</span> <span class="Identifier">seq</span><span class="Other">[</span><span class="Identifier">string</span><span class="Other">]</span>        <span class="Comment">## Seq of text of the radio buttons </span>
   <span class="Identifier">onselected</span><span class="Operator">*</span><span class="Other">:</span> <span class="Keyword">proc</span> <span class="Other">(</span><span class="Identifier">sender</span><span class="Other">:</span> <a href="uing.html#RadioButtons"><span class="Identifier">RadioButtons</span></a><span class="Other">)</span> <span class="Comment">## Callback for when radio button is selected.</span>
   </pre></dt>
 <dd>
@@ -2149,10 +2149,10 @@ Appends a widget in form of a page/tab with label.<p><tt class="docutils literal
 
 </dd>
 </div>
-<div id="addAboutItem,Menu,proc(MenuItem)">
-<dt><pre><span class="Keyword">proc</span> <a href="#addAboutItem%2CMenu%2Cproc%28MenuItem%29"><span class="Identifier">addAboutItem</span></a><span class="Other">(</span><span class="Identifier">m</span><span class="Other">:</span> <a href="uing.html#Menu"><span class="Identifier">Menu</span></a><span class="Other">;</span> <span class="Identifier">onclicked</span><span class="Other">:</span> <span class="Keyword">proc</span> <span class="Other">(</span><span class="Identifier">sender</span><span class="Other">:</span> <a href="uing.html#MenuItem"><span class="Identifier">MenuItem</span></a><span class="Other">)</span> <span class="Other">=</span> <span class="Keyword">proc</span> <span class="Other">(</span>
-    <span class="Operator">_</span><span class="Other">:</span> <a href="uing.html#MenuItem"><span class="Identifier">MenuItem</span></a><span class="Other">)</span> {.<span class="Identifier">discardable</span>.} <span class="Other">=</span> <span class="Keyword">discard</span> <span class="Other">)</span><span class="Other">:</span> <a href="uing.html#MenuItem"><span class="Identifier">MenuItem</span></a> {.<span class="Identifier">discardable</span><span class="Other">,</span>
-    <span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">Exception</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">RootEffect</span><span class="Other">]</span></span>.}</pre></dt>
+<div id="addAboutItem,Menu,proc(MenuItem,Window)">
+<dt><pre><span class="Keyword">proc</span> <a href="#addAboutItem%2CMenu%2Cproc%28MenuItem%2CWindow%29"><span class="Identifier">addAboutItem</span></a><span class="Other">(</span><span class="Identifier">m</span><span class="Other">:</span> <a href="uing.html#Menu"><span class="Identifier">Menu</span></a><span class="Other">;</span>
+                  <span class="Identifier">onclicked</span><span class="Other">:</span> <span class="Keyword">proc</span> <span class="Other">(</span><span class="Identifier">sender</span><span class="Other">:</span> <a href="uing.html#MenuItem"><span class="Identifier">MenuItem</span></a><span class="Other">;</span> <span class="Identifier">window</span><span class="Other">:</span> <a href="uing.html#Window"><span class="Identifier">Window</span></a><span class="Other">)</span> <span class="Other">=</span> <span class="Keyword">nil</span><span class="Other">)</span><span class="Other">:</span> <a href="uing.html#MenuItem"><span class="Identifier">MenuItem</span></a> {.
+    <span class="Identifier">discardable</span><span class="Other">,</span> <span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">Exception</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">RootEffect</span><span class="Other">]</span></span>.}</pre></dt>
 <dd>
 
 Appends a new <tt class="docutils literal"><span class="pre"><span class="Identifier">About</span></span></tt> menu item.<div class="admonition admonition-warning"><span class="admonition-warning-text"><b>Warning:</b></span>
@@ -2193,10 +2193,10 @@ Appends a column to the table containing a checkbox and text.<p><tt class="docut
 
 </dd>
 </div>
-<div id="addCheckItem,Menu,string,proc(MenuItem)">
-<dt><pre><span class="Keyword">proc</span> <a href="#addCheckItem%2CMenu%2Cstring%2Cproc%28MenuItem%29"><span class="Identifier">addCheckItem</span></a><span class="Other">(</span><span class="Identifier">m</span><span class="Other">:</span> <a href="uing.html#Menu"><span class="Identifier">Menu</span></a><span class="Other">;</span> <span class="Identifier">name</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span> <span class="Identifier">onclicked</span><span class="Other">:</span> <span class="Keyword">proc</span> <span class="Other">(</span><span class="Identifier">sender</span><span class="Other">:</span> <a href="uing.html#MenuItem"><span class="Identifier">MenuItem</span></a><span class="Other">)</span> <span class="Other">=</span> <span class="Keyword">proc</span> <span class="Other">(</span>
-    <span class="Operator">_</span><span class="Other">:</span> <a href="uing.html#MenuItem"><span class="Identifier">MenuItem</span></a><span class="Other">)</span> <span class="Other">=</span> <span class="Keyword">discard</span> <span class="Other">)</span><span class="Other">:</span> <a href="uing.html#MenuItem"><span class="Identifier">MenuItem</span></a> {.<span class="Identifier">discardable</span><span class="Other">,</span> <span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">Exception</span><span class="Other">]</span><span class="Other">,</span>
-    <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">RootEffect</span><span class="Other">]</span></span>.}</pre></dt>
+<div id="addCheckItem,Menu,string,proc(MenuItem,Window)">
+<dt><pre><span class="Keyword">proc</span> <a href="#addCheckItem%2CMenu%2Cstring%2Cproc%28MenuItem%2CWindow%29"><span class="Identifier">addCheckItem</span></a><span class="Other">(</span><span class="Identifier">m</span><span class="Other">:</span> <a href="uing.html#Menu"><span class="Identifier">Menu</span></a><span class="Other">;</span> <span class="Identifier">name</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span>
+                  <span class="Identifier">onclicked</span><span class="Other">:</span> <span class="Keyword">proc</span> <span class="Other">(</span><span class="Identifier">sender</span><span class="Other">:</span> <a href="uing.html#MenuItem"><span class="Identifier">MenuItem</span></a><span class="Other">;</span> <span class="Identifier">window</span><span class="Other">:</span> <a href="uing.html#Window"><span class="Identifier">Window</span></a><span class="Other">)</span> <span class="Other">=</span> <span class="Keyword">nil</span><span class="Other">)</span><span class="Other">:</span> <a href="uing.html#MenuItem"><span class="Identifier">MenuItem</span></a> {.
+    <span class="Identifier">discardable</span><span class="Other">,</span> <span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">Exception</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">RootEffect</span><span class="Other">]</span></span>.}</pre></dt>
 <dd>
 
 Appends a generic menu item with a checkbox.<p><tt class="docutils literal"><span class="pre"><span class="Identifier">m</span></span></tt>: Menu instance.<br/><tt class="docutils literal"><span class="pre"><span class="Identifier">name</span></span></tt>: Menu item text.<br/><tt class="docutils literal"><span class="pre"><span class="Identifier">onclicked</span></span></tt>: Callback for when the menu item is clicked.<br/></p>
@@ -2227,20 +2227,20 @@ Appends a generic menu item with a checkbox.<p><tt class="docutils literal"><spa
 
 </dd>
 </div>
-<div id="addItem,Menu,string,proc(MenuItem)">
-<dt><pre><span class="Keyword">proc</span> <a href="#addItem%2CMenu%2Cstring%2Cproc%28MenuItem%29"><span class="Identifier">addItem</span></a><span class="Other">(</span><span class="Identifier">m</span><span class="Other">:</span> <a href="uing.html#Menu"><span class="Identifier">Menu</span></a><span class="Other">;</span> <span class="Identifier">name</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span> <span class="Identifier">onclicked</span><span class="Other">:</span> <span class="Keyword">proc</span> <span class="Other">(</span><span class="Identifier">sender</span><span class="Other">:</span> <a href="uing.html#MenuItem"><span class="Identifier">MenuItem</span></a><span class="Other">)</span> <span class="Other">=</span> <span class="Keyword">proc</span> <span class="Other">(</span>
-    <span class="Operator">_</span><span class="Other">:</span> <a href="uing.html#MenuItem"><span class="Identifier">MenuItem</span></a><span class="Other">)</span> <span class="Other">=</span> <span class="Keyword">discard</span> <span class="Other">)</span><span class="Other">:</span> <a href="uing.html#MenuItem"><span class="Identifier">MenuItem</span></a> {.<span class="Identifier">discardable</span><span class="Other">,</span> <span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">Exception</span><span class="Other">]</span><span class="Other">,</span>
-    <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">RootEffect</span><span class="Other">]</span></span>.}</pre></dt>
+<div id="addItem,Menu,string,proc(MenuItem,Window)">
+<dt><pre><span class="Keyword">proc</span> <a href="#addItem%2CMenu%2Cstring%2Cproc%28MenuItem%2CWindow%29"><span class="Identifier">addItem</span></a><span class="Other">(</span><span class="Identifier">m</span><span class="Other">:</span> <a href="uing.html#Menu"><span class="Identifier">Menu</span></a><span class="Other">;</span> <span class="Identifier">name</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span>
+             <span class="Identifier">onclicked</span><span class="Other">:</span> <span class="Keyword">proc</span> <span class="Other">(</span><span class="Identifier">sender</span><span class="Other">:</span> <a href="uing.html#MenuItem"><span class="Identifier">MenuItem</span></a><span class="Other">;</span> <span class="Identifier">window</span><span class="Other">:</span> <a href="uing.html#Window"><span class="Identifier">Window</span></a><span class="Other">)</span> <span class="Other">=</span> <span class="Keyword">nil</span><span class="Other">)</span><span class="Other">:</span> <a href="uing.html#MenuItem"><span class="Identifier">MenuItem</span></a> {.
+    <span class="Identifier">discardable</span><span class="Other">,</span> <span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">Exception</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">RootEffect</span><span class="Other">]</span></span>.}</pre></dt>
 <dd>
 
 Appends a generic menu item.<p><tt class="docutils literal"><span class="pre"><span class="Identifier">m</span></span></tt>: Menu instance.<br/><tt class="docutils literal"><span class="pre"><span class="Identifier">name</span></span></tt>: Menu item text.<br/><tt class="docutils literal"><span class="pre"><span class="Identifier">onclicked</span></span></tt>: Callback for when the menu item is clicked.<br/></p>
 
 </dd>
 </div>
-<div id="addPreferencesItem,Menu,proc(MenuItem)">
-<dt><pre><span class="Keyword">proc</span> <a href="#addPreferencesItem%2CMenu%2Cproc%28MenuItem%29"><span class="Identifier">addPreferencesItem</span></a><span class="Other">(</span><span class="Identifier">m</span><span class="Other">:</span> <a href="uing.html#Menu"><span class="Identifier">Menu</span></a><span class="Other">;</span> <span class="Identifier">onclicked</span><span class="Other">:</span> <span class="Keyword">proc</span> <span class="Other">(</span><span class="Identifier">sender</span><span class="Other">:</span> <a href="uing.html#MenuItem"><span class="Identifier">MenuItem</span></a><span class="Other">)</span> <span class="Other">=</span> <span class="Keyword">proc</span> <span class="Other">(</span>
-    <span class="Operator">_</span><span class="Other">:</span> <a href="uing.html#MenuItem"><span class="Identifier">MenuItem</span></a><span class="Other">)</span> {.<span class="Identifier">discardable</span>.} <span class="Other">=</span> <span class="Keyword">discard</span> <span class="Other">)</span><span class="Other">:</span> <a href="uing.html#MenuItem"><span class="Identifier">MenuItem</span></a> {.<span class="Identifier">discardable</span><span class="Other">,</span>
-    <span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">Exception</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">RootEffect</span><span class="Other">]</span></span>.}</pre></dt>
+<div id="addPreferencesItem,Menu,proc(MenuItem,Window)">
+<dt><pre><span class="Keyword">proc</span> <a href="#addPreferencesItem%2CMenu%2Cproc%28MenuItem%2CWindow%29"><span class="Identifier">addPreferencesItem</span></a><span class="Other">(</span><span class="Identifier">m</span><span class="Other">:</span> <a href="uing.html#Menu"><span class="Identifier">Menu</span></a><span class="Other">;</span> <span class="Identifier">onclicked</span><span class="Other">:</span> <span class="Keyword">proc</span> <span class="Other">(</span><span class="Identifier">sender</span><span class="Other">:</span> <a href="uing.html#MenuItem"><span class="Identifier">MenuItem</span></a><span class="Other">;</span>
+    <span class="Identifier">window</span><span class="Other">:</span> <a href="uing.html#Window"><span class="Identifier">Window</span></a><span class="Other">)</span> <span class="Other">=</span> <span class="Keyword">nil</span><span class="Other">)</span><span class="Other">:</span> <a href="uing.html#MenuItem"><span class="Identifier">MenuItem</span></a> {.<span class="Identifier">discardable</span><span class="Other">,</span> <span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">Exception</span><span class="Other">]</span><span class="Other">,</span>
+                                       <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">RootEffect</span><span class="Other">]</span></span>.}</pre></dt>
 <dd>
 
 Appends a new <tt class="docutils literal"><span class="pre"><span class="Identifier">Preferences</span></span></tt> menu item.<div class="admonition admonition-warning"><span class="admonition-warning-text"><b>Warning:</b></span>
@@ -5105,7 +5105,7 @@ It is an error to call this on a Attribute that does not hold a font weight.</di
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small style="color: var(--hint);">Made with Nim. Generated: 2023-01-31 02:10:55 UTC</small>
+        <small style="color: var(--hint);">Made with Nim. Generated: 2023-01-31 19:39:43 UTC</small>
       </div>
     </div>
   </div>
