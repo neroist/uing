@@ -1,4 +1,6 @@
 # UIng
+#### [**Documentation**](https://neroist.github.io/uing/uing.html) 
+
 A fork of [ui](https://github.com/nim-lang/ui) that wraps [libui-ng](https://github.com/libui-ng/libui-ng) instead of the old and unmaintained [libui](https://github.com/andlabs/libui) library.
 
 
@@ -17,7 +19,7 @@ or add it to your project's Nimble file:
 requires "uing"
 ```
 
-### Dependencies
+## Dependencies
 - `gtk+-3.0`
 
 Linux: `$ sudo apt-get install libgtk-3-dev`
