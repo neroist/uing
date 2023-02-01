@@ -114,16 +114,16 @@ proc main =
   handler.dragBroken = (_: ptr AreaHandler, a: ptr rawui.Area) {.cdecl.} => (discard)
   handler.keyEvent = (_: ptr AreaHandler, a: ptr rawui.Area, b: ptr AreaKeyEvent) {.cdecl.} => cint 0
 
-  var window = newWindow("libui-ng Text-Drawing Example", 640, 480)
+  let window = newWindow("libui-ng Text-Drawing Example", 640, 480)
   window.margined = true
 
-  var hbox = newHorizontalBox(true)
+  let hbox = newHorizontalBox(true)
   window.child = hbox
 
-  var vbox = newVerticalBox(true)
+  let vbox = newVerticalBox(true)
   hbox.add vbox
 
-  var area = newArea(addr handler)
+  let area = newArea(addr handler)
   hbox.add area, true
 
   fontButton = newFontButton()

@@ -42,7 +42,6 @@ proc makenumbersAndListsBox: Box =
     spin = newSpinbox(0..100)
     slide = newSlider(0..100)
     progress = newProgressBar()
-    progress2 = newProgressBar()
 
   proc update(sender: Spinbox or Slider) =
     spin.value = sender.value
@@ -52,13 +51,11 @@ proc makenumbersAndListsBox: Box =
   spin.onchanged = update
   slide.onchanged = update
 
-  progress2.value = -1 # set progressbar to be indeterminate
-
   numbers.child = numbersBox
   numbersBox.add spin
   numbersBox.add slide
   numbersBox.add progress
-  numbersBox.add progress2
+  numbersBox.add newProgressBar(indeterminate = true)
 
   var
     lists = newGroup("Lists", true)
@@ -133,7 +130,7 @@ proc main =
   when defined(menus):
     let fileMenu = newMenu("File")
     fileMenu.addQuitItem(
-      proc(): bool {. closure .} =
+      proc(): bool =
         window.destroy()
         return true
     )

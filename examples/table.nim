@@ -39,9 +39,9 @@ proc modelCellValue(mh: ptr TableModelHandler, m: ptr rawui.TableModel, row, col
     result = newTableValue(progress[row][col]).impl
   #elif col == COLUMN_PASSED:
   #  if progress[row][col] > 60:
-  #    result = newTableValueInt(1)
+  #    result = newTableValue(1).impl
   #  else:
-  #    result = newTableValueInt(0)
+  #    result = newTableValue(0).impl
   elif col == COLUMN_ACTION:
     result = newTableValue("Apply").impl
   else:
@@ -54,7 +54,6 @@ proc modelSetCellValue(mh: ptr TableModelHandler, m: ptr rawui.TableModel, row, 
     echo rawui.tableValueInt(val)
   elif col == COLUMN_ACTION:
     rawui.tableModelRowChanged(m, row)
-
 
 var
   mh: TableModelHandler

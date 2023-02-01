@@ -7,23 +7,25 @@ proc main*() =
   var menu = newMenu("File")
 
   menu.addItem("Open", proc(_: MenuItem, win: Window) =
-    let filename = openFile(mainwin)
+    let filename = win.openFile()
+
     if filename.len == 0:
-      msgBoxError(mainwin, "No file selected", "Don't be alarmed!")
+      win.error("No file selected", "Don't be alarmed!")
     else:
-      msgBox(mainwin, "File selected", filename)
+      win.msgBox("File selected", filename)
   )
 
   menu.addItem("Save", proc(_: MenuItem, win: Window) =
-    let filename = saveFile(mainwin)
+    let filename = win.saveFile()
+
     if filename.len == 0:
-      msgBoxError(mainwin, "No file selected", "Don't be alarmed!")
+      win.error("No file selected", "Don't be alarmed!")
     else:
-      msgBox(mainwin, "File selected (don't worry, it's still there)", filename)
+      win.msgBox("File selected (don't worry, it's still there)", filename)
   )
 
   menu.addQuitItem(
-    proc(): bool {.closure.} =
+    proc(): bool =
       mainwin.destroy()
       return true
   )
@@ -31,11 +33,9 @@ proc main*() =
   menu = newMenu("Edit")
   menu.addCheckItem("Checkable Item")
   menu.addSeparator()
-
-  let item = menu.addItem("Disabled Item")
-  item.disable()
-
+  disable menu.addItem("Disabled Item")
   menu.addPreferencesItem()
+
   menu = newMenu("Help")
   menu.addItem("Help")
   menu.addAboutItem()
@@ -49,8 +49,7 @@ proc main*() =
   let hbox = newHorizontalBox(true)
   box.add(hbox, true)
 
-  var group = newGroup("Basic Controls")
-  group.margined = true
+  var group = newGroup("Basic Controls", true)
   hbox.add(group, false)
 
   var inner = newVerticalBox(true)
@@ -61,13 +60,12 @@ proc main*() =
   inner.add newLabel("Label")
   inner.add newHorizontalSeparator()
   inner.add newDatePicker()
-  inner.add newTimePicker()
+  inner.add newTimePicker()  
   inner.add newDateTimePicker()
   inner.add newFontButton()
   inner.add newColorButton()
 
-  var inner2 = newVerticalBox()
-  inner2.padded = true
+  let inner2 = newVerticalBox(true)
   hbox.add inner2, true
 
   group = newGroup("Numbers", true)
@@ -94,33 +92,25 @@ proc main*() =
   progressbar = newProgressBar()
   inner.add progressbar
 
-  group = newGroup("Lists")
-  group.margined = true
+  group = newGroup("Lists", true)
   inner2.add group
 
-  inner = newVerticalBox()
-  inner.padded = true
+  inner = newVerticalBox(true)
   group.child = inner
 
-  var cbox = newCombobox()
-  cbox.add "Combobox Item 1"
-  cbox.add "Combobox Item 2"
-  cbox.add "Combobox Item 3"
+  let cbox = newCombobox()
+  cbox.add "Combobox Item 1", "Combobox Item 2", "Combobox Item 3"
   inner.add cbox
 
-  var ecbox = newEditableCombobox()
-  ecbox.add "Editable Item 1"
-  ecbox.add "Editable Item 2"
-  ecbox.add "Editable Item 3"
+  let ecbox = newEditableCombobox()
+  ecbox.add "Editable Item 1", "Editable Item 2", "Editable Item 3"
   inner.add ecbox
 
-  var rb = newRadioButtons()
-  rb.add "Radio Button 1"
-  rb.add "Radio Button 2"
-  rb.add "Radio Button 3"
+  let rb = newRadioButtons()
+  rb.add "Radio Button 1", "Radio Button 2", "Radio Button 3"
   inner.add rb, true
 
-  var tab = newTab()
+  let tab = newTab()
   tab.add "Page 1", newHorizontalBox()
   tab.add "Page 2", newHorizontalBox()
   tab.add "Page 3", newHorizontalBox()

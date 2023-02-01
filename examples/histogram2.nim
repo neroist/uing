@@ -128,8 +128,6 @@ proc handlerDraw*(a: ptr AreaHandler; area: ptr rawui.Area; p: ptr AreaDrawParam
   p.context.fill(path, addr(brush))
   free path
 
-  
-
   # now draw the histogram line
   path = constructGraph(graphSize.width, graphSize.height, false)
   brush.a = graphColor.a
@@ -188,7 +186,6 @@ proc handlerMouseEvent*(a: ptr AreaHandler; area: ptr rawui.Area; e: ptr AreaMou
 
   currentPoint = i
 
-  # TODO only redraw the relevant area
   histogram.queueRedrawAll()
 
 proc main =
@@ -209,8 +206,9 @@ proc main =
 
   for i in 0..<10:
     datapoints[i] = newSpinbox(0..100)
-    datapoints[i].value = (rand(100))
+    datapoints[i].value = rand(100)
     datapoints[i].onchanged = (_: Spinbox) => histogram.queueRedrawAll()
+    
     vbox.add datapoints[i]
 
   colorButton = newColorButton((_: ColorButton) => histogram.queueRedrawAll())

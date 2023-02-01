@@ -92,3 +92,4 @@ proc main =
 when isMainModule:
   init()
   main()
+  

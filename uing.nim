@@ -90,6 +90,13 @@ type
   TimerProc = ref object
     fn: proc(): bool
 
+# I dont plan on "fixing" this
+proc queueMain*(f: proc (data: pointer) {.cdecl.}; data: pointer) = rawui.queueMain(f, data)
+
+proc mainSteps*() = rawui.mainSteps()
+
+proc mainStep*(wait: int): int = int rawui.mainStep(cint wait)
+
 proc wrapTimerProc(data: pointer): cint {.cdecl.} =
   var f = cast[TimerProc](data)
   result = cint f.fn() 
@@ -839,7 +846,7 @@ type
     ##    The underlying system may override these or even choose to ignore them
     ##    completely. This is especially true for many Unix systems.
     ## 
-    ## .. warning:: A Window can NOT be a child of another Widget.
+    ## .. warning:: A Window can **NOT** be a child of another Widget.
 
     onclosing*: proc (sender: Window): bool
     onfocuschanged*: proc (sender: Window)
@@ -1398,9 +1405,9 @@ proc setMargined*(t: Tab; index: int; margined: bool) =
   ## 
   ## The margin size is determined by the OS defaults.
   ## 
-  ## `t`: Tab instance.
-  ## `index`: Index of the tab/page to un/set margin for.
-  ## `margined`: `true` to set a margin for tab at `index`, `false` otherwise.
+  ## | `t`: Tab instance.
+  ## | `index`: Index of the tab/page to un/set margin for.
+  ## | `margined`: `true` to set a margin for tab at `index`, `false` otherwise.
 
   tabSetMargined(t.impl, cint index, cint margined)
 
@@ -1652,11 +1659,17 @@ proc `value=`*(p: ProgressBar; n: -1..100) =
 
   progressBarSetValue p.impl, n.cint
 
-proc newProgressBar*(): ProgressBar =
+proc newProgressBar*(indeterminate: bool = false): ProgressBar =
   ## Creates a new progress bar.
+  ## 
+  ## `indeterminate`: Whether or not the progress bar will display an 
+  ## indeterminate value.
 
   newFinal result
   result.impl = rawui.newProgressBar()
+  
+  if indeterminate: 
+    result.value = -1
 
 # ------------------------- Separator ----------------------------
 
@@ -2930,6 +2943,8 @@ proc newTable*(params: ptr TableParams): Table =
 
 # -------------------- Generics ------------------------------------
 
+# TODO maybe raise exception if `w` is nil here? or let the SIGSEGV do it for us?
+
 proc show*[W: Widget](w: W) =
   ## Shows the widget.
 
@@ -2961,11 +2976,23 @@ proc destroy*[W: Widget](w: W) =
 
   rawui.controlDestroy(w.impl)
 
-#[
-proc parent*[W: Widget](w: W): W =
+# A Window can not be a child of another widget.
+proc parent*[W: Widget](w: W and not Window): W =
+  ## Returns the parent of `w`
+  ## 
+  ## .. important:: Returns `nil` if `w` has no parent
+  ## 
+  ## `w`: Widget instance.
+  
+  let parent = rawui.controlParent(w.impl)
+
+  if parent == nil:
+    return nil
+  
   newFinal result
-  result.impl = rawui.controlParent(w.impl)
-]#
+
+  # same thing as `impl=
+  result.internalImpl = pointer parent
 
 proc `parent=`*[W: Widget](w: W, parent: W) =
   ## Sets the widget's parent.

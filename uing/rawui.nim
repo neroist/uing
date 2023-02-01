@@ -581,7 +581,7 @@ proc newRadioButtons*(): ptr RadioButtons {.cdecl, importc: "uiNewRadioButtons",
                                         libui.}
 
 type
-  Tm* = object # i would import from <time.h> but it didnt work so
+  Tm* = object 
     sec*   : cint ## seconds [0,61]
     min*   : cint ## minutes [0,59]
     hour*  : cint ## hour [0,23]
