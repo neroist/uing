@@ -24,7 +24,8 @@ proc modelNumColumns(mh: ptr TableModelHandler, m: ptr rawui.TableModel): cint {
 proc modelNumRows(mh: ptr TableModelHandler, m: ptr rawui.TableModel): cint {.cdecl.} = NUM_ROWS
 
 proc modelColumnType(mh: ptr TableModelHandler, m: ptr rawui.TableModel, col: cint): TableValueType {.cdecl.} =
-  echo "type"
+  #echo "type"
+
   if col in [COLUMN_ID, COLUMN_PROCESS, COLUMN_PASSED]:
     result = TableValueTypeInt
   else:
@@ -49,7 +50,8 @@ proc modelCellValue(mh: ptr TableModelHandler, m: ptr rawui.TableModel, row, col
 
 
 proc modelSetCellValue(mh: ptr TableModelHandler, m: ptr rawui.TableModel, row, col: cint, val: ptr rawui.TableValue) {.cdecl.} =
-  echo "setCellValue"
+  #echo "setCellValue"
+  
   if col == COLUMN_PASSED:
     echo rawui.tableValueInt(val)
   elif col == COLUMN_ACTION:
