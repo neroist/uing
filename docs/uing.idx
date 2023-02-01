@@ -1,5 +1,8 @@
 Widget	uing.html#Widget	uing: Widget	
 impl	uing.html#impl,Widget	uing: impl(w: Widget): ptr [Control]	
+signature	uing.html#signature,Widget	uing: signature(w: Widget): int	
+typeSignature	uing.html#typeSignature,Widget	uing: typeSignature(w: Widget): int	
+osSignature	uing.html#osSignature,Widget	uing: osSignature(w: Widget): int	
 init	uing.html#init	uing: init()	
 quit	uing.html#quit	uing: quit()	
 mainLoop	uing.html#mainLoop	uing: mainLoop()	
@@ -328,7 +331,7 @@ newTableValue	uing.html#newTableValue,int	uing: newTableValue(i: int): TableValu
 getInt	uing.html#getInt,TableValue	uing: getInt(v: TableValue): int	
 newTableValue	uing.html#newTableValue,float,float,float,float	uing: newTableValue(r, g, b, a: 0.0 .. 1.0 = 1.0): TableValue	
 color	uing.html#color,TableValue	uing: color(v: TableValue): tuple[r, g, b, a: float]	
-newTableModel	uing.html#newTableModel,ptr.TableModelHandler_2	uing: newTableModel(mh: ptr TableModelHandler): TableModel	
+newTableModel	uing.html#newTableModel,ptr.TableModelHandler	uing: newTableModel(mh: ptr TableModelHandler): TableModel	
 rowInserted	uing.html#rowInserted,TableModel,int	uing: rowInserted(m: TableModel; newIndex: int)	
 rowChanged	uing.html#rowChanged,TableModel,int	uing: rowChanged(m: TableModel; index: int)	
 rowDeleted	uing.html#rowDeleted,TableModel,int	uing: rowDeleted(m: TableModel; oldIndex: int)	
