@@ -132,7 +132,7 @@ proc freeText*(text: cstring) {.cdecl, importc: "uiFreeText", libui.}
 type
   Control* {.inheritable, pure, bycopy.} = object ## Base class for GUI controls providing common methods.
     signature*      : uint32
-    oSSignature*    : uint32
+    osSignature*    : uint32
     typeSignature*  : uint32
     destroy*        : proc (a1: ptr Control) {.cdecl.}
     handle*         : proc (a1: ptr Control): int {.cdecl.}

@@ -15,6 +15,15 @@ type
 func impl*(w: Widget): ptr[Control] = cast[ptr Control](w.internalImpl)
   ## Default internal implementation of Widgets
 
+func signature*(w: Widget): int = int w.impl.signature
+  ## Get widget signature
+
+func typeSignature*(w: Widget): int = int w.impl.typeSignature
+  ## Get widget type signature
+
+func osSignature*(w: Widget): int = int w.impl.oSSignature
+  ## Get widget OS signature
+
 proc init*() =
   ## Initialize the application
   
@@ -54,18 +63,6 @@ template newFinal(result) =
   #proc finalize(x: type(result)) {.nimcall.} =
   #  controlDestroy(x.impl)
   new(result) #, finalize)
-
-#[
-template voidCallback(name, supertyp, basetyp, on) {.dirty.} =
-  proc name(w: ptr rawui.supertyp; data: pointer) {.cdecl.} =
-    let widget = cast[basetyp](data)
-    if widget.on != nil: widget.on()
-
-template intCallback(name, supertyp, basetyp, on) {.dirty.} =
-  proc name(w: ptr rawui.supertyp; data: pointer) {.cdecl.} =
-    let widget = cast[basetyp](data)
-    if widget.on != nil: widget.on(widget.value)
-]#
 
 template genCallback(name, typ, on) {. dirty .} =
   proc name(w: ptr rawui.typ; data: pointer) {.cdecl.} =
@@ -2413,7 +2410,7 @@ proc add*(i: Image; pixels: pointer; pixelWidth: int; pixelHeight: int; byteStri
   ## 
   ## | `i`: Image instance.
   ## | `pixels`: Pointer to byte array of premultiplied pixels in [R G B A] order.
-  ## |        `((uint8_t *) pixels)[0]` equals the **R** of the first pixel,
+  ## |        `pixels[0]` equals the **R** of the first pixel,
   ##          `[3]` the **A** of the first pixel.
   ## |        `pixels` must be at least `byteStride * pixelHeight` bytes long.
   ## | `pixelWidth`: Width in pixels.
@@ -2444,7 +2441,6 @@ proc newImage*(width, height: float): Image =
 # -------------------- Table --------------------------------------
 
 export 
-  TableSelection,
   TableSelectionMode, 
   TableModelHandler, 
   TableParams, 
@@ -2452,8 +2448,6 @@ export
   TableColumnType, 
   TableValueType, 
 
-  newTableModel, 
-  freeTableModel, 
   TableModelColumnNeverEditable, 
   TableModelColumnAlwaysEditable, 
   SortIndicator

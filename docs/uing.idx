@@ -4,6 +4,9 @@ init	uing.html#init	uing: init()
 quit	uing.html#quit	uing: quit()	
 mainLoop	uing.html#mainLoop	uing: mainLoop()	
 pollingMainLoop	uing.html#pollingMainLoop,proc(int),int	uing: pollingMainLoop(poll: proc (timeout: int); timeout: int)	
+queueMain	uing.html#queueMain,proc(pointer),pointer	uing: queueMain(f: proc (data: pointer) {.cdecl.}; data: pointer)	
+mainSteps	uing.html#mainSteps	uing: mainSteps()	
+mainStep	uing.html#mainStep,int	uing: mainStep(wait: int): int	
 timer	uing.html#timer,int,proc)	uing: timer(milliseconds: int; fun: proc (): bool)	
 free	uing.html#free,string	uing: free(str: string)	
 loadControlFont	uing.html#loadControlFont,ptr.FontDescriptor	uing: loadControlFont(f: ptr FontDescriptor)	
@@ -217,7 +220,7 @@ impl	uing.html#impl,ProgressBar	uing: impl(b: ProgressBar): RawProgressBar
 impl=	uing.html#impl=,ProgressBar,RawProgressBar	uing: impl=(b: ProgressBar; r: RawProgressBar)	
 value	uing.html#value,ProgressBar	uing: value(p: ProgressBar): int	
 value=	uing.html#value=,ProgressBar,	uing: value=(p: ProgressBar; n: -1 .. 100)	
-newProgressBar	uing.html#newProgressBar	uing: newProgressBar(): ProgressBar	
+newProgressBar	uing.html#newProgressBar,bool	uing: newProgressBar(indeterminate: bool = false): ProgressBar	
 Separator	uing.html#Separator	uing: Separator	
 impl	uing.html#impl,Separator	uing: impl(b: Separator): RawSeparator	
 impl=	uing.html#impl=,Separator,RawSeparator	uing: impl=(b: Separator; r: RawSeparator)	
@@ -353,6 +356,7 @@ enabled	uing.html#enabled,W	uing: enabled[W: Widget](w: W): bool
 enable	uing.html#enable,W	uing: enable[W: Widget](w: W)	
 disable	uing.html#disable,W	uing: disable[W: Widget](w: W)	
 destroy	uing.html#destroy,W	uing: destroy[W: Widget](w: W)	
+parent	uing.html#parent	uing: parent[W: Widget](w: W and not Window): W	
 parent=	uing.html#parent=,W,W	uing: parent=[W: Widget](w: W; parent: W)	
 topLevel	uing.html#topLevel,W	uing: topLevel[W: Widget](w: W): bool	
 visible	uing.html#visible,W	uing: visible[W: Widget](w: W): bool	
