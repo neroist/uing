@@ -2745,7 +2745,14 @@ proc addCheckboxTextColumn*(t: Table; name: string; checkboxModelColumn, checkbo
   ## |                         `TableModelColumnAlwaysEditable` to make all rows always editable.
   ## | `textParams`: Text display settings, `nil` to use defaults.
   
-  t.impl.tableAppendCheckboxTextColumn(name, cint checkboxModelColumn, cint checkboxEditableModelColumn, cint textModelColumn, cint textEditableModelColumn, textParams)
+  t.impl.tableAppendCheckboxTextColumn(
+    name, 
+    cint checkboxModelColumn, 
+    cint checkboxEditableModelColumn, 
+    cint textModelColumn, 
+    cint textEditableModelColumn, 
+    textParams
+  )
 
 proc addImageTextColumn*(t: Table, name: string, imageIndex, textIndex, editableMode: int, textParams: ptr TableTextColumnOptionalParams) =
   ## Appends a column to the table that displays both an image and text.

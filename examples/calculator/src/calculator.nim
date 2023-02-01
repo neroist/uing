@@ -14,13 +14,7 @@ proc eval(_: Button) =
 
   try: 
     let 
-      lexer = initLexer()
-      parser = initParser()
-      visitor = initNodeVisitor()
-
-      tokens = lexer.lex(input.text)
-      parsed = parser.parse(tokens)
-      result = visitor.eval(parsed)
+      result = eval(input.text)
 
       resultVal = if result.kind == NodeKind.Integer: $int(result.value)
                   else: $result.value
