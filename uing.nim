@@ -103,7 +103,13 @@ proc wrapTimerProc(data: pointer): cint {.cdecl.} =
 
 proc timer*(milliseconds: int; fun: proc (): bool) = 
   ## Call `fun` after `milliseconds` milliseconds.
-  ## This is repeated until `fun` returns `false`. 
+  ## This is repeated until `fun` returns `false`.
+  ## 
+  ## .. note:: This cannot be called from any thread, unlike 
+  ##        `queueMain() <#queueMain,proc(pointer),pointer>`_
+  ## 
+  ## .. note:: The minimum exact timing, either accuracy (timer burst, etc.) 
+  ##      or granularity (15ms on Windows, etc.), is OS-defined 
   
   var fn = TimerProc(fn: fun)
   GC_ref fn
