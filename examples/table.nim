@@ -1,4 +1,4 @@
-import std/[random]
+import std/random
 
 import uing
 from uing/rawui import nil

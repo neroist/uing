@@ -173,18 +173,13 @@ proc handlerMouseEvent*(a: ptr AreaHandler; area: ptr rawui.Area; e: ptr AreaMou
 
   pointLocations(graphSize.width, graphSize.height, xs, ys)
 
-  var i: int
-
-  while i < 10:
+  for i in 0..<10:
     if inPoint(e.x, e.y, xs[i], ys[i]): 
+      currentPoint = i
       break
 
-    inc i
-
-  if i == 10: # not in a point
-    i = -1
-
-  currentPoint = i
+    if i == 9: # not in a point
+      currentPoint = -1
 
   histogram.queueRedrawAll()
 

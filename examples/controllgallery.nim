@@ -1,9 +1,5 @@
 import uing/rawui
 
-# TODOs
-# - rename variables in main()
-# - make both columns the same size?
-
 var mainwin*: ptr Window
 
 proc onClosing*(w: ptr Window; data: pointer): cint {.cdecl.} =
