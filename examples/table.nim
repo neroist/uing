@@ -51,7 +51,7 @@ proc modelCellValue(mh: ptr TableModelHandler, m: ptr rawui.TableModel, row, col
 
 proc modelSetCellValue(mh: ptr TableModelHandler, m: ptr rawui.TableModel, row, col: cint, val: ptr rawui.TableValue) {.cdecl.} =
   #echo "setCellValue"
-  
+
   if col == COLUMN_PASSED:
     echo rawui.tableValueInt(val)
   elif col == COLUMN_ACTION:
@@ -67,7 +67,7 @@ proc main*() =
 
   var menu = newMenu("File")
   menu.addQuitItem(
-    proc(): bool {.closure.} =
+    proc(): bool =
       mainwin.destroy()
       return true
   )
