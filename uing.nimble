@@ -11,4 +11,3 @@ installFiles = @["uing.nim"]
 # Dependencies
 
 requires "nim >= 0.19.4"
-

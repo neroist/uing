@@ -8,13 +8,13 @@ also provides a high-level Nim binding for it.
 To get started, install using Nimble:
 
 ```bash
-nimble install https://github.com/neroist/uing
+nimble install uing
 ```
 
 or add it to your project's Nimble file:
 
 ```nim
-requires "https://github.com/neroist/uing"
+requires "uing"
 ```
 
 ### Dependencies
