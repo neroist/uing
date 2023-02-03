@@ -20,7 +20,7 @@ proc eval(_: Button) =
                   else: $result.value
 
     output.text = resultVal
-    history.add fmt"{input.text} = {resultVal}" & '\n'
+    history.text = fmt"{input.text} = {resultVal}" & '\n' & history.text
 
   except ParseError:
     window.error "A Parsing Error Occurred", getCurrentExceptionMsg()
