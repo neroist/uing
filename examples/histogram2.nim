@@ -121,7 +121,7 @@ proc handlerDraw*(a: ptr AreaHandler; area: ptr rawui.Area; p: ptr AreaDrawParam
   brush.g = graphColor.g
   brush.b = graphColor.b
 
-  # we set brushA below to different values for the fill and stroke
+  # we set brush.a below to different values for the fill and stroke
   # now create the fill for the graph below the graph line
   path = constructGraph(graphSize.width, graphSize.height, true)
   brush.a = graphColor.a / 2
@@ -155,8 +155,6 @@ proc handlerDraw*(a: ptr AreaHandler; area: ptr rawui.Area; p: ptr AreaDrawParam
     free path
 
 func inPoint*(x, y, xtest, ytest: float): bool =
-  # TODO switch to using a matrix
-
   let x = x - xoffLeft
   let y = y - yoffTop
   return (x >= xtest - pointRadius) and 
