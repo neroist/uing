@@ -5,8 +5,9 @@
 ## :Author: Jasmine
 
 import std/times
+import std/colors
 
-import uing/rawui
+import uing/rawui except Color
 
 type
   Widget* = ref object of RootRef ## abstract Widget base class.
@@ -14,15 +15,6 @@ type
 
 func impl*(w: Widget): ptr[Control] = cast[ptr Control](w.internalImpl)
   ## Default internal implementation of Widgets
-
-func signature*(w: Widget): int = int w.impl.signature
-  ## Get widget signature
-
-func typeSignature*(w: Widget): int = int w.impl.typeSignature
-  ## Get widget type signature
-
-func osSignature*(w: Widget): int = int w.impl.oSSignature
-  ## Get widget OS signature
 
 proc init*() =
   ## Initialize the application
@@ -62,7 +54,8 @@ proc pollingMainLoop*(poll: proc(timeout: int); timeout: int) =
 template newFinal(result) =
   #proc finalize(x: type(result)) {.nimcall.} =
   #  controlDestroy(x.impl)
-  new(result) #, finalize)
+
+  new result#, finalize
 
 template genCallback(name, typ, on) {. dirty .} =
   proc name(w: ptr rawui.typ; data: pointer) {.cdecl.} =
@@ -76,7 +69,7 @@ template genImplProcs(t: untyped) {.dirty.}=
     ## Gets internal implementation of `b`
     
   func `impl=`*(b: t, r: `Raw t`) = b.internalImpl = pointer(r)
-    ## Set internal implementation of `b`
+    ## Sets internal implementation of `b`
 
 
 # -------------------- Non-Widgets --------------------------------------
@@ -87,7 +80,6 @@ type
   TimerProc = ref object
     fn: proc(): bool
 
-# I dont plan on "fixing" this
 proc queueMain*(f: proc (data: pointer) {.cdecl.}; data: pointer) = rawui.queueMain(f, data)
 
 proc mainSteps*() = rawui.mainSteps()
@@ -500,6 +492,17 @@ proc newColorAttribute*(r, g, b, a: float = 1.0): Attribute =
   newFinal result
   result.impl = rawui.newColorAttribute(r, g, b, a)
 
+proc newColorAttribute*(color: Color, a: float = 1.0): Attribute =
+  ## Creates a new Attribute that changes the
+  ## color of the text it is applied to. 
+  ## 
+  ## .. error:: It is an error to specify an invalid color.
+  
+  let (r, g, b) = color.extractRGB()
+
+  newFinal result
+  result.impl = rawui.newColorAttribute(r/255, g/255, b/255, a)
+
 proc color*(a: Attribute): tuple[r, g, b, alpha: float] =
   ## Returns the text color stored in `a`. 
   ## 
@@ -520,6 +523,16 @@ proc newBackgroundColorAttribute*(r, g, b, a: float = 1.0): Attribute =
   newFinal result
   result.impl = rawui.newBackgroundAttribute(cdouble r, cdouble g, cdouble b, cdouble a)
 
+proc newBackgroundColorAttribute*(color: Color, a: float = 1.0): Attribute =
+  ## Creates a new Attribute that changes the background color 
+  ## of the text it is applied to. 
+  ## 
+  ## .. error:: It is an error to specify an invalid color.
+  
+  let (r, g, b) = color.extractRGB()
+
+  newFinal result
+  result.impl = rawui.newBackgroundAttribute(cdouble r/255, cdouble g/255, cdouble b/255, cdouble a)
 
 export Underline, UnderlineColor
 
@@ -549,6 +562,19 @@ proc newUnderlineColorAttribute*(u: UnderlineColor; r = 0f, g = 0f, b = 0f, a: f
 
   newFinal result
   result.impl = rawui.newUnderlineColorAttribute(u, cdouble r, cdouble g, cdouble b, cdouble a)
+
+proc newUnderlineColorAttribute*(u: UnderlineColor; color: Color = Color(0)): Attribute =
+  ## Creates a new Attribute that changes the color of the underline on 
+  ## the text it is applied to.
+  ##  
+  ## .. error:: If the specified color type is `UnderlineColorCustom`, it is an
+  ##          error to specify an invalid color value. Otherwise, the color values
+  ##          are ignored and should be specified as zero.
+  
+  let (r, g, b) = color.extractRGB()
+
+  newFinal result
+  result.impl = rawui.newUnderlineColorAttribute(u, cdouble r/255, cdouble g/255, cdouble b/255, cdouble 1)
 
 proc underlineColor*(a: Attribute): tuple[u: UnderlineColor, r, g, b, alpha: float] = 
   ## Returns the underline color stored in `a`. 
@@ -971,14 +997,14 @@ proc margined*(w: Window): bool =
   
   windowMargined(w.impl) != 0
 
-proc `margined=`*(w: Window; x: bool) = 
+proc `margined=`*(w: Window; margined: bool) = 
   ## Sets whether or not the window has a margin.
   ## The margin size is determined by the OS defaults.
   ## 
   ## | `w`: Window instance.
   ## | `margined`: `true` to set a window margin, `false` otherwise.
 
-  windowSetMargined(w.impl, cint(x))
+  windowSetMargined(w.impl, cint(margined))
 
 proc child*(w: Window): Widget = w.child
 
@@ -1141,7 +1167,7 @@ proc padded*(b: Box): bool =
 
   bool boxPadded(b.impl)
 
-proc `padded=`*(b: Box; x: bool) = 
+proc `padded=`*(b: Box; padded: bool) = 
   ## Sets whether or not widgets within the box are padded.
   ## 
   ## Padding is defined as space between individual widgets.
@@ -1150,7 +1176,7 @@ proc `padded=`*(b: Box; x: bool) =
   ## | `b`: Box instance.
   ## | `padded` : `true` to make widgets padded, `false` otherwise.
 
-  boxSetPadded(b.impl, x.cint)
+  boxSetPadded(b.impl, padded.cint)
 
 proc newHorizontalBox*(padded = false): Box =
   ## Creates and returns a new horizontal box.
@@ -1210,13 +1236,13 @@ proc checked*(c: Checkbox): bool =
   
   checkboxChecked(c.impl) != 0
 
-proc `checked=`*(c: Checkbox; x: bool) =
+proc `checked=`*(c: Checkbox; checked: bool) =
   ## Sets whether or not the checkbox is checked.
   ## 
   ## | `c`: Checkbox instance.
   ## | `checked`: `true` to check box, `false` otherwise.
   
-  checkboxSetChecked(c.impl, cint(x))
+  checkboxSetChecked(c.impl, cint(checked))
 
 proc newCheckbox*(text: string; ontoggled: proc(sender: Checkbox) = nil): Checkbox =
   ## Creates and returns a new checkbox.
@@ -1889,13 +1915,13 @@ proc readOnly*(e: MultilineEntry): bool =
 
   multilineEntryReadOnly(e.impl) != 0
 
-proc `readOnly=`*(e: MultilineEntry; x: bool) = 
+proc `readOnly=`*(e: MultilineEntry; readOnly: bool) = 
   ## Sets whether or not the multi line entry's text is read only.
   ## 
   ## | `e`: MultilineEntry instance
   ## | `readonly`: `true` to make read only, `false` otherwise.
   
-  multilineEntrySetReadOnly(e.impl, cint(x))
+  multilineEntrySetReadOnly(e.impl, cint(readOnly))
 
 genCallback wrapmeOnchanged, MultilineEntry, onchanged
 
@@ -2184,16 +2210,6 @@ proc color*(c: ColorButton): tuple[r, g, b, a: float] =
 
   result = (r: float r, g: float g, b: float b, a: float a)
 
-#proc color*(c: ColorButton): colors.Color = 
-#  ## Returns the color button color.
-#  ## 
-#  ## `c`: ColorButton instance
-#  
-#  var r, g, b, a: cdouble
-#  colorButtonColor(c.impl, addr r, addr g, addr b, addr a)
-#
-#  result = rgb(r * 255, g * 255, b * 255)
-
 proc setColor*(c: ColorButton; r, g, b, alpha: 0.0..1.0 = 1.0) = 
   ## Sets the color button color.
   ##   
@@ -2205,11 +2221,28 @@ proc setColor*(c: ColorButton; r, g, b, alpha: 0.0..1.0 = 1.0) =
 
   colorButtonSetColor(c.impl, r, b, g, alpha)
 
-#[
-proc setColor*(c: ColorButton; color: colors.Color; alpha: float) = 
-  let rgb = color.extractRGB
-  colorButtonSetColor(c.impl, cdouble (rgb.r / 255), cdouble (rgb.b / 255), cdouble (rgb.g / 255), cdouble alpha)
-]#
+proc setColor*(c: ColorButton; r, g, b: int, alpha: 0.0..1.0 = 1.0) = 
+  ## Sets the color button color.
+  ##   
+  ## | `c`: ColorButton instance.
+  ## | `r`: Red. Integer in range of [0, 255].
+  ## | `g`: Green. Integer in range of [0, 255].
+  ## | `b`: Blue. Integer in range of [0, 255].
+  ## | `alpha`: Alpha. Integer in range of [0, 255].
+
+  colorButtonSetColor(c.impl, r/255, b/255, g/255, alpha)
+
+proc `color=`*(c: ColorButton; color: Color) = 
+  ## Sets the color button color.
+  ## 
+  ## If you need to set color alpha use `setColor() <#setColor,ColorButton,int,int,int,float>`_
+  ##   
+  ## | `c`: ColorButton instance.
+  ## | `color`: `Color <https://nim-lang.org/docs/colors.html>`_.
+  
+  let (r, g, b) = color.extractRGB()
+
+  colorButtonSetColor(c.impl, cdouble (r / 255), cdouble (b / 255), cdouble (g / 255), cdouble 1)
 
 genCallback wrapOnChanged, ColorButton, onchanged
 
@@ -2641,6 +2674,18 @@ proc newTableValue*(r, g, b, a: 0.0..1.0 = 1.0): TableValue =
   newFinal result
   result.impl = rawui.newTableValueColor(cdouble r, cdouble g, cdouble b, cdouble a)
 
+proc newTableValue*(color: Color; a: 0.0..1.0 = 1f): TableValue = 
+  ## Creates a new table value to store a color in.
+  ## 
+  ## | `color`: Table value color.
+  ## | `a`: Alpha. Float in range of [0, 1.0].
+  
+  let (r, g, b) = color.extractRGB
+
+  newFinal result
+  result.impl = rawui.newTableValueColor(cdouble r/255, cdouble g/255, cdouble b/255, cdouble a)
+
+
 proc color*(v: TableValue): tuple[r, g, b, a: float] = 
   ## Returns the color value held internally.
   ## 
@@ -2950,8 +2995,6 @@ proc newTable*(params: ptr TableParams): Table =
 
 # -------------------- Generics ------------------------------------
 
-# TODO maybe raise exception if `w` is nil here? or let the SIGSEGV do it for us?
-
 proc show*[W: Widget](w: W) =
   ## Shows the widget.
 
@@ -2983,7 +3026,7 @@ proc destroy*[W: Widget](w: W) =
 
   rawui.controlDestroy(w.impl)
 
-# A Window can not be a child of another widget.
+# A Window can not be a child of another widget
 proc parent*[W: Widget](w: W and not Window): W =
   ## Returns the parent of `w`
   ## 
@@ -2998,7 +3041,7 @@ proc parent*[W: Widget](w: W and not Window): W =
   
   newFinal result
 
-  # same thing as `impl=
+  # same thing as `impl=`
   result.internalImpl = pointer parent
 
 proc `parent=`*[W: Widget](w: W, parent: W) =
@@ -3012,6 +3055,21 @@ proc `parent=`*[W: Widget](w: W, parent: W) =
     if parent != nil: parent.impl
     else: nil
   )
+
+func signature*[W: Widget](w: W): int = 
+  ## Get widget signature
+  
+  int w.impl.signature
+
+func typeSignature*[W: Widget](w: W): int = 
+  ## Get widget type signature
+  
+  int w.impl.typeSignature
+
+func osSignature*[W: Widget](w: W): int = 
+  ## Get widget OS signature
+  
+  int w.impl.oSSignature
 
 proc topLevel*[W: Widget](w: W): bool =
   ## Returns whether or not the widget is a top level widget.
