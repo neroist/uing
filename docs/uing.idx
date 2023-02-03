@@ -1,8 +1,5 @@
 Widget	uing.html#Widget	uing: Widget	
 impl	uing.html#impl,Widget	uing: impl(w: Widget): ptr [Control]	
-signature	uing.html#signature,Widget	uing: signature(w: Widget): int	
-typeSignature	uing.html#typeSignature,Widget	uing: typeSignature(w: Widget): int	
-osSignature	uing.html#osSignature,Widget	uing: osSignature(w: Widget): int	
 init	uing.html#init	uing: init()	
 quit	uing.html#quit	uing: quit()	
 mainLoop	uing.html#mainLoop	uing: mainLoop()	
@@ -83,11 +80,14 @@ italic	uing.html#italic,Attribute	uing: italic(a: Attribute): TextItalic
 newStretchAttribute	uing.html#newStretchAttribute,TextStretch	uing: newStretchAttribute(stretch: TextStretch): Attribute	
 stretch	uing.html#stretch,Attribute	uing: stretch(a: Attribute): TextStretch	
 newColorAttribute	uing.html#newColorAttribute,float,float,float,float	uing: newColorAttribute(r, g, b, a: float = 1.0): Attribute	
+newColorAttribute	uing.html#newColorAttribute,Color,float	uing: newColorAttribute(color: Color; a: float = 1.0): Attribute	
 color	uing.html#color,Attribute	uing: color(a: Attribute): tuple[r, g, b, alpha: float]	
 newBackgroundColorAttribute	uing.html#newBackgroundColorAttribute,float,float,float,float	uing: newBackgroundColorAttribute(r, g, b, a: float = 1.0): Attribute	
+newBackgroundColorAttribute	uing.html#newBackgroundColorAttribute,Color,float	uing: newBackgroundColorAttribute(color: Color; a: float = 1.0): Attribute	
 newUnderlineAttribute	uing.html#newUnderlineAttribute,Underline	uing: newUnderlineAttribute(u: Underline): Attribute	
 underline	uing.html#underline,Attribute	uing: underline(a: Attribute): Underline	
 newUnderlineColorAttribute	uing.html#newUnderlineColorAttribute,UnderlineColor,float32,float32,float32,float	uing: newUnderlineColorAttribute(u: UnderlineColor; r = 0.0&apos;f32; g = 0.0&apos;f32;\n                           b = 0.0&apos;f32; a: float = 0.0&apos;f32): Attribute	
+newUnderlineColorAttribute	uing.html#newUnderlineColorAttribute,UnderlineColor,Color	uing: newUnderlineColorAttribute(u: UnderlineColor; color: Color = Color(0)): Attribute	
 underlineColor	uing.html#underlineColor,Attribute	uing: underlineColor(a: Attribute): tuple[u: UnderlineColor, r, g, b, alpha: float]	
 OpenTypeFeatures	uing.html#OpenTypeFeatures	uing: OpenTypeFeatures	
 impl	uing.html#impl,OpenTypeFeatures	uing: impl(b: OpenTypeFeatures): RawOpenTypeFeatures	
@@ -139,7 +139,7 @@ borderless=	uing.html#borderless=,Window,bool	uing: borderless=(w: Window; borde
 resizeable	uing.html#resizeable,Window	uing: resizeable(w: Window): bool	
 resizeable=	uing.html#resizeable=,Window,bool	uing: resizeable=(w: Window; resizeable: bool)	
 margined	uing.html#margined,Window	uing: margined(w: Window): bool	
-margined=	uing.html#margined=,Window,bool	uing: margined=(w: Window; x: bool)	
+margined=	uing.html#margined=,Window,bool	uing: margined=(w: Window; margined: bool)	
 child	uing.html#child,Window	uing: child(w: Window): Widget	
 child=	uing.html#child=,Window,Widget	uing: child=(w: Window; child: Widget)	
 openFile	uing.html#openFile,Window	uing: openFile(parent: Window): string	
@@ -156,7 +156,7 @@ add	uing.html#add,Box,Widget	uing: add(b: Box; child: Widget; stretchy = false)
 add	uing.html#add,Box,openArray[Widget]	uing: add(c: Box; items: openArray[Widget]; stretchy = false)	
 delete	uing.html#delete,Box,int	uing: delete(b: Box; index: int)	
 padded	uing.html#padded,Box	uing: padded(b: Box): bool	
-padded=	uing.html#padded=,Box,bool	uing: padded=(b: Box; x: bool)	
+padded=	uing.html#padded=,Box,bool	uing: padded=(b: Box; padded: bool)	
 newHorizontalBox	uing.html#newHorizontalBox	uing: newHorizontalBox(padded = false): Box	
 newVerticalBox	uing.html#newVerticalBox	uing: newVerticalBox(padded = false): Box	
 Checkbox	uing.html#Checkbox	uing: Checkbox	
@@ -165,7 +165,7 @@ impl=	uing.html#impl=,Checkbox,RawCheckbox	uing: impl=(b: Checkbox; r: RawCheckb
 text	uing.html#text,Checkbox	uing: text(c: Checkbox): string	
 text=	uing.html#text=,Checkbox,string	uing: text=(c: Checkbox; text: string)	
 checked	uing.html#checked,Checkbox	uing: checked(c: Checkbox): bool	
-checked=	uing.html#checked=,Checkbox,bool	uing: checked=(c: Checkbox; x: bool)	
+checked=	uing.html#checked=,Checkbox,bool	uing: checked=(c: Checkbox; checked: bool)	
 newCheckbox	uing.html#newCheckbox,string,proc(Checkbox)	uing: newCheckbox(text: string; ontoggled: proc (sender: Checkbox) = nil): Checkbox	
 Entry	uing.html#Entry	uing: Entry	
 impl	uing.html#impl,Entry	uing: impl(b: Entry): RawEntry	
@@ -255,7 +255,7 @@ text=	uing.html#text=,MultilineEntry,string	uing: text=(e: MultilineEntry; text:
 clear	uing.html#clear,MultilineEntry	uing: clear(e: MultilineEntry)	
 add	uing.html#add,MultilineEntry,string	uing: add(e: MultilineEntry; text: string)	
 readOnly	uing.html#readOnly,MultilineEntry	uing: readOnly(e: MultilineEntry): bool	
-readOnly=	uing.html#readOnly=,MultilineEntry,bool	uing: readOnly=(e: MultilineEntry; x: bool)	
+readOnly=	uing.html#readOnly=,MultilineEntry,bool	uing: readOnly=(e: MultilineEntry; readOnly: bool)	
 newMultilineEntry	uing.html#newMultilineEntry,proc(MultilineEntry)	uing: newMultilineEntry(onchanged: proc (sender: MultilineEntry) = nil): MultilineEntry	
 newNonWrappingMultilineEntry	uing.html#newNonWrappingMultilineEntry,proc(MultilineEntry)	uing: newNonWrappingMultilineEntry(onchanged: proc (sender: MultilineEntry) = nil): MultilineEntry	
 MenuItem	uing.html#MenuItem	uing: MenuItem	
@@ -286,6 +286,8 @@ impl	uing.html#impl,ColorButton	uing: impl(b: ColorButton): RawColorButton
 impl=	uing.html#impl=,ColorButton,RawColorButton	uing: impl=(b: ColorButton; r: RawColorButton)	
 color	uing.html#color,ColorButton	uing: color(c: ColorButton): tuple[r, g, b, a: float]	
 setColor	uing.html#setColor,ColorButton,float,float,float,float	uing: setColor(c: ColorButton; r, g, b, alpha: 0.0 .. 1.0 = 1.0)	
+setColor	uing.html#setColor,ColorButton,int,int,int,float	uing: setColor(c: ColorButton; r, g, b: int; alpha: 0.0 .. 1.0 = 1.0)	
+color=	uing.html#color=,ColorButton,Color	uing: color=(c: ColorButton; color: Color)	
 newColorButton	uing.html#newColorButton,proc(ColorButton)	uing: newColorButton(onchanged: proc (sender: ColorButton) = nil): ColorButton	
 Form	uing.html#Form	uing: Form	
 impl	uing.html#impl,Form	uing: impl(b: Form): RawForm	
@@ -330,6 +332,7 @@ image	uing.html#image,TableValue	uing: image(v: TableValue): Image
 newTableValue	uing.html#newTableValue,int	uing: newTableValue(i: int): TableValue	
 getInt	uing.html#getInt,TableValue	uing: getInt(v: TableValue): int	
 newTableValue	uing.html#newTableValue,float,float,float,float	uing: newTableValue(r, g, b, a: 0.0 .. 1.0 = 1.0): TableValue	
+newTableValue	uing.html#newTableValue,Color,float32	uing: newTableValue(color: Color; a: 0.0 .. 1.0 = 1.0&apos;f32): TableValue	
 color	uing.html#color,TableValue	uing: color(v: TableValue): tuple[r, g, b, a: float]	
 newTableModel	uing.html#newTableModel,ptr.TableModelHandler	uing: newTableModel(mh: ptr TableModelHandler): TableModel	
 rowInserted	uing.html#rowInserted,TableModel,int	uing: rowInserted(m: TableModel; newIndex: int)	
@@ -361,6 +364,9 @@ disable	uing.html#disable,W	uing: disable[W: Widget](w: W)
 destroy	uing.html#destroy,W	uing: destroy[W: Widget](w: W)	
 parent	uing.html#parent	uing: parent[W: Widget](w: W and not Window): W	
 parent=	uing.html#parent=,W,W	uing: parent=[W: Widget](w: W; parent: W)	
+signature	uing.html#signature,W	uing: signature[W: Widget](w: W): int	
+typeSignature	uing.html#typeSignature,W	uing: typeSignature[W: Widget](w: W): int	
+osSignature	uing.html#osSignature,W	uing: osSignature[W: Widget](w: W): int	
 topLevel	uing.html#topLevel,W	uing: topLevel[W: Widget](w: W): bool	
 visible	uing.html#visible,W	uing: visible[W: Widget](w: W): bool	
 verifySetParent	uing.html#verifySetParent,W,W	uing: verifySetParent[W: Widget](w, parent: W): bool	
