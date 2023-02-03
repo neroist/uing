@@ -859,7 +859,6 @@ type
     DrawFillModeWinding, 
     DrawFillModeAlternate
 
-
   DrawBrush* {.bycopy.} = object
     `type`*     : DrawBrushType
     r*          : cdouble
@@ -871,6 +870,7 @@ type
     x1*         : cdouble
     y1*         : cdouble
     outerRadius*: cdouble
+    # perhaps instead an array?
     stops*      : ptr DrawBrushGradientStop
     numStops*   : csize_t
 
