@@ -2667,7 +2667,7 @@ proc newTableValue*(r, g, b, a: 0.0..1.0 = 1.0): TableValue =
   newFinal result
   result.impl = rawui.newTableValueColor(cdouble r, cdouble g, cdouble b, cdouble a)
 
-proc newTableValue*(color: Color; a: 0.0..1.0 = 1f): TableValue = 
+proc newTableValue*(color: Color; a: 0.0..1.0 = 1.0): TableValue = 
   ## Creates a new table value to store a color in.
   ## 
   ## | `color`: Table value color.
