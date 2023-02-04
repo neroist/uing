@@ -552,7 +552,7 @@ proc underline*(a: Attribute): Underline =
 
   attributeUnderline(a.impl)
 
-proc newUnderlineColorAttribute*(u: UnderlineColor; r = 0f, g = 0f, b = 0f, a: float = 0f): Attribute =
+proc newUnderlineColorAttribute*(u: UnderlineColor; r = 0.0, g = 0.0, b = 0.0, a: float = 0.0): Attribute =
   ## Creates a new Attribute that changes the color of the underline on 
   ## the text it is applied to.
   ##  
