@@ -2742,7 +2742,7 @@ proc rowDeleted*(m: TableModel; oldIndex: int) =
 
   rawui.tableModelRowDeleted(m.impl, oldIndex.cint)
 
-proc addTextColumn*(t: Table, name: string, textModelColumn, textEditableModelColumn: int | bool, textParams: ptr TableTextColumnOptionalParams) =
+proc addTextColumn*(t: Table, name: string, textModelColumn, textEditableModelColumn: int | bool, textParams: ptr TableTextColumnOptionalParams = nil) =
   ## Appends a text column to the table.
   ## 
   ## | `t`: Table instance.
@@ -2767,7 +2767,7 @@ proc addImageColumn*(table: Table, title: string, index: int) =
 
   table.impl.tableAppendImageColumn(title, index.cint)
 
-proc addCheckboxTextColumn*(t: Table; name: string; checkboxModelColumn, checkboxEditableModelColumn, textModelColumn, textEditableModelColumn: int; textParams: ptr TableTextColumnOptionalParams) =
+proc addCheckboxTextColumn*(t: Table; name: string; checkboxModelColumn, checkboxEditableModelColumn, textModelColumn, textEditableModelColumn: int; textParams: ptr TableTextColumnOptionalParams = nil) =
   ## Appends a column to the table containing a checkbox and text.
   ## 
   ## | `t`: Table instance.
