@@ -1485,11 +1485,9 @@ window.addEventListener('DOMContentLoaded', main);
 <li><a class="reference external"
           data-doc-search-tag="uing: insertAt(c: Combobox; index: int; text: string)" href="uing.html#insertAt%2CCombobox%2Cint%2Cstring">uing: insertAt(c: Combobox; index: int; text: string)</a></li>
           <li><a class="reference external"
-          data-doc-search-tag="uing: insertAt(g: Grid; w, existing: Widget; at: At;
-         left, top, xspan, yspan, hexpand: int; halign: Align; vexpand: int;
-         valign: Align)" href="uing.html#insertAt%2CGrid%2CWidget%2CWidget%2CAt%2Cint%2Cint%2Cint%2Cint%2Cint%2CAlign%2Cint%2CAlign">uing: insertAt(g: Grid; w, existing: Widget; at: At;
-         left, top, xspan, yspan, hexpand: int; halign: Align; vexpand: int;
-         valign: Align)</a></li>
+          data-doc-search-tag="uing: insertAt(g: Grid; w, existing: Widget; at: At; left, top, xspan, yspan: int;
+         hexpand: bool; halign: Align; vexpand: bool; valign: Align)" href="uing.html#insertAt%2CGrid%2CWidget%2CWidget%2CAt%2Cint%2Cint%2Cint%2Cint%2Cbool%2CAlign%2Cbool%2CAlign">uing: insertAt(g: Grid; w, existing: Widget; at: At; left, top, xspan, yspan: int;
+         hexpand: bool; halign: Align; vexpand: bool; valign: Align)</a></li>
           <li><a class="reference external"
           data-doc-search-tag="uing: insertAt(t: Tab; name: string; index: int; w: Widget)" href="uing.html#insertAt%2CTab%2Cstring%2Cint%2CWidget">uing: insertAt(t: Tab; name: string; index: int; w: Widget)</a></li>
           </ul></dd>
@@ -1823,7 +1821,7 @@ window.addEventListener('DOMContentLoaded', main);
           </ul></dd>
 <dt><a name="newGrid" href="#newGrid"><span>newGrid:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
-          data-doc-search-tag="uing: newGrid(): Grid" href="uing.html#newGrid">uing: newGrid(): Grid</a></li>
+          data-doc-search-tag="uing: newGrid(padded: bool = false): Grid" href="uing.html#newGrid%2Cbool">uing: newGrid(padded: bool = false): Grid</a></li>
           <li><a class="reference external"
           data-doc-search-tag="rawui: newGrid(): ptr Grid" href="uing/rawui.html#newGrid">rawui: newGrid(): ptr Grid</a></li>
           </ul></dd>
@@ -1961,7 +1959,7 @@ window.addEventListener('DOMContentLoaded', main);
           </ul></dd>
 <dt><a name="newTableValue" href="#newTableValue"><span>newTableValue:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
-          data-doc-search-tag="uing: newTableValue(color: Color; a: 0.0 .. 1.0 = 1.0&apos;f32): TableValue" href="uing.html#newTableValue%2CColor%2Cfloat32">uing: newTableValue(color: Color; a: 0.0 .. 1.0 = 1.0&apos;f32): TableValue</a></li>
+          data-doc-search-tag="uing: newTableValue(color: Color; a: 0.0 .. 1.0 = 1.0): TableValue" href="uing.html#newTableValue%2CColor%2Cfloat">uing: newTableValue(color: Color; a: 0.0 .. 1.0 = 1.0): TableValue</a></li>
           <li><a class="reference external"
           data-doc-search-tag="uing: newTableValue(r, g, b, a: 0.0 .. 1.0 = 1.0): TableValue" href="uing.html#newTableValue%2Cfloat%2Cfloat%2Cfloat%2Cfloat">uing: newTableValue(r, g, b, a: 0.0 .. 1.0 = 1.0): TableValue</a></li>
           <li><a class="reference external"
@@ -2001,11 +1999,11 @@ window.addEventListener('DOMContentLoaded', main);
           </ul></dd>
 <dt><a name="newUnderlineColorAttribute" href="#newUnderlineColorAttribute"><span>newUnderlineColorAttribute:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
-          data-doc-search-tag="uing: newUnderlineColorAttribute(u: UnderlineColor; color: Color): Attribute" href="uing.html#newUnderlineColorAttribute%2CUnderlineColor%2CColor">uing: newUnderlineColorAttribute(u: UnderlineColor; color: Color): Attribute</a></li>
+          data-doc-search-tag="uing: newUnderlineColorAttribute(u: UnderlineColor; color: Color; a: float = 0.0): Attribute" href="uing.html#newUnderlineColorAttribute%2CUnderlineColor%2CColor%2Cfloat">uing: newUnderlineColorAttribute(u: UnderlineColor; color: Color; a: float = 0.0): Attribute</a></li>
           <li><a class="reference external"
-          data-doc-search-tag="uing: newUnderlineColorAttribute(u: UnderlineColor; r = 0.0&apos;f32; g = 0.0&apos;f32;
-                           b = 0.0&apos;f32; a: float = 0.0&apos;f32): Attribute" href="uing.html#newUnderlineColorAttribute%2CUnderlineColor%2Cfloat32%2Cfloat32%2Cfloat32%2Cfloat">uing: newUnderlineColorAttribute(u: UnderlineColor; r = 0.0&apos;f32; g = 0.0&apos;f32;
-                           b = 0.0&apos;f32; a: float = 0.0&apos;f32): Attribute</a></li>
+          data-doc-search-tag="uing: newUnderlineColorAttribute(u: UnderlineColor; r = 0.0; g = 0.0; b = 0.0;
+                           a: float = 0.0): Attribute" href="uing.html#newUnderlineColorAttribute%2CUnderlineColor%2Cfloat%2Cfloat%2Cfloat%2Cfloat">uing: newUnderlineColorAttribute(u: UnderlineColor; r = 0.0; g = 0.0; b = 0.0;
+                           a: float = 0.0): Attribute</a></li>
           <li><a class="reference external"
           data-doc-search-tag="rawui: newUnderlineColorAttribute(u: UnderlineColor; r: cdouble; g: cdouble;
                            b: cdouble; a: cdouble): ptr Attribute" href="uing/rawui.html#newUnderlineColorAttribute%2CUnderlineColor%2Ccdouble%2Ccdouble%2Ccdouble%2Ccdouble">rawui: newUnderlineColorAttribute(u: UnderlineColor; r: cdouble; g: cdouble;
@@ -2036,10 +2034,6 @@ window.addEventListener('DOMContentLoaded', main);
           onfocuschanged: proc (sender: Window) = nil): Window</a></li>
           <li><a class="reference external"
           data-doc-search-tag="rawui: newWindow(title: cstring; width: cint; height: cint; hasMenubar: cint): ptr Window" href="uing/rawui.html#newWindow%2Ccstring%2Ccint%2Ccint%2Ccint">rawui: newWindow(title: cstring; width: cint; height: cint; hasMenubar: cint): ptr Window</a></li>
-          </ul></dd>
-<dt><a name="numChildren" href="#numChildren"><span>numChildren:</span></a></dt><dd><ul class="simple">
-<li><a class="reference external"
-          data-doc-search-tag="uing: numChildren(f: Form): int" href="uing.html#numChildren%2CForm">uing: numChildren(f: Form): int</a></li>
           </ul></dd>
 <dt><a name="numGraphemes" href="#numGraphemes"><span>numGraphemes:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
@@ -2918,7 +2912,7 @@ window.addEventListener('DOMContentLoaded', main);
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small style="color: var(--hint);">Made with Nim. Generated: 2023-02-04 01:44:22 UTC</small>
+        <small style="color: var(--hint);">Made with Nim. Generated: 2023-02-04 18:10:28 UTC</small>
       </div>
     </div>
   </div>

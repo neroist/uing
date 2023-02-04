@@ -364,7 +364,7 @@ window.addEventListener('DOMContentLoaded', main);
               ## .. warning:: This method is not guaranteed to be called depending on the system
   numRows*: proc (a1: ptr TableModelHandler; a2: ptr TableModel): cint {.cdecl.} ## 
                                                                                  ## \ 
-                                                                                 ## Returns the number of rows in the uiTableModel.
+                                                                                 ## Returns the number of rows in the `TableModel`.
   cellValue*: proc (mh: ptr TableModelHandler; m: ptr TableModel; row: cint;
                     col: cint): ptr TableValue {.cdecl.} ## \
                                                          ## Returns the cell value for (row, col).
@@ -3138,7 +3138,7 @@ class="link-seesrc" target="_blank">Source</a>
               <span class="Comment">## .. warning:: This method is not guaranteed to be called depending on the system</span>
   <span class="Identifier">numRows</span><span class="Operator">*</span><span class="Other">:</span> <span class="Keyword">proc</span> <span class="Other">(</span><span class="Identifier">a1</span><span class="Other">:</span> <span class="Keyword">ptr</span> <a href="rawui.html#TableModelHandler"><span class="Identifier">TableModelHandler</span></a><span class="Other">;</span> <span class="Identifier">a2</span><span class="Other">:</span> <span class="Keyword">ptr</span> <a href="rawui.html#TableModel"><span class="Identifier">TableModel</span></a><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">cint</span> {.<span class="Identifier">cdecl</span>.} <span class="Comment">## </span>
                                                                                  <span class="Comment">## \ </span>
-                                                                                 <span class="Comment">## Returns the number of rows in the uiTableModel.</span>
+                                                                                 <span class="Comment">## Returns the number of rows in the `TableModel`.</span>
   <span class="Identifier">cellValue</span><span class="Operator">*</span><span class="Other">:</span> <span class="Keyword">proc</span> <span class="Other">(</span><span class="Identifier">mh</span><span class="Other">:</span> <span class="Keyword">ptr</span> <a href="rawui.html#TableModelHandler"><span class="Identifier">TableModelHandler</span></a><span class="Other">;</span> <span class="Identifier">m</span><span class="Other">:</span> <span class="Keyword">ptr</span> <a href="rawui.html#TableModel"><span class="Identifier">TableModel</span></a><span class="Other">;</span> <span class="Identifier">row</span><span class="Other">:</span> <span class="Identifier">cint</span><span class="Other">;</span>
                     <span class="Identifier">col</span><span class="Other">:</span> <span class="Identifier">cint</span><span class="Other">)</span><span class="Other">:</span> <span class="Keyword">ptr</span> <a href="rawui.html#TableValue"><span class="Identifier">TableValue</span></a> {.<span class="Identifier">cdecl</span>.} <span class="Comment">## \</span>
                                                          <span class="Comment">## Returns the cell value for (row, col).</span>
@@ -7673,7 +7673,7 @@ class="link-seesrc" target="_blank">Source</a>
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small style="color: var(--hint);">Made with Nim. Generated: 2023-02-04 01:44:21 UTC</small>
+        <small style="color: var(--hint);">Made with Nim. Generated: 2023-02-04 18:10:28 UTC</small>
       </div>
     </div>
   </div>
