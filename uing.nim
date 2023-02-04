@@ -1496,11 +1496,11 @@ proc `child=`*(g: Group; c: Widget) =
   ## | `g`: Group instance.
   ## | `c`: Widget child instance, or `nil`.
 
-  groupSetChild(
-    g.impl, 
+  groupSetChild(g.impl, 
     if c != nil: c.impl
     else: nil
   )
+
   g.child = c
 
 proc margined*(g: Group): bool = 
