@@ -130,7 +130,9 @@ proc onShouldQuit*(f: proc (data: pointer): cint {.cdecl.}; data: pointer) {.cde
 proc freeText*(text: cstring) {.cdecl, importc: "uiFreeText", libui.}
 
 type
-  Control* {.inheritable, pure, bycopy.} = object ## Base class for GUI controls providing common methods.
+  Control* {.inheritable, pure, bycopy.} = object 
+    ## Base class for GUI controls providing common methods.
+    
     signature*      : uint32
     osSignature*    : uint32
     typeSignature*  : uint32
