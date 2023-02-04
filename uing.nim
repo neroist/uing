@@ -2854,14 +2854,14 @@ proc addButtonColumn*(table: Table, title: string, index, clickableMode: int) =
 proc headerVisible*(t: Table): bool = 
   ## Returns whether or not the table header is visible.
   ## 
-  ## `t`: Table instance.
+  ## `table`: Table instance.
   
   bool tableHeaderVisible(t.impl)
 
 proc `headerVisible=`*(t: Table; visible: bool) = 
   ## Sets whether or not the table header is visible.
   ## 
-  ## `t`: Table instance.
+  ## `table`: Table instance.
   ## `visible`: `true` to show header, `false` to hide header.
 
   tableHeaderSetVisible(t.impl, cint visible)
@@ -2869,7 +2869,7 @@ proc `headerVisible=`*(t: Table; visible: bool) =
 proc selectionMode*(table: Table): TableSelectionMode = 
   ## Returns the table selection mode. Defaults to TableSelectionModeZeroOrOne
   ## 
-  ## `t`: Table instance.
+  ## `table`: Table instance.
 
   tableGetSelectionMode(table.impl)
 
@@ -2879,7 +2879,7 @@ proc `selectionMode=`*(table: Table, mode: TableSelectionMode) =
   ## .. warning:: All rows will be deselected if the existing selection is illegal
   ##          in the new selection mode.
   ## 
-  ## | `t`: Table instance.
+  ## | `table`: Table instance.
   ## | `mode`: Table selection mode to set.
 
   tableSetSelectionMode(table.impl, mode)
@@ -2887,7 +2887,7 @@ proc `selectionMode=`*(table: Table, mode: TableSelectionMode) =
 proc columnWidth*(table: Table, column: int): int = 
   ## Returns the table column width in pixels.
   ## 
-  ## | `t`: Table instance.
+  ## | `table`: Table instance.
   ## | `column`: Column index.
   
   int tableColumnWidth(table.impl, cint column)
@@ -2900,7 +2900,7 @@ proc setColumnWidth*(table: Table, column, width: int) =
   ## 
   ## .. note:: Darwin currently only resizes to the column header width on `-1`.
   ## 
-  ## | `t`: Table instance.
+  ## | `table`: Table instance.
   ## | `column`: Column index.
   ## | `width`: Column width to set in pixels, `-1` to restore automatic column sizing.
 
@@ -2909,7 +2909,7 @@ proc setColumnWidth*(table: Table, column, width: int) =
 proc sortIndicator*(table: Table, column: int): SortIndicator = 
   ## Returns the column's sort indicator displayed in the table header.
   ## 
-  ## | `t`: Table instance.
+  ## | `table`: Table instance.
   ## | `column`: Column index.
 
   tableHeaderSortIndicator(table.impl, cint column)
@@ -2923,7 +2923,7 @@ proc setSortIndicator*(table: Table, column: int, indicator: SortIndicator) =
   ## .. note:: Setting the indicator is purely visual and does not 
   ##        perform any sorting.
   ## 
-  ## | `t`: Table instance.
+  ## | `table`: Table instance.
   ## | `column`: Column index.
   ## | `indicator`: Sort indicator.
 
@@ -2932,9 +2932,9 @@ proc setSortIndicator*(table: Table, column: int, indicator: SortIndicator) =
 proc selection*(table: Table): seq[int] =
   ## Returns the current table selection.
   ## 
-  ## .. note:: For empty selections the `rows` pointer will be `@[]`.
+  ## .. note:: For empty selections an empty seq will be returned.
   ## 
-  ## `t`: Table instance.
+  ## `table`: Table instance.
 
   let tSelection = tableGetSelection(table.impl)
 
@@ -2949,7 +2949,7 @@ proc `selection=`*(table: Table; sel: openArray[cint]) =
   ## .. note:: Selecting more rows than the selection mode allows for 
   ##      results in nothing happening.
   ## 
-  ## | `t`: Table instance.
+  ## | `table`: Table instance.
   ## | `sel`: List of rows to select.
 
   var tSelection = TableSelection(
