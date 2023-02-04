@@ -1489,7 +1489,7 @@ type
     ## .. warning:: This method is not guaranteed to be called depending on the system
                                                                                                                 
     numRows*     : proc (a1: ptr TableModelHandler; a2: ptr TableModel) : cint {.cdecl.} ## \ 
-    ## Returns the number of rows in the uiTableModel.
+    ## Returns the number of rows in the `TableModel`.
 
     cellValue*   : proc (mh: ptr TableModelHandler; m: ptr TableModel; row: cint; col: cint): ptr TableValue {.cdecl.} ## \
     ## Returns the cell value for (row, col).
