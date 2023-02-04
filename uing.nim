@@ -2369,7 +2369,7 @@ proc add*(g: Grid; w: Widget; left, top, xspan, yspan: int, hexpand: bool; halig
   gridAppend(g.impl, w.impl, cint left, cint top, cint xspan, cint yspan, cint hexpand, halign, cint vexpand, valign)
   g.children.add w
 
-proc insertAt*(g: Grid; w, existing: Widget; at: At; left, top, xspan, yspan, hexpand: int; halign: Align; vexpand: int; valign: Align) = 
+proc insertAt*(g: Grid; w, existing: Widget; at: At; left, top, xspan, yspan: int, hexpand: bool; halign: Align; vexpand: bool; valign: Align) = 
   ##  Inserts a widget positioned in relation to another widget within the grid.
   ##  
   ##  | `g`: Grid instance.
