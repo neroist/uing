@@ -2406,11 +2406,14 @@ proc `padded=`*(g: Grid, padded: bool) =
 
   gridSetPadded(g.impl, cint padded)
 
-proc newGrid*(): Grid = 
+proc newGrid*(padded: bool = false): Grid = 
   ## Creates a new grid.
+  ## 
+  ## `padded`: `true` to make widgets padded, `false` otherwise.
   
   newFinal result
   result.impl = rawui.newGrid()
+  result.padded = padded
 
 # -------------------- Image --------------------------------------
 
