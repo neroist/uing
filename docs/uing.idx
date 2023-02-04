@@ -87,7 +87,7 @@ newBackgroundColorAttribute	uing.html#newBackgroundColorAttribute,Color,float	ui
 newUnderlineAttribute	uing.html#newUnderlineAttribute,Underline	uing: newUnderlineAttribute(u: Underline): Attribute	
 underline	uing.html#underline,Attribute	uing: underline(a: Attribute): Underline	
 newUnderlineColorAttribute	uing.html#newUnderlineColorAttribute,UnderlineColor,float32,float32,float32,float	uing: newUnderlineColorAttribute(u: UnderlineColor; r = 0.0&apos;f32; g = 0.0&apos;f32;\n                           b = 0.0&apos;f32; a: float = 0.0&apos;f32): Attribute	
-newUnderlineColorAttribute	uing.html#newUnderlineColorAttribute,UnderlineColor,Color	uing: newUnderlineColorAttribute(u: UnderlineColor; color: Color = Color(0)): Attribute	
+newUnderlineColorAttribute	uing.html#newUnderlineColorAttribute,UnderlineColor,Color	uing: newUnderlineColorAttribute(u: UnderlineColor; color: Color): Attribute	
 underlineColor	uing.html#underlineColor,Attribute	uing: underlineColor(a: Attribute): tuple[u: UnderlineColor, r, g, b, alpha: float]	
 OpenTypeFeatures	uing.html#OpenTypeFeatures	uing: OpenTypeFeatures	
 impl	uing.html#impl,OpenTypeFeatures	uing: impl(b: OpenTypeFeatures): RawOpenTypeFeatures	
