@@ -1161,7 +1161,7 @@ proc delete*(b: Box; index: int) =
   ## | `index`: Index of widget to be removed.
   
   boxDelete(b.impl, index.cint)
-  b.children.del index
+  b.children.delete index
 
 proc padded*(b: Box): bool = 
   ## Returns whether or not widgets within the box are padded.
@@ -1775,7 +1775,7 @@ proc delete*(c: Combobox, index: int) =
   ## | `index`: Index of the item to be deleted.
 
   comboboxDelete(c.impl, cint index)
-  c.items.del index
+  c.items.delete index
 
 proc selected*(c: Combobox): int = 
   ## Returns the index of the item selected.
@@ -2295,7 +2295,7 @@ proc delete*(f: Form, index: int) =
   ## | `index`: Index of the widget to be removed.
   
   formDelete(f.impl, cint index)
-  f.chlidren.del index
+  f.chlidren.delete index
 
 proc padded*(f: Form): bool =
   ## Returns whether or not widgets within the form are padded.
