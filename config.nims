@@ -7,3 +7,4 @@ if getCommand() == "doc":
   
   --outDir:docs
   --project
+  
