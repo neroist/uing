@@ -563,7 +563,7 @@ proc newUnderlineColorAttribute*(u: UnderlineColor; r = 0f, g = 0f, b = 0f, a: f
   newFinal result
   result.impl = rawui.newUnderlineColorAttribute(u, cdouble r, cdouble g, cdouble b, cdouble a)
 
-proc newUnderlineColorAttribute*(u: UnderlineColor; color: Color = Color(0)): Attribute =
+proc newUnderlineColorAttribute*(u: UnderlineColor; color: Color): Attribute =
   ## Creates a new Attribute that changes the color of the underline on 
   ## the text it is applied to.
   ##  
