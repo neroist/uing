@@ -2048,8 +2048,6 @@ proc addItem*(m: Menu; name: string, onclicked: proc(sender: MenuItem, window: W
   addMenuItemImpl(menuAppendItem(m.impl, name))
   result.onclicked = onclicked
 
-  m.children.add result
-
 proc addCheckItem*(m: Menu; name: string, onclicked: proc(sender: MenuItem, window: Window) = nil): MenuItem {.discardable.} =
   ## Appends a generic menu item with a checkbox.
   ## 
@@ -2087,7 +2085,6 @@ proc addQuitItem*(m: Menu, shouldQuit: proc(): bool): MenuItem =
 
   newFinal result
   result.impl = menuAppendQuitItem(m.impl)
-  m.children.add result
   var cl = ShouldQuitClosure(fn: shouldQuit)
   GC_ref cl
   onShouldQuit(wrapOnShouldQuit, cast[pointer](cl))
@@ -2103,8 +2100,6 @@ proc addPreferencesItem*(m: Menu, onclicked: proc(sender: MenuItem, window: Wind
   addMenuItemImpl(menuAppendPreferencesItem(m.impl))
   result.onclicked = onclicked
 
-  m.children.add result
-
 proc addAboutItem*(m: Menu, onclicked: proc(sender: MenuItem, window: Window) = nil): MenuItem =
   ## Appends a new `About` menu item.
   ## 
@@ -2115,8 +2110,6 @@ proc addAboutItem*(m: Menu, onclicked: proc(sender: MenuItem, window: Window) = 
   
   addMenuItemImpl(menuAppendAboutItem(m.impl))
   result.onclicked = onclicked
-
-  m.children.add result
 
 {. pop .}
 
