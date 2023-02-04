@@ -2942,8 +2942,15 @@ proc selection*(table: Table): seq[int] =
     for row in tSelection.rows.toOpenArray(0, tSelection.numRows - 1):
       result.add int row
 
-# TODO let `selection=` accept int and not cint
-proc `selection=`*(table: Table; sel: openArray[cint]) =
+proc setSelection(table: Table; sel: openArray[cint]) {.inline.} =
+  var tSelection = TableSelection(
+    numRows: cint sel.len,
+    rows: cast[ptr UncheckedArray[cint]](sel)
+  )
+
+  tableSetSelection(table.impl, addr tSelection)
+
+proc `selection=`*(table: Table; sel: openArray[int]) =
   ## Sets the current table selection, clearing any previous selection.
   ## 
   ## .. note:: Selecting more rows than the selection mode allows for 
@@ -2951,13 +2958,13 @@ proc `selection=`*(table: Table; sel: openArray[cint]) =
   ## 
   ## | `table`: Table instance.
   ## | `sel`: List of rows to select.
+  
+  var selection: seq[cint]
+  
+  for i in sel:
+    selection.add cint i 
 
-  var tSelection = TableSelection(
-    numRows: cint sel.len,
-    rows: cast[ptr UncheckedArray[cint]](sel)
-  )
-
-  tableSetSelection(table.impl, addr tSelection)
+  table.setSelection(selection)
 
 proc tableOnRowClickedCb(w: ptr rawui.Table; row: cint; data: pointer) {.cdecl.} =
     let widget = cast[Table](data)
