@@ -6,14 +6,14 @@ import uing
 from uing/rawui import nil
 
 # maybe add this to uing too?
-proc rect(ctx: ptr DrawContext, x, y, width, height, r, g, b, a: float) = 
+proc rect(ctx: ptr DrawContext, x, y, width, height: float, r, g, b: int, a: float = 1f) = 
   var 
     brush: DrawBrush
     path = newDrawPath(DrawFillModeWinding)
 
-  brush.r = cdouble r
-  brush.g = cdouble g
-  brush.b = cdouble b
+  brush.r = cdouble (r/255)
+  brush.g = cdouble (g/255)
+  brush.b = cdouble (b/255)
   brush.a = cdouble a
 
   path.addRectangle(x, y, width, height)
@@ -22,11 +22,12 @@ proc rect(ctx: ptr DrawContext, x, y, width, height, r, g, b, a: float) =
   free path
 
 proc drawHandler(a: ptr AreaHandler; area: ptr rawui.Area; p: ptr AreaDrawParams) {.cdecl.} =
-  rect(p.context, 0, 0, p.areaWidth, p.areaHeight, 128/255, 128/255, 128/255, 1f)
-  rect(p.context, 0, 0, 400, 400, 255/255, 255/255, 255/255, 1f)
-  rect(p.context, 10, 10, 20, 20, 255/255, 0/255, 0/255, 1f)
-  rect(p.context, 30, 30, 30, 30, 0/255, 255/255, 0/255, 1f)
-  rect(p.context, 60, 60, 40, 40, 0/255, 0/255, 255/255, 1f)
+  rect(p.context, 0, 0, p.areaWidth, p.areaHeight, 128, 128, 128)
+
+  rect(p.context, 0, 0, 400, 400, 255, 255, 255)
+  rect(p.context, 10, 10, 20, 20, 255, 0, 0)
+  rect(p.context, 30, 30, 30, 30, 0, 255, 0)
+  rect(p.context, 60, 60, 40, 40, 0, 0, 255)
 
 proc main = 
   let window = newWindow("Drawing Sample", 420, 450)
@@ -47,3 +48,4 @@ proc main =
 when isMainModule:
   init()
   main()
+  
