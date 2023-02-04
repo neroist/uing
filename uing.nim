@@ -563,7 +563,7 @@ proc newUnderlineColorAttribute*(u: UnderlineColor; r = 0.0, g = 0.0, b = 0.0, a
   newFinal result
   result.impl = rawui.newUnderlineColorAttribute(u, cdouble r, cdouble g, cdouble b, cdouble a)
 
-proc newUnderlineColorAttribute*(u: UnderlineColor; color: Color): Attribute =
+proc newUnderlineColorAttribute*(u: UnderlineColor; color: Color, a: float = 0.0): Attribute =
   ## Creates a new Attribute that changes the color of the underline on 
   ## the text it is applied to.
   ##  
@@ -574,7 +574,7 @@ proc newUnderlineColorAttribute*(u: UnderlineColor; color: Color): Attribute =
   let (r, g, b) = color.extractRGB()
 
   newFinal result
-  result.impl = rawui.newUnderlineColorAttribute(u, cdouble r/255, cdouble g/255, cdouble b/255, cdouble 1)
+  result.impl = rawui.newUnderlineColorAttribute(u, cdouble r/255, cdouble g/255, cdouble b/255, cdouble a)
 
 proc underlineColor*(a: Attribute): tuple[u: UnderlineColor, r, g, b, alpha: float] = 
   ## Returns the underline color stored in `a`. 
