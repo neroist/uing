@@ -62,7 +62,7 @@ var
   p: TableParams
   tp {.used.}: TableTextColumnOptionalParams 
 
-proc main*() =
+proc main() =
   var mainwin: Window
 
   var menu = newMenu("File")
