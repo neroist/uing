@@ -1,8 +1,8 @@
 # TODOs
 
 - [ ] Finish and improve documentation (Most of the library is documented, not *all* of it though)
-- [x] Fix [`drawtext.nim`](examples/drawtext.nim) 
-- [x] Provide an example for `timer()` (see [`timer.nim`](examples/timer.nim)) 
+- [x] Fix [`drawtext.nim`](examples/drawtext.nim)
+- [x] Provide an example for `timer()` (see [`timer.nim`](examples/timer.nim))
 - [ ] Provide an example with multithreading
 - [x] Add `window` parameter to `MenuItem`'s `onClicked`
 - [ ] Wrap `Image.add` *properly*

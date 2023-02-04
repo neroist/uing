@@ -1,8 +1,8 @@
 # UIng
-#### [**Documentation**](https://neroist.github.io/uing/uing.html) 
+
+#### [**Documentation**](https://neroist.github.io/uing/uing.html)
 
 A fork of [ui](https://github.com/nim-lang/ui) that wraps [libui-ng](https://github.com/libui-ng/libui-ng) instead of the old and unmaintained [libui](https://github.com/andlabs/libui) library.
-
 
 This package wraps the [libui-ng](https://github.com/libui-ng/libui-ng) C library. It
 also provides a high-level Nim binding for it.
@@ -20,12 +20,12 @@ requires "uing"
 ```
 
 ## Dependencies
+
 - `gtk+-3.0`
 
 Linux: `$ sudo apt-get install libgtk-3-dev`
 
 OSX: `$ brew install gtk+3`
-
 
 You should then be able to compile the sample code in the
 [`examples/`](examples/)
