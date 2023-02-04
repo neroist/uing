@@ -2346,7 +2346,7 @@ type
     ## Widgets can also be placed in relation to other widget using `At <uing/rawui.html#At>`_
     ## attributes.
     
-    children: seq[Widget]
+    children*: seq[Widget]
 
 export Align, At
 
@@ -2356,7 +2356,7 @@ proc add*(g: Grid; w: Widget; left, top, xspan, yspan: int, hexpand: bool; halig
   ## Appends a widget to the grid.
   ## 
   ## | `g`: Grid instance.
-  ## | `c`: The widget to insert.
+  ## | `w`: The widget to insert.
   ## | `left`: Placement as number of columns from the left. Integer in range of `[INT_MIN, INT_MAX]`.
   ## | `top`: Placement as number of rows from the top. Integer in range of `[INT_MIN, INT_MAX]`.
   ## | `xspan`: Number of columns to span. Integer in range of `[0, INT_MAX]`.
@@ -2373,14 +2373,14 @@ proc insertAt*(g: Grid; w, existing: Widget; at: At; left, top, xspan, yspan, he
   ##  Inserts a widget positioned in relation to another widget within the grid.
   ##  
   ##  | `g`: Grid instance.
-  ##  | `c`: The widget to insert.
+  ##  | `w`: The widget to insert.
   ##  | `existing`: The existing widget to position relatively to.
   ##  | `at`: Placement specifier in relation to `existing` widget.
   ##  | `xspan`: Number of columns to span. Integer in range of `[0, INT_MAX]`.
   ##  | `yspan`: Number of rows to span. Integer in range of `[0, INT_MAX]`.
-  ##  | `hexpand`: `TRUE` to expand reserved area horizontally, `FALSE` otherwise.
+  ##  | `hexpand`: `true` to expand reserved area horizontally, `false` otherwise.
   ##  | `halign`: Horizontal alignment of the widget within the reserved space.
-  ##  | `vexpand`: `TRUE` to expand reserved area vertically, `FALSE` otherwise.
+  ##  | `vexpand`: `true` to expand reserved area vertically, `false` otherwise.
   ##  | `valign`: Vertical alignment of the widget within the reserved space. 
 
   gridInsertAt(g.impl, w.impl, existing.impl, at, cint xspan, cint yspan, cint hexpand, halign, cint vexpand, valign) 
