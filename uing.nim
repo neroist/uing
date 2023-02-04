@@ -1006,7 +1006,12 @@ proc `margined=`*(w: Window; margined: bool) =
 
   windowSetMargined(w.impl, cint(margined))
 
-proc child*(w: Window): Widget = w.child
+proc child*(w: Window): Widget = 
+  ## Returns the window's child.
+  ## 
+  ## | `w`: Window instance.
+  
+  w.child
 
 proc `child=`*(w: Window; child: Widget) =
   ##  Sets the window's child.
