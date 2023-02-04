@@ -20,6 +20,15 @@ when defined(useLibUiDll):
 
   {.pragma: libui, dynlib: dllName.}
 
+elif defined(useLibUiStaticLib):
+  when defined(windows):
+    const libName* = "libui.lib"
+  else:
+    const libName* = "libui.a"
+
+  {.passL: libname.}
+  {.pragma: libui.}
+
 else:
   {.pragma: libui.}
 
