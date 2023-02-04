@@ -2123,9 +2123,9 @@ proc addSeparator*(m: Menu) =
 proc newMenu*(name: string): Menu =
   ## Creates a new menu.
   ## 
-  ## .. note:: To add a menu to a window,
-  ##        they **must** be created before calling 
-  ##        `newWindow()`
+  ## .. important:: To add a menu and its items to 
+  ##            a window, they **must** be created 
+  ##            before calling `newWindow()`
   ## 
   ## Typical values are `File`, `Edit`, `Help`, etc.
   ## 
