@@ -22,7 +22,7 @@ proc rect(ctx: ptr DrawContext, x, y, width, height: float, r, g, b: int, a: flo
   free path
 
 proc drawHandler(a: ptr AreaHandler; area: ptr rawui.Area; p: ptr AreaDrawParams) {.cdecl.} =
-  rect(p.context, 0, 0, p.areaWidth, p.areaHeight, 0, 0, 255)
+  rect(p.context, 0, 0, p.areaWidth, p.areaHeight, 0, 0, 0)
 
   for y in countup(0, 255, 2):
     let color = Color(y).extractRGB()
