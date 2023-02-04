@@ -2288,14 +2288,6 @@ proc add*(f: Form, label: string, w: Widget, stretchy: bool = false) =
   formAppend(f.impl, label, w.impl, cint stretchy)
   f.chlidren.add (label: label, widget: w)
 
-# TODO maybe kinda useless since you can do len(form.children)
-proc numChildren*(f: Form): int = 
-  ## Returns the number of widget contained within the form.
-  ## 
-  ## `f`: Form instance.
-  
-  int formNumChildren(f.impl)
-
 proc delete*(f: Form, index: int) =
   ## Removes the widget at `index` from the form.
   ## 
