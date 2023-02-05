@@ -592,16 +592,16 @@ proc newRadioButtons*(): ptr RadioButtons {.cdecl, importc: "uiNewRadioButtons",
                                         libui.}
 
 type
-  Tm* = object 
-    sec*   : cint ## seconds [0,61]
-    min*   : cint ## minutes [0,59]
-    hour*  : cint ## hour [0,23]
-    mday*  : cint ## day of month [1,31]
-    mon*   : cint ## month of year [0,11]
-    year*  : cint ## years since 1900
-    wday*  : cint ## day of week [0,6] (Sunday = 0)
-    yday*  : cint ## day of year [0,365]
-    isdst* : cint ## daylight savings flag
+  Tm* {.importc: "struct tm", header: "time.h", bycopy.} = object 
+    tm_sec*   : cint ## seconds [0,61]
+    tm_min*   : cint ## minutes [0,59]
+    tm_hour*  : cint ## hour [0,23]
+    tm_mday*  : cint ## day of month [1,31]
+    tm_mon*   : cint ## month of year [0,11]
+    tm_year*  : cint ## years since 1900
+    tm_wday*  : cint ## day of week [0,6] (Sunday = 0)
+    tm_yday*  : cint ## day of year [0,365]
+    tm_isdst* : cint ## daylight savings flag
 
   DateTimePicker* = object of Control
 
