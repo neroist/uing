@@ -3121,16 +3121,16 @@ proc time*(d: DateTimePicker): DateTime =
   ## 
   ## `d`: DateTimePicker instance
   
-  var tm: rawui.Tm
+  var tm: Tm
   dateTimePickerTime(d.impl, addr tm)
 
   result = dateTime(
-    int tm.year + 1900,
-    Month(tm.mon + 1),
-    int tm.mday,
-    int tm.hour,
-    int tm.min,
-    int tm.sec
+    int tm.tm_year + 1900,
+    Month(tm.tm_mon + 1),
+    int tm.tm_mday,
+    int tm.tm_hour,
+    int tm.tm_min,
+    int tm.tm_sec
   )
 
 proc `time=`*(d: DateTimePicker, dateTime: DateTime) =
@@ -3141,15 +3141,15 @@ proc `time=`*(d: DateTimePicker, dateTime: DateTime) =
   ## | `time`: Date and/or time as local time.
 
   var tm = rawui.Tm(
-    sec: cint dateTime.second,
-    min: cint dateTime.minute,
-    hour: cint dateTime.hour,
-    mday: cint dateTime.monthday,
-    mon: cint ord(dateTime.month) - 1,
-    year: cint dateTime.year - 1900,
-    wday: cint ord(dateTime.weekday) - 1,
-    yday: cint dateTime.yearday,
-    isdst: cint -1 # dateTime.isDst
+    tm_sec: cint dateTime.second,
+    tm_min: cint dateTime.minute,
+    tm_hour: cint dateTime.hour,
+    tm_mday: cint dateTime.monthday,
+    tm_mon: cint ord(dateTime.month) - 1,
+    tm_year: cint dateTime.year - 1900,
+    tm_wday: cint ord(dateTime.weekday) - 1,
+    tm_yday: cint dateTime.yearday,
+    tm_isdst: cint -1 # dateTime.isDst
   )
 
   dateTimePickerSetTime(d.impl, addr tm)
