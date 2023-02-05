@@ -32,6 +32,9 @@ proc drawHandler(a: ptr AreaHandler; area: ptr rawui.Area; p: ptr AreaDrawParams
 proc main = 
   let window = newWindow("Drawing Sample", 420, 450)
 
+  let box = newHorizontalBox(true)
+  window.child = box
+
   var handler: AreaHandler
   handler.draw = drawHandler
   handler.mouseEvent = (_: ptr AreaHandler, a: ptr rawui.Area, b: ptr AreaMouseEvent) {.cdecl.} => (discard)
@@ -40,7 +43,7 @@ proc main =
   handler.keyEvent = (_: ptr AreaHandler, a: ptr rawui.Area, b: ptr AreaKeyEvent) {.cdecl.} => cint 0
 
   let area = newArea(addr handler)
-  window.child = area
+  box.add area, true
 
   show window
   mainLoop()
