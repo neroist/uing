@@ -76,12 +76,12 @@ else:
     {.passL: r"-lcomctl32".}
     {.passL: r"-ld2d1".}
     {.passL: r"-ldwrite".}
-    {.passL: r"-lUxTheme".}
-    {.passL: r"-lUsp10".}
+    {.passL: r"-luxTheme".}
+    {.passL: r"-lusp10".}
     {.passL: r"-lgdi32".}
     {.passL: r"-luser32".}
-    {.passl: r"-lkernel32".}
-    {.link: r"..\res\resources.o".}
+    {.passL: r"-lkernel32".}
+    {.link: r"../res/resources.o".}
 
   when defined(vcc):
     {.passC: "/EHsc".}
