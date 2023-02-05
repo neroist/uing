@@ -81,12 +81,12 @@ else:
     {.passL: "-lgdi32".}
     {.passL: "-luser32".}
     {.passL: "-lkernel32".}
-    {.link: "../res/resources.o".}
 
-    when defined(cpu32):
-      {.link: "../res/winim32.res".}
-    else:
+    when defined(cpu64):
+      {.link: "../res/resources.o".} # resources.o is a 64-bit object file
       {.link: "../res/winim64.res".}
+    else:
+      {.link: "../res/winim32.res".}
 
   when defined(vcc):
     {.passC: "/EHsc".}
