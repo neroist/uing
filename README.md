@@ -19,6 +19,12 @@ or add it to your project's Nimble file:
 requires "uing"
 ```
 
+## Runtime Requirements
+
+* Windows: Windows Vista SP2 with Platform Update or newer
+* Unix: GTK+ 3.10 or newer
+* Mac OS X: OS X 10.8 or newer
+
 ## Dependencies
 
 - `gtk+-3.0`
