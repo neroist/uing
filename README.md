@@ -29,7 +29,7 @@ OSX: `$ brew install gtk+3`
 
 You should then be able to compile the sample code in the
 [`examples/`](examples/)
-directory and run the tests successfully.
+directory and run the [tests](tests/) successfully.
 
 ## Static vs. dynamic linking
 
