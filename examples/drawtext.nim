@@ -3,8 +3,6 @@ import std/sugar
 import uing
 from uing/rawui import nil
 
-# TODO i really dislike these global vars
-
 var 
   #systemFont: Checkbox
   fontButton: FontButton
