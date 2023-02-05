@@ -42,7 +42,7 @@ proc modelCellValue(mh: ptr TableModelHandler, m: ptr rawui.TableModel, row, col
     of COLUMN_ACTION:
       result = newTableValue("Apply").impl
     else:
-      result = newTableValue("row " & $row & "x col " & $col).impl
+      result = newTableValue("row " & $row & " x col " & $col).impl
 
 proc modelSetCellValue(mh: ptr TableModelHandler, m: ptr rawui.TableModel, row, col: cint, val: ptr rawui.TableValue) {.cdecl.} =
   if col == COLUMN_ACTION:
