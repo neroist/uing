@@ -1,6 +1,6 @@
 switch("path", "$projectDir")
 
 when defined(linux):
-    --warnings:off
+  --warnings:off
     
 #--d:useLibUiDll

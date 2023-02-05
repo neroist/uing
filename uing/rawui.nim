@@ -65,23 +65,29 @@ else:
     {.compile: ("./libui/unix/*.c", "unix_$#.obj").}
 
   when defined(gcc) and defined(windows):
-    {.passL: r"-lwinspool".}
-    {.passL: r"-lcomdlg32".}
-    {.passL: r"-ladvapi32".}
-    {.passL: r"-lshell32".}
-    {.passL: r"-lole32".}
-    {.passL: r"-loleaut32".}
+    {.passL: "-lstdc++".}
+    {.passL: "-lwinspool".}
+    {.passL: "-lcomdlg32".}
+    {.passL: "-ladvapi32".}
+    {.passL: "-lshell32".}
+    {.passL: "-lole32".}
+    {.passL: "-loleaut32".}
 
-    {.passL: r"-luuid".}
-    {.passL: r"-lcomctl32".}
-    {.passL: r"-ld2d1".}
-    {.passL: r"-ldwrite".}
-    {.passL: r"-luxTheme".}
-    {.passL: r"-lusp10".}
-    {.passL: r"-lgdi32".}
-    {.passL: r"-luser32".}
-    {.passL: r"-lkernel32".}
-    {.link: r"../res/resources.o".}
+    {.passL: "-luuid".}
+    {.passL: "-lcomctl32".}
+    {.passL: "-ld2d1".}
+    {.passL: "-ldwrite".}
+    {.passL: "-luxTheme".}
+    {.passL: "-lusp10".}
+    {.passL: "-lgdi32".}
+    {.passL: "-luser32".}
+    {.passL: "-lkernel32".}
+
+    when defined(cpu64):
+      {.link: "../res/resources.o".} # resources.o is a 64-bit object file
+      {.link: "../res/winim64.res".}
+    else:
+      {.link: "../res/winim32.res".}
 
   when defined(vcc):
     {.passC: "/EHsc".}
@@ -95,23 +101,24 @@ else:
       {.link: r"C:\Program Files (x86)\Windows Kits\8.1\Lib\winv6.3\um\" & arch & r"\UxTheme.lib".}
       {.link: r"C:\Program Files (x86)\Windows Kits\8.1\Lib\winv6.3\um\" & arch & r"\Usp10.lib".}
 
-    {.link: r"kernel32.lib".}
-    {.link: r"user32.lib".}
-    {.link: r"gdi32.lib".}
-    {.link: r"winspool.lib".}
-    {.link: r"comdlg32.lib".}
-    {.link: r"advapi32.lib".}
-    {.link: r"shell32.lib".}
-    {.link: r"ole32.lib".}
-    {.link: r"oleaut32.lib".}
-    {.link: r"uuid.lib".}
-    {.link: r"comctl32.lib".}
+    {.link: "kernel32.lib".}
+    {.link: "user32.lib".}
+    {.link: "gdi32.lib".}
+    {.link: "winspool.lib".}
+    {.link: "comdlg32.lib".}
+    {.link: "advapi32.lib".}
+    {.link: "shell32.lib".}
+    {.link: "ole32.lib".}
+    {.link: "oleaut32.lib".}
+    {.link: "uuid.lib".}
+    {.link: "comctl32.lib".}
 
-    {.link: r"d2d1.lib".}
-    {.link: r"dwrite.lib".}
-    {.link: r"UxTheme.lib".}
-    {.link: r"Usp10.lib".}
+    {.link: "d2d1.lib".}
+    {.link: "dwrite.lib".}
+    {.link: "UxTheme.lib".}
+    {.link: "Usp10.lib".}
     {.link: r"..\res\resources.res".}
+    {.link: r"..\res\winimvcc.res".}
 
 type
   ForEach* {.size: sizeof(cint).} = enum
