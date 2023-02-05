@@ -65,6 +65,7 @@ else:
     {.compile: ("./libui/unix/*.c", "unix_$#.obj").}
 
   when defined(gcc) and defined(windows):
+    {.passL: "-lstdc++".}
     {.passL: "-lwinspool".}
     {.passL: "-lcomdlg32".}
     {.passL: "-ladvapi32".}
