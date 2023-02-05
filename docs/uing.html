@@ -278,9 +278,9 @@ window.addEventListener('DOMContentLoaded', main);
       <li><a class="reference" href="#addCheckboxTextColumn%2CTable%2Cstring%2Cint%2Cint%2Cint%2Cint%2Cptr.TableTextColumnOptionalParams"
     title="addCheckboxTextColumn(t: Table; name: string; checkboxModelColumn,
     checkboxEditableModelColumn, textModelColumn, textEditableModelColumn: int;
-                      textParams: ptr TableTextColumnOptionalParams)">addCheckboxTextColumn(t: Table; name: string; checkboxModelColumn,
+                      textParams: ptr TableTextColumnOptionalParams = nil)">addCheckboxTextColumn(t: Table; name: string; checkboxModelColumn,
     checkboxEditableModelColumn, textModelColumn, textEditableModelColumn: int;
-                      textParams: ptr TableTextColumnOptionalParams)</a></li>
+                      textParams: ptr TableTextColumnOptionalParams = nil)</a></li>
 
   </ul>
   <ul class="simple nested-toc-section">addCheckItem
@@ -342,9 +342,9 @@ window.addEventListener('DOMContentLoaded', main);
       <li><a class="reference" href="#addTextColumn%2CTable%2Cstring%2C%2C%2Cptr.TableTextColumnOptionalParams"
     title="addTextColumn(t: Table; name: string;
               textModelColumn, textEditableModelColumn: int | bool;
-              textParams: ptr TableTextColumnOptionalParams)">addTextColumn(t: Table; name: string;
+              textParams: ptr TableTextColumnOptionalParams = nil)">addTextColumn(t: Table; name: string;
               textModelColumn, textEditableModelColumn: int | bool;
-              textParams: ptr TableTextColumnOptionalParams)</a></li>
+              textParams: ptr TableTextColumnOptionalParams = nil)</a></li>
 
   </ul>
   <ul class="simple nested-toc-section">addUnattributed
@@ -1345,8 +1345,8 @@ window.addEventListener('DOMContentLoaded', main);
 
   </ul>
   <ul class="simple nested-toc-section">selection=
-      <li><a class="reference" href="#selection%3D%2CTable%2CopenArray%5Bcint%5D"
-    title="selection=(table: Table; sel: openArray[cint])">selection=(table: Table; sel: openArray[cint])</a></li>
+      <li><a class="reference" href="#selection%3D%2CTable%2CopenArray%5Bint%5D"
+    title="selection=(table: Table; sel: openArray[int])">selection=(table: Table; sel: openArray[int])</a></li>
 
   </ul>
   <ul class="simple nested-toc-section">selectionMode
@@ -1740,9 +1740,9 @@ class="link-seesrc" target="_blank">Source</a>
 <p>All functions assume local time and do <strong>NOT</strong> perform any time zone conversions.</p>
 
 &nbsp;&nbsp;<a
-href="https://github.com/neroist/uing/tree/main/uing.nim#L3103"
+href="https://github.com/neroist/uing/tree/main/uing.nim#L3110"
 class="link-seesrc" target="_blank">Source</a>
-&nbsp;&nbsp;<a href="https://github.com/neroist/uing/edit/main/uing.nim#L3103" class="link-seesrc" target="_blank" >Edit</a>
+&nbsp;&nbsp;<a href="https://github.com/neroist/uing/edit/main/uing.nim#L3110" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 </div>
@@ -2444,7 +2444,7 @@ class="link-seesrc" target="_blank">Source</a>
 <div id="addCheckboxTextColumn,Table,string,int,int,int,int,ptr.TableTextColumnOptionalParams">
 <dt><pre><span class="Keyword">proc</span> <a href="#addCheckboxTextColumn%2CTable%2Cstring%2Cint%2Cint%2Cint%2Cint%2Cptr.TableTextColumnOptionalParams"><span class="Identifier">addCheckboxTextColumn</span></a><span class="Other">(</span><span class="Identifier">t</span><span class="Other">:</span> <a href="uing.html#Table"><span class="Identifier">Table</span></a><span class="Other">;</span> <span class="Identifier">name</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span> <span class="Identifier">checkboxModelColumn</span><span class="Other">,</span>
     <span class="Identifier">checkboxEditableModelColumn</span><span class="Other">,</span> <span class="Identifier">textModelColumn</span><span class="Other">,</span> <span class="Identifier">textEditableModelColumn</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">;</span>
-                           <span class="Identifier">textParams</span><span class="Other">:</span> <span class="Keyword">ptr</span> <a href="uing/rawui.html#TableTextColumnOptionalParams"><span class="Identifier">TableTextColumnOptionalParams</span></a><span class="Other">)</span> {.
+                           <span class="Identifier">textParams</span><span class="Other">:</span> <span class="Keyword">ptr</span> <a href="uing/rawui.html#TableTextColumnOptionalParams"><span class="Identifier">TableTextColumnOptionalParams</span></a> <span class="Other">=</span> <span class="Keyword">nil</span><span class="Other">)</span> {.
     <span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
 <dd>
 
@@ -2594,7 +2594,7 @@ class="link-seesrc" target="_blank">Source</a>
 <div id="addTextColumn,Table,string,,,ptr.TableTextColumnOptionalParams">
 <dt><pre><span class="Keyword">proc</span> <a href="#addTextColumn%2CTable%2Cstring%2C%2C%2Cptr.TableTextColumnOptionalParams"><span class="Identifier">addTextColumn</span></a><span class="Other">(</span><span class="Identifier">t</span><span class="Other">:</span> <a href="uing.html#Table"><span class="Identifier">Table</span></a><span class="Other">;</span> <span class="Identifier">name</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">;</span>
                    <span class="Identifier">textModelColumn</span><span class="Other">,</span> <span class="Identifier">textEditableModelColumn</span><span class="Other">:</span> <span class="Identifier">int</span> <span class="Operator">|</span> <span class="Identifier">bool</span><span class="Other">;</span>
-                   <span class="Identifier">textParams</span><span class="Other">:</span> <span class="Keyword">ptr</span> <a href="uing/rawui.html#TableTextColumnOptionalParams"><span class="Identifier">TableTextColumnOptionalParams</span></a><span class="Other">)</span></pre></dt>
+                   <span class="Identifier">textParams</span><span class="Other">:</span> <span class="Keyword">ptr</span> <a href="uing/rawui.html#TableTextColumnOptionalParams"><span class="Identifier">TableTextColumnOptionalParams</span></a> <span class="Other">=</span> <span class="Keyword">nil</span><span class="Other">)</span></pre></dt>
 <dd>
 
 Appends a text column to the table.<p><tt class="docutils literal"><span class="pre"><span class="Identifier">t</span></span></tt>: Table instance.<br/><tt class="docutils literal"><span class="pre"><span class="Identifier">name</span></span></tt>: Column title text.<br/><tt class="docutils literal"><span class="pre"><span class="Identifier">textModelColumn</span></span></tt>: Column that holds the text to be displayed.<br/><tt class="docutils literal"><span class="pre"><span class="Identifier">textEditableModelColumn</span></span></tt>: Column that defines whether or not the text is editable.<br/><span style="margin-left: 12.0em"><tt class="docutils literal"><span class="pre"><span class="Identifier">TableModelColumnNeverEditable</span></span></tt> to make all rows never editable.</span><br/><span style="margin-left: 12.0em"><tt class="docutils literal"><span class="pre"><span class="Identifier">TableModelColumnAlwaysEditable</span></span></tt> to make all rows always editable.</span><br/><tt class="docutils literal"><span class="pre"><span class="Identifier">textParams</span></span></tt>: Text display settings, <tt class="docutils literal"><span class="pre"><span class="Keyword">nil</span></span></tt> to use defaults.<br/></p>
@@ -2970,7 +2970,7 @@ class="link-seesrc" target="_blank">Source</a>
 <dt><pre><span class="Keyword">proc</span> <a href="#columnWidth%2CTable%2Cint"><span class="Identifier">columnWidth</span></a><span class="Other">(</span><span class="Identifier">table</span><span class="Other">:</span> <a href="uing.html#Table"><span class="Identifier">Table</span></a><span class="Other">;</span> <span class="Identifier">column</span><span class="Other">:</span> <span class="Identifier">int</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">int</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
 <dd>
 
-Returns the table column width in pixels.<p><tt class="docutils literal"><span class="pre"><span class="Identifier">t</span></span></tt>: Table instance.<br/><tt class="docutils literal"><span class="pre"><span class="Identifier">column</span></span></tt>: Column index.<br/></p>
+Returns the table column width in pixels.<p><tt class="docutils literal"><span class="pre"><span class="Identifier">table</span></span></tt>: Table instance.<br/><tt class="docutils literal"><span class="pre"><span class="Identifier">column</span></span></tt>: Column index.<br/></p>
 &nbsp;&nbsp;<a
 href="https://github.com/neroist/uing/tree/main/uing.nim#L2887"
 class="link-seesrc" target="_blank">Source</a>
@@ -3085,9 +3085,9 @@ class="link-seesrc" target="_blank">Source</a>
 
 Dispose and free all allocated resources.
 &nbsp;&nbsp;<a
-href="https://github.com/neroist/uing/tree/main/uing.nim#L3017"
+href="https://github.com/neroist/uing/tree/main/uing.nim#L3024"
 class="link-seesrc" target="_blank">Source</a>
-&nbsp;&nbsp;<a href="https://github.com/neroist/uing/edit/main/uing.nim#L3017" class="link-seesrc" target="_blank" >Edit</a>
+&nbsp;&nbsp;<a href="https://github.com/neroist/uing/edit/main/uing.nim#L3024" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 </div>
@@ -3112,9 +3112,9 @@ class="link-seesrc" target="_blank">Source</a>
 
 Disables the widget.
 &nbsp;&nbsp;<a
-href="https://github.com/neroist/uing/tree/main/uing.nim#L3012"
+href="https://github.com/neroist/uing/tree/main/uing.nim#L3019"
 class="link-seesrc" target="_blank">Source</a>
-&nbsp;&nbsp;<a href="https://github.com/neroist/uing/edit/main/uing.nim#L3012" class="link-seesrc" target="_blank" >Edit</a>
+&nbsp;&nbsp;<a href="https://github.com/neroist/uing/edit/main/uing.nim#L3019" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 </div>
@@ -3151,9 +3151,9 @@ class="link-seesrc" target="_blank">Source</a>
 
 Enables the widget.
 &nbsp;&nbsp;<a
-href="https://github.com/neroist/uing/tree/main/uing.nim#L3007"
+href="https://github.com/neroist/uing/tree/main/uing.nim#L3014"
 class="link-seesrc" target="_blank">Source</a>
-&nbsp;&nbsp;<a href="https://github.com/neroist/uing/edit/main/uing.nim#L3007" class="link-seesrc" target="_blank" >Edit</a>
+&nbsp;&nbsp;<a href="https://github.com/neroist/uing/edit/main/uing.nim#L3014" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 </div>
@@ -3163,9 +3163,9 @@ class="link-seesrc" target="_blank">Source</a>
 
 Returns whether or not the widget is enabled. Defaults to <tt class="docutils literal"><span class="pre"><span class="Identifier">true</span></span></tt>.
 &nbsp;&nbsp;<a
-href="https://github.com/neroist/uing/tree/main/uing.nim#L3001"
+href="https://github.com/neroist/uing/tree/main/uing.nim#L3008"
 class="link-seesrc" target="_blank">Source</a>
-&nbsp;&nbsp;<a href="https://github.com/neroist/uing/edit/main/uing.nim#L3001" class="link-seesrc" target="_blank" >Edit</a>
+&nbsp;&nbsp;<a href="https://github.com/neroist/uing/edit/main/uing.nim#L3008" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 </div>
@@ -3177,9 +3177,9 @@ class="link-seesrc" target="_blank">Source</a>
 <p>Checks if the widget and all it's parents are enabled to make sure it can be interacted with by the user.</p>
 
 &nbsp;&nbsp;<a
-href="https://github.com/neroist/uing/tree/main/uing.nim#L3087"
+href="https://github.com/neroist/uing/tree/main/uing.nim#L3094"
 class="link-seesrc" target="_blank">Source</a>
-&nbsp;&nbsp;<a href="https://github.com/neroist/uing/edit/main/uing.nim#L3087" class="link-seesrc" target="_blank" >Edit</a>
+&nbsp;&nbsp;<a href="https://github.com/neroist/uing/edit/main/uing.nim#L3094" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 </div>
@@ -3471,9 +3471,9 @@ class="link-seesrc" target="_blank">Source</a>
 
 Frees the widget.
 &nbsp;&nbsp;<a
-href="https://github.com/neroist/uing/tree/main/uing.nim#L3095"
+href="https://github.com/neroist/uing/tree/main/uing.nim#L3102"
 class="link-seesrc" target="_blank">Source</a>
-&nbsp;&nbsp;<a href="https://github.com/neroist/uing/edit/main/uing.nim#L3095" class="link-seesrc" target="_blank" >Edit</a>
+&nbsp;&nbsp;<a href="https://github.com/neroist/uing/edit/main/uing.nim#L3102" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 </div>
@@ -3632,7 +3632,7 @@ class="link-seesrc" target="_blank">Source</a>
 <dd>
 
 <p>Returns whether or not the table header is visible.</p>
-<p><tt class="docutils literal"><span class="pre"><span class="Identifier">t</span></span></tt>: Table instance.</p>
+<p><tt class="docutils literal"><span class="pre"><span class="Identifier">table</span></span></tt>: Table instance.</p>
 
 &nbsp;&nbsp;<a
 href="https://github.com/neroist/uing/tree/main/uing.nim#L2854"
@@ -3646,7 +3646,7 @@ class="link-seesrc" target="_blank">Source</a>
 <dd>
 
 <p>Sets whether or not the table header is visible.</p>
-<p><tt class="docutils literal"><span class="pre"><span class="Identifier">t</span></span></tt>: Table instance. <tt class="docutils literal"><span class="pre"><span class="Identifier">visible</span></span></tt>: <tt class="docutils literal"><span class="pre"><span class="Identifier">true</span></span></tt> to show header, <tt class="docutils literal"><span class="pre"><span class="Identifier">false</span></span></tt> to hide header.</p>
+<p><tt class="docutils literal"><span class="pre"><span class="Identifier">table</span></span></tt>: Table instance. <tt class="docutils literal"><span class="pre"><span class="Identifier">visible</span></span></tt>: <tt class="docutils literal"><span class="pre"><span class="Identifier">true</span></span></tt> to show header, <tt class="docutils literal"><span class="pre"><span class="Identifier">false</span></span></tt> to hide header.</p>
 
 &nbsp;&nbsp;<a
 href="https://github.com/neroist/uing/tree/main/uing.nim#L2861"
@@ -3661,9 +3661,9 @@ class="link-seesrc" target="_blank">Source</a>
 
 Hides the widget.
 &nbsp;&nbsp;<a
-href="https://github.com/neroist/uing/tree/main/uing.nim#L2996"
+href="https://github.com/neroist/uing/tree/main/uing.nim#L3003"
 class="link-seesrc" target="_blank">Source</a>
-&nbsp;&nbsp;<a href="https://github.com/neroist/uing/edit/main/uing.nim#L2996" class="link-seesrc" target="_blank" >Edit</a>
+&nbsp;&nbsp;<a href="https://github.com/neroist/uing/edit/main/uing.nim#L3003" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 </div>
@@ -4194,9 +4194,9 @@ class="link-seesrc" target="_blank">Source</a>
 
 Sets internal implementation of <tt class="docutils literal"><span class="pre"><span class="Identifier">b</span></span></tt>
 &nbsp;&nbsp;<a
-href="https://github.com/neroist/uing/tree/main/uing.nim#L3110"
+href="https://github.com/neroist/uing/tree/main/uing.nim#L3117"
 class="link-seesrc" target="_blank">Source</a>
-&nbsp;&nbsp;<a href="https://github.com/neroist/uing/edit/main/uing.nim#L3110" class="link-seesrc" target="_blank" >Edit</a>
+&nbsp;&nbsp;<a href="https://github.com/neroist/uing/edit/main/uing.nim#L3117" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 </div>
@@ -4917,9 +4917,9 @@ class="link-seesrc" target="_blank">Source</a>
 <p><tt class="docutils literal"><span class="pre"><span class="Identifier">onchanged</span></span></tt>: Callback for when the date time picker value is changed by the user.</p>
 
 &nbsp;&nbsp;<a
-href="https://github.com/neroist/uing/tree/main/uing.nim#L3162"
+href="https://github.com/neroist/uing/tree/main/uing.nim#L3169"
 class="link-seesrc" target="_blank">Source</a>
-&nbsp;&nbsp;<a href="https://github.com/neroist/uing/edit/main/uing.nim#L3162" class="link-seesrc" target="_blank" >Edit</a>
+&nbsp;&nbsp;<a href="https://github.com/neroist/uing/edit/main/uing.nim#L3169" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 </div>
@@ -4932,9 +4932,9 @@ class="link-seesrc" target="_blank">Source</a>
 <p><tt class="docutils literal"><span class="pre"><span class="Identifier">onchanged</span></span></tt>: Callback for when the date time picker value is changed by the user.</p>
 
 &nbsp;&nbsp;<a
-href="https://github.com/neroist/uing/tree/main/uing.nim#L3152"
+href="https://github.com/neroist/uing/tree/main/uing.nim#L3159"
 class="link-seesrc" target="_blank">Source</a>
-&nbsp;&nbsp;<a href="https://github.com/neroist/uing/edit/main/uing.nim#L3152" class="link-seesrc" target="_blank" >Edit</a>
+&nbsp;&nbsp;<a href="https://github.com/neroist/uing/edit/main/uing.nim#L3159" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 </div>
@@ -5372,9 +5372,9 @@ class="link-seesrc" target="_blank">Source</a>
 <p><tt class="docutils literal"><span class="pre"><span class="Identifier">params</span></span></tt>: Table parameters.</p>
 
 &nbsp;&nbsp;<a
-href="https://github.com/neroist/uing/tree/main/uing.nim#L2976"
+href="https://github.com/neroist/uing/tree/main/uing.nim#L2983"
 class="link-seesrc" target="_blank">Source</a>
-&nbsp;&nbsp;<a href="https://github.com/neroist/uing/edit/main/uing.nim#L2976" class="link-seesrc" target="_blank" >Edit</a>
+&nbsp;&nbsp;<a href="https://github.com/neroist/uing/edit/main/uing.nim#L2983" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 </div>
@@ -5473,9 +5473,9 @@ class="link-seesrc" target="_blank">Source</a>
 <p><tt class="docutils literal"><span class="pre"><span class="Identifier">onchanged</span></span></tt>: Callback for when the date time picker value is changed by the user.</p>
 
 &nbsp;&nbsp;<a
-href="https://github.com/neroist/uing/tree/main/uing.nim#L3172"
+href="https://github.com/neroist/uing/tree/main/uing.nim#L3179"
 class="link-seesrc" target="_blank">Source</a>
-&nbsp;&nbsp;<a href="https://github.com/neroist/uing/edit/main/uing.nim#L3172" class="link-seesrc" target="_blank" >Edit</a>
+&nbsp;&nbsp;<a href="https://github.com/neroist/uing/edit/main/uing.nim#L3179" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 </div>
@@ -5623,9 +5623,9 @@ class="link-seesrc" target="_blank">Source</a>
 
 Get widget OS signature
 &nbsp;&nbsp;<a
-href="https://github.com/neroist/uing/tree/main/uing.nim#L3062"
+href="https://github.com/neroist/uing/tree/main/uing.nim#L3069"
 class="link-seesrc" target="_blank">Source</a>
-&nbsp;&nbsp;<a href="https://github.com/neroist/uing/edit/main/uing.nim#L3062" class="link-seesrc" target="_blank" >Edit</a>
+&nbsp;&nbsp;<a href="https://github.com/neroist/uing/edit/main/uing.nim#L3069" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 </div>
@@ -5723,9 +5723,9 @@ class="link-seesrc" target="_blank">Source</a>
 
 Sets the widget's parent.<p><tt class="docutils literal"><span class="pre"><span class="Identifier">w</span></span></tt>: Widget instance.<br/><tt class="docutils literal"><span class="pre"><span class="Identifier">parent</span></span></tt>: The parent Widget, <tt class="docutils literal"><span class="pre"><span class="Keyword">nil</span></span></tt> to detach.<br/></p>
 &nbsp;&nbsp;<a
-href="https://github.com/neroist/uing/tree/main/uing.nim#L3040"
+href="https://github.com/neroist/uing/tree/main/uing.nim#L3047"
 class="link-seesrc" target="_blank">Source</a>
-&nbsp;&nbsp;<a href="https://github.com/neroist/uing/edit/main/uing.nim#L3040" class="link-seesrc" target="_blank" >Edit</a>
+&nbsp;&nbsp;<a href="https://github.com/neroist/uing/edit/main/uing.nim#L3047" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 </div>
@@ -5738,9 +5738,9 @@ Returns <tt class="docutils literal"><span class="pre"><span class="Keyword">nil
 <p><tt class="docutils literal"><span class="pre"><span class="Identifier">w</span></span></tt>: Widget instance.</p>
 
 &nbsp;&nbsp;<a
-href="https://github.com/neroist/uing/tree/main/uing.nim#L3023"
+href="https://github.com/neroist/uing/tree/main/uing.nim#L3030"
 class="link-seesrc" target="_blank">Source</a>
-&nbsp;&nbsp;<a href="https://github.com/neroist/uing/edit/main/uing.nim#L3023" class="link-seesrc" target="_blank" >Edit</a>
+&nbsp;&nbsp;<a href="https://github.com/neroist/uing/edit/main/uing.nim#L3030" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 </div>
@@ -6048,8 +6048,8 @@ class="link-seesrc" target="_blank">Source</a>
 <dd>
 
 Returns the current table selection.<div class="admonition admonition-info"><span class="admonition-info-text"><b>Note:</b></span>
-For empty selections the <tt class="docutils literal"><span class="pre"><span class="Identifier">rows</span></span></tt> pointer will be <tt class="docutils literal"><span class="pre"><span class="Operator">@</span><span class="Punctuation">[</span><span class="Punctuation">]</span></span></tt>.</div>
-<p><tt class="docutils literal"><span class="pre"><span class="Identifier">t</span></span></tt>: Table instance.</p>
+For empty selections an empty seq will be returned.</div>
+<p><tt class="docutils literal"><span class="pre"><span class="Identifier">table</span></span></tt>: Table instance.</p>
 
 &nbsp;&nbsp;<a
 href="https://github.com/neroist/uing/tree/main/uing.nim#L2932"
@@ -6058,17 +6058,17 @@ class="link-seesrc" target="_blank">Source</a>
 
 </dd>
 </div>
-<div id="selection=,Table,openArray[cint]">
-<dt><pre><span class="Keyword">proc</span> <a href="#selection%3D%2CTable%2CopenArray%5Bcint%5D"><span class="Identifier">selection=</span></a><span class="Other">(</span><span class="Identifier">table</span><span class="Other">:</span> <a href="uing.html#Table"><span class="Identifier">Table</span></a><span class="Other">;</span> <span class="Identifier">sel</span><span class="Other">:</span> <span class="Identifier">openArray</span><span class="Other">[</span><span class="Identifier">cint</span><span class="Other">]</span><span class="Other">)</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
+<div id="selection=,Table,openArray[int]">
+<dt><pre><span class="Keyword">proc</span> <a href="#selection%3D%2CTable%2CopenArray%5Bint%5D"><span class="Identifier">selection=</span></a><span class="Other">(</span><span class="Identifier">table</span><span class="Other">:</span> <a href="uing.html#Table"><span class="Identifier">Table</span></a><span class="Other">;</span> <span class="Identifier">sel</span><span class="Other">:</span> <span class="Identifier">openArray</span><span class="Other">[</span><span class="Identifier">int</span><span class="Other">]</span><span class="Other">)</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
 <dd>
 
 Sets the current table selection, clearing any previous selection.<div class="admonition admonition-info"><span class="admonition-info-text"><b>Note:</b></span>
 Selecting more rows than the selection mode allows for results in nothing happening.</div>
-<p><tt class="docutils literal"><span class="pre"><span class="Identifier">t</span></span></tt>: Table instance.<br/><tt class="docutils literal"><span class="pre"><span class="Identifier">sel</span></span></tt>: List of rows to select.<br/></p>
+<p><tt class="docutils literal"><span class="pre"><span class="Identifier">table</span></span></tt>: Table instance.<br/><tt class="docutils literal"><span class="pre"><span class="Identifier">sel</span></span></tt>: List of rows to select.<br/></p>
 &nbsp;&nbsp;<a
-href="https://github.com/neroist/uing/tree/main/uing.nim#L2946"
+href="https://github.com/neroist/uing/tree/main/uing.nim#L2953"
 class="link-seesrc" target="_blank">Source</a>
-&nbsp;&nbsp;<a href="https://github.com/neroist/uing/edit/main/uing.nim#L2946" class="link-seesrc" target="_blank" >Edit</a>
+&nbsp;&nbsp;<a href="https://github.com/neroist/uing/edit/main/uing.nim#L2953" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 </div>
@@ -6077,7 +6077,7 @@ class="link-seesrc" target="_blank">Source</a>
 <dd>
 
 <p>Returns the table selection mode. Defaults to TableSelectionModeZeroOrOne</p>
-<p><tt class="docutils literal"><span class="pre"><span class="Identifier">t</span></span></tt>: Table instance.</p>
+<p><tt class="docutils literal"><span class="pre"><span class="Identifier">table</span></span></tt>: Table instance.</p>
 
 &nbsp;&nbsp;<a
 href="https://github.com/neroist/uing/tree/main/uing.nim#L2869"
@@ -6093,7 +6093,7 @@ class="link-seesrc" target="_blank">Source</a>
 
 Sets the table selection mode.<div class="admonition admonition-warning"><span class="admonition-warning-text"><b>Warning:</b></span>
 All rows will be deselected if the existing selection is illegal in the new selection mode.</div>
-<p><tt class="docutils literal"><span class="pre"><span class="Identifier">t</span></span></tt>: Table instance.<br/><tt class="docutils literal"><span class="pre"><span class="Identifier">mode</span></span></tt>: Table selection mode to set.<br/></p>
+<p><tt class="docutils literal"><span class="pre"><span class="Identifier">table</span></span></tt>: Table instance.<br/><tt class="docutils literal"><span class="pre"><span class="Identifier">mode</span></span></tt>: Table selection mode to set.<br/></p>
 &nbsp;&nbsp;<a
 href="https://github.com/neroist/uing/tree/main/uing.nim#L2876"
 class="link-seesrc" target="_blank">Source</a>
@@ -6148,7 +6148,7 @@ class="link-seesrc" target="_blank">Source</a>
 <p>Setting the width to <tt class="docutils literal"><span class="pre"><span class="Operator">-</span><span class="DecNumber">1</span></span></tt> will restore automatic column sizing matching either the width of the content or column header (which ever one is bigger).</p>
 <div class="admonition admonition-info"><span class="admonition-info-text"><b>Note:</b></span>
 Darwin currently only resizes to the column header width on <tt class="docutils literal"><span class="pre"><span class="Operator">-</span><span class="DecNumber">1</span></span></tt>.</div>
-<p><tt class="docutils literal"><span class="pre"><span class="Identifier">t</span></span></tt>: Table instance.<br/><tt class="docutils literal"><span class="pre"><span class="Identifier">column</span></span></tt>: Column index.<br/><tt class="docutils literal"><span class="pre"><span class="Identifier">width</span></span></tt>: Column width to set in pixels, <tt class="docutils literal"><span class="pre"><span class="Operator">-</span><span class="DecNumber">1</span></span></tt> to restore automatic column sizing.<br/></p>
+<p><tt class="docutils literal"><span class="pre"><span class="Identifier">table</span></span></tt>: Table instance.<br/><tt class="docutils literal"><span class="pre"><span class="Identifier">column</span></span></tt>: Column index.<br/><tt class="docutils literal"><span class="pre"><span class="Identifier">width</span></span></tt>: Column width to set in pixels, <tt class="docutils literal"><span class="pre"><span class="Operator">-</span><span class="DecNumber">1</span></span></tt> to restore automatic column sizing.<br/></p>
 &nbsp;&nbsp;<a
 href="https://github.com/neroist/uing/tree/main/uing.nim#L2895"
 class="link-seesrc" target="_blank">Source</a>
@@ -6191,7 +6191,7 @@ class="link-seesrc" target="_blank">Source</a>
 <p>Use this to display appropriate arrows in the table header to indicate a sort direction.</p>
 <div class="admonition admonition-info"><span class="admonition-info-text"><b>Note:</b></span>
 Setting the indicator is purely visual and does not perform any sorting.</div>
-<p><tt class="docutils literal"><span class="pre"><span class="Identifier">t</span></span></tt>: Table instance.<br/><tt class="docutils literal"><span class="pre"><span class="Identifier">column</span></span></tt>: Column index.<br/><tt class="docutils literal"><span class="pre"><span class="Identifier">indicator</span></span></tt>: Sort indicator.<br/></p>
+<p><tt class="docutils literal"><span class="pre"><span class="Identifier">table</span></span></tt>: Table instance.<br/><tt class="docutils literal"><span class="pre"><span class="Identifier">column</span></span></tt>: Column index.<br/><tt class="docutils literal"><span class="pre"><span class="Identifier">indicator</span></span></tt>: Sort indicator.<br/></p>
 &nbsp;&nbsp;<a
 href="https://github.com/neroist/uing/tree/main/uing.nim#L2917"
 class="link-seesrc" target="_blank">Source</a>
@@ -6205,9 +6205,9 @@ class="link-seesrc" target="_blank">Source</a>
 
 Shows the widget.
 &nbsp;&nbsp;<a
-href="https://github.com/neroist/uing/tree/main/uing.nim#L2991"
+href="https://github.com/neroist/uing/tree/main/uing.nim#L2998"
 class="link-seesrc" target="_blank">Source</a>
-&nbsp;&nbsp;<a href="https://github.com/neroist/uing/edit/main/uing.nim#L2991" class="link-seesrc" target="_blank" >Edit</a>
+&nbsp;&nbsp;<a href="https://github.com/neroist/uing/edit/main/uing.nim#L2998" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 </div>
@@ -6217,9 +6217,9 @@ class="link-seesrc" target="_blank">Source</a>
 
 Get widget signature
 &nbsp;&nbsp;<a
-href="https://github.com/neroist/uing/tree/main/uing.nim#L3052"
+href="https://github.com/neroist/uing/tree/main/uing.nim#L3059"
 class="link-seesrc" target="_blank">Source</a>
-&nbsp;&nbsp;<a href="https://github.com/neroist/uing/edit/main/uing.nim#L3052" class="link-seesrc" target="_blank" >Edit</a>
+&nbsp;&nbsp;<a href="https://github.com/neroist/uing/edit/main/uing.nim#L3059" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 </div>
@@ -6267,7 +6267,7 @@ class="link-seesrc" target="_blank">Source</a>
     <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
 <dd>
 
-Returns the column's sort indicator displayed in the table header.<p><tt class="docutils literal"><span class="pre"><span class="Identifier">t</span></span></tt>: Table instance.<br/><tt class="docutils literal"><span class="pre"><span class="Identifier">column</span></span></tt>: Column index.<br/></p>
+Returns the column's sort indicator displayed in the table header.<p><tt class="docutils literal"><span class="pre"><span class="Identifier">table</span></span></tt>: Table instance.<br/><tt class="docutils literal"><span class="pre"><span class="Identifier">column</span></span></tt>: Column index.<br/></p>
 &nbsp;&nbsp;<a
 href="https://github.com/neroist/uing/tree/main/uing.nim#L2909"
 class="link-seesrc" target="_blank">Source</a>
@@ -6467,9 +6467,9 @@ class="link-seesrc" target="_blank">Source</a>
 <p><tt class="docutils literal"><span class="pre"><span class="Identifier">d</span></span></tt>: DateTimePicker instance</p>
 
 &nbsp;&nbsp;<a
-href="https://github.com/neroist/uing/tree/main/uing.nim#L3112"
+href="https://github.com/neroist/uing/tree/main/uing.nim#L3119"
 class="link-seesrc" target="_blank">Source</a>
-&nbsp;&nbsp;<a href="https://github.com/neroist/uing/edit/main/uing.nim#L3112" class="link-seesrc" target="_blank" >Edit</a>
+&nbsp;&nbsp;<a href="https://github.com/neroist/uing/edit/main/uing.nim#L3119" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 </div>
@@ -6479,9 +6479,9 @@ class="link-seesrc" target="_blank">Source</a>
 
 Sets date and time of the data time picker.<p><tt class="docutils literal"><span class="pre"><span class="Identifier">d</span></span></tt>: DateTimePicker instance.<br/><tt class="docutils literal"><span class="pre"><span class="Identifier">time</span></span></tt>: Date and/or time as local time.<br/></p>
 &nbsp;&nbsp;<a
-href="https://github.com/neroist/uing/tree/main/uing.nim#L3129"
+href="https://github.com/neroist/uing/tree/main/uing.nim#L3136"
 class="link-seesrc" target="_blank">Source</a>
-&nbsp;&nbsp;<a href="https://github.com/neroist/uing/edit/main/uing.nim#L3129" class="link-seesrc" target="_blank" >Edit</a>
+&nbsp;&nbsp;<a href="https://github.com/neroist/uing/edit/main/uing.nim#L3136" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 </div>
@@ -6562,9 +6562,9 @@ class="link-seesrc" target="_blank">Source</a>
 
 Returns whether or not the widget is a top level widget.
 &nbsp;&nbsp;<a
-href="https://github.com/neroist/uing/tree/main/uing.nim#L3067"
+href="https://github.com/neroist/uing/tree/main/uing.nim#L3074"
 class="link-seesrc" target="_blank">Source</a>
-&nbsp;&nbsp;<a href="https://github.com/neroist/uing/edit/main/uing.nim#L3067" class="link-seesrc" target="_blank" >Edit</a>
+&nbsp;&nbsp;<a href="https://github.com/neroist/uing/edit/main/uing.nim#L3074" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 </div>
@@ -6623,9 +6623,9 @@ class="link-seesrc" target="_blank">Source</a>
 
 Get widget type signature
 &nbsp;&nbsp;<a
-href="https://github.com/neroist/uing/tree/main/uing.nim#L3057"
+href="https://github.com/neroist/uing/tree/main/uing.nim#L3064"
 class="link-seesrc" target="_blank">Source</a>
-&nbsp;&nbsp;<a href="https://github.com/neroist/uing/edit/main/uing.nim#L3057" class="link-seesrc" target="_blank" >Edit</a>
+&nbsp;&nbsp;<a href="https://github.com/neroist/uing/edit/main/uing.nim#L3064" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 </div>
@@ -6748,9 +6748,9 @@ Makes sure the widget's parent can be set to <tt class="docutils literal"><span 
 This will crash the application if <tt class="docutils literal"><span class="pre"><span class="Identifier">false</span></span></tt>.</div>
 <p><tt class="docutils literal"><span class="pre"><span class="Identifier">w</span></span></tt>: Widget instance.<br/><tt class="docutils literal"><span class="pre"><span class="Identifier">parent</span></span></tt>: Widget instance.<br/></p>
 &nbsp;&nbsp;<a
-href="https://github.com/neroist/uing/tree/main/uing.nim#L3077"
+href="https://github.com/neroist/uing/tree/main/uing.nim#L3084"
 class="link-seesrc" target="_blank">Source</a>
-&nbsp;&nbsp;<a href="https://github.com/neroist/uing/edit/main/uing.nim#L3077" class="link-seesrc" target="_blank" >Edit</a>
+&nbsp;&nbsp;<a href="https://github.com/neroist/uing/edit/main/uing.nim#L3084" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 </div>
@@ -6760,9 +6760,9 @@ class="link-seesrc" target="_blank">Source</a>
 
 Returns whether or not the widget is visible.
 &nbsp;&nbsp;<a
-href="https://github.com/neroist/uing/tree/main/uing.nim#L3072"
+href="https://github.com/neroist/uing/tree/main/uing.nim#L3079"
 class="link-seesrc" target="_blank">Source</a>
-&nbsp;&nbsp;<a href="https://github.com/neroist/uing/edit/main/uing.nim#L3072" class="link-seesrc" target="_blank" >Edit</a>
+&nbsp;&nbsp;<a href="https://github.com/neroist/uing/edit/main/uing.nim#L3079" class="link-seesrc" target="_blank" >Edit</a>
 
 </dd>
 </div>
@@ -6795,7 +6795,7 @@ class="link-seesrc" target="_blank">Source</a>
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small style="color: var(--hint);">Made with Nim. Generated: 2023-02-04 18:10:28 UTC</small>
+        <small style="color: var(--hint);">Made with Nim. Generated: 2023-02-05 05:57:25 UTC</small>
       </div>
     </div>
   </div>

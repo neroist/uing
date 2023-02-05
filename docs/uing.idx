@@ -337,9 +337,9 @@ newTableModel	uing.html#newTableModel,ptr.TableModelHandler	uing: newTableModel(
 rowInserted	uing.html#rowInserted,TableModel,int	uing: rowInserted(m: TableModel; newIndex: int)	
 rowChanged	uing.html#rowChanged,TableModel,int	uing: rowChanged(m: TableModel; index: int)	
 rowDeleted	uing.html#rowDeleted,TableModel,int	uing: rowDeleted(m: TableModel; oldIndex: int)	
-addTextColumn	uing.html#addTextColumn,Table,string,,,ptr.TableTextColumnOptionalParams	uing: addTextColumn(t: Table; name: string;\n              textModelColumn, textEditableModelColumn: int | bool;\n              textParams: ptr TableTextColumnOptionalParams)	
+addTextColumn	uing.html#addTextColumn,Table,string,,,ptr.TableTextColumnOptionalParams	uing: addTextColumn(t: Table; name: string;\n              textModelColumn, textEditableModelColumn: int | bool;\n              textParams: ptr TableTextColumnOptionalParams = nil)	
 addImageColumn	uing.html#addImageColumn,Table,string,int	uing: addImageColumn(table: Table; title: string; index: int)	
-addCheckboxTextColumn	uing.html#addCheckboxTextColumn,Table,string,int,int,int,int,ptr.TableTextColumnOptionalParams	uing: addCheckboxTextColumn(t: Table; name: string; checkboxModelColumn,\n    checkboxEditableModelColumn, textModelColumn, textEditableModelColumn: int;\n                      textParams: ptr TableTextColumnOptionalParams)	
+addCheckboxTextColumn	uing.html#addCheckboxTextColumn,Table,string,int,int,int,int,ptr.TableTextColumnOptionalParams	uing: addCheckboxTextColumn(t: Table; name: string; checkboxModelColumn,\n    checkboxEditableModelColumn, textModelColumn, textEditableModelColumn: int;\n                      textParams: ptr TableTextColumnOptionalParams = nil)	
 addImageTextColumn	uing.html#addImageTextColumn,Table,string,int,int,int,ptr.TableTextColumnOptionalParams	uing: addImageTextColumn(t: Table; name: string;\n                   imageIndex, textIndex, editableMode: int;\n                   textParams: ptr TableTextColumnOptionalParams)	
 addCheckboxColumn	uing.html#addCheckboxColumn,Table,string,int,int	uing: addCheckboxColumn(table: Table; title: string; index, editableMode: int)	
 addProgressBarColumn	uing.html#addProgressBarColumn,Table,string,int	uing: addProgressBarColumn(table: Table; title: string; index: int)	
@@ -353,7 +353,7 @@ setColumnWidth	uing.html#setColumnWidth,Table,int,int	uing: setColumnWidth(table
 sortIndicator	uing.html#sortIndicator,Table,int	uing: sortIndicator(table: Table; column: int): SortIndicator	
 setSortIndicator	uing.html#setSortIndicator,Table,int,SortIndicator	uing: setSortIndicator(table: Table; column: int; indicator: SortIndicator)	
 selection	uing.html#selection,Table	uing: selection(table: Table): seq[int]	
-selection=	uing.html#selection=,Table,openArray[cint]	uing: selection=(table: Table; sel: openArray[cint])	
+selection=	uing.html#selection=,Table,openArray[int]	uing: selection=(table: Table; sel: openArray[int])	
 newTable	uing.html#newTable,ptr.TableParams	uing: newTable(params: ptr TableParams): Table	
 show	uing.html#show,W	uing: show[W: Widget](w: W)	
 hide	uing.html#hide,W	uing: hide[W: Widget](w: W)	
