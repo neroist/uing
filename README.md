@@ -25,8 +25,6 @@ requires "uing"
 
 Linux: `$ sudo apt-get install libgtk-3-dev`
 
-OSX: `$ brew install gtk+3`
-
 You should then be able to compile the sample code in the
 [`examples/`](examples/)
 directory and run the [tests](tests/) successfully.
