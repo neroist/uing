@@ -320,7 +320,8 @@ proc free*(a: AttributedString) =
 proc `$`*(s: AttributedString): string =
   ## Returns the textual content of `s` as a string.
   
-  $attributedStringString(s.impl) 
+  result = $attributedStringString(s.impl) 
+  free result
 
 proc len*(s: AttributedString): int =
   ## Returns the number of UTF-8 bytes in the textual content of `s`
@@ -417,7 +418,8 @@ proc family*(a: Attribute): string =
   ## .. error:: It is an error to call this on a
   ##        `Attribute` that does not hold a font family.
 
-  $attributeFamily(a.impl)
+  result = $attributeFamily(a.impl)
+  free result
 
 proc newSizeAttribute*(size: float): Attribute =
   ## Creates a new `Attribute` that changes the
@@ -796,7 +798,8 @@ genImplProcs(Button)
 proc text*(b: Button): string =
   ## Returns the button label text.
   
-  $buttonText(b.impl)
+  result = $buttonText(b.impl)
+  free result
 
 proc `text=`*(b: Button; text: string) =
   ## Sets the button label text.
@@ -894,7 +897,8 @@ proc title*(w: Window): string =
   ## 
   ## `w`: Window instance.
 
-  $windowTitle(w.impl)
+  result = $windowTitle(w.impl)
+  free result
 
 proc `title=`*(w: Window; text: string) =
   ## Returns the window title.
@@ -1227,7 +1231,8 @@ proc text*(c: Checkbox): string =
   ## 
   ## `c`: Checkbox instance.
 
-  $checkboxText(c.impl)
+  result = $checkboxText(c.impl)
+  free result
 
 proc `text=`*(c: Checkbox; text: string) = 
   ## Sets the checkbox label text.
@@ -1280,7 +1285,8 @@ proc text*(e: Entry): string =
   ## 
   ## `e`: Entry instance.
   
-  $entryText(e.impl)
+  result = $entryText(e.impl)
+  free result
 
 proc `text=`*(e: Entry; text: string) = 
   ## Sets the entry's text.
@@ -1368,7 +1374,8 @@ proc text*(l: Label): string =
   ## 
   ## `l`: Lable Instance
   
-  $labelText(l.impl)
+  result = $labelText(l.impl)
+  free result
 
 proc `text=`*(l: Label; text: string) = 
   ## Sets the label text.
@@ -1478,7 +1485,8 @@ proc title*(g: Group): string =
   ## 
   ## `g`: Group instance.
 
-  $groupTitle(g.impl)
+  result = $groupTitle(g.impl)
+  free result
 
 proc `title=`*(g: Group; title: string) =
   ## Sets the group title.
@@ -1846,7 +1854,8 @@ proc text*(c: EditableCombobox): string =
   ## 
   ## `c`: Combobox instance.
 
-  $editableComboboxText(c.impl)
+  result = $editableComboboxText(c.impl)
+  free result
 
 proc `text=`*(c: EditableCombobox; text: string) =
   ## Sets the text of the editable combo box.
@@ -1896,7 +1905,8 @@ proc text*(e: MultilineEntry): string =
   ## 
   ## `e`: MultilineEntry instance
   
-  $multilineEntryText(e.impl)
+  result = $multilineEntryText(e.impl)
+  free result
 
 proc `text=`*(e: MultilineEntry; text: string) = 
   ## Sets the multi line entry's text.
