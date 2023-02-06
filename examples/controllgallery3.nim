@@ -90,7 +90,7 @@ proc makeDataChoosersBox(window: Window): Box =
     add newColorButton()
 
   let 
-    col2 = newGrid()
+    col2 = newGrid(true)
     openFileEntry = newEntry()
     openFolderEntry = newEntry()
     saveFileEntry = newEntry()
@@ -104,8 +104,6 @@ proc makeDataChoosersBox(window: Window): Box =
   msgBoxBox.add newButton("Error Box", (_: Button) => window.msgBoxError(ErrorMsgBoxTitle, MsgBoxDesc))
 
   with col2:
-    padded = true
-
     add newButton("Open File", (_: Button) => (openFileEntry.text = window.openFile())), 0, 0, 1, 1, false, AlignFill, false, AlignFill
     add openFileEntry, 1, 0, 1, 1, true, AlignFill, false, AlignFill
     add newButton("Open Folder", (_: Button) => (openFolderEntry.text = window.openFolder())), 0, 1, 1, 1, false, AlignFill, false, AlignFill
