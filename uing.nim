@@ -854,7 +854,7 @@ proc `selected=`*(r: RadioButtons, index: int) =
 
 genCallback(wrapOnRadioButtonClick, RadioButtons, onselected)
 
-proc newRadioButtons*(onselected: proc(sender: RadioButtons)  = nil): RadioButtons =
+proc newRadioButtons*(items: openArray[string] = @[]; onselected: proc(sender: RadioButtons)  = nil): RadioButtons =
   ## Creates a new radio buttons instance.
   ## 
   ## `onselected`: Callback for when radio button is selected.
@@ -863,6 +863,9 @@ proc newRadioButtons*(onselected: proc(sender: RadioButtons)  = nil): RadioButto
   result.impl = rawui.newRadioButtons()
   result.onselected = onselected
   result.impl.radioButtonsOnSelected(wrapOnRadioButtonClick, cast[pointer](result))
+
+  for item in items:
+    result.add item
 
 # ----------------- Window -------------------------------------------
 
