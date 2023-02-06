@@ -6,6 +6,7 @@ import uing
 
 proc makeBasicControlsBox: Box =
   result = newVerticalBox(true)
+  result.padded = true
 
   var bncBox = newHorizontalBox(true)
   bncBox.add newButton("Button")
@@ -34,6 +35,7 @@ proc makeBasicControlsBox: Box =
 
 proc makenumbersAndListsBox: Box =
   result = newHorizontalBox(true)
+  result.padded = true
 
   var 
     numbers = newGroup("Numbers", true)
@@ -79,6 +81,7 @@ proc makenumbersAndListsBox: Box =
 
 proc makeDataChoosersBox(window: Window): Box =
   result = newHorizontalBox(true)
+  result.padded = true
 
   const
     MsgBoxTitle = "This is a normal message box."
