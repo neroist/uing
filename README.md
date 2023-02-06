@@ -64,6 +64,9 @@ Static and dynamic libraries (e.g. `libui.so`, `libui.lib`) can be found in the
 ![controllgallery3_tab2.png](screenshots/linux/controllgallery3_tab2.png)
 ![controllgallery3_tab3.png](screenshots/linux/controllgallery3_tab3.png)
 
-More screenshots available at [`screenshots/`](screenshots/).
+### Mac OS X
+> Unfortunately, I don't have a Macbook to get screenshots. PRs are welcome if you wanna add screenshots here!
+
+More screenshots are available at [`screenshots/`](screenshots/).
 
 ###### Made with ❤️ with Nim
