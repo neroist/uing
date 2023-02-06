@@ -56,7 +56,7 @@ var
 proc main() =
   var mainwin: Window
 
-  var menu = newMenu("File")
+  let menu = newMenu("File")
   menu.addQuitItem(
     proc(): bool =
       mainwin.destroy()
