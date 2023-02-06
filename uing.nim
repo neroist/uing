@@ -827,7 +827,7 @@ type
 
 genImplProcs(RadioButtons)
 
-proc add*(r: RadioButtons; items: varargs[string]) = 
+proc add*(r: RadioButtons; items: varargs[string, `$`]) = 
   ## Appends a radio button.
   ## 
   ## | `r`: RadioButtons instance.
@@ -854,7 +854,7 @@ proc `selected=`*(r: RadioButtons, index: int) =
 
 genCallback(wrapOnRadioButtonClick, RadioButtons, onselected)
 
-proc newRadioButtons*(items: openArray[string] = @[]; onselected: proc(sender: RadioButtons)  = nil): RadioButtons =
+proc newRadioButtons*(items: openArray[string] = []; onselected: proc(sender: RadioButtons)  = nil): RadioButtons =
   ## Creates a new radio buttons instance.
   ## 
   ## `onselected`: Callback for when radio button is selected.
@@ -1740,7 +1740,7 @@ type
     
 genImplProcs(Combobox)
 
-proc add*(c: Combobox; items: varargs[string]) = 
+proc add*(c: Combobox; items: varargs[string, `$`]) = 
   ## Appends an item to the combo box.
   ## 
   ## | `c`: Combobox instance.
@@ -1827,7 +1827,7 @@ type
     
 genImplProcs(EditableCombobox)
 
-proc add*(c: EditableCombobox; items: varargs[string]) = 
+proc add*(c: EditableCombobox; items: varargs[string, `$`]) = 
   ## Appends an item to the editable combo box.
   ## 
   ## | `c`: Combobox instance.
@@ -1867,7 +1867,7 @@ proc clear*(e: EditableCombobox) =
 
 genCallback wrapecbOnchanged, EditableCombobox, onchanged
 
-proc newEditableCombobox*(onchanged: proc (sender: EditableCombobox) = nil): EditableCombobox =
+proc newEditableCombobox*(items: openArray[string] = []; onchanged: proc (sender: EditableCombobox) = nil): EditableCombobox =
   ## Creates a new editable combo box.
   ## 
   ## `onchanged`: Callback for when an editable combo box item is selected or user text changed.
@@ -1876,6 +1876,9 @@ proc newEditableCombobox*(onchanged: proc (sender: EditableCombobox) = nil): Edi
   result.impl = rawui.newEditableCombobox()
   result.onchanged = onchanged
   editableComboboxOnChanged result.impl, wrapecbOnchanged, cast[pointer](result)
+
+  for item in items:
+    result.add item
 
 # ------------------------ MultilineEntry ------------------------------
 
