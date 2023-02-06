@@ -2584,7 +2584,7 @@ proc free*(t: TableModel) =
   freeTableModel(t.impl)
 
 proc free*(t: ptr TableSelection) = 
-  ## Frees the given TableSelection and all it's resources.
+  ## Frees the given TableSelection and all its resources.
   ## 
   ## `s`: TableSelection instance.
 
@@ -2959,6 +2959,8 @@ proc selection*(table: Table): seq[int] =
   if tSelection.rows != nil:
     for row in tSelection.rows.toOpenArray(0, tSelection.numRows - 1):
       result.add int row
+
+  free tSelection
 
 proc setSelection(table: Table; sel: openArray[cint]) {.inline.} =
   var tSelection = TableSelection(
