@@ -82,7 +82,6 @@ proc handlerDraw*(a: ptr AreaHandler; area: ptr rawui.Area; p: ptr AreaDrawParam
 
   var
     graphSize = graphSize(p.areaWidth, p.areaHeight) # figure out dimensions
-
     graphColor = colorButton.color
 
   # fill the area with white
@@ -133,8 +132,6 @@ proc handlerDraw*(a: ptr AreaHandler; area: ptr rawui.Area; p: ptr AreaDrawParam
   brush.a = graphColor.a
   p.context.stroke(path, addr brush, addr sp)
   free path
-
-  #p.context.renderText("my example string")
 
   # now draw the point being hovered over
   if currentPoint != -1:

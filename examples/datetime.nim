@@ -6,8 +6,7 @@ proc main =
   let window = newWindow("Date / Time", 320, 240)
   window.margined = true
 
-  let grid = newGrid()
-  grid.padded = true
+  let grid = newGrid(true)
   window.child = grid
 
   let

@@ -48,10 +48,10 @@ proc main*() =
   mainwin.child = box
 
   let hbox = newHorizontalBox(true)
-  box.add(hbox, true)
+  box.add hbox, true
 
   var group = newGroup("Basic Controls", true)
-  hbox.add(group, false)
+  hbox.add group
 
   var inner = newVerticalBox(true)
   group.child = inner
@@ -99,16 +99,13 @@ proc main*() =
   inner = newVerticalBox(true)
   group.child = inner
 
-  let cbox = newCombobox()
-  cbox.add "Combobox Item 1", "Combobox Item 2", "Combobox Item 3"
+  let cbox = newCombobox(["Combobox Item 1", "Combobox Item 2", "Combobox Item 3"])
   inner.add cbox
 
-  let ecbox = newEditableCombobox()
-  ecbox.add "Editable Item 1", "Editable Item 2", "Editable Item 3"
+  let ecbox = newEditableCombobox(["Editable Item 1", "Editable Item 2", "Editable Item 3"])
   inner.add ecbox
 
-  let rb = newRadioButtons()
-  rb.add "Radio Button 1", "Radio Button 2", "Radio Button 3"
+  let rb = newRadioButtons(["Radio Button 1", "Radio Button 2", "Radio Button 3"])
   inner.add rb, true
 
   let tab = newTab()
