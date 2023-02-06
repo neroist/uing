@@ -140,6 +140,7 @@ proc `size=`*(a: Area, size: tuple[width, height: int]) = areaSetSize(a.impl, ci
 proc queueRedrawAll*(a: Area) = areaQueueRedrawAll(a.impl)
 proc beginUserWindowMove*(a: Area) = areaBeginUserWindowMove(a.impl)
 proc beginUserWindowResize*(a: Area; edge: WindowResizeEdge) = areaBeginUserWindowResize(a.impl, edge)
+proc scrollTo*(a: Area, x, y, width, height: float) = areaScrollTo(a.impl, cdouble x, cdouble y, cdouble width, cdouble height)
 proc handler*(a: Area): ptr AreaHandler = a.handler
 
 proc newArea*(ah: ptr AreaHandler): Area =
