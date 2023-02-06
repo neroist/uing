@@ -7,7 +7,7 @@ import uing
 proc makeBasicControlsBox: Box =
   result = newVerticalBox(true)
 
-  var bncBox = newHorizontalBox(true)
+  let bncBox = newHorizontalBox(true)
   bncBox.add newButton("Button")
   bncBox.add newCheckbox("CheckBox")
 
@@ -15,7 +15,7 @@ proc makeBasicControlsBox: Box =
   result.add newLabel("This is a label\nLabels can span muliple lines.")
   result.add newHorizontalSeparator()
 
-  var 
+  let 
     entries = newGroup("Entries", true)
     entriesForm = newForm()
 
@@ -32,10 +32,10 @@ proc makeBasicControlsBox: Box =
 
   result.add entries, true
 
-proc makenumbersAndListsBox: Box =
+proc makeNumbersAndListsBox: Box =
   result = newHorizontalBox(true)
 
-  var 
+  let 
     numbers = newGroup("Numbers", true)
     numbersBox = newVerticalBox(true)
 
@@ -57,22 +57,14 @@ proc makenumbersAndListsBox: Box =
   numbersBox.add progress
   numbersBox.add newProgressBar(indeterminate = true)
 
-  var
+  let
     lists = newGroup("Lists", true)
     listsBox = newVerticalBox(true)
 
-    combo = newCombobox()
-    editableCombo = newEditableCombobox()
-    radio = newRadioButtons()
-
-  combo.add "Combobox Item 1", "Combobox Item 2", "Combobox Item 3"
-  editableCombo.add "Editable Item 1", "Editable Item 2", "Editable Item 3"
-  radio.add "Radio Button 1", "Radio Button 2", "Radio Button 3"
-
   lists.child = listsBox
-  listsBox.add combo
-  listsBox.add editableCombo
-  listsBox.add radio
+  listsBox.add newCombobox(["Combobox Item 1", "Combobox Item 2", "Combobox Item 3"])
+  listsBox.add newEditableCombobox(["Editable Item 1", "Editable Item 2", "Editable Item 3"])
+  listsBox.add newRadioButtons(["Radio Button 1", "Radio Button 2", "Radio Button 3"])
 
   result.add numbers, true
   result.add lists, true
@@ -85,7 +77,7 @@ proc makeDataChoosersBox(window: Window): Box =
     MsgBoxDesc = "More detailed information can be shown here."
     ErrorMsgBoxTitle = "This message box describes an error."
 
-  var col1 = newVerticalBox(true)
+  let col1 = newVerticalBox(true)
 
   with col1:
     add newDatePicker()
@@ -94,7 +86,7 @@ proc makeDataChoosersBox(window: Window): Box =
     add newFontButton()
     add newColorButton()
 
-  var 
+  let 
     col2 = newGrid()
     openFileEntry = newEntry()
     openFolderEntry = newEntry()
@@ -111,14 +103,14 @@ proc makeDataChoosersBox(window: Window): Box =
   with col2:
     padded = true
 
-    add newButton("Open File", (_: Button) => (openFileEntry.text = window.openFile())), 0, 0, 1, 1, false, AlignFill, false, AlignCenter
-    add openFileEntry, 1, 0, 1, 1, true, AlignFill, false, AlignCenter
-    add newButton("Open Folder", (_: Button) => (openFolderEntry.text = window.openFolder())), 0, 1, 1, 1, false, AlignFill, false, AlignCenter
-    add openFolderEntry, 1, 1, 1, 1, true, AlignFill, false, AlignCenter
-    add newButton("Save File", (_: Button) => (saveFileEntry.text = window.saveFile())), 0, 2, 1, 1, false, AlignFill, false, AlignCenter
-    add saveFileEntry, 1, 2, 1, 1, true, AlignFill, false, AlignCenter
+    add newButton("Open File", (_: Button) => (openFileEntry.text = window.openFile())), 0, 0, 1, 1, false, AlignFill, false, AlignFill
+    add openFileEntry, 1, 0, 1, 1, true, AlignFill, false, AlignFill
+    add newButton("Open Folder", (_: Button) => (openFolderEntry.text = window.openFolder())), 0, 1, 1, 1, false, AlignFill, false, AlignFill
+    add openFolderEntry, 1, 1, 1, 1, true, AlignFill, false, AlignFill
+    add newButton("Save File", (_: Button) => (saveFileEntry.text = window.saveFile())), 0, 2, 1, 1, false, AlignFill, false, AlignFill
+    add saveFileEntry, 1, 2, 1, 1, true, AlignFill, false, AlignFill
 
-    add msgBoxBox, 1, 3, 1, 1, false, AlignCenter, false, AlignCenter
+    add msgBoxBox, 0, 3, 2, 1, false, AlignCenter, false, AlignStart
 
   result.add col1
   result.add newVerticalSeparator()
@@ -147,7 +139,7 @@ proc main =
   window = newWindow("libui-ng Control Gallery", 800, 600, defined(menus))
   window.margined = true
 
-  var tab = newTab()
+  let tab = newTab()
   window.child = tab
 
   # Basic Controls
