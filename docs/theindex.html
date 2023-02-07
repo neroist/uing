@@ -91,9 +91,9 @@ window.addEventListener('DOMContentLoaded', main);
           <li><a class="reference external"
           data-doc-search-tag="uing: add(b: Box; child: Widget; stretchy = false)" href="uing.html#add%2CBox%2CWidget">uing: add(b: Box; child: Widget; stretchy = false)</a></li>
           <li><a class="reference external"
-          data-doc-search-tag="uing: add(c: Combobox; items: varargs[string])" href="uing.html#add%2CCombobox%2Cvarargs%5Bstring%5D">uing: add(c: Combobox; items: varargs[string])</a></li>
+          data-doc-search-tag="uing: add(c: Combobox; items: varargs[string, `$`])" href="uing.html#add%2CCombobox%2Cvarargs%5Bstring%2C%5D">uing: add(c: Combobox; items: varargs[string, `$`])</a></li>
           <li><a class="reference external"
-          data-doc-search-tag="uing: add(c: EditableCombobox; items: varargs[string])" href="uing.html#add%2CEditableCombobox%2Cvarargs%5Bstring%5D">uing: add(c: EditableCombobox; items: varargs[string])</a></li>
+          data-doc-search-tag="uing: add(c: EditableCombobox; items: varargs[string, `$`])" href="uing.html#add%2CEditableCombobox%2Cvarargs%5Bstring%2C%5D">uing: add(c: EditableCombobox; items: varargs[string, `$`])</a></li>
           <li><a class="reference external"
           data-doc-search-tag="uing: add(f: Form; label: string; w: Widget; stretchy: bool = false)" href="uing.html#add%2CForm%2Cstring%2CWidget%2Cbool">uing: add(f: Form; label: string; w: Widget; stretchy: bool = false)</a></li>
           <li><a class="reference external"
@@ -111,7 +111,7 @@ window.addEventListener('DOMContentLoaded', main);
           <li><a class="reference external"
           data-doc-search-tag="uing: add(otf: OpenTypeFeatures; abcd: string; value: uint32 | bool)" href="uing.html#add%2COpenTypeFeatures%2Cstring%2C">uing: add(otf: OpenTypeFeatures; abcd: string; value: uint32 | bool)</a></li>
           <li><a class="reference external"
-          data-doc-search-tag="uing: add(r: RadioButtons; items: varargs[string])" href="uing.html#add%2CRadioButtons%2Cvarargs%5Bstring%5D">uing: add(r: RadioButtons; items: varargs[string])</a></li>
+          data-doc-search-tag="uing: add(r: RadioButtons; items: varargs[string, `$`])" href="uing.html#add%2CRadioButtons%2Cvarargs%5Bstring%2C%5D">uing: add(r: RadioButtons; items: varargs[string, `$`])</a></li>
           <li><a class="reference external"
           data-doc-search-tag="uing: add(t: Tab; name: string; w: Widget)" href="uing.html#add%2CTab%2Cstring%2CWidget">uing: add(t: Tab; name: string; w: Widget)</a></li>
           </ul></dd>
@@ -1081,7 +1081,9 @@ window.addEventListener('DOMContentLoaded', main);
           </ul></dd>
 <dt><a name="forEach" href="#forEach"><span>forEach:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
-          data-doc-search-tag="uing: forEach(otf: OpenTypeFeatures; f: OpenTypeFeaturesForEachFunc; data: pointer)" href="uing.html#forEach%2COpenTypeFeatures%2COpenTypeFeaturesForEachFunc%2Cpointer">uing: forEach(otf: OpenTypeFeatures; f: OpenTypeFeaturesForEachFunc; data: pointer)</a></li>
+          data-doc-search-tag="uing: forEach(otf: OpenTypeFeatures;
+        f: proc (otf: OpenTypeFeatures; abcd: string; value: int): ForEach)" href="uing.html#forEach%2COpenTypeFeatures%2Cproc%28OpenTypeFeatures%2Cstring%2Cint%29">uing: forEach(otf: OpenTypeFeatures;
+        f: proc (otf: OpenTypeFeatures; abcd: string; value: int): ForEach)</a></li>
           </ul></dd>
 <dt><a name="ForEach" href="#ForEach"><span>ForEach:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
@@ -1089,9 +1091,9 @@ window.addEventListener('DOMContentLoaded', main);
           </ul></dd>
 <dt><a name="forEachAttribute" href="#forEachAttribute"><span>forEachAttribute:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
-          data-doc-search-tag="uing: forEachAttribute(str: AttributedString;
-                 fun: AttributedStringForEachAttributeFunc; data: pointer)" href="uing.html#forEachAttribute%2CAttributedString%2CAttributedStringForEachAttributeFunc%2Cpointer">uing: forEachAttribute(str: AttributedString;
-                 fun: AttributedStringForEachAttributeFunc; data: pointer)</a></li>
+          data-doc-search-tag="uing: forEachAttribute(str: AttributedString; fun: proc (s: AttributedString;
+    a: Attribute; start, end: int): ForEach)" href="uing.html#forEachAttribute%2CAttributedString%2Cproc%28AttributedString%2CAttribute%2Cint%2Cint%29">uing: forEachAttribute(str: AttributedString; fun: proc (s: AttributedString;
+    a: Attribute; start, end: int): ForEach)</a></li>
           </ul></dd>
 <dt><a name="Form" href="#Form"><span>Form:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
@@ -1211,9 +1213,9 @@ window.addEventListener('DOMContentLoaded', main);
           </ul></dd>
 <dt><a name="get" href="#get"><span>get:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
-          data-doc-search-tag="uing: get(otf: OpenTypeFeatures; a, b, c, d: char; value: var uint32): int" href="uing.html#get%2COpenTypeFeatures%2Cchar%2Cchar%2Cchar%2Cchar%2Cuint32">uing: get(otf: OpenTypeFeatures; a, b, c, d: char; value: var uint32): int</a></li>
+          data-doc-search-tag="uing: get(otf: OpenTypeFeatures; a, b, c, d: char; value: var int): bool" href="uing.html#get%2COpenTypeFeatures%2Cchar%2Cchar%2Cchar%2Cchar%2Cint">uing: get(otf: OpenTypeFeatures; a, b, c, d: char; value: var int): bool</a></li>
           <li><a class="reference external"
-          data-doc-search-tag="uing: get(otf: OpenTypeFeatures; abcd: string; value: var uint32): bool" href="uing.html#get%2COpenTypeFeatures%2Cstring%2Cuint32">uing: get(otf: OpenTypeFeatures; abcd: string; value: var uint32): bool</a></li>
+          data-doc-search-tag="uing: get(otf: OpenTypeFeatures; abcd: string; value: var int): bool" href="uing.html#get%2COpenTypeFeatures%2Cstring%2Cint">uing: get(otf: OpenTypeFeatures; abcd: string; value: var int): bool</a></li>
           </ul></dd>
 <dt><a name="getInt" href="#getInt"><span>getInt:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
@@ -1290,6 +1292,10 @@ window.addEventListener('DOMContentLoaded', main);
 <dt><a name="groupTitle" href="#groupTitle"><span>groupTitle:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
           data-doc-search-tag="rawui: groupTitle(g: ptr Group): cstring" href="uing/rawui.html#groupTitle%2Cptr.Group">rawui: groupTitle(g: ptr Group): cstring</a></li>
+          </ul></dd>
+<dt><a name="handle" href="#handle"><span>handle:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="uing: handle[W: Widget](w: W): int" href="uing.html#handle%2CW">uing: handle[W: Widget](w: W): int</a></li>
           </ul></dd>
 <dt><a name="handler" href="#handler"><span>handler:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
@@ -1549,7 +1555,7 @@ window.addEventListener('DOMContentLoaded', main);
           </ul></dd>
 <dt><a name="mainStep" href="#mainStep"><span>mainStep:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
-          data-doc-search-tag="uing: mainStep(wait: int): int" href="uing.html#mainStep%2Cint">uing: mainStep(wait: int): int</a></li>
+          data-doc-search-tag="uing: mainStep(wait: int): bool" href="uing.html#mainStep%2Cint">uing: mainStep(wait: int): bool</a></li>
           <li><a class="reference external"
           data-doc-search-tag="rawui: mainStep(wait: cint): cint" href="uing/rawui.html#mainStep%2Ccint">rawui: mainStep(wait: cint): cint</a></li>
           </ul></dd>
@@ -1773,7 +1779,9 @@ window.addEventListener('DOMContentLoaded', main);
           </ul></dd>
 <dt><a name="newEditableCombobox" href="#newEditableCombobox"><span>newEditableCombobox:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
-          data-doc-search-tag="uing: newEditableCombobox(onchanged: proc (sender: EditableCombobox) = nil): EditableCombobox" href="uing.html#newEditableCombobox%2Cproc%28EditableCombobox%29">uing: newEditableCombobox(onchanged: proc (sender: EditableCombobox) = nil): EditableCombobox</a></li>
+          data-doc-search-tag="uing: newEditableCombobox(items: openArray[string] = [];
+                    onchanged: proc (sender: EditableCombobox) = nil): EditableCombobox" href="uing.html#newEditableCombobox%2CopenArray%5Bstring%5D%2Cproc%28EditableCombobox%29">uing: newEditableCombobox(items: openArray[string] = [];
+                    onchanged: proc (sender: EditableCombobox) = nil): EditableCombobox</a></li>
           <li><a class="reference external"
           data-doc-search-tag="rawui: newEditableCombobox(): ptr EditableCombobox" href="uing/rawui.html#newEditableCombobox">rawui: newEditableCombobox(): ptr EditableCombobox</a></li>
           </ul></dd>
@@ -1899,7 +1907,9 @@ window.addEventListener('DOMContentLoaded', main);
           </ul></dd>
 <dt><a name="newRadioButtons" href="#newRadioButtons"><span>newRadioButtons:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
-          data-doc-search-tag="uing: newRadioButtons(onselected: proc (sender: RadioButtons) = nil): RadioButtons" href="uing.html#newRadioButtons%2Cproc%28RadioButtons%29">uing: newRadioButtons(onselected: proc (sender: RadioButtons) = nil): RadioButtons</a></li>
+          data-doc-search-tag="uing: newRadioButtons(items: openArray[string] = [];
+                onselected: proc (sender: RadioButtons) = nil): RadioButtons" href="uing.html#newRadioButtons%2CopenArray%5Bstring%5D%2Cproc%28RadioButtons%29">uing: newRadioButtons(items: openArray[string] = [];
+                onselected: proc (sender: RadioButtons) = nil): RadioButtons</a></li>
           <li><a class="reference external"
           data-doc-search-tag="rawui: newRadioButtons(): ptr RadioButtons" href="uing/rawui.html#newRadioButtons">rawui: newRadioButtons(): ptr RadioButtons</a></li>
           </ul></dd>
@@ -2242,6 +2252,10 @@ window.addEventListener('DOMContentLoaded', main);
 <dt><a name="scale" href="#scale"><span>scale:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
           data-doc-search-tag="uing: scale(m: ptr DrawMatrix; xCenter, yCenter, x, y: float)" href="uing.html#scale%2Cptr.DrawMatrix%2Cfloat%2Cfloat%2Cfloat%2Cfloat">uing: scale(m: ptr DrawMatrix; xCenter, yCenter, x, y: float)</a></li>
+          </ul></dd>
+<dt><a name="scrollTo" href="#scrollTo"><span>scrollTo:</span></a></dt><dd><ul class="simple">
+<li><a class="reference external"
+          data-doc-search-tag="uing: scrollTo(a: Area; x, y, width, height: float)" href="uing.html#scrollTo%2CArea%2Cfloat%2Cfloat%2Cfloat%2Cfloat">uing: scrollTo(a: Area; x, y, width, height: float)</a></li>
           </ul></dd>
 <dt><a name="selected" href="#selected"><span>selected:</span></a></dt><dd><ul class="simple">
 <li><a class="reference external"
@@ -2912,7 +2926,7 @@ window.addEventListener('DOMContentLoaded', main);
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small style="color: var(--hint);">Made with Nim. Generated: 2023-02-05 05:57:25 UTC</small>
+        <small style="color: var(--hint);">Made with Nim. Generated: 2023-02-07 04:48:48 UTC</small>
       </div>
     </div>
   </div>

@@ -6,7 +6,7 @@ mainLoop	uing.html#mainLoop	uing: mainLoop()
 pollingMainLoop	uing.html#pollingMainLoop,proc(int),int	uing: pollingMainLoop(poll: proc (timeout: int); timeout: int)	
 queueMain	uing.html#queueMain,proc(pointer),pointer	uing: queueMain(f: proc (data: pointer) {.cdecl.}; data: pointer)	
 mainSteps	uing.html#mainSteps	uing: mainSteps()	
-mainStep	uing.html#mainStep,int	uing: mainStep(wait: int): int	
+mainStep	uing.html#mainStep,int	uing: mainStep(wait: int): bool	
 timer	uing.html#timer,int,proc)	uing: timer(milliseconds: int; fun: proc (): bool)	
 free	uing.html#free,string	uing: free(str: string)	
 loadControlFont	uing.html#loadControlFont,ptr.FontDescriptor	uing: loadControlFont(f: ptr FontDescriptor)	
@@ -18,6 +18,7 @@ size=	uing.html#size=,Area,tuple[int,int]	uing: size=(a: Area; size: tuple[width
 queueRedrawAll	uing.html#queueRedrawAll,Area	uing: queueRedrawAll(a: Area)	
 beginUserWindowMove	uing.html#beginUserWindowMove,Area	uing: beginUserWindowMove(a: Area)	
 beginUserWindowResize	uing.html#beginUserWindowResize,Area,WindowResizeEdge	uing: beginUserWindowResize(a: Area; edge: WindowResizeEdge)	
+scrollTo	uing.html#scrollTo,Area,float,float,float,float	uing: scrollTo(a: Area; x, y, width, height: float)	
 handler	uing.html#handler,Area	uing: handler(a: Area): ptr AreaHandler	
 newArea	uing.html#newArea,ptr.AreaHandler	uing: newArea(ah: ptr AreaHandler): Area	
 newScrollingArea	uing.html#newScrollingArea,ptr.AreaHandler,int,int	uing: newScrollingArea(ah: ptr AreaHandler; width, height: int): Area	
@@ -63,7 +64,7 @@ insertAtUnattributed	uing.html#insertAtUnattributed,AttributedString,string,int	
 delete	uing.html#delete,AttributedString,int,int	uing: delete(s: AttributedString; start, end: int)	
 setAttribute	uing.html#setAttribute,AttributedString,Attribute,int,int	uing: setAttribute(s: AttributedString; a: Attribute; start, end: int)	
 addWithAttributes	uing.html#addWithAttributes,AttributedString,string,varargs[Attribute]	uing: addWithAttributes(s: AttributedString; str: string; attrs: varargs[Attribute])	
-forEachAttribute	uing.html#forEachAttribute,AttributedString,AttributedStringForEachAttributeFunc,pointer	uing: forEachAttribute(str: AttributedString;\n                 fun: AttributedStringForEachAttributeFunc; data: pointer)	
+forEachAttribute	uing.html#forEachAttribute,AttributedString,proc(AttributedString,Attribute,int,int)	uing: forEachAttribute(str: AttributedString; fun: proc (s: AttributedString;\n    a: Attribute; start, end: int): ForEach)	
 numGraphemes	uing.html#numGraphemes,AttributedString	uing: numGraphemes(s: AttributedString): int	
 byteIndexToGrapheme	uing.html#byteIndexToGrapheme,AttributedString,int	uing: byteIndexToGrapheme(s: AttributedString; pos: int): int	
 graphemeToByteIndex	uing.html#graphemeToByteIndex,AttributedString,int	uing: graphemeToByteIndex(s: AttributedString; pos: int): int	
@@ -99,9 +100,9 @@ add	uing.html#add,OpenTypeFeatures,char,char,char,char,uint32	uing: add(otf: Ope
 add	uing.html#add,OpenTypeFeatures,string,	uing: add(otf: OpenTypeFeatures; abcd: string; value: uint32 | bool)	
 remove	uing.html#remove,OpenTypeFeatures,char,char,char,char	uing: remove(otf: OpenTypeFeatures; a, b, c, d: char)	
 remove	uing.html#remove,OpenTypeFeatures,string	uing: remove(otf: OpenTypeFeatures; abcd: string)	
-get	uing.html#get,OpenTypeFeatures,char,char,char,char,uint32	uing: get(otf: OpenTypeFeatures; a, b, c, d: char; value: var uint32): int	
-get	uing.html#get,OpenTypeFeatures,string,uint32	uing: get(otf: OpenTypeFeatures; abcd: string; value: var uint32): bool	
-forEach	uing.html#forEach,OpenTypeFeatures,OpenTypeFeaturesForEachFunc,pointer	uing: forEach(otf: OpenTypeFeatures; f: OpenTypeFeaturesForEachFunc; data: pointer)	
+get	uing.html#get,OpenTypeFeatures,char,char,char,char,int	uing: get(otf: OpenTypeFeatures; a, b, c, d: char; value: var int): bool	
+get	uing.html#get,OpenTypeFeatures,string,int	uing: get(otf: OpenTypeFeatures; abcd: string; value: var int): bool	
+forEach	uing.html#forEach,OpenTypeFeatures,proc(OpenTypeFeatures,string,int)	uing: forEach(otf: OpenTypeFeatures;\n        f: proc (otf: OpenTypeFeatures; abcd: string; value: int): ForEach)	
 newFeaturesAttribute	uing.html#newFeaturesAttribute,OpenTypeFeatures	uing: newFeaturesAttribute(otf: OpenTypeFeatures): Attribute	
 features	uing.html#features,Attribute	uing: features(a: Attribute): OpenTypeFeatures	
 DrawTextLayout	uing.html#DrawTextLayout	uing: DrawTextLayout	
@@ -120,10 +121,10 @@ newButton	uing.html#newButton,string,proc(Button)	uing: newButton(text: string; 
 RadioButtons	uing.html#RadioButtons	uing: RadioButtons	
 impl	uing.html#impl,RadioButtons	uing: impl(b: RadioButtons): RawRadioButtons	
 impl=	uing.html#impl=,RadioButtons,RawRadioButtons	uing: impl=(b: RadioButtons; r: RawRadioButtons)	
-add	uing.html#add,RadioButtons,varargs[string]	uing: add(r: RadioButtons; items: varargs[string])	
+add	uing.html#add,RadioButtons,varargs[string,]	uing: add(r: RadioButtons; items: varargs[string, `$`])	
 selected	uing.html#selected,RadioButtons	uing: selected(r: RadioButtons): int	
 selected=	uing.html#selected=,RadioButtons,int	uing: selected=(r: RadioButtons; index: int)	
-newRadioButtons	uing.html#newRadioButtons,proc(RadioButtons)	uing: newRadioButtons(onselected: proc (sender: RadioButtons) = nil): RadioButtons	
+newRadioButtons	uing.html#newRadioButtons,openArray[string],proc(RadioButtons)	uing: newRadioButtons(items: openArray[string] = [];\n                onselected: proc (sender: RadioButtons) = nil): RadioButtons	
 Window	uing.html#Window	uing: Window	
 impl	uing.html#impl,Window	uing: impl(b: Window): RawWindow	
 impl=	uing.html#impl=,Window,RawWindow	uing: impl=(b: Window; r: RawWindow)	
@@ -232,7 +233,7 @@ newHorizontalSeparator	uing.html#newHorizontalSeparator	uing: newHorizontalSepar
 Combobox	uing.html#Combobox	uing: Combobox	
 impl	uing.html#impl,Combobox	uing: impl(b: Combobox): RawCombobox	
 impl=	uing.html#impl=,Combobox,RawCombobox	uing: impl=(b: Combobox; r: RawCombobox)	
-add	uing.html#add,Combobox,varargs[string]	uing: add(c: Combobox; items: varargs[string])	
+add	uing.html#add,Combobox,varargs[string,]	uing: add(c: Combobox; items: varargs[string, `$`])	
 insertAt	uing.html#insertAt,Combobox,int,string	uing: insertAt(c: Combobox; index: int; text: string)	
 clear	uing.html#clear,Combobox	uing: clear(c: Combobox)	
 delete	uing.html#delete,Combobox,int	uing: delete(c: Combobox; index: int)	
@@ -242,11 +243,11 @@ newCombobox	uing.html#newCombobox,openArray[string],proc(Combobox)	uing: newComb
 EditableCombobox	uing.html#EditableCombobox	uing: EditableCombobox	
 impl	uing.html#impl,EditableCombobox	uing: impl(b: EditableCombobox): RawEditableCombobox	
 impl=	uing.html#impl=,EditableCombobox,RawEditableCombobox	uing: impl=(b: EditableCombobox; r: RawEditableCombobox)	
-add	uing.html#add,EditableCombobox,varargs[string]	uing: add(c: EditableCombobox; items: varargs[string])	
+add	uing.html#add,EditableCombobox,varargs[string,]	uing: add(c: EditableCombobox; items: varargs[string, `$`])	
 text	uing.html#text,EditableCombobox	uing: text(c: EditableCombobox): string	
 text=	uing.html#text=,EditableCombobox,string	uing: text=(c: EditableCombobox; text: string)	
 clear	uing.html#clear,EditableCombobox	uing: clear(e: EditableCombobox)	
-newEditableCombobox	uing.html#newEditableCombobox,proc(EditableCombobox)	uing: newEditableCombobox(onchanged: proc (sender: EditableCombobox) = nil): EditableCombobox	
+newEditableCombobox	uing.html#newEditableCombobox,openArray[string],proc(EditableCombobox)	uing: newEditableCombobox(items: openArray[string] = [];\n                    onchanged: proc (sender: EditableCombobox) = nil): EditableCombobox	
 MultilineEntry	uing.html#MultilineEntry	uing: MultilineEntry	
 impl	uing.html#impl,MultilineEntry	uing: impl(b: MultilineEntry): RawMultilineEntry	
 impl=	uing.html#impl=,MultilineEntry,RawMultilineEntry	uing: impl=(b: MultilineEntry; r: RawMultilineEntry)	
@@ -363,6 +364,7 @@ disable	uing.html#disable,W	uing: disable[W: Widget](w: W)
 destroy	uing.html#destroy,W	uing: destroy[W: Widget](w: W)	
 parent	uing.html#parent	uing: parent[W: Widget](w: W and not Window): W	
 parent=	uing.html#parent=,W,W	uing: parent=[W: Widget](w: W; parent: W)	
+handle	uing.html#handle,W	uing: handle[W: Widget](w: W): int	
 signature	uing.html#signature,W	uing: signature[W: Widget](w: W): int	
 typeSignature	uing.html#typeSignature,W	uing: typeSignature[W: Widget](w: W): int	
 osSignature	uing.html#osSignature,W	uing: osSignature[W: Widget](w: W): int	
