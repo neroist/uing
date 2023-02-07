@@ -3083,7 +3083,7 @@ proc handle*[W: Widget](w: W): int =
   ## 
   ## `w`: Widget instance.
   
-  int controlHandle(w.impl)
+  controlHandle(w.impl)
 
 func signature*[W: Widget](w: W): int = 
   ## Get widget signature
