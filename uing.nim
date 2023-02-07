@@ -76,6 +76,8 @@ template genImplProcs(t: untyped) {.dirty.}=
 
 # -------- funcs --------
 
+export ForEach
+
 type
   TimerProc = ref object
     fn: proc(): bool
