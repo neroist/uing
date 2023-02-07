@@ -3078,6 +3078,13 @@ proc `parent=`*[W: Widget](w: W, parent: W) =
     else: nil
   )
 
+proc handle*[W: Widget](w: W): int = 
+  ## Returns the control's OS-level handle.
+  ## 
+  ## `w`: Widget instance.
+  
+  int controlHandle(w.impl)
+
 func signature*[W: Widget](w: W): int = 
   ## Get widget signature
   
