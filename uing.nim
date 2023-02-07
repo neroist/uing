@@ -90,7 +90,7 @@ proc mainStep*(wait: int): bool =
   bool rawui.mainStep(cint wait)
 
 proc wrapTimerProc(data: pointer): cint {.cdecl.} =
-  var f = cast[TimerProc](data)
+  let f = cast[TimerProc](data)
   result = cint f.fn() 
 
   if result == 0: # a result of 0 means to stop the timer
@@ -106,7 +106,7 @@ proc timer*(milliseconds: int; fun: proc (): bool) =
   ## .. note:: The minimum exact timing, either accuracy (timer burst, etc.) 
   ##      or granularity (15ms on Windows, etc.), is OS-defined 
   
-  var fn = TimerProc(fn: fun)
+  let fn = TimerProc(fn: fun)
   GC_ref fn
 
   rawui.timer(cint milliseconds, wrapTimerProc, cast[pointer](fn))
@@ -369,14 +369,37 @@ proc addWithAttributes*(s: AttributedString; str: string; attrs: varargs[Attribu
   for attr in attrs:
     s.setAttribute attr, start, `end`
 
-proc forEachAttribute*(str: AttributedString; fun: AttributedStringForEachAttributeFunc; data: pointer) =
+type
+  AttributedStringForEachAttributeFunc = ref object
+    fun: proc (s: AttributedString; a: Attribute, start, `end`: int): ForEach
+
+proc wrapAttributedStringForEachAttributeFunc(s: ptr rawui.AttributedString;
+      a: ptr rawui.Attribute; start: csize_t; `end`: csize_t; data: pointer): ForEach {.cdecl.} =
+
+  let 
+    f = cast[AttributedStringForEachAttributeFunc](data)
+    attrstr = new AttributedString
+    attr = new Attribute
+
+  attrstr.impl = s
+  attr.impl = a
+
+  result = f.fun(attrstr, attr, int start, int `end`) 
+
+  if result == ForEachStop: 
+    GC_unref f
+
+proc forEachAttribute*(str: AttributedString; fun: proc (s: AttributedString; a: Attribute, start, `end`: int): ForEach) =
   ## enumerates all the Attributes in `str`. Within `fun`, `str` 
   ## still owns the attribute; you can neither free it nor save 
   ## it for later use.
   ## 
   ## .. error:: You cannot modify `str` in `fun`.
+  
+  let forEachFunc = AttributedStringForEachAttributeFunc(fun: fun)
+  GC_ref forEachFunc
    
-  attributedStringForEachAttribute(str.impl, fun, data)
+  attributedStringForEachAttribute(str.impl, wrapAttributedStringForEachAttributeFunc, cast[pointer](forEachFunc))
 
 proc numGraphemes*(s: AttributedString): int =
   int attributedStringNumGraphemes(s.impl)
@@ -673,7 +696,7 @@ proc remove*(otf: OpenTypeFeatures; abcd: string) =
   
   openTypeFeaturesRemove(otf.impl, abcd[0], abcd[1], abcd[2], abcd[3])
 
-proc get*(otf: OpenTypeFeatures; a, b, c, d: char, value: var uint32): int =
+proc get*(otf: OpenTypeFeatures; a, b, c, d: char, value: var int): bool =
   ## Determines whether the given feature tag is present in `otf`. 
   ## If it is, `value` is set to the tag's value and
   ## nonzero is returned. Otherwise, zero is returned.
@@ -686,10 +709,12 @@ proc get*(otf: OpenTypeFeatures; a, b, c, d: char, value: var uint32): int =
   ## for a feature. You should likewise not treat a missing feature as
   ## having a value of zero either. Instead, a missing feature should
   ## be treated as having some unspecified default value.
+  var val = uint32 value
   
-  int openTypeFeaturesGet(otf.impl, a, b, c, d, addr value)
+  result = bool openTypeFeaturesGet(otf.impl, a, b, c, d, addr val)
+  value = int val
 
-proc get*(otf: OpenTypeFeatures; abcd: string, value: var uint32): bool =
+proc get*(otf: OpenTypeFeatures; abcd: string, value: var int): bool =
   ## Alias of `get <#get,OpenTypeFeatures,char,char,char,char,uint32>`_.
   ## `a`, `b`, `c`, and `d` are instead a string of 4 characters, each
   ## character representing `a`, `b`, `c`, and `d` respectively.
@@ -697,16 +722,37 @@ proc get*(otf: OpenTypeFeatures; abcd: string, value: var uint32): bool =
   if abcd.len != 4:
     raise newException(ValueError, "String has an invalid length; it must have a length of 4.")
 
-  bool openTypeFeaturesGet(otf.impl, abcd[0], abcd[1], abcd[2], abcd[3], addr value)
+  otf.get(abcd[0], abcd[1], abcd[2], abcd[3], value)
 
-proc forEach*(otf: OpenTypeFeatures; f: OpenTypeFeaturesForEachFunc; data: pointer) =
+type
+  OpenTypeFeaturesForEachFunc = ref object
+    fun: proc (otf: OpenTypeFeatures; abcd: string; value: int): ForEach
+
+proc wrapOpenTypeFeaturesForEachFunc(otf: ptr rawui.OpenTypeFeatures; a, b, c, d: char; value: uint32; 
+                                     data: pointer): ForEach {.cdecl.} =
+
+  let 
+    f = cast[OpenTypeFeaturesForEachFunc](data)
+    openType = new OpenTypeFeatures
+
+  openType.impl = otf
+
+  result = f.fun(openType, a & b & c & d, int value) 
+
+  if result == ForEachStop: 
+    GC_unref f
+
+proc forEach*(otf: OpenTypeFeatures; f: proc (otf: OpenTypeFeatures; abcd: string; value: int): ForEach) =
   ## Executes `f` for every tag-value pair in `otf`. 
   ## The enumeration order is unspecified. 
   ## 
   ## .. error:: You cannot modify `otf` while this function 
   ##        is running.
+  
+  let forEachFunc = OpenTypeFeaturesForEachFunc(fun: f)
+  GC_ref forEachFunc
 
-  openTypeFeaturesForEach(otf.impl, f, data)
+  openTypeFeaturesForEach(otf.impl, wrapOpenTypeFeaturesForEachFunc, cast[pointer](forEachFunc))
 
 proc newFeaturesAttribute*(otf: OpenTypeFeatures): Attribute =
   ## Creates a and returns new Attribute that changes
