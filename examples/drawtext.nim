@@ -4,7 +4,7 @@ import uing
 from uing/rawui import nil
 
 var 
-  #systemFont: Checkbox
+  systemFont: Checkbox
   fontButton: FontButton
   alignment: Combobox
   attrstr: AttributedString
@@ -79,18 +79,18 @@ proc drawHandler*(a: ptr AreaHandler; area: ptr rawui.Area; p: ptr AreaDrawParam
 
   var 
     params: DrawTextLayoutParams
-    defaultFont: ptr FontDescriptor
+    defaultFont: FontDescriptor
 
-  #let useSystemFont = systemFont.checked
+  let useSystemFont = systemFont.checked
 
-  #if useSystemFont:
-  #  loadControlFont defaultFont
-  #else:
-  var f = fontButton.font
-  defaultFont = addr f
+  if useSystemFont:
+    loadControlFont addr defaultFont
+  else:
+    var f = fontButton.font
+    defaultFont = f
 
   params.string = attrstr.impl
-  params.defaultFont = defaultFont
+  params.defaultFont = addr defaultFont
   params.width = p.areaWidth
   params.align = DrawTextAlign(alignment.selected)
 
@@ -99,7 +99,9 @@ proc drawHandler*(a: ptr AreaHandler; area: ptr rawui.Area; p: ptr AreaDrawParam
   p.context.drawText textLayout, (0.0, 0.0)
 
   free textLayout
-  freeFont defaultFont
+  
+  if not useSystemFont:
+    freeFont addr defaultFont
 
 proc main =
   makeAttributedString()
@@ -139,9 +141,9 @@ proc main =
   alignment.onselected = (_: Combobox) => area.queueRedrawAll()
   form.add "Alignment", alignment
 
-  #systemFont = newCheckbox("")
-  #systemFont.ontoggled = (_: Checkbox) => area.queueRedrawAll()
-  #form.add "System Font", systemFont
+  systemFont = newCheckbox("")
+  systemFont.ontoggled = (_: Checkbox) => area.queueRedrawAll()
+  form.add "System Font", systemFont
 
   free attrstr
 
