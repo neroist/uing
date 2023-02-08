@@ -60,11 +60,11 @@ proc makeAttributedString =
 
   attrstr.addUnattributed("and control over OpenType features such as ligatures (for instance, ")
   let otf = newOpenTypeFeatures()
-  otf.add("liga", off)
+  otf.add("smcp", off)
   let attr10 = newFeaturesAttribute(otf)
   attrstr.addWithAttributes("afford", attr10)
   attrstr.addUnattributed(" vs. ")
-  otf.add("liga", on)
+  otf.add("smcp", on)
   let attr11 = newFeaturesAttribute(otf)
   attrstr.addWithAttributes("afford", attr11)
   
