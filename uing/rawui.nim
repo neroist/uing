@@ -91,16 +91,8 @@ else:
 
   when defined(vcc):
     {.passC: "/EHsc".}
-
-    when false:
-
-      const arch = when defined(cpu32): "x86" else: "x64"
-      
-      {.link: r"C:\Program Files (x86)\Windows Kits\8.1\Lib\winv6.3\um\" & arch & r"\d2d1.lib".}
-      {.link: r"C:\Program Files (x86)\Windows Kits\8.1\Lib\winv6.3\um\" & arch & r"\dwrite.lib".}
-      {.link: r"C:\Program Files (x86)\Windows Kits\8.1\Lib\winv6.3\um\" & arch & r"\UxTheme.lib".}
-      {.link: r"C:\Program Files (x86)\Windows Kits\8.1\Lib\winv6.3\um\" & arch & r"\Usp10.lib".}
-
+    {.passC: "/wd4312".} # disable warning: 'type cast': conversion from 'int' to 'HMENU' of greater size
+ 
     {.link: "windowscodecs.lib".}
     {.link: "kernel32.lib".}
     {.link: "user32.lib".}
