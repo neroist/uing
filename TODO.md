@@ -8,4 +8,4 @@
 - [ ] Wrap `Image.add` *properly*
 - [ ] Add an example using `Image`
 - [x] Add example(s) using drawing (see [`histogram2.nim`](examples/histogram2.nim), [`drawtext.nim`](examples/drawtext.nim), [`squares.nim`](examples/squares.nim), and [`gradient.nim`](examples/gradient.nim))
-- [ ] Add tests for widget generics
+- [x] Add tests for widget generics (see [`tests/text_widget.nim`](tests/test_widget.nim))
