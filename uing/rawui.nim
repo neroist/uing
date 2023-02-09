@@ -16,7 +16,7 @@ when defined(useLibUiDll):
       dllName* = "libui.dylib"
   else:
     const
-      dllName* = "libui.so"
+      dllName* = "libui.so(|.0)"
 
   {.pragma: libui, dynlib: dllName.}
 
