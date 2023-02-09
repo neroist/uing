@@ -53,6 +53,9 @@ suite "Test Widget Generics":
   test "Widget can get is enabled to users":
     check button.enabledToUser == true
 
+  test "Widget can be freed":
+    free button
+
   # teardown
   window.child = button
   show window
