@@ -3145,7 +3145,7 @@ proc visible*[W: Widget](w: W): bool =
   
   bool rawui.controlVisible(w.impl)
 
-proc verifySetParent*[W: Widget](w, parent: Widget): bool =
+proc verifySetParent*[W: Widget](w: W, parent: Widget) =
   ## Makes sure the widget's parent can be set to `parent`.
   ## 
   ## .. warning:: This will crash the application if `false`.
@@ -3153,7 +3153,7 @@ proc verifySetParent*[W: Widget](w, parent: Widget): bool =
   ## | `w`: Widget instance.
   ## | `parent`: Widget instance.
 
-  bool rawui.controlVerifySetParent(w.impl, parent.impl)
+  rawui.controlVerifySetParent(w.impl, parent.impl)
 
 proc enabledToUser*[W: Widget](w: W): bool =
   ## Returns whether or not the widget can be interacted with by the user.
