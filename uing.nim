@@ -3112,7 +3112,7 @@ proc parent*[W: Widget](w: W and not Window): W =
   # same thing as `impl=`
   result.internalImpl = pointer parent
 
-proc `parent=`*[W: Widget](w: W, parent: W) =
+proc `parent=`*[W: Widget](w: W, parent: Widget) =
   ## Sets the widget's parent.
   ## 
   ## | `w`: Widget instance.
