@@ -287,7 +287,6 @@ impl	uing.html#impl,ColorButton	uing: impl(b: ColorButton): RawColorButton
 impl=	uing.html#impl=,ColorButton,RawColorButton	uing: impl=(b: ColorButton; r: RawColorButton)	
 color	uing.html#color,ColorButton	uing: color(c: ColorButton): tuple[r, g, b, a: float]	
 setColor	uing.html#setColor,ColorButton,float,float,float,float	uing: setColor(c: ColorButton; r, g, b, alpha: 0.0 .. 1.0 = 1.0)	
-setColor	uing.html#setColor,ColorButton,int,int,int,float	uing: setColor(c: ColorButton; r, g, b: int; alpha: 0.0 .. 1.0 = 1.0)	
 color=	uing.html#color=,ColorButton,Color	uing: color=(c: ColorButton; color: Color)	
 newColorButton	uing.html#newColorButton,proc(ColorButton)	uing: newColorButton(onchanged: proc (sender: ColorButton) = nil): ColorButton	
 Form	uing.html#Form	uing: Form	
