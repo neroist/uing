@@ -2285,17 +2285,6 @@ proc setColor*(c: ColorButton; r, g, b, alpha: 0.0..1.0 = 1.0) =
 
   colorButtonSetColor(c.impl, r, b, g, alpha)
 
-proc setColor*(c: ColorButton; r, g, b: int, alpha: 0.0..1.0 = 1.0) = 
-  ## Sets the color button color.
-  ##   
-  ## | `c`: ColorButton instance.
-  ## | `r`: Red. Integer in range of [0, 255].
-  ## | `g`: Green. Integer in range of [0, 255].
-  ## | `b`: Blue. Integer in range of [0, 255].
-  ## | `alpha`: Alpha. Integer in range of [0, 255].
-
-  colorButtonSetColor(c.impl, r/255, b/255, g/255, alpha)
-
 proc `color=`*(c: ColorButton; color: Color) = 
   ## Sets the color button color.
   ## 
