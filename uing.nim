@@ -127,6 +127,7 @@ proc free*(f: ptr FontDescriptor) = rawui.freeFontDescriptor f
 type
   Area* = ref object of Widget
     handler: ptr AreaHandler
+    scrolling*: bool
 
 export 
   WindowResizeEdge, 
@@ -154,6 +155,7 @@ proc newArea*(ah: ptr AreaHandler): Area =
 proc newScrollingArea*(ah: ptr AreaHandler; width, height: int): Area =
   newFinal result
   result.handler = ah
+  result.scrolling = true
   result.impl = rawui.newScrollingArea(ah, cint width, cint height)
 
 # -------- Drawing --------

@@ -362,14 +362,14 @@ enable	uing.html#enable,W	uing: enable[W: Widget](w: W)
 disable	uing.html#disable,W	uing: disable[W: Widget](w: W)	
 destroy	uing.html#destroy,W	uing: destroy[W: Widget](w: W)	
 parent	uing.html#parent	uing: parent[W: Widget](w: W and not Window): W	
-parent=	uing.html#parent=,W,W	uing: parent=[W: Widget](w: W; parent: W)	
+parent=	uing.html#parent=,W,Widget	uing: parent=[W: Widget](w: W; parent: Widget)	
 handle	uing.html#handle,W	uing: handle[W: Widget](w: W): int	
 signature	uing.html#signature,W	uing: signature[W: Widget](w: W): int	
 typeSignature	uing.html#typeSignature,W	uing: typeSignature[W: Widget](w: W): int	
 osSignature	uing.html#osSignature,W	uing: osSignature[W: Widget](w: W): int	
 topLevel	uing.html#topLevel,W	uing: topLevel[W: Widget](w: W): bool	
 visible	uing.html#visible,W	uing: visible[W: Widget](w: W): bool	
-verifySetParent	uing.html#verifySetParent,W,W	uing: verifySetParent[W: Widget](w, parent: W): bool	
+verifySetParent	uing.html#verifySetParent,W,Widget	uing: verifySetParent[W: Widget](w: W; parent: Widget)	
 enabledToUser	uing.html#enabledToUser,W	uing: enabledToUser[W: Widget](w: W): bool	
 free	uing.html#free,W	uing: free[W: Widget](w: W)	
 DateTimePicker	uing.html#DateTimePicker	uing: DateTimePicker	
