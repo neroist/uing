@@ -3156,7 +3156,7 @@ proc visible*[W: Widget](w: W): bool =
   
   bool rawui.controlVisible(w.impl)
 
-proc verifySetParent*[W: Widget](w, parent: W): bool =
+proc verifySetParent*[W: Widget](w, parent: Widget): bool =
   ## Makes sure the widget's parent can be set to `parent`.
   ## 
   ## .. warning:: This will crash the application if `false`.
