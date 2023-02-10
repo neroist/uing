@@ -39,7 +39,7 @@ proc mainLoop*() =
   rawui.uninit()
 
 proc pollingMainLoop*(poll: proc(timeout: int); timeout: int) =
-  ## Can be used to merge an async event loop with UI's event loop.
+  ## Can be used to merge an async event loop with UIng's event loop.
   ## Implemented using timeouts and polling because that's the only
   ## thing that truely composes.
   
