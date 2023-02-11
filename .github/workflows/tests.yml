@@ -1,0 +1,21 @@
+name: run-tests
+run-name: Run uing tests on macOS, Ubuntu, and Windows
+on: [push]
+jobs:
+  run-tests:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os:
+          - macOS-latest
+          - ubuntu-latest
+          - windows-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: jiro4989/setup-nim-action@v1
+        with:
+          nim-version: stable
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Run tests for ${{ matrix.os }}
+        run: nimble test
+        
