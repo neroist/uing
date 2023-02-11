@@ -16,6 +16,9 @@ jobs:
         with:
           nim-version: stable
           repo-token: ${{ secrets.GITHUB_TOKEN }}
+      - if: runner.os == 'windows-latest'
+        name: Install gtk3 on Linux
+        run: sudo apt-get install -y libgtk-3-dev
       - name: Run tests for ${{ matrix.os }}
         run: nimble test
         
