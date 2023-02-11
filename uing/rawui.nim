@@ -44,7 +44,6 @@ else:
 
     {.passC: cflags.}
     {.passL: lflags.}
-    {.passL: "-lui".}
 
   {.compile: ("./libui/common/*.c", "common_$#.obj").}
 

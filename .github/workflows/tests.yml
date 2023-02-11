@@ -18,7 +18,9 @@ jobs:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
       - uses: knicknic/os-specific-run@v1
         with:
-          linux: sudo apt-get install -y libgtk-3-dev
+          linux: |
+            ls
+            sudo apt-get install -y libgtk-3-dev
 
       - name: Run tests for ${{ matrix.os }}
         run: nimble test
