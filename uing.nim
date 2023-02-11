@@ -2688,7 +2688,7 @@ proc image*(v: TableValue): Image =
   newFinal result
   result.impl = rawui.tableValueImage(v.impl)
 
-proc newTableValue*(i: int): TableValue = 
+proc newTableValue*(i: int | bool): TableValue = 
   ## Creates a new table value to store an integer.
   ## 
   ## This value type can be used in conjunction with properties like
