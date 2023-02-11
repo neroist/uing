@@ -1456,15 +1456,15 @@ type
     
 genImplProcs(Tab)
 
-proc add*(t: Tab; name: string; w: Widget) =
+proc add*(t: Tab; name: string; child: Widget) =
   ## Appends a widget in form of a page/tab with label.
   ## 
   ## | `t`: Tab instance.
   ## | `name`: Label text.
-  ## | `w`: Widget to append.
+  ## | `child`: Widget to append.
  
-  tabAppend t.impl, name, w.impl
-  t.tabs.add (name, w)
+  tabAppend t.impl, name, child.impl
+  t.tabs.add (name, child)
 
 proc insertAt*(t: Tab; name: string; index: int; w: Widget) =
   ## Inserts a widget in form of a page/tab with label at `index`.
