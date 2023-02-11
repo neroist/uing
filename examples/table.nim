@@ -38,7 +38,7 @@ proc modelCellValue(mh: ptr TableModelHandler, m: ptr rawui.TableModel, row, col
     of COLUMN_PROCESS:
       result = newTableValue(progress[row]).impl
     of COLUMN_PASSED:
-      result = newTableValue(int(progress[row] > 60)).impl
+      result = newTableValue(progress[row] > 60).impl
     of COLUMN_ACTION:
       result = newTableValue("Apply").impl
     else:
@@ -47,11 +47,6 @@ proc modelCellValue(mh: ptr TableModelHandler, m: ptr rawui.TableModel, row, col
 proc modelSetCellValue(mh: ptr TableModelHandler, m: ptr rawui.TableModel, row, col: cint, val: ptr rawui.TableValue) {.cdecl.} =
   if col == COLUMN_ACTION:
     rawui.tableModelRowChanged(m, row)
-
-# has to be outside of main() or else we get a SIGSEGV???
-var
-  mh: TableModelHandler
-  p: TableParams
 
 proc main() =
   var mainwin: Window
@@ -69,14 +64,15 @@ proc main() =
   let box = newVerticalBox(true)
   mainwin.child = box
 
+  var mh: TableModelHandler
   mh.numColumns = modelNumColumns
   mh.columnType = modelColumnType
   mh.numRows = modelNumRows
   mh.cellValue = modelCellValue
   mh.setCellValue = modelSetCellValue
 
+  var p: TableParams
   p.model = newTableModel(addr mh).impl
-  p.rowBackgroundColorModelColumn = 4
  
   let table = newTable(addr p)
   table.addTextColumn("ID", COLUMN_ID, TableModelColumnNeverEditable)
@@ -87,9 +83,10 @@ proc main() =
   table.addCheckboxColumn("Passed", COLUMN_PASSED, TableModelColumnAlwaysEditable)
   table.addButtonColumn("Action", COLUMN_ACTION, TableModelColumnAlwaysEditable)
 
-  box.add(table, true)
-  show(mainwin)
+  box.add table, true
+  show mainwin
+
+  mainLoop()
 
 init()
 main()
-mainLoop()
