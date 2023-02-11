@@ -24,11 +24,11 @@ proc main() =
             Checkbox("Checkbox")
             Entry("Entry")
             HorizontalSeparator()
-            DatePicker
-            TimePicker
-            DateTimePicker
-            FontButton
-            ColorButton
+            DatePicker()
+            TimePicker()
+            DateTimePicker()
+            FontButton()
+            ColorButton()
         VerticalBox(padded = true)[stretchy = true]:
           Group(title = "Numbers", margined = true):
             VerticalBox(padded = true):
