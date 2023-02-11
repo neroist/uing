@@ -14,4 +14,12 @@ jobs:
 
       - name: Generate documentation
         run: nimble doc uing.nim
+
+      - name: Deploy to GitHub Pages
+        if: success()
+        uses: crazy-max/ghaction-github-pages@v3
+        with:
+          build_dir: docs
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         
