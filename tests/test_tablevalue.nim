@@ -10,8 +10,7 @@ suite "Test TableValue":
   let str = newTableValue("Test")
   let num = newTableValue(4)
   let color = newTableValue(0.004, 0.365, 0.322)
-  # TODO image
-
+  
   # tests
   test "TableValue string":
     check $str == "Test"
@@ -30,12 +29,14 @@ suite "Test TableValue":
     
     expect ValueError:
       discard str.color
+
+  # TODO test image
   
   # teardown
   show window
 
   mainSteps()
-  discard mainStep(1)
+  mainStep(1)
 
   uing.quit()
   

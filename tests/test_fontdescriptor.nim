@@ -20,7 +20,7 @@ suite "Test FontDescriptor":
   show window
 
   mainSteps()
-  discard mainStep(1)
+  mainStep(1)
 
   uing.quit()
     
