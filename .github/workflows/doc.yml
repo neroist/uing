@@ -1,6 +1,16 @@
 name: generate-doc
 run-name: Generate documentation
-on: [push]
+on: 
+  push:
+    branches:
+      - "main"
+    paths:
+      - "uing.nim"
+      - "config.nims"
+      - "uing.nimble"
+
+      - "docs/**"
+      - "uing/**"
 jobs:
   generate-doc:
     runs-on: ubuntu-latest
