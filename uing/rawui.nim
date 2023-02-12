@@ -115,6 +115,8 @@ else:
 
 type
   ForEach* {.size: sizeof(cint).} = enum
+    ## ForEach represents the return value from one of libui-ng's various ForEach functions.
+
     ForEachContinue,
     ForEachStop,
 
@@ -888,7 +890,7 @@ type
   DrawStrokeParams* {.bycopy.} = object
     cap*       : DrawLineCap
     join*      : DrawLineJoin
-    thickness* : cdouble
+    thickness* : cdouble ## if this is 0 on windows there will be a crash with dashing
     miterLimit*: cdouble
     dashes*    : ptr cdouble
     numDashes* : csize_t

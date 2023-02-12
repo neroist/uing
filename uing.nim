@@ -140,11 +140,21 @@ export
 
 genImplProcs(Area)
 
-proc `size=`*(a: Area, size: tuple[width, height: int]) = areaSetSize(a.impl, cint size.width, cint size.height)
-proc queueRedrawAll*(a: Area) = areaQueueRedrawAll(a.impl)
-proc beginUserWindowMove*(a: Area) = areaBeginUserWindowMove(a.impl)
-proc beginUserWindowResize*(a: Area; edge: WindowResizeEdge) = areaBeginUserWindowResize(a.impl, edge)
-proc scrollTo*(a: Area, x, y, width, height: float) = areaScrollTo(a.impl, cdouble x, cdouble y, cdouble width, cdouble height)
+proc `size=`*(a: Area, size: tuple[width, height: int]) = 
+  areaSetSize(a.impl, cint size.width, cint size.height)
+
+proc queueRedrawAll*(a: Area) = 
+  areaQueueRedrawAll(a.impl)
+
+proc beginUserWindowMove*(a: Area) = 
+  areaBeginUserWindowMove(a.impl)
+
+proc beginUserWindowResize*(a: Area; edge: WindowResizeEdge) = 
+  areaBeginUserWindowResize(a.impl, edge)
+
+proc scrollTo*(a: Area, x, y, width, height: float) = 
+  areaScrollTo(a.impl, cdouble x, cdouble y, cdouble width, cdouble height)
+
 proc handler*(a: Area): ptr AreaHandler = a.handler
 
 proc newArea*(ah: ptr AreaHandler): Area =
@@ -187,25 +197,50 @@ proc newFigure*(p: DrawPath; x: float; y: float) = drawPathNewFigure(p.impl, cdo
 
 proc newFigureWithArc*(p: DrawPath; xCenter, yCenter, radius, startAngle, sweep: float; negative: int) = 
   drawPathNewFigureWithArc(
-    p.impl, cdouble xCenter, cdouble yCenter, cdouble radius, cdouble startAngle, cdouble sweep, 
+    p.impl, 
+    cdouble xCenter, 
+    cdouble yCenter, 
+    cdouble radius, 
+    cdouble startAngle, 
+    cdouble sweep, 
     cint negative
   )
 
-proc lineTo*(p: DrawPath; x, y: float) = drawPathLineTo(p.impl, cdouble x, cdouble y)
+proc lineTo*(p: DrawPath; x, y: float) = 
+  drawPathLineTo(p.impl, cdouble x, cdouble y)
 
 proc arcTo*(p: DrawPath; xCenter, yCenter, radius, startAngle, sweep: float; negative: int) =
-  drawPathArcTo(p.impl, cdouble xCenter, cdouble yCenter, cdouble radius, cdouble startAngle, cdouble sweep, cint negative)
+  drawPathArcTo(
+    p.impl, 
+    cdouble xCenter,
+    cdouble yCenter, 
+    cdouble radius, 
+    cdouble startAngle, 
+    cdouble sweep, 
+    cint negative
+  )
 
 proc bezierTo*(p: DrawPath; c1x, c1y, c2x, c2y, endX, endY: float) =
-  drawPathBezierTo(p.impl, cdouble c1x, cdouble c1y, cdouble c2x, cdouble c2y, cdouble endX, cdouble endY)
+  drawPathBezierTo(
+    p.impl, 
+    cdouble c1x, 
+    cdouble c1y, 
+    cdouble c2x, 
+    cdouble c2y, 
+    cdouble endX, 
+    cdouble endY
+  )
 
 proc closeFigure*(p: DrawPath) = drawPathCloseFigure(p.impl)
 
 proc addRectangle*(p: DrawPath; x, y, width, height: float) =
   drawPathAddRectangle(p.impl, cdouble x, cdouble y, cdouble width, cdouble height)
 
-proc ended*(p: DrawPath): bool = bool drawPathEnded(p.impl)
-proc `end`*(p: DrawPath) = drawPathEnd(p.impl)
+proc ended*(p: DrawPath): bool = 
+  bool drawPathEnded(p.impl)
+
+proc `end`*(p: DrawPath) = 
+  drawPathEnd(p.impl)
 
 proc stroke*(c: ptr DrawContext; path: DrawPath; b: ptr DrawBrush; p: ptr DrawStrokeParams) = 
   rawui.drawStroke(c, path.impl, b, p)
@@ -229,11 +264,14 @@ proc rotate*(m: ptr DrawMatrix; x, y, amount: float) =
 proc skew*(m: ptr DrawMatrix; x, y, xamount, yamount: float) =
   drawMatrixSkew(m, cdouble x, cdouble y, cdouble xamount, cdouble yamount)
 
-proc multiply*(dest, src: ptr DrawMatrix) = drawMatrixMultiply(dest, src)
+proc multiply*(dest, src: ptr DrawMatrix) = 
+  drawMatrixMultiply(dest, src)
 
-proc invertible*(m: ptr DrawMatrix): bool = bool drawMatrixInvertible(m)
+proc invertible*(m: ptr DrawMatrix): bool = 
+  bool drawMatrixInvertible(m)
 
-proc invert*(m: ptr DrawMatrix): int = int drawMatrixInvert(m)
+proc invert*(m: ptr DrawMatrix): int = 
+  int drawMatrixInvert(m)
 
 proc transformPoint*(m: ptr DrawMatrix): tuple[x, y: float] =
   var x, y: cdouble
@@ -346,7 +384,7 @@ proc insertAtUnattributed*(s: AttributedString; str: string; at: int) =
   attributedStringInsertAtUnattributed(s.impl, cstring str, csize_t at)
 
 proc delete*(s: AttributedString; start, `end`: int) =
-  ## deletes the characters and attributes of `s` in the byte range 
+  ## Deletes the characters and attributes of `s` in the byte range 
   ## [`start`, `end`).
 
   attributedStringDelete(s.impl, csize_t start, csize_t `end`)
