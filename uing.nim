@@ -739,9 +739,9 @@ proc remove*(otf: OpenTypeFeatures; abcd: string) =
 proc get*(otf: OpenTypeFeatures; a, b, c, d: char, value: var int): bool =
   ## Determines whether the given feature tag is present in `otf`. 
   ## If it is, `value` is set to the tag's value and
-  ## nonzero is returned. Otherwise, zero is returned.
+  ## `true` is returned. Otherwise, `false` is returned.
   ## 
-  ## Note that if this function returns zero, `value` isn't
+  ## Note that if this function returns `false`, `value` isn't
   ## changed. This is important: if a feature is not present in a
   ## `OpenTypeFeatures`, the feature is **NOT** treated as if its
   ## value was zero anyway. Script-specific font shaping rules and
@@ -749,6 +749,7 @@ proc get*(otf: OpenTypeFeatures; a, b, c, d: char, value: var int): bool =
   ## for a feature. You should likewise not treat a missing feature as
   ## having a value of zero either. Instead, a missing feature should
   ## be treated as having some unspecified default value.
+
   var val = uint32 value
   
   result = bool openTypeFeaturesGet(otf.impl, a, b, c, d, addr val)
