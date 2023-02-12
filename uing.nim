@@ -3135,7 +3135,7 @@ func typeSignature*[W: Widget](w: W): int =
 func osSignature*[W: Widget](w: W): int = 
   ## Get widget OS signature
   
-  int w.impl.oSSignature
+  int w.impl.osSignature
 
 proc topLevel*[W: Widget](w: W): bool =
   ## Returns whether or not the widget is a top level widget.
