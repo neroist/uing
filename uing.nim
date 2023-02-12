@@ -86,7 +86,7 @@ proc queueMain*(f: proc (data: pointer) {.cdecl.}; data: pointer) = rawui.queueM
 
 proc mainSteps*() = rawui.mainSteps()
 
-proc mainStep*(wait: int): bool {.discardable.}= 
+proc mainStep*(wait: int): bool {.discardable.} = 
   bool rawui.mainStep(cint wait)
 
 proc wrapTimerProc(data: pointer): cint {.cdecl.} =
