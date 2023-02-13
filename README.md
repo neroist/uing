@@ -69,4 +69,7 @@ Static and dynamic libraries (e.g. `libui.so`, `libui.lib`) can be found in the
 
 More screenshots are available at [`screenshots/`](screenshots/).
 
+## Stargazers over time
+[![Stargazers over time](https://starchart.cc/neroist/uing.svg)](https://starchart.cc/neroist/uing)
+
 ###### Made with ❤️ with Nim
