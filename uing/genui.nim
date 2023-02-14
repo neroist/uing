@@ -1,4 +1,4 @@
-# genui macro by PMunch (https://github.com/PMunch)
+# genui macro originally by PMunch (https://github.com/PMunch)
 # from PR #7 from nim-lang/ui
 
 import std/macros
@@ -75,7 +75,7 @@ macro genui*(args: varargs[untyped]): untyped =
     if infix[infix.high].kind == nnkStmtList:
       result.children = parseChildren(infix[infix.high])
 
-  proc parseIdent(ident: NimNode): WidgetArguments=
+  proc parseIdent(ident: NimNode): WidgetArguments =
     result = WidgetArguments(
       identifier: nil,
       name: $ident,
@@ -84,7 +84,7 @@ macro genui*(args: varargs[untyped]): untyped =
       children: @[],
     )
 
-  proc parsePrefix(prefix: NimNode): WidgetArguments=
+  proc parsePrefix(prefix: NimNode): WidgetArguments =
     #assert prefix[0] == !"%", "Use % to identify"
 
     result = parseNode(prefix[1])
