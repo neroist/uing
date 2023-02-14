@@ -2329,7 +2329,7 @@ type
 
 genImplProcs(Form)
 
-proc add*(f: Form, label: string, w: Widget, stretchy: bool = false) = 
+proc add*(f: Form, label: string, child: Widget, stretchy: bool = false) = 
   ## Appends a widget with a label to the form.
   ## 
   ## Stretchy items expand to use the remaining space within the container.
@@ -2337,11 +2337,11 @@ proc add*(f: Form, label: string, w: Widget, stretchy: bool = false) =
   ## 
   ## | `f`: Form instance.
   ## | `label`: Label text.
-  ## | `w`: Widget to append.
+  ## | `child`: Widget to append.
   ## | `stretchy`: `true` to stretch widget, `false` otherwise.
   
-  formAppend(f.impl, label, w.impl, cint stretchy)
-  f.chlidren.add (label: label, widget: w)
+  formAppend(f.impl, label, child.impl, cint stretchy)
+  f.chlidren.add (label: label, widget: child)
 
 proc delete*(f: Form, index: int) =
   ## Removes the widget at `index` from the form.
@@ -2409,11 +2409,11 @@ export Align, At
 
 genImplProcs(Grid)
 
-proc add*(g: Grid; w: Widget; left, top, xspan, yspan: int, hexpand: bool; halign: Align; vexpand: bool; valign: Align) =
+proc add*(g: Grid; child: Widget; left, top, xspan, yspan: int, hexpand: bool; halign: Align; vexpand: bool; valign: Align) =
   ## Appends a widget to the grid.
   ## 
   ## | `g`: Grid instance.
-  ## | `w`: The widget to insert.
+  ## | `child`: The widget to insert.
   ## | `left`: Placement as number of columns from the left. Integer in range of `[INT_MIN, INT_MAX]`.
   ## | `top`: Placement as number of rows from the top. Integer in range of `[INT_MIN, INT_MAX]`.
   ## | `xspan`: Number of columns to span. Integer in range of `[0, INT_MAX]`.
@@ -2423,8 +2423,8 @@ proc add*(g: Grid; w: Widget; left, top, xspan, yspan: int, hexpand: bool; halig
   ## | `vexpand`: `true` to expand reserved area vertically, `false` otherwise.
   ## | `valign`: Vertical alignment of the widget within the reserved space.
   
-  gridAppend(g.impl, w.impl, cint left, cint top, cint xspan, cint yspan, cint hexpand, halign, cint vexpand, valign)
-  g.children.add w
+  gridAppend(g.impl, child.impl, cint left, cint top, cint xspan, cint yspan, cint hexpand, halign, cint vexpand, valign)
+  g.children.add child
 
 proc insertAt*(g: Grid; w, existing: Widget; at: At; left, top, xspan, yspan: int, hexpand: bool; halign: Align; vexpand: bool; valign: Align) = 
   ##  Inserts a widget positioned in relation to another widget within the grid.
