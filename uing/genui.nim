@@ -18,6 +18,9 @@ proc high(s: NimNode):int =
 template add*[SomeWidget: Widget](g:Group, child:SomeWidget) =
   g.`child=`child
 
+template add*[SomeWidget: Widget](g:Window, child:SomeWidget) =
+  g.`child=`child
+
 macro genui*(args: varargs[untyped]): untyped =
   type WidgetArguments = object
     identifier:NimNode
@@ -42,7 +45,11 @@ macro genui*(args: varargs[untyped]): untyped =
       result = parseBracketExpr(call[0])
     else:
       result.name = $call[0]
-    result.arguments = if hasChildren: call[1..<call.high] else: call[1..call.high]
+    if result.arguments == @[]:
+      result.arguments = if hasChildren: call[1..<call.high] else: call[1..call.high]
+    #else:
+    #  for arg in if hasChildren: call[1..<call.high] else: call[1..call.high]:
+    #    result.arguments.add arg
     result.children = if hasChildren: parseChildren(call[call.high]) else: @[]
 
   proc parseBracketExpr(bracketExpr:NimNode):WidgetArguments =
@@ -135,7 +142,7 @@ macro genui*(args: varargs[untyped]): untyped =
         for node in childCode:
           result.add node
         var addCall = newCall("add",widget.identifier, nnkExprEqExpr.newTree(
-            ident("child"),
+            ident"child",
             c.identifier
           )
         )
