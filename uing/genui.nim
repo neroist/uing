@@ -1,5 +1,5 @@
 # genui macro by PMunch (https://github.com/PMunch)
-# from PR #43 from nim-lang/ui
+# from PR #7 from nim-lang/ui
 
 import std/macros
 

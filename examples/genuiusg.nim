@@ -1,3 +1,5 @@
+# Example by PMunch (https://github.com/PMunch), not me!
+
 import uing/genui
 import uing
 
@@ -39,7 +41,6 @@ proc main() =
     echo radioBox.selected
 
   # This is another way to create a callback, it will be assigned to the widgets later
-
   proc update(sender: Slider or Spinbox) =
     spinbox.value = sender.value
     slider.value = sender.value
@@ -97,4 +98,3 @@ proc main() =
 when isMainModule:
   init()
   main() 
-  
