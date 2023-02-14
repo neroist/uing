@@ -71,6 +71,7 @@ macro genui*(args: varargs[untyped]): untyped =
   proc parseInfix(infix: NimNode): WidgetArguments =
     result = parseNode(infix[2])
     result.identifier = infix[1]
+    
     if infix[infix.high].kind == nnkStmtList:
       result.children = parseChildren(infix[infix.high])
 
@@ -127,6 +128,7 @@ macro genui*(args: varargs[untyped]): untyped =
       call = newIdentNode(widget.name)
     else:
       call = newCall("new" & widget.name)
+
       if widget.arguments != @[]:
         for arg in widget.arguments:
           call.add arg
