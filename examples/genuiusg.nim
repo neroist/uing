@@ -21,7 +21,7 @@ import uing
 
 # This is an example of a simple function which creates a piece of UI
 # You will notice it uses result% to bind the RadioButtons widget created to the result
-proc getRadioBox():RadioButtons =
+proc getRadioBox(): RadioButtons =
   genui:
     result%RadioButtons:
       "Radio Button 1"
@@ -30,7 +30,6 @@ proc getRadioBox():RadioButtons =
 
 # This is a longer example which creates the same UI as in the controllgallery2 example
 proc main() =
-  var mainwin: Window
   var spinbox: Spinbox
   var slider: Slider
   var progressbar: ProgressBar
@@ -46,7 +45,7 @@ proc main() =
     slider.value = sender.value
     progressBar.value = sender.value
 
-  mainwin = newWindow("libui-ng Control Gallery", 640, 480)
+  let mainwin = newWindow("libui-ng Control Gallery", 640, 480)
   mainwin.margined = true
 
   # This is where the magic happens. Note that most of the parameter names are included,
