@@ -110,8 +110,8 @@ else:
     {.link: "dwrite.lib".}
     {.link: "UxTheme.lib".}
     {.link: "Usp10.lib".}
-    {.link: r"..\res\resources.res".}
-    {.link: r"..\res\winimvcc.res".}
+    {.link: "../res/resources.res".}
+    {.link: "../res/winimvcc.res".}
 
 type
   ForEach* {.size: sizeof(cint).} = enum
