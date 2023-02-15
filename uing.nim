@@ -2354,8 +2354,8 @@ proc newColorButton*(onchanged: proc (sender: ColorButton) = nil): ColorButton =
 proc newColorButton*(color: Color; onchanged: proc (sender: ColorButton) = nil): ColorButton =
   ## Creates a new color button.
   ## 
-  ## | `onchanged`: Callback for when the color is changed.
   ## | `color`: ColorButton `Color <https://nim-lang.org/docs/colors.html>`_.
+  ## | `onchanged`: Callback for when the color is changed.
   
   newFinal result
   result.impl = rawui.newColorButton()
@@ -2366,11 +2366,11 @@ proc newColorButton*(color: Color; onchanged: proc (sender: ColorButton) = nil):
 proc newColorButton*(r, g, b, alpha: 0.0..1.0 = 1.0; onchanged: proc (sender: ColorButton) = nil): ColorButton =
   ## Creates a new color button.
   ## 
-  ## | `onchanged`: Callback for when the color is changed.
   ## | `r`: Red. Float in range of [0.0, 1.0].
   ## | `g`: Green. Float in range of [0.0, 1.0].
   ## | `b`: Blue. Float in range of [0.0, 1.0].
   ## | `alpha`: Alpha. Float in range of [0.0, 1.0].
+  ## | `onchanged`: Callback for when the color is changed.
   
   newFinal result
   result.impl = rawui.newColorButton()
@@ -3302,8 +3302,8 @@ proc newDateTimePicker*(onchanged: proc(sender: DateTimePicker) = nil): DateTime
 proc newDateTimePicker*(dateTime: DateTime; onchanged: proc(sender: DateTimePicker) = nil): DateTimePicker =
   ## Creates a new date and time picker.
   ## 
-  ## | `onchanged`: Callback for when the date time picker value is changed by the user.
   ## | `dateTime`: Date and/or time as local time.
+  ## | `onchanged`: Callback for when the date time picker value is changed by the user.
 
   newFinal result
   result.impl = rawui.newDateTimePicker()
@@ -3324,8 +3324,8 @@ proc newDatePicker*(onchanged: proc(sender: DateTimePicker) = nil): DateTimePick
 proc newDatePicker*(date: DateTime; onchanged: proc(sender: DateTimePicker) = nil): DateTimePicker =
   ## Creates a new date picker
   ## 
-  ## | `onchanged`: Callback for when the date time picker value is changed by the user.
   ## | `date`: Date and/or time as local time.
+  ## | `onchanged`: Callback for when the date time picker value is changed by the user.
 
   newFinal result
   result.impl = rawui.newDatePicker()
@@ -3346,8 +3346,8 @@ proc newTimePicker*(onchanged: proc(sender: DateTimePicker) = nil): DateTimePick
 proc newTimePicker*(time: DateTime; onchanged: proc(sender: DateTimePicker) = nil): DateTimePicker = 
   ## Creates a new time picker.
   ## 
-  ## | `onchanged`: Callback for when the date time picker value is changed by the user.
   ## | `time`: Date and/or time as local time.
+  ## | `onchanged`: Callback for when the date time picker value is changed by the user.
 
   newFinal result
   result.impl = rawui.newTimePicker()
