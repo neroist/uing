@@ -2289,7 +2289,6 @@ proc newFontButton*(onchanged: proc(sender: FontButton) = nil): FontButton =
   result.onchanged = onchanged
   fontButtonOnChanged(result.impl, fontButtonOnChanged, cast[pointer](result))
 
-
 # -------------------- ColorButton --------------------------------------
 
 type 
@@ -2347,6 +2346,33 @@ proc newColorButton*(onchanged: proc (sender: ColorButton) = nil): ColorButton =
   
   newFinal result
   result.impl = rawui.newColorButton()
+  result.onchanged = onchanged
+  colorButtonOnChanged(result.impl, wrapOnChanged, cast[pointer](result))
+
+proc newColorButton*(color: Color; onchanged: proc (sender: ColorButton) = nil): ColorButton =
+  ## Creates a new color button.
+  ## 
+  ## | `onchanged`: Callback for when the color is changed.
+  ## | `color`: ColorButton `Color <https://nim-lang.org/docs/colors.html>`_.
+  
+  newFinal result
+  result.impl = rawui.newColorButton()
+  result.color = color
+  result.onchanged = onchanged
+  colorButtonOnChanged(result.impl, wrapOnChanged, cast[pointer](result))
+ 
+proc newColorButton*(r, g, b, alpha: 0.0..1.0 = 1.0; onchanged: proc (sender: ColorButton) = nil): ColorButton =
+  ## Creates a new color button.
+  ## 
+  ## | `onchanged`: Callback for when the color is changed.
+  ## | `r`: Red. Float in range of [0.0, 1.0].
+  ## | `g`: Green. Float in range of [0.0, 1.0].
+  ## | `b`: Blue. Float in range of [0.0, 1.0].
+  ## | `alpha`: Alpha. Float in range of [0.0, 1.0].
+  
+  newFinal result
+  result.impl = rawui.newColorButton()
+  result.setColor(r, g, b, alpha)
   result.onchanged = onchanged
   colorButtonOnChanged(result.impl, wrapOnChanged, cast[pointer](result))
 
@@ -3109,12 +3135,12 @@ proc enabled*[W: Widget](w: W): bool =
 
   bool rawui.controlEnabled(w.impl)
 
-proc enable*[W: Widget](w: W) =
+proc enable*[W: Widget and not MenuItem](w: W) =
   ## Enables the widget.
 
   rawui.controlEnable(w.impl)
 
-proc disable*[W: Widget](w: W) =
+proc disable*[W: Widget and not MenuItem](w: W) =
   ## Disables the widget.
 
   rawui.controlDisable(w.impl)
@@ -3125,7 +3151,7 @@ proc destroy*[W: Widget](w: W) =
   rawui.controlDestroy(w.impl)
 
 # A Window can not be a child of another widget
-proc parent*[W: Widget](w: W and not Window): W =
+proc parent*[W: Widget and not Window](w: W): W =
   ## Returns the parent of `w`
   ## 
   ## .. important:: Returns `nil` if `w` has no parent
@@ -3271,6 +3297,18 @@ proc newDateTimePicker*(onchanged: proc(sender: DateTimePicker) = nil): DateTime
   result.onchanged = onchanged
   dateTimePickerOnChanged(result.impl, dateTimePickerOnChangedCallback, cast[pointer](result))
 
+proc newDateTimePicker*(dateTime: DateTime; onchanged: proc(sender: DateTimePicker) = nil): DateTimePicker =
+  ## Creates a new date and time picker.
+  ## 
+  ## | `onchanged`: Callback for when the date time picker value is changed by the user.
+  ## | `dateTime`: Date and/or time as local time.
+
+  newFinal result
+  result.impl = rawui.newDateTimePicker()
+  result.time = dateTime
+  result.onchanged = onchanged
+  dateTimePickerOnChanged(result.impl, dateTimePickerOnChangedCallback, cast[pointer](result))
+
 proc newDatePicker*(onchanged: proc(sender: DateTimePicker) = nil): DateTimePicker =
   ## Creates a new date picker
   ## 
@@ -3281,6 +3319,18 @@ proc newDatePicker*(onchanged: proc(sender: DateTimePicker) = nil): DateTimePick
   result.onchanged = onchanged
   dateTimePickerOnChanged(result.impl, dateTimePickerOnChangedCallback, cast[pointer](result))
 
+proc newDatePicker*(date: DateTime; onchanged: proc(sender: DateTimePicker) = nil): DateTimePicker =
+  ## Creates a new date picker
+  ## 
+  ## | `onchanged`: Callback for when the date time picker value is changed by the user.
+  ## | `date`: Date and/or time as local time.
+
+  newFinal result
+  result.impl = rawui.newDatePicker()
+  result.time = date
+  result.onchanged = onchanged
+  dateTimePickerOnChanged(result.impl, dateTimePickerOnChangedCallback, cast[pointer](result))
+
 proc newTimePicker*(onchanged: proc(sender: DateTimePicker) = nil): DateTimePicker = 
   ## Creates a new time picker.
   ## 
@@ -3288,6 +3338,18 @@ proc newTimePicker*(onchanged: proc(sender: DateTimePicker) = nil): DateTimePick
 
   newFinal result
   result.impl = rawui.newTimePicker()
+  result.onchanged = onchanged
+  dateTimePickerOnChanged(result.impl, dateTimePickerOnChangedCallback, cast[pointer](result))
+
+proc newTimePicker*(time: DateTime; onchanged: proc(sender: DateTimePicker) = nil): DateTimePicker = 
+  ## Creates a new time picker.
+  ## 
+  ## | `onchanged`: Callback for when the date time picker value is changed by the user.
+  ## | `time`: Date and/or time as local time.
+
+  newFinal result
+  result.impl = rawui.newTimePicker()
+  result.time = time
   result.onchanged = onchanged
   dateTimePickerOnChanged(result.impl, dateTimePickerOnChangedCallback, cast[pointer](result))
 
