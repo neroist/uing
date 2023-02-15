@@ -84,7 +84,8 @@ type
 
 proc queueMain*(f: proc (data: pointer) {.cdecl.}; data: pointer) = rawui.queueMain(f, data)
 
-proc mainSteps*() = rawui.mainSteps()
+proc mainSteps*() = 
+  rawui.mainSteps()
 
 proc mainStep*(wait: int): bool {.discardable.} = 
   bool rawui.mainStep(cint wait)
@@ -155,7 +156,8 @@ proc beginUserWindowResize*(a: Area; edge: WindowResizeEdge) =
 proc scrollTo*(a: Area, x, y, width, height: float) = 
   areaScrollTo(a.impl, cdouble x, cdouble y, cdouble width, cdouble height)
 
-proc handler*(a: Area): ptr AreaHandler = a.handler
+proc handler*(a: Area): ptr AreaHandler = 
+  a.handler
 
 proc newArea*(ah: ptr AreaHandler): Area =
   newFinal result

@@ -1,8 +1,8 @@
 import std/random
 import std/sugar
 
-import uing
 from uing/rawui import nil
+import uing
 
 randomize()
 
