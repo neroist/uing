@@ -82,7 +82,8 @@ type
   TimerProc = ref object
     fn: proc(): bool
 
-proc queueMain*(f: proc (data: pointer) {.cdecl.}; data: pointer) = rawui.queueMain(f, data)
+proc queueMain*(f: proc (data: pointer) {.cdecl.}; data: pointer) = 
+  rawui.queueMain(f, data)
 
 proc mainSteps*() = 
   rawui.mainSteps()
@@ -1083,12 +1084,6 @@ proc `resizeable=`*(w: Window, resizeable: bool) =
   ## | `resizeable`: `true` to make window resizable, `false` otherwise.
 
   windowSetResizeable(w.impl, cint resizeable)
-
-#proc destroy*(w: Window) =
-#  ## this needs to be called if the callback passed to addQuitItem returns
-#  ## true. Don't ask...
-#
-#  controlDestroy(w.impl)
 
 proc margined*(w: Window): bool = 
   ## Returns whether or not the window has a margin.
