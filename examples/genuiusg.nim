@@ -28,7 +28,7 @@ proc getRadioBox(): RadioButtons =
       "Radio Button 2"
       "Radio Button 3"
 
-# This is a longer example which creates the same UI as in the controllgallery2.nim example
+# This is a longer example which creates the same UI as in the controllgallery2.nim example (without menu)
 proc main() =
   var spinbox: Spinbox
   var slider: Slider
