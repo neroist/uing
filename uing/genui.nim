@@ -54,6 +54,8 @@ macro genui*(args: varargs[untyped]): untyped =
   ## Using `%<identifier>` you can add widget created previously, it takes the same add options and children as any other widget.
   ## 
   ## The string pattern is used for widgets which have an `add` function for string values, such as `RadioButtons` and `ComboBox`.
+  ## 
+  ## See `genuiusg.nim <https://github.com/neroist/uing/blob/main/examples/genuiusg.nim>`_ for an example of usage.
 
   type WidgetArguments = object
     identifier: NimNode
