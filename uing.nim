@@ -555,7 +555,7 @@ proc stretch*(a: Attribute): TextStretch =
 
   attributeStretch(a.impl)
 
-proc newColorAttribute*(r, g, b, a: float = 1.0): Attribute =
+proc newColorAttribute*(r, g, b: float; a = 1.0): Attribute =
   ## Creates a new Attribute that changes the
   ## color of the text it is applied to. 
   ## 
@@ -564,7 +564,7 @@ proc newColorAttribute*(r, g, b, a: float = 1.0): Attribute =
   newFinal result
   result.impl = rawui.newColorAttribute(r, g, b, a)
 
-proc newColorAttribute*(color: Color, a: float = 1.0): Attribute =
+proc newColorAttribute*(color: Color; a: float = 1.0): Attribute =
   ## Creates a new Attribute that changes the
   ## color of the text it is applied to. 
   ## 
@@ -2358,7 +2358,7 @@ proc newColorButton*(color: Color; onchanged: proc (sender: ColorButton) = nil):
   result.onchanged = onchanged
   colorButtonOnChanged(result.impl, wrapOnChanged, cast[pointer](result))
  
-proc newColorButton*(r, g, b, alpha: 0.0..1.0 = 1.0; onchanged: proc (sender: ColorButton) = nil): ColorButton =
+proc newColorButton*(r, g, b: 0.0..1.0, alpha = 1.0; onchanged: proc (sender: ColorButton) = nil): ColorButton =
   ## Creates a new color button.
   ## 
   ## | `r`: Red. Float in range of [0.0, 1.0].
@@ -2775,7 +2775,7 @@ proc getInt*(v: TableValue): int =
 
   int rawui.tableValueInt(v.impl)
 
-proc newTableValue*(r, g, b, a: 0.0..1.0 = 1.0): TableValue = 
+proc newTableValue*(r, g, b: 0.0..1.0, a = 1.0): TableValue = 
   ## Creates a new table value to store a color in.
   ## 
   ## | `r`: Red. Float in range of [0, 1.0].
