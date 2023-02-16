@@ -6,4 +6,5 @@ when getCommand() == "doc":
   --git.commit:main
   
   --outDir:docs
+  --index:on
   
