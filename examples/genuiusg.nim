@@ -38,7 +38,7 @@ proc main() =
   var radioBox = getRadioBox()
 
   radioBox.onselected = proc (sender: RadioButtons) =
-    echo radioBox.items[radioBox.selected]
+    echo radioBox.items[radioBox.selected], " selected"
 
   # This is another way to create a callback, it will be assigned to the widgets later
   proc update(sender: Slider or Spinbox) =
