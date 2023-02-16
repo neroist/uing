@@ -5,7 +5,7 @@
 ## :Author: Jasmine
 ## 
 ## # See also
-## - `genui </uing/uing/genui.html>`_ macro
+## - `genui <uing/genui.html>`_ macro
 
 import std/times
 import std/colors
