@@ -28,7 +28,7 @@ jobs:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Generate documentation
-        run: nimble doc uing.nim
+        run: nim doc uing.nim
 
       - name: Deploy to GitHub Pages
         if: success()
