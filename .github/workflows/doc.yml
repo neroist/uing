@@ -29,7 +29,10 @@ jobs:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Generate documentation
-        run: nim doc uing.nim
+        run: | 
+          nimble doc --project uing.nim
+          nimble doc --outDir:docs/uing uing/genui
+
         continue-on-error: true
 
       - name: Deploy to GitHub Pages
