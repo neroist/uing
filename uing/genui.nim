@@ -28,7 +28,6 @@ template add*[SomeWidget: Widget](g: Window, child: SomeWidget) =
 macro genui*(args: varargs[untyped]): untyped =
   ## Macro that transforms a DSL into a GUI.
   ## 
-  ## 
   ## The macro is a fairly simple substitution, it follows one of three patterns:
   ## 
   ## ```
@@ -54,7 +53,7 @@ macro genui*(args: varargs[untyped]): untyped =
   ## Identifiers create a `var` statement assigning the widget to the identifier, or assign the widget to the identifier if it already exists.
   ## Using `%<identifier>` you can add widget created previously, it takes the same add options and children as any other widget.
   ## 
-  ## The string pattern is used for widgets which have an `add` function for string values, such as radio-, and comboboxes.
+  ## The string pattern is used for widgets which have an `add` function for string values, such as `RadioButtons` and `ComboBox`.
 
   type WidgetArguments = object
     identifier: NimNode
