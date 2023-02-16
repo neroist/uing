@@ -1,8 +1,11 @@
 ## High level wrapper for libui-ng. 
 ## 
 ## Documentation mainly from `ui.h <https://github.com/libui-ng/libui-ng/blob/master/ui.h>`_
-##
+## 
 ## :Author: Jasmine
+## 
+## # See also
+## - `genui </uing/uing/genui.html>`_ macro
 
 import std/times
 import std/colors
