@@ -30,8 +30,10 @@ jobs:
 
       - name: Generate documentation
         run: nim doc uing.nim
+        continue-on-error: true
 
       - name: Deploy to GitHub Pages
+        if: success()
         uses: crazy-max/ghaction-github-pages@v3
         with:
           build_dir: docs
