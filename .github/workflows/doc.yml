@@ -12,6 +12,7 @@ on:
 
       - "docs/**"
       - "uing/**"
+      - ".github/workflows/*"
 
 jobs:
   generate-doc:
