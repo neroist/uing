@@ -86,7 +86,7 @@ macro genui*(args: varargs[untyped]): untyped =
     if result.arguments == @[]:
       result.arguments = if hasChildren: call[1..<call.high] else: call[1..call.high]
     #else:
-    #  for arg in if hasChildren: call[1..<call.high] else: call[1..call.high]:
+    #  for arg in (if hasChildren: call[1..<call.high] else: call[1..call.high]):
     #    result.arguments.add arg
 
     result.children = if hasChildren: parseChildren(call[call.high]) else: @[]
@@ -104,6 +104,8 @@ macro genui*(args: varargs[untyped]): untyped =
     result.children = if hasChildren: parseChildren(bracketExpr[bracketExpr.high]) else: @[]
 
   proc parseInfix(infix: NimNode): WidgetArguments =
+    assert $infix[0] == "%", "Use % to assign"
+
     result = parseNode(infix[2])
     result.identifier = infix[1]
     
@@ -120,7 +122,7 @@ macro genui*(args: varargs[untyped]): untyped =
     )
 
   proc parsePrefix(prefix: NimNode): WidgetArguments =
-    #assert prefix[0] == !"%", "Use % to identify"
+    assert $prefix[0] == "%", "Use % to identify"
 
     result = parseNode(prefix[1])
     result.isIdentified = true
