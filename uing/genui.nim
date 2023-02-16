@@ -16,12 +16,46 @@ proc high(s: NimNode): int =
   s.len-1
 
 template add*[SomeWidget: Widget](g: Group, child: SomeWidget) =
+  ## Template to make `Group` work with `genui` macro
+
   g.`child=`child
 
 template add*[SomeWidget: Widget](g: Window, child: SomeWidget) =
+  ## Template to make `Window` work with `genui` macro
+  
   g.`child=`child
 
 macro genui*(args: varargs[untyped]): untyped =
+  ## Macro that transforms a DSL into a GUI.
+  ## 
+  ## 
+  ## The macro is a fairly simple substitution, it follows one of three patterns:
+  ## 
+  ## ```
+  ## <Widget name>(arguments, for, widget, creator)[arguments, for, add, function]:
+  ##   <Children>
+  ## ```
+  ## 
+  ## ```
+  ## <Identifier>%<Widget name>(arguments, for, widget, creator)[arguments, for, add, function]:
+  ##   <Children>
+  ## ```
+  ## 
+  ## ```
+  ## %<Identifier>[arguments, for, add, function]:
+  ##   <Children>
+  ## "String"
+  ## ```
+  ## 
+  ## Both `()`-arguments and `[]`-arguments can be omitted.
+  ## 
+  ## If the widget has no children the `:` must be omitted.
+  ## 
+  ## Identifiers create a `var` statement assigning the widget to the identifier, or assign the widget to the identifier if it already exists.
+  ## Using `%<identifier>` you can add widget created previously, it takes the same add options and children as any other widget.
+  ## 
+  ## The string pattern is used for widgets which have an `add` function for string values, such as radio-, and comboboxes.
+
   type WidgetArguments = object
     identifier: NimNode
     name: string
