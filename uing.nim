@@ -1556,6 +1556,15 @@ proc setMargined*(t: Tab; index: int; margined: bool) =
 
   tabSetMargined(t.impl, cint index, cint margined)
 
+proc setAllTabsMargined*(t: Tab; margined: bool = true) = 
+  ## Set all tabs in `t` as margined
+  ##
+  ## | `t`: Tab instance.
+  ## | `margined`: `true` to set a margin for all tabs, `false` otherwise.
+
+  for i in 0 ..< t.tabs.len:
+    t.setMargined i, margined
+
 proc newTab*(): Tab =
   ## Creates a new tab container.
   
