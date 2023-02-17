@@ -32,6 +32,13 @@ proc init*() =
     freeInitError(err)
     raise newException(ValueError, msg)
 
+proc uninit*() = 
+  ## Un-Initialize the application
+  ## 
+  ## Usually not needed as `mainLoop() <#mainLoop>`_ calls this for you.
+  
+  rawui.uninit()
+
 proc quit* = 
   ## Quit the application
   
@@ -122,8 +129,11 @@ proc free*(str: string) = rawui.freeText(str)
 
 export TextWeight, TextItalic, TextStretch, FontDescriptor
 
-proc loadControlFont*(f: ptr FontDescriptor) = rawui.loadControlFont f
-proc free*(f: ptr FontDescriptor) = rawui.freeFontDescriptor f
+proc loadControlFont*(f: ptr FontDescriptor) = 
+  rawui.loadControlFont f
+  
+proc free*(f: ptr FontDescriptor) = 
+  rawui.freeFontDescriptor f
 
 # -------- Area --------
 
