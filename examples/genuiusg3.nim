@@ -1,3 +1,5 @@
+# example of genui macro with the same ui as controllgallery3.nim
+
 import std/sugar
 
 import uing/genui
