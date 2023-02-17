@@ -6,7 +6,6 @@ import uing
 
 proc makeBasicControlsBox: Box =
   result = newVerticalBox(true)
-  result.padded = true
 
   let bncBox = newHorizontalBox(true)
   bncBox.add newButton("Button")
@@ -35,7 +34,6 @@ proc makeBasicControlsBox: Box =
 
 proc makeNumbersAndListsBox: Box =
   result = newHorizontalBox(true)
-  result.padded = true
 
   let 
     numbers = newGroup("Numbers", true)
@@ -73,7 +71,6 @@ proc makeNumbersAndListsBox: Box =
 
 proc makeDataChoosersBox(window: Window): Box =
   result = newHorizontalBox(true)
-  result.padded = true
 
   const
     MsgBoxTitle = "This is a normal message box."
@@ -101,7 +98,7 @@ proc makeDataChoosersBox(window: Window): Box =
     entry.readOnly = true
 
   msgBoxBox.add newButton("Message Box", (_: Button) => window.msgBox(MsgBoxTitle, MsgBoxDesc))
-  msgBoxBox.add newButton("Error Box", (_: Button) => window.msgBoxError(ErrorMsgBoxTitle, MsgBoxDesc))
+  msgBoxBox.add newButton("Error Box", (_: Button) => window.error(ErrorMsgBoxTitle, MsgBoxDesc))
 
   with col2:
     add newButton("Open File", (_: Button) => (openFileEntry.text = window.openFile())), 0, 0, 1, 1, false, AlignFill, false, AlignFill
