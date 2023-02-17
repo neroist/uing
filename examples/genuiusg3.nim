@@ -29,6 +29,7 @@ proc main =
           HorizontalBox(padded = true):
             Button("Button")
             Checkbox("Checkbox")
+            
           Label("This is a label\nLabels can span muliple lines.")
 
           HorizontalSeparator()
