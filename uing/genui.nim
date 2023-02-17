@@ -192,7 +192,7 @@ macro genui*(args: varargs[untyped]): untyped =
         for node in childCode:
           result.add node
 
-        var addCall = newCall("add",widget.identifier, nnkExprEqExpr.newTree(
+        var addCall = newCall("add", widget.identifier, nnkExprEqExpr.newTree(
             if widget.name in ["Tab", "Form", "Grid"]:
               ident"w"
             else:

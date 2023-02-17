@@ -84,7 +84,7 @@ else:
     {.passL: "-lkernel32".}
 
     when defined(cpu64):
-      {.link: "../res/resources.o".} # resources.o is a 64-bit object file
+      {.link: "../res/resources.o".} # resources.o is 64-bit
       {.link: "../res/winim64.res".}
     else:
       {.link: "../res/winim32.res".}
