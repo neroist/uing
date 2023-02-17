@@ -3297,7 +3297,7 @@ proc `time=`*(d: DateTimePicker, dateTime: DateTime) =
     tm_mday: cint dateTime.monthday,
     tm_mon: cint ord(dateTime.month) - 1,
     tm_year: cint dateTime.year - 1900,
-    tm_wday: cint ord(dateTime.weekday) - 1,
+    tm_wday: cint ord(dateTime.weekday),
     tm_yday: cint dateTime.yearday,
     tm_isdst: cint -1 # dateTime.isDst
   )
