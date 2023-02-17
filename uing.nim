@@ -3138,39 +3138,39 @@ proc newTable*(params: ptr TableParams): Table =
 
 # -------------------- Generics ------------------------------------
 
-proc show*[W: Widget](w: W) =
+proc show*[SomeWidget: Widget](w: SomeWidget) =
   ## Shows the widget.
 
   rawui.controlShow(w.impl)
 
-proc hide*[W: Widget](w: W) =
+proc hide*[SomeWidget: Widget](w: SomeWidget) =
   ## Hides the widget.
 
   rawui.controlHide(w.impl)
 
-proc enabled*[W: Widget](w: W): bool =
+proc enabled*[SomeWidget: Widget](w: SomeWidget): bool =
   ## Returns whether or not the widget is enabled.
   ## Defaults to `true`.
 
   bool rawui.controlEnabled(w.impl)
 
-proc enable*[W: Widget and not MenuItem](w: W) =
+proc enable*[SomeWidget: Widget and not MenuItem](w: SomeWidget) =
   ## Enables the widget.
 
   rawui.controlEnable(w.impl)
 
-proc disable*[W: Widget and not MenuItem](w: W) =
+proc disable*[SomeWidget: Widget and not MenuItem](w: SomeWidget) =
   ## Disables the widget.
 
   rawui.controlDisable(w.impl)
 
-proc destroy*[W: Widget](w: W) =
+proc destroy*[SomeWidget: Widget](w: SomeWidget) =
   ## Dispose and free all allocated resources.
 
   rawui.controlDestroy(w.impl)
 
 # A Window can not be a child of another widget
-proc parent*[W: Widget and not Window](w: W): W =
+proc parent*[SomeWidget: Widget and not Window](w: SomeWidget): Widget =
   ## Returns the parent of `w`
   ## 
   ## .. important:: Returns `nil` if `w` has no parent
@@ -3187,7 +3187,7 @@ proc parent*[W: Widget and not Window](w: W): W =
   # same thing as `impl=`
   result.internalImpl = pointer parent
 
-proc `parent=`*[W: Widget](w: W, parent: Widget) =
+proc `parent=`*[SomeWidget: Widget](w: SomeWidget, parent: Widget) =
   ## Sets the widget's parent.
   ## 
   ## | `w`: Widget instance.
@@ -3199,39 +3199,39 @@ proc `parent=`*[W: Widget](w: W, parent: Widget) =
     else: nil
   )
 
-proc handle*[W: Widget](w: W): int = 
+proc handle*[SomeWidget: Widget](w: SomeWidget): int = 
   ## Returns the control's OS-level handle.
   ## 
   ## `w`: Widget instance.
   
   controlHandle(w.impl)
 
-func signature*[W: Widget](w: W): int = 
+func signature*[SomeWidget: Widget](w: SomeWidget): int = 
   ## Get widget signature
   
   int w.impl.signature
 
-func typeSignature*[W: Widget](w: W): int = 
+func typeSignature*[SomeWidget: Widget](w: SomeWidget): int = 
   ## Get widget type signature
   
   int w.impl.typeSignature
 
-func osSignature*[W: Widget](w: W): int = 
+func osSignature*[SomeWidget: Widget](w: SomeWidget): int = 
   ## Get widget OS signature
   
   int w.impl.osSignature
 
-proc topLevel*[W: Widget](w: W): bool =
+proc topLevel*[SomeWidget: Widget](w: SomeWidget): bool =
   ## Returns whether or not the widget is a top level widget.
 
   bool rawui.controlToplevel(w.impl)
 
-proc visible*[W: Widget](w: W): bool =
+proc visible*[SomeWidget: Widget](w: SomeWidget): bool =
   ## Returns whether or not the widget is visible.
   
   bool rawui.controlVisible(w.impl)
 
-proc verifySetParent*[W: Widget](w: W, parent: Widget) =
+proc verifySetParent*[SomeWidget: Widget](w: SomeWidget, parent: Widget) =
   ## Makes sure the widget's parent can be set to `parent`.
   ## 
   ## .. warning:: This will crash the application if `false`.
@@ -3241,7 +3241,7 @@ proc verifySetParent*[W: Widget](w: W, parent: Widget) =
 
   rawui.controlVerifySetParent(w.impl, parent.impl)
 
-proc enabledToUser*[W: Widget](w: W): bool =
+proc enabledToUser*[SomeWidget: Widget](w: SomeWidget): bool =
   ## Returns whether or not the widget can be interacted with by the user.
   ## 
   ## Checks if the widget and all it's parents are enabled to make sure it can
@@ -3249,7 +3249,7 @@ proc enabledToUser*[W: Widget](w: W): bool =
 
   bool rawui.controlEnabledToUser(w.impl)
 
-proc free*[W: Widget](w: W) = 
+proc free*[SomeWidget: Widget](w: SomeWidget) = 
   ## Frees the widget.
 
   freeControl(w.impl)
