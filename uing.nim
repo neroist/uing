@@ -72,7 +72,7 @@ template genCallback(name, typ, on) {. dirty .} =
     let widget = cast[typ](data)
     if widget.on != nil: widget.on(widget)
   
-template genImplProcs(t: untyped) {.dirty.}=
+template genImplProcs(t: untyped) {.dirty.} =
   type `Raw t` = ptr[rawui.t]
 
   func impl*(b: t): `Raw t` = cast[`Raw t`](b.internalImpl)
@@ -990,9 +990,9 @@ type
     ## 
     ## .. warning:: A Window can **NOT** be a child of another Widget.
 
-    onclosing*: proc (sender: Window): bool
-    onfocuschanged*: proc (sender: Window)
-    onContentSizeChanged*: proc (sender: Window)
+    onclosing*: proc (sender: Window): bool ## Callback for when the window is to be closed.
+    onfocuschanged*: proc (sender: Window) ## Callback for when the window focus changes.
+    onContentSizeChanged*: proc (sender: Window) ## Callback for when the window content size is changed.
     child: Widget
     
 genImplProcs(Window)
@@ -1201,11 +1201,17 @@ proc error*(parent: Window; title, desc: string) =
 
 proc onClosingWrapper(rw: ptr rawui.Window; data: pointer): cint {.cdecl.} =
   let w = cast[Window](data)
+
   if w.onclosing != nil:
-    if w.onclosing(w):
+    result = cint w.onclosing(w)
+
+    if result != 0:
       controlDestroy(w.impl)
+
       rawui.quit()
       system.quit()
+
+  # implicitly return 0
 
 genCallback wrapOnFocusChangedWrapper, Window, onfocuschanged
 genCallback wrapOnContentSizeChangedWrapper, Window, onContentSizeChanged
