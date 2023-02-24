@@ -2868,7 +2868,7 @@ proc rowInserted*(m: TableModel; newIndex: int) =
 proc rowChanged*(m: TableModel; index: int) = 
   ## Informs all associated `Table` views that a row has been changed.
   ## 
-  ## You do NOT need to call this in your `setCellValue()<uing/rawui.html#TableModelHandler>`_ 
+  ## You do NOT need to call this in your `setCellValue() <uing/rawui.html#TableModelHandler>`_ 
   ## handlers, but **NEED** to call this if your data changes at any other point.
   ## 
   ## | `m`: Table model that has changed.
@@ -3116,16 +3116,22 @@ proc `selection=`*(table: Table; sel: openArray[int]) =
   table.setSelection(selection)
 
 proc tableOnRowClickedCb(w: ptr rawui.Table; row: cint; data: pointer) {.cdecl.} =
-    let widget = cast[Table](data)
-    if widget.onRowClicked != nil: widget.onRowClicked(widget, int row)
+  let widget = cast[Table](data)
+
+  if widget.onRowClicked != nil: 
+    widget.onRowClicked(widget, int row)
 
 proc tableOnRowDoubleClickedCb(w: ptr rawui.Table; row: cint; data: pointer) {.cdecl.} =
-    let widget = cast[Table](data)
-    if widget.onRowDoubleClicked != nil: widget.onRowDoubleClicked(widget, int row)
+  let widget = cast[Table](data)
+
+  if widget.onRowDoubleClicked != nil: 
+    widget.onRowDoubleClicked(widget, int row)
 
 proc tableOnHeaderClickedCb(w: ptr rawui.Table; column: cint; data: pointer) {.cdecl.} =
-    let widget = cast[Table](data)
-    if widget.onHeaderClicked != nil: widget.onHeaderClicked(widget, int column)
+  let widget = cast[Table](data)
+  
+  if widget.onHeaderClicked != nil: 
+    widget.onHeaderClicked(widget, int column)
 
 genCallback tableOnSelectionChangedCb, Table, onSelectionChanged
 
@@ -3160,6 +3166,7 @@ proc enabled*[SomeWidget: Widget](w: SomeWidget): bool =
 
   bool rawui.controlEnabled(w.impl)
 
+# MenuItem has its own `enable` and `disable` procs
 proc enable*[SomeWidget: Widget and not MenuItem](w: SomeWidget) =
   ## Enables the widget.
 
