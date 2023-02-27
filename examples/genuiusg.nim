@@ -96,6 +96,5 @@ proc main() =
   show mainwin
   mainLoop()
 
-when isMainModule:
-  init()
-  main() 
+init()
+main() 

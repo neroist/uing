@@ -160,6 +160,5 @@ proc main =
   show window
   mainLoop()
 
-when isMainModule:
-  init()
-  main()
+init()
+main()
