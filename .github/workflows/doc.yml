@@ -30,10 +30,8 @@ jobs:
 
       - name: Generate documentation
         run: | 
-          nimble doc --project uing.nim
+          nimble doc --outDir:docs --project uing.nim
           nimble doc --outDir:docs/uing uing/genui
-
-        continue-on-error: true
 
       - name: Deploy to GitHub Pages
         if: success()
