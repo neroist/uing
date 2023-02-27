@@ -1,4 +1,3 @@
-import std/sugar
 import std/random
 
 import uing
@@ -181,9 +180,9 @@ proc handlerMouseEvent*(a: ptr AreaHandler; area: ptr rawui.Area; e: ptr AreaMou
 proc main =
   handler.draw = handlerDraw
   handler.mouseEvent = handlerMouseEvent
-  handler.mouseCrossed = (_: ptr AreaHandler, a: ptr rawui.Area, b: cint) {.cdecl.} => (discard)
-  handler.dragBroken = (_: ptr AreaHandler, a: ptr rawui.Area) {.cdecl.} => (discard)
-  handler.keyEvent = (_: ptr AreaHandler, a: ptr rawui.Area, b: ptr AreaKeyEvent) {.cdecl.} => cint 0
+  handler.mouseCrossed = proc (_: ptr AreaHandler, a: ptr rawui.Area, b: cint) {.cdecl.} = discard
+  handler.dragBroken = proc (_: ptr AreaHandler, a: ptr rawui.Area) {.cdecl.} = discard
+  handler.keyEvent = proc (_: ptr AreaHandler, a: ptr rawui.Area, b: ptr AreaKeyEvent): cint {.cdecl.} = cint 0
 
   var window = newWindow("libui-ng Histogram Example", 640, 480)
   window.margined = true
@@ -197,11 +196,11 @@ proc main =
   for i in 0..<10:
     datapoints[i] = newSpinbox(0..100)
     datapoints[i].value = rand(100)
-    datapoints[i].onchanged = (_: Spinbox) => histogram.queueRedrawAll()
+    datapoints[i].onchanged = proc (_: Spinbox) = histogram.queueRedrawAll()
     
     vbox.add datapoints[i]
 
-  colorButton = newColorButton((_: ColorButton) => histogram.queueRedrawAll())
+  colorButton = newColorButton(proc (_: ColorButton) = histogram.queueRedrawAll())
 
   var brush: DrawBrush
   setSolidBrush(addr brush, colorDodgerBlue, 1.0)

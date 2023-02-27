@@ -1,4 +1,3 @@
-import std/sugar
 import std/times
 
 import uing
@@ -17,7 +16,7 @@ proc main =
   let vbox = newVerticalBox(true)
   window.child = vbox
 
-  let btn = newButton("Say Something", (_: Button) => entry.add "Saying something\n")
+  let btn = newButton("Say Something", proc (_: Button) = entry.add "Saying something\n")
   vbox.add btn
 
   entry = newMultilineEntry()

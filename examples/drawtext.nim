@@ -1,5 +1,3 @@
-import std/sugar
-
 import uing
 from uing/rawui import nil
 
@@ -109,10 +107,10 @@ proc main =
   var handler: AreaHandler 
 
   handler.draw = drawHandler
-  handler.mouseEvent = (_: ptr AreaHandler, a: ptr rawui.Area, b: ptr AreaMouseEvent) {.cdecl.} => (discard)
-  handler.mouseCrossed = (_: ptr AreaHandler, a: ptr rawui.Area, b: cint) {.cdecl.} => (discard)
-  handler.dragBroken = (_: ptr AreaHandler, a: ptr rawui.Area) {.cdecl.} => (discard)
-  handler.keyEvent = (_: ptr AreaHandler, a: ptr rawui.Area, b: ptr AreaKeyEvent) {.cdecl.} => cint 0
+  handler.mouseEvent = proc (_: ptr AreaHandler, a: ptr rawui.Area, b: ptr AreaMouseEvent) {.cdecl.} = discard
+  handler.mouseCrossed = proc (_: ptr AreaHandler, a: ptr rawui.Area, b: cint) {.cdecl.} = discard
+  handler.dragBroken = proc (_: ptr AreaHandler, a: ptr rawui.Area) {.cdecl.} = discard
+  handler.keyEvent = proc (_: ptr AreaHandler, a: ptr rawui.Area, b: ptr AreaKeyEvent): cint {.cdecl.} = cint 0
 
   let window = newWindow("libui-ng Text-Drawing Example", 640, 480)
   window.margined = true
@@ -127,7 +125,7 @@ proc main =
   hbox.add area, true
 
   fontButton = newFontButton()
-  fontButton.onchanged = (_: FontButton) => area.queueRedrawAll()
+  fontButton.onchanged = proc (_: FontButton) = area.queueRedrawAll()
   vbox.add fontButton
 
   let form = newForm(true)
@@ -138,11 +136,11 @@ proc main =
   # note that the items match with the values of the DrawTextAlign values
   alignment.add "Left", "Center", "Right"
   alignment.selected = 0 # start with left alignment
-  alignment.onselected = (_: Combobox) => area.queueRedrawAll()
+  alignment.onselected = proc (_: Combobox) = area.queueRedrawAll()
   form.add "Alignment", alignment
 
   systemFont = newCheckbox("")
-  systemFont.ontoggled = (_: Checkbox) => area.queueRedrawAll()
+  systemFont.ontoggled = proc (_: Checkbox) = area.queueRedrawAll()
   form.add "System Font", systemFont
 
   free attrstr

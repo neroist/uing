@@ -1,6 +1,6 @@
 # compile with -d:menus to add a menu bar
 
-import std/[sugar, with]
+import std/with
 
 import uing
 
@@ -97,15 +97,15 @@ proc makeDataChoosersBox(window: Window): Box =
   for entry in [openFileEntry, openFolderEntry, saveFileEntry]:
     entry.readOnly = true
 
-  msgBoxBox.add newButton("Message Box", (_: Button) => window.msgBox(MsgBoxTitle, MsgBoxDesc))
-  msgBoxBox.add newButton("Error Box", (_: Button) => window.error(ErrorMsgBoxTitle, MsgBoxDesc))
+  msgBoxBox.add newButton("Message Box", proc (_: Button) = window.msgBox(MsgBoxTitle, MsgBoxDesc))
+  msgBoxBox.add newButton("Error Box", proc (_: Button) = window.error(ErrorMsgBoxTitle, MsgBoxDesc))
 
   with col2:
-    add newButton("Open File", (_: Button) => (openFileEntry.text = window.openFile())), 0, 0, 1, 1, false, AlignFill, false, AlignFill
+    add newButton("Open File", proc (_: Button) = openFileEntry.text = window.openFile()), 0, 0, 1, 1, false, AlignFill, false, AlignFill
     add openFileEntry, 1, 0, 1, 1, true, AlignFill, false, AlignFill
-    add newButton("Open Folder", (_: Button) => (openFolderEntry.text = window.openFolder())), 0, 1, 1, 1, false, AlignFill, false, AlignFill
+    add newButton("Open Folder", proc (_: Button) = openFolderEntry.text = window.openFolder()), 0, 1, 1, 1, false, AlignFill, false, AlignFill
     add openFolderEntry, 1, 1, 1, 1, true, AlignFill, false, AlignFill
-    add newButton("Save File", (_: Button) => (saveFileEntry.text = window.saveFile())), 0, 2, 1, 1, false, AlignFill, false, AlignFill
+    add newButton("Save File", proc (_: Button) = saveFileEntry.text = window.saveFile()), 0, 2, 1, 1, false, AlignFill, false, AlignFill
     add saveFileEntry, 1, 2, 1, 1, true, AlignFill, false, AlignFill
 
     add msgBoxBox, 0, 3, 2, 1, false, AlignCenter, false, AlignStart

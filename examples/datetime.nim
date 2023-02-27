@@ -1,4 +1,4 @@
-import std/[sugar, times]
+import std/times
 
 import uing
 
@@ -14,12 +14,21 @@ proc main =
     dateLabel = newLabel()
     timeLabel = newLabel()
 
-    dateTimePicker = newDateTimePicker((dt: DateTimePicker) => (dateTimeLabel.text = dt.time.format("ddd MMM d HH:mm:ss UUUU")))
-    datePicker = newDatePicker((dt: DateTimePicker) => (dateLabel.text = dt.time.format("yyyy-MM-dd")))
-    timePicker = newTimePicker((dt: DateTimePicker) => (timeLabel.text = dt.time.format("hh:mm:ss")))
+    dateTimePicker = newDateTimePicker() do (dt: DateTimePicker):
+      dateTimeLabel.text = dt.time.format("ddd MMM d HH:mm:ss UUUU")
 
-    nowButton = newButton("Now", (_: Button) => (timePicker.time = now(); datePicker.time = now()))
-    epochButton = newButton("Unix epoch", (_: Button) => (dateTimePicker.time = dateTime(1969, mDec, 31, 19)))
+    datePicker = newDatePicker() do (dt: DateTimePicker):
+      dateLabel.text = dt.time.format("yyyy-MM-dd")
+
+    timePicker = newTimePicker() do (dt: DateTimePicker):
+      timeLabel.text = dt.time.format("hh:mm:ss")
+
+    nowButton = newButton("Now") do (_: Button): 
+      timePicker.time = now()
+      datePicker.time = now()
+
+    epochButton = newButton("Unix epoch") do (_: Button):
+      dateTimePicker.time = dateTime(1969, mDec, 31, 19)
 
   grid.add(dateTimePicker, 0, 0, 2, 1, true, AlignFill, false, AlignStart)
   grid.add(datePicker, 0, 1, 1, 1, true, AlignFill, false, AlignStart)

@@ -1,5 +1,3 @@
-import std/sugar
-
 import uing
 
 proc main = 
@@ -10,7 +8,7 @@ proc main =
 
   let fileMenu = newMenu("File")
   fileMenu.addItem("New")
-  fileMenu.addItem("Open", (_: MenuItem, win: Window) => (discard win.openFile()))
+  fileMenu.addItem("Open", proc (_: MenuItem, win: Window) = discard win.openFile())
   fileMenu.addSeparator()
   fileMenu.addCheckItem("Should Quit")
   let quitItem = fileMenu.addQuitItem(
@@ -35,11 +33,11 @@ proc main =
   )
   enable.checked = true
   enb = testMenu.addCheckItem("This Will Be Enabled")
-  testMenu.addItem("Force Above Checked", (_: MenuItem, win: Window) => (enable.checked = true))
-  testMenu.addItem("Force Above Unchecked", (_: MenuItem, win: Window) => (enable.checked = false))
+  testMenu.addItem("Force Above Checked", proc (_: MenuItem, win: Window) = enable.checked = true)
+  testMenu.addItem("Force Above Unchecked", proc (_: MenuItem, win: Window) = enable.checked = false)
   testMenu.addSeparator()
-  testMenu.addItem("What Window?", (s: MenuItem, _: Window) => (echo "menu item clicked on window"))
-  let resize = testMenu.addCheckItem("Enable Resize", (s: MenuItem, win: Window) => (window.resizeable = s.checked))
+  testMenu.addItem("What Window?", proc (s: MenuItem, _: Window) = echo "menu item clicked on window")
+  let resize = testMenu.addCheckItem("Enable Resize", proc (s: MenuItem, win: Window) = window.resizeable = s.checked)
   resize.checked = true
 
   let moreTestsMenu = newMenu("More Tests")
