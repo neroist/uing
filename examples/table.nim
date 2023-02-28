@@ -73,6 +73,7 @@ proc main() =
 
   var p: TableParams
   p.model = newTableModel(addr mh).impl
+  p.rowBackgroundColorModelColumn = -1
  
   let table = newTable(addr p)
   table.addTextColumn("ID", COLUMN_ID, TableModelColumnNeverEditable)
@@ -84,8 +85,8 @@ proc main() =
   table.addButtonColumn("Action", COLUMN_ACTION, TableModelColumnAlwaysEditable)
 
   box.add table, true
+  
   show mainwin
-
   mainLoop()
 
 init()
