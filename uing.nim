@@ -3287,14 +3287,25 @@ proc time*(d: DateTimePicker): DateTime =
   var tm: Tm
   dateTimePickerTime(d.impl, addr tm)
 
-  result = dateTime(
-    int tm.tm_year + 1900,
-    Month(tm.tm_mon + 1),
-    int tm.tm_mday,
-    int tm.tm_hour,
-    int tm.tm_min,
-    int tm.tm_sec
-  )
+  # dateTime was introduced in Nim version 1.6.0
+  when NimMinor < 6: 
+    result = initDateTime(
+      int tm.tm_year + 1900,
+      Month(tm.tm_mon + 1),
+      int tm.tm_mday,
+      int tm.tm_hour,
+      int tm.tm_min,
+      int tm.tm_sec
+    )
+  else:
+    result = dateTime(
+      int tm.tm_year + 1900,
+      Month(tm.tm_mon + 1),
+      int tm.tm_mday,
+      int tm.tm_hour,
+      int tm.tm_min,
+      int tm.tm_sec
+    )
 
 proc `time=`*(d: DateTimePicker, dateTime: DateTime) =
   ## Sets date and time of the data time picker.
