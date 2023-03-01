@@ -267,9 +267,11 @@ proc fill*(c: ptr DrawContext; path: DrawPath; b: ptr DrawBrush) =
 proc transform*(c: ptr DrawContext; m: ptr DrawMatrix) =
   drawTransform(c, m)
 
-proc setIdentity*(m: ptr DrawMatrix) = drawMatrixSetIdentity(m)
+proc setIdentity*(m: ptr DrawMatrix) = 
+  drawMatrixSetIdentity(m)
 
-proc translate*(m: ptr DrawMatrix; x, y: float) = drawMatrixTranslate(m, cdouble x, cdouble y)
+proc translate*(m: ptr DrawMatrix; x, y: float) = 
+  drawMatrixTranslate(m, cdouble x, cdouble y)
 
 proc scale*(m: ptr DrawMatrix; xCenter, yCenter, x, y: float) = 
   drawMatrixScale(m, cdouble xCenter, cdouble yCenter, cdouble x, cdouble y)
