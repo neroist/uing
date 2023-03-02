@@ -3292,9 +3292,9 @@ proc time*(d: DateTimePicker): DateTime =
   # dateTime was introduced in Nim version 1.6.0
   when NimMinor < 6: 
     result = initDateTime(
-      int tm.tm_year + 1900,
-      Month(tm.tm_mon + 1),
       int tm.tm_mday,
+      Month(tm.tm_mon + 1),
+      int tm.tm_year + 1900,
       int tm.tm_hour,
       int tm.tm_min,
       int tm.tm_sec
