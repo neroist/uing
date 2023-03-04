@@ -50,10 +50,10 @@ proc main*() =
   let hbox = newHorizontalBox(true)
   box.add hbox, true
 
-  var group = newGroup("Basic Controls", true)
+  let group = newGroup("Basic Controls", true)
   hbox.add group
 
-  var inner = newVerticalBox(true)
+  let inner = newVerticalBox(true)
   group.child = inner
   inner.add newButton("Button")
   inner.add newCheckbox("Checkbox")
@@ -69,11 +69,11 @@ proc main*() =
   let inner2 = newVerticalBox(true)
   hbox.add inner2, true
 
-  group = newGroup("Numbers", true)
-  inner2.add group
+  let group2 = newGroup("Numbers", true)
+  inner2.add group2
 
-  inner = newVerticalBox(true)
-  group.child = inner
+  let inner3 = newVerticalBox(true)
+  group2.child = inner3
 
   var spinbox: Spinbox
   var slider: Slider
@@ -85,28 +85,28 @@ proc main*() =
     progressBar.value = sender.value
 
   spinbox = newSpinbox(0..100, update)
-  inner.add spinbox
+  inner3.add spinbox
 
   slider = newSlider(0..100, update)
-  inner.add slider
+  inner3.add slider
 
   progressbar = newProgressBar()
-  inner.add progressbar
+  inner3.add progressbar
 
-  group = newGroup("Lists", true)
-  inner2.add group
+  let group3 = newGroup("Lists", true)
+  inner2.add group3
 
-  inner = newVerticalBox(true)
-  group.child = inner
+  let inner4 = newVerticalBox(true)
+  group3.child = inner4
 
   let cbox = newCombobox(["Combobox Item 1", "Combobox Item 2", "Combobox Item 3"])
-  inner.add cbox
+  inner4.add cbox
 
   let ecbox = newEditableCombobox(["Editable Item 1", "Editable Item 2", "Editable Item 3"])
-  inner.add ecbox
+  inner4.add ecbox
 
   let rb = newRadioButtons(["Radio Button 1", "Radio Button 2", "Radio Button 3"])
-  inner.add rb, true
+  inner4.add rb, true
 
   let tab = newTab()
   tab.add "Page 1", newHorizontalBox()
