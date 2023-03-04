@@ -1216,9 +1216,6 @@ proc onClosingWrapper(rw: ptr rawui.Window; data: pointer): cint {.cdecl.} =
     if result != 0:
       controlDestroy(w.impl)
 
-      rawui.quit()
-      system.quit()
-
   # implicitly return 0
 
 genCallback wrapOnFocusChangedWrapper, Window, onfocuschanged
@@ -1236,7 +1233,10 @@ proc newWindow*(title: string; width, height: int; hasMenubar: bool = false, onf
   newFinal(result)
   result.impl = rawui.newWindow(title, cint width, cint height, cint hasMenubar)
   result.onfocuschanged = onfocuschanged
-  result.onclosing = proc (_: Window): bool = return true
+  result.onclosing = proc (_: Window): bool = 
+    result = true
+
+    quitAll()    
   windowOnFocusChanged(result.impl, wrapOnFocusChangedWrapper, cast[pointer](result))
   windowOnClosing(result.impl, onClosingWrapper, cast[pointer](result))
   windowOnContentSizeChanged(result.impl, wrapOnContentSizeChangedWrapper, cast[pointer](result))
