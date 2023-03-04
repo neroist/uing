@@ -44,6 +44,12 @@ proc quit* =
   
   rawui.quit()
 
+proc quitAll*(errorcode: int = QuitSuccess) =
+  ## Both quit UIng and the program altogether
+
+  rawui.quit()
+  system.quit(errorcode)
+
 proc mainLoop*() =
   rawui.main()
   rawui.uninit()
