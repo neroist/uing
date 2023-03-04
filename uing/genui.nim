@@ -78,15 +78,17 @@ macro genui*(args: varargs[untyped]): untyped =
     let hasAddArguments = call[0].kind == nnkBracketExpr
     let hasChildren = call[call.high].kind == nnkStmtList
 
+    let callHigh = if hasChildren: call.high - 1 else: call.high
+
     if hasAddArguments:
       result = parseBracketExpr(call[0])
     else:
       result.name = $call[0]
 
     if result.arguments == @[]:
-      result.arguments = if hasChildren: call[1..<call.high] else: call[1..call.high]
+      result.arguments = call[1..callHigh]
     #else:
-    #  for arg in (if hasChildren: call[1..<call.high] else: call[1..call.high]):
+    #  for arg in call[1..callHigh]:
     #    result.arguments.add arg
 
     result.children = if hasChildren: parseChildren(call[call.high]) else: @[]
