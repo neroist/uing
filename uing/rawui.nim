@@ -44,7 +44,7 @@ else:
 
     # add missing linking flags
     when defined(posix) and not defined(genode):
-      {.passl: "-lm".}
+      {.passL: "-lm".}
 
   {.compile: ("./libui/common/*.c", "common_$#.obj").}
 
