@@ -65,24 +65,29 @@ else:
   else:
     {.compile: ("./libui/unix/*.c", "unix_$#.obj").}
 
-  when defined(gcc) and defined(windows):
-    {.passL: "-lstdc++".}
-    {.passL: "-lwinspool".}
-    {.passL: "-lcomdlg32".}
-    {.passL: "-ladvapi32".}
-    {.passL: "-lshell32".}
-    {.passL: "-lole32".}
-    {.passL: "-loleaut32".}
+  when defined(windows):
+    when defined(gcc):
+      {.passL: "-lstdc++".} # gives warnings when passed to linker with clang 
 
-    {.passL: "-luuid".}
-    {.passL: "-lcomctl32".}
-    {.passL: "-ld2d1".}
-    {.passL: "-ldwrite".}
-    {.passL: "-luxTheme".}
-    {.passL: "-lusp10".}
-    {.passL: "-lgdi32".}
-    {.passL: "-luser32".}
-    {.passL: "-lkernel32".}
+    when defined(clang) or defined(gcc):
+      {.passL: "-lwindowscodecs".} # compiling with clang needs this for some reason
+                                   # and gcc doesnt complain soo...
+      {.passL: "-lwinspool".}
+      {.passL: "-lcomdlg32".}
+      {.passL: "-ladvapi32".}
+      {.passL: "-lshell32".}
+      {.passL: "-lole32".}
+      {.passL: "-loleaut32".}
+
+      {.passL: "-luuid".}
+      {.passL: "-lcomctl32".}
+      {.passL: "-ld2d1".}
+      {.passL: "-ldwrite".}
+      {.passL: "-luxTheme".}
+      {.passL: "-lusp10".}
+      {.passL: "-lgdi32".}
+      {.passL: "-luser32".}
+      {.passL: "-lkernel32".}
 
     when defined(cpu64):
       {.link: "../res/resources.o".} # resources.o is 64-bit
@@ -111,6 +116,7 @@ else:
     {.link: "dwrite.lib".}
     {.link: "UxTheme.lib".}
     {.link: "Usp10.lib".}
+
     {.link: "../res/resources.res".}
     {.link: "../res/winimvcc.res".}
 
