@@ -71,7 +71,6 @@ else:
 
     when defined(clang) or defined(gcc):
       {.passL: "-lwindowscodecs".} # compiling with clang needs this for some reason
-                                   # and gcc doesnt complain soo...
       {.passL: "-lwinspool".}
       {.passL: "-lcomdlg32".}
       {.passL: "-ladvapi32".}
