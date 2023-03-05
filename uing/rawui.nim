@@ -33,9 +33,6 @@ else:
   {.pragma: libui.}
 
   when defined(linux):
-    # thanks to 'import math' missing linking flags are added
-
-    import math
     from strutils import replace
 
     const 
@@ -44,6 +41,10 @@ else:
 
     {.passC: cflags.}
     {.passL: lflags.}
+
+    # add missing linking flags
+    when defined(posix) and not defined(genode):
+      {.passl: "-lm".}
 
   {.compile: ("./libui/common/*.c", "common_$#.obj").}
 
