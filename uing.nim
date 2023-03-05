@@ -829,8 +829,9 @@ proc newFeaturesAttribute*(otf: OpenTypeFeatures): Attribute =
 
 proc features*(a: Attribute): OpenTypeFeatures =
   ## Returns the OpenType features stored in `a`.
-  ## It is an error to call this on a Attribute 
-  ## that does not hold OpenType features.
+  ## 
+  ## .. error:: It is an error to call this on a Attribute 
+  ##        that does not hold OpenType features.
   
   newFinal result
   result.impl = rawui.attributeFeatures(a.impl)
