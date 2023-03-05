@@ -20,7 +20,7 @@ const
 
 let progress = collect: 
   for row in 0..<NUM_ROWS:
-    rand(100)
+    rand(-1..100)
 
 proc modelNumColumns(mh: ptr TableModelHandler, m: ptr rawui.TableModel): cint {.cdecl.} = NUM_COLUMNS
 proc modelNumRows(mh: ptr TableModelHandler, m: ptr rawui.TableModel): cint {.cdecl.} = NUM_ROWS
