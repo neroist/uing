@@ -2,3 +2,6 @@
 *.exe
 *.lib
 *.a
+
+*.ilk
+*.pdb
