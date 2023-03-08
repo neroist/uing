@@ -10,3 +10,9 @@ installFiles  = @["uing.nim"]
 # Dependencies
 
 requires "nim >= 1.2.0"
+
+# Tasks
+
+task mkdocs, "Build the documentation for uing.":
+  exec"nimble doc --outDir:docs --project uing.nim"
+  exec"nimble doc --outDir:docs/uing uing/genui"
