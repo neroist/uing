@@ -1924,7 +1924,7 @@ type
   Combobox* = ref object of Widget
     ## A widget to select one item from a predefined list of items via a drop down menu.
 
-    items*: seq[string] ## List of tiems in the combobox
+    items*: seq[string] ## List of items in the combobox
     onselected*: proc (sender: Combobox) ## Callback for when a combo box item is selected.
     
 genImplProcs(Combobox)
