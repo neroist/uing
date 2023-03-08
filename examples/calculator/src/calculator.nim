@@ -10,14 +10,16 @@ var
   history: MultilineEntry
 
 proc eval(_: Button) = 
-  if input.text.len == 0: return
+  if len(input.text) == 0: return
 
   try: 
     let 
       result = eval(input.text)
 
-      resultVal = if result.kind == NodeKind.Integer: $int(result.value)
-                  else: $result.value
+      resultVal = if result.kind == NodeKind.Integer: 
+          $int(result.value)
+        else: 
+          $result.value
 
     output.text = resultVal
     history.text = fmt"{input.text} = {resultVal}" & '\n' & history.text
@@ -63,7 +65,9 @@ proc main =
   input = newEntry()
   hbox.add input, true
   hbox.add newButton("Eval", eval)
-  hbox.add newButton("Clear", proc(_: Button) = input.clear(); output.clear())
+  hbox.add newButton("Clear") do (_: Button):
+    input.clear()
+    output.clear()
 
   form.add "Input:", hbox, true
 
@@ -82,6 +86,5 @@ proc main =
   show window
   mainLoop()
 
-when isMainModule:
-  init()
-  main()
+init()
+main()
