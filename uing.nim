@@ -2420,7 +2420,7 @@ proc setColor*(c: ColorButton; r, g, b, alpha: 0.0..1.0 = 1.0) =
   ## | `b`: Blue. Float in range of [0.0, 1.0].
   ## | `alpha`: Alpha. Float in range of [0.0, 1.0].
 
-  colorButtonSetColor(c.impl, r, b, g, alpha)
+  colorButtonSetColor(c.impl, r, g, b, alpha)
 
 proc `color=`*(c: ColorButton; color: Color) = 
   ## Sets the color button color.
