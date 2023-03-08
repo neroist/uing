@@ -433,6 +433,20 @@ proc addWithAttributes*(s: AttributedString; str: string; attrs: varargs[Attribu
   for attr in attrs:
     s.setAttribute attr, start, `end`
 
+proc addWithAttributes*(s: AttributedString; str: string; attrs: openArray[Attribute]) =
+  ## Adds string `str` to the end of `s`. The new substring will have
+  ## the attributes `attrs` applied to it.
+  
+  let
+    start = s.len
+    `end` = start + str.len
+
+  s.addUnattributed str
+
+  for attr in attrs:
+    s.setAttribute attr, start, `end`
+
+
 type
   AttributedStringForEachAttributeFunc = ref object
     fun: proc (s: AttributedString; a: Attribute, start, `end`: int): ForEach
