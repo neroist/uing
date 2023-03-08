@@ -446,7 +446,6 @@ proc addWithAttributes*(s: AttributedString; str: string; attrs: openArray[Attri
   for attr in attrs:
     s.setAttribute attr, start, `end`
 
-
 type
   AttributedStringForEachAttributeFunc = ref object
     fun: proc (s: AttributedString; a: Attribute, start, `end`: int): ForEach
