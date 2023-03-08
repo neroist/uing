@@ -1825,7 +1825,7 @@ proc newSlider*(range: Slice[SomeInteger]; onchanged: proc (sender: Slider) = ni
   ##
   ## The initial slider value equals the minimum value.
   ##
-  ## In the current implementation `min `and `max` are swapped if `min > max`.
+  ## In the current implementation `min` and `max` are swapped if `min > max`.
   ## This may change in the future though. 
   ## 
   ## | `range`: Slider range, as `min .. max`
@@ -1842,7 +1842,7 @@ proc newSlider*(min, max: int; onchanged: proc (sender: Slider) = nil): Slider {
   ##
   ## The initial slider value equals the minimum value.
   ##
-  ## In the current implementation `min `and `max` are swapped if `min > max`.
+  ## In the current implementation `min` and `max` are swapped if `min > max`.
   ## This may change in the future though. 
   ## 
   ## | `min`: Minimum value
