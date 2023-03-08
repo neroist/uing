@@ -29,9 +29,9 @@ const
 
 proc setSolidBrush(brush: ptr DrawBrush; color: int; alpha: float) =
   brush.`type` = DrawBrushTypeSolid
-  brush.r = (cdouble((color shr 16) and 0x000000FF)) / 255
-  brush.g = (cdouble((color shr 8) and 0x000000FF)) / 255
-  brush.b = (cdouble((color and 0x000000FF))) / 255
+  brush.r = ((color shr 16) and 0x000000FF) / 255
+  brush.g = ((color shr 8) and 0x000000FF) / 255
+  brush.b = ((color and 0x000000FF)) / 255
   brush.a = alpha
 
 proc pointLocations(width: float; height: float; xs, ys: var array[10, float]) =
