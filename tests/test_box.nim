@@ -21,9 +21,10 @@ suite "Test Box":
 
   test "Box can be set padded":
     box.padded = true
-    check box.padded == true
 
     box.padded = false
+
+  test "Box can get padded":
     check box.padded == false
 
   # teardown

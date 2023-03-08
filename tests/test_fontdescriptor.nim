@@ -10,7 +10,7 @@ suite "Test FontDescriptor":
   var font: FontDescriptor
 
   # tests
-  test "FontDescriptor can load as control font":
+  test "FontDescriptor can be loaded as control font":
     loadControlFont addr font
 
   test "FontDescriptor can be freed":

@@ -10,7 +10,8 @@ suite "Test FontButton":
   let fontButton = newFontButton()
 
   # tests
-  # ?
+  test "FontButton can get font":
+    discard fontButton.font
 
   # teardown
   window.child = fontButton

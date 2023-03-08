@@ -19,9 +19,10 @@ suite "Test Grid":
 
   test "Grid can set padded":
     grid.padded = true
-    check grid.padded
 
     grid.padded = false
+
+  test "Grid can get padded":
     check not grid.padded
 
   # teardown

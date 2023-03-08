@@ -12,6 +12,8 @@ suite "Test ProgressBar":
   # tests
   test "ProgressBar can set value":
     progressBar.value = 51
+
+  test "ProgressBar can get value":
     check progressBar.value == 51
 
   test "ProgressBar can be set indeterminate":

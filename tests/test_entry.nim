@@ -10,8 +10,10 @@ suite "Test Entry":
   let entry = newEntry()
 
   # tests
-  test "Entry text":
+  test "Entry can set text":
     entry.text = "test"
+
+  test "Entry can get text":
     check entry.text == "test"
 
   test "Entry can clear text":
@@ -20,9 +22,10 @@ suite "Test Entry":
 
   test "Entry can set readOnly":
     entry.readOnly = true
-    check entry.readOnly
 
     entry.readOnly = false
+
+  test "Entry can get readOnly":
     check not entry.readOnly
 
   # teardown

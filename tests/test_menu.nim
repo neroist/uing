@@ -12,10 +12,10 @@ suite "Test Menu":
   
   # tests
   test "Menu can add item":
-    discard menu.addItem("Test Item")
+    menu.addItem("Test Item")
 
   test "Menu can add check item":
-    discard menu.addCheckItem("Test Check item")
+    menu.addCheckItem("Test Check item")
 
   test "Menu can add quit item":
     menu.addQuitItem(
@@ -29,6 +29,9 @@ suite "Test Menu":
 
   test "Menu can add about item":
     menu.addAboutItem()
+
+  test "Menu can add separator":
+    menu.addSeparator()
 
   test "Menu children seq length":
     check menu.children.len == 5

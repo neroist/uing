@@ -12,6 +12,8 @@ suite "Test Label":
   # tests
   test "Label can set text":
     label.text = "Test"
+
+  test "Label can get text":
     check label.text == "Test"
   
   # teardown

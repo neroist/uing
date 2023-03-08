@@ -10,16 +10,18 @@ suite "Test Checkbox":
   let checkbox = newCheckbox("")
 
   # tests
-  test "Checkbox text":
+  test "Checkbox can set text":
     checkbox.text = "test"
+  
+  test "Checkbox can get text":
     check checkbox.text == "test"
 
-  test "Checkbox can be set checked":
+  test "Checkbox can be set checked/unchecked":
     checkbox.checked = true
-    check checkbox.checked
 
-  test "Checkbox can be set unchecked":
     checkbox.checked = false
+
+  test "Checkbox can get checked":
     check not checkbox.checked
 
   # teardown

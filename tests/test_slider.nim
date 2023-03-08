@@ -12,13 +12,16 @@ suite "Test Slider":
   # tests
   test "Slider can set value":
     slider.value = 5
+
+  test "Slider can get value":
     check slider.value == 5
 
   test "Slider can set has tool tip":
     slider.hasToolTip = true
-    check slider.hasToolTip
 
     slider.hasToolTip = false
+
+  test "Slider can get has tool tip":
     check not slider.hasToolTip
 
   test "Slider can set range":

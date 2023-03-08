@@ -12,11 +12,14 @@ suite "Test EditableCombobox":
   # tests
   test "EditableCombobox can add items":
     editableCombobox.add "test1", "test2", "test3"
+    
     check editableCombobox.items.len == 3
     check editableCombobox.items == @["test1", "test2", "test3"]
 
-  test "EditableCombobox text":
+  test "EditableCombobox can set text":
     editableCombobox.text = "test1"
+
+  test "EditableCombobox can get text":
     check editableCombobox.text == "test1"
 
   test "EditableCombobox can clear text":

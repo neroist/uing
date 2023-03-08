@@ -16,6 +16,8 @@ suite "Test RadioButtons":
 
   test "RadioButtons can set selected":
     radioButtons.selected = 2
+  
+  test "RadioButtons can get selected":
     check radioButtons.selected == 2
 
   test "RadioButtons can remove selected":

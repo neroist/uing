@@ -31,6 +31,11 @@ suite "Test TableValue":
       discard str.color
 
   # TODO test image
+
+  test "TableValue can be freed":
+    free str
+    free num
+    free color
   
   # teardown
   show window

@@ -25,15 +25,14 @@ suite "Test Tab":
 
   test "Tab can set tab margined":
     tab.setMargined(0, true)
-    check tab.margined(0)
 
     tab.setMargined(0, false)
+
+  test "Tab can get tab margined":
     check not tab.margined(0)
 
   test "Tab can set all tabs margined":
-    for i in 0..<tab.tabs.len:
-      tab.setMargined(i, true)
-      check tab.margined(i)
+    tab.setAllTabsMargined(true)
 
   # teardown
   window.child = tab

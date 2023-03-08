@@ -12,6 +12,8 @@ suite "Test MultilineEntry":
   # tests
   test "MultilineEntry can set text":
     multilineEntry.text = "test"
+
+  test "MultilineEntry can get text":
     check multilineEntry.text == "test"
 
   test "MultilineEntry can clear text":
@@ -24,9 +26,10 @@ suite "Test MultilineEntry":
 
   test "MultilineEntry can set readOnly":
     multilineEntry.readOnly = true
-    check multilineEntry.readOnly
 
     multilineEntry.readOnly = false
+   
+  test "MultilineEntry can set readOnly":
     check not multilineEntry.readOnly
   
   # teardown

@@ -12,6 +12,8 @@ suite "Test Spinbox":
   # tests
   test "Spinbox can set value":
     spinbox.value = 6
+
+  test "Spinbox can get value":
     check spinbox.value == 6
   
   # teardown

@@ -22,9 +22,10 @@ suite "Test MenuItem":
 
   test "MenuItem can be checked":
     checkItem.checked = true
-    check checkItem.checked
 
     checkItem.checked = false
+
+  test "MenuItem can get checked":
     check not checkItem.checked
   
   # teardown

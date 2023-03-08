@@ -12,6 +12,8 @@ suite "Test Group":
   # tests
   test "Group can set title":
     group.title = "Test Group Title"
+
+  test "Group can get title":
     check group.title == "Test Group Title"
 
   test "Group can set child":

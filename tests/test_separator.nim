@@ -7,13 +7,14 @@ suite "Test Separator":
   init()
 
   let window = newWindow("Separator Test", 200, 200)
-  let separator = newHorizontalSeparator()
+  let horizontalSeparator = newHorizontalSeparator()
+  let verticalSeparator {.used.} = newVerticalSeparator()
 
   # tests
   # ?
   
   # teardown
-  window.child = separator
+  window.child = horizontalSeparator
   show window
 
   mainSteps()

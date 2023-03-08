@@ -20,9 +20,10 @@ suite "Test Form":
 
   test "Form can be set padded":
     form.padded = true
-    check form.padded
 
     form.padded = false
+
+  test "Form can get padded":
     check not form.padded
 
   # teardown

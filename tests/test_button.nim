@@ -10,8 +10,10 @@ suite "Test Button":
   let button = newButton("")
 
   # tests
-  test "Button text":
+  test "Button can set text":
     button.text = "test"
+
+  test "Button can get text":
     check button.text == "test"
 
   # teardown
