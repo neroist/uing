@@ -2898,7 +2898,7 @@ proc rowDeleted*(m: TableModel; oldIndex: int) =
 
   rawui.tableModelRowDeleted(m.impl, oldIndex.cint)
 
-proc addTextColumn*(t: Table, name: string, textModelColumn, textEditableModelColumn: int | bool, textParams: ptr TableTextColumnOptionalParams = nil) =
+proc addTextColumn*(t: Table, name: string, textModelColumn, textEditableModelColumn: int, textParams: ptr TableTextColumnOptionalParams = nil) =
   ## Appends a text column to the table.
   ## 
   ## | `t`: Table instance.
