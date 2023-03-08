@@ -1712,8 +1712,8 @@ proc newSpinbox*(range: Slice[SomeInteger]; onchanged: proc (sender: Spinbox) = 
   ## In the current implementation `min` and `max` are swapped if `min>max`.
   ## This may change in the future though.
   ## 
-  ## `range`: Range of allowed values as `min..max`.
-  ## `onchanged`: Callback for when the spinbox value is changed by the user.
+  ## | `range`: Range of allowed values as `min..max`.
+  ## | `onchanged`: Callback for when the spinbox value is changed by the user.
 
   newFinal result
   result.impl = rawui.newSpinbox(cint range.a, cint range.b)
