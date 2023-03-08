@@ -1153,8 +1153,6 @@ proc `child=`*(w: Window; child: Widget) =
   w.child = child
 
 proc setChild*(w: Window; child: Widget) {.deprecated: "Use `child=` instead.".} =
-  ## **DEPRECATED**: use `child= <#child=,Window,Widget>`_ instead.
-  ##
   ##  Sets the window's child.
   ## 
   ## | `w`: Window instance.
@@ -1745,8 +1743,6 @@ proc newSpinbox*(range: Slice[SomeInteger]; onchanged: proc (sender: Spinbox) = 
   spinboxOnChanged result.impl, wrapsbOnChanged, cast[pointer](result)
 
 proc newSpinbox*(min, max: int; onchanged: proc (sender: Spinbox) = nil): Spinbox {.deprecated: "Use `newSpinbox(min..max, ...)` instead".} =
-  ## **DEPRECATED**: Use `newSpinbox(min..max, ...)` instead
-  ##
   ## Creates a new spinbox.
   ## 
   ## The initial spinbox value equals the minimum value.
@@ -1842,8 +1838,6 @@ proc newSlider*(range: Slice[SomeInteger]; onchanged: proc (sender: Slider) = ni
   sliderOnReleased result.impl, wrapslOnReleased, cast[pointer](result)
 
 proc newSlider*(min, max: int; onchanged: proc (sender: Slider) = nil): Slider {.deprecated: "Use `newSlider(min..max, ...)` instead.".} =
-  ## **DEPRECATED**: Use `newSlider(min..max, ...)` instead.
-  ##
   ## Creates a new slider.
   ##
   ## The initial slider value equals the minimum value.
