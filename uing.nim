@@ -1139,6 +1139,17 @@ proc `child=`*(w: Window; child: Widget) =
   windowSetChild(w.impl, child.impl)
   w.child = child
 
+proc setChild*(w: Window; child: Widget) {.deprecated: "Use `child=` instead.".} =
+  ## **DEPRECATED**: use `child= <#child=,Window,Widget>`_ instead.
+  ##
+  ##  Sets the window's child.
+  ## 
+  ## | `w`: Window instance.
+  ## | `child`: Widget to be made child.
+
+  windowSetChild(w.impl, child.impl)
+  w.child = child
+
 proc openFile*(parent: Window): string =
   ## File chooser dialog window to select a single file. Returns
   ## the selected file path
@@ -1720,6 +1731,25 @@ proc newSpinbox*(range: Slice[SomeInteger]; onchanged: proc (sender: Spinbox) = 
   result.onchanged = onchanged
   spinboxOnChanged result.impl, wrapsbOnChanged, cast[pointer](result)
 
+proc newSpinbox*(min, max: int; onchanged: proc (sender: Spinbox) = nil): Spinbox {.deprecated: "Use `newSpinbox(min..max, ...)` instead".} =
+  ## **DEPRECATED**: Use `newSpinbox(min..max, ...)` instead
+  ##
+  ## Creates a new spinbox.
+  ## 
+  ## The initial spinbox value equals the minimum value.
+  ## 
+  ## In the current implementation `min` and `max` are swapped if `min>max`.
+  ## This may change in the future though.
+  ## 
+  ## | `min`: Minimum value.
+  ## | `max`: Maximum value.
+  ## | `onchanged`: Callback for when the spinbox value is changed by the user.
+
+  newFinal result
+  result.impl = rawui.newSpinbox(cint min, cint max)
+  result.onchanged = onchanged
+  spinboxOnChanged result.impl, wrapsbOnChanged, cast[pointer](result)
+
 # ---------------------- Slider ---------------------------------------
 
 type
@@ -1794,6 +1824,26 @@ proc newSlider*(range: Slice[SomeInteger]; onchanged: proc (sender: Slider) = ni
 
   newFinal result
   result.impl = rawui.newSlider(cint range.a, cint range.b)
+  result.onchanged = onchanged
+  sliderOnChanged result.impl, wrapslOnChanged, cast[pointer](result)
+  sliderOnReleased result.impl, wrapslOnReleased, cast[pointer](result)
+
+proc newSlider*(min, max: int; onchanged: proc (sender: Slider) = nil): Slider {.deprecated: "Use `newSlider(min..max, ...)` instead.".} =
+  ## **DEPRECATED**: Use `newSlider(min..max, ...)` instead.
+  ##
+  ## Creates a new slider.
+  ##
+  ## The initial slider value equals the minimum value.
+  ##
+  ## In the current implementation `min `and `max` are swapped if `min > max`.
+  ## This may change in the future though. 
+  ## 
+  ## | `min`: Minimum value
+  ## | `max`: Maximum value
+  ## | `onchanged`: Callback for when the slider value is changed by the user.
+
+  newFinal result
+  result.impl = rawui.newSlider(cint min, cint max)
   result.onchanged = onchanged
   sliderOnChanged result.impl, wrapslOnChanged, cast[pointer](result)
   sliderOnReleased result.impl, wrapslOnReleased, cast[pointer](result)
