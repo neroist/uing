@@ -54,22 +54,27 @@ Static and dynamic libraries (e.g. `libui.so`, `libui.lib`) can be found in the
 [releases page](https://github.com/neroist/uing/releases/latest)
 
 ## Screenshots
+
 ### Windows 11
+
 ![controllgallery3_tab1.png](screenshots/windows/controllgallery3_tab1.png)
 ![controllgallery3_tab2.png](screenshots/windows/controllgallery3_tab2.png)
 ![controllgallery3_tab3.png](screenshots/windows/controllgallery3_tab3.png)
 
 ### Linux (Zorin OS 16.4 Wayland)
+
 ![controllgallery3_tab1.png](screenshots/linux/controllgallery3_tab1.png)
 ![controllgallery3_tab2.png](screenshots/linux/controllgallery3_tab2.png)
 ![controllgallery3_tab3.png](screenshots/linux/controllgallery3_tab3.png)
 
 ### Mac OS X
+
 > Unfortunately, I don't have a Macbook to get screenshots. PRs are welcome if you wanna add screenshots here!
 
 More screenshots are available at [`screenshots/`](screenshots/).
 
 ## Stargazers over time
+
 [![Stargazers over time](https://starchart.cc/neroist/uing.svg)](https://starchart.cc/neroist/uing)
 
 ###### Made with ❤️ with Nim
