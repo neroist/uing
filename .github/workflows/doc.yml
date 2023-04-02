@@ -7,7 +7,7 @@ on:
       - "main"
     paths:
       - "uing.nim"
-      - "config.nims"
+      - "nimdoc.cfg"
       - "uing.nimble"
 
       - "docs/**"
