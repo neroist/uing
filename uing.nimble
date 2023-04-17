@@ -1,6 +1,6 @@
 # Package
 
-version       = "0.7.4"
+version       = "0.8.0"
 author        = "Jasmine"
 description   = "Wrapper for libui-ng, a maintained fork of libui."
 license       = "MIT"
