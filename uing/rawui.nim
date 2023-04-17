@@ -226,6 +226,16 @@ proc windowTitle*(w: ptr Window): cstring {.cdecl, importc: "uiWindowTitle",
 proc windowSetTitle*(w: ptr Window; title: cstring) {.cdecl,
     importc: "uiWindowSetTitle", libui.}
 
+proc windowPosition*(w: ptr Window; x: ptr cint; y: ptr cint) {.cdecl, importc: "uiWindowPosition",
+                                       libui.}
+
+proc windowSetPosition*(w: ptr Window; x: cint; y: cint) {.cdecl,
+    importc: "uiWindowSetPosition", libui.}
+
+proc windowOnPositionChanged*(w: ptr Window; f: proc (sender: ptr Window;
+    senderData: pointer) {.cdecl.}; data: pointer) {.cdecl,
+    importc: "uiWindowOnPositionChanged", libui.}
+
 proc windowContentSize*(w: ptr Window; width: ptr cint; height: ptr cint) {.cdecl,
     importc: "uiWindowContentSize", libui.}
 
