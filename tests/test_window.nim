@@ -58,6 +58,12 @@ suite "Test Window":
   test "Window can get title":
     check window.title == "Window Test Test"
 
+  test "Window can set position":
+    window.position = (0, 0)
+
+  test "Window can get position":
+    check window.position == (0, 0)
+
   test "Window can set child":
     window.child = child
    
