@@ -1015,6 +1015,7 @@ type
     onclosing*: proc (sender: Window): bool ## Callback for when the window is to be closed.
     onfocuschanged*: proc (sender: Window) ## Callback for when the window focus changes.
     onContentSizeChanged*: proc (sender: Window) ## Callback for when the window content size is changed.
+    onPositionChanged*: proc (sender: Window) ## Callback for when the window moved.
     child: Widget
     
 genImplProcs(Window)
@@ -1036,6 +1037,34 @@ proc `title=`*(w: Window; text: string) =
   ## | `title`: Window title text.
   
   windowSetTitle(w.impl, text)
+
+proc position*(w: Window): tuple[x, y: int] = 
+  ## Gets the window position.
+  ## 
+  ## Coordinates are measured from the top left corner of the screen.
+  ## 
+  ## .. note:: This method may return inaccurate or dummy values on Unix platforms.
+  ## 
+  ## `w`: Window instance.
+  
+  var x, y: cint
+  windowPosition(w.impl, addr x, addr y)
+
+  result.x = int x
+  result.y = int y
+
+proc `position=`*(w: Window, pos: tuple[x, y: int]) = 
+  ## Moves the window to the specified position.
+  ## 
+  ## Coordinates are measured from the top left corner of the screen.
+  ## 
+  ## .. note:: This method may return inaccurate or dummy values on Unix platforms.
+  ## 
+  ## | `w`: Window instance.
+  ## | `pos.x`: New x position of the window.
+  ## | `pos.y`: New y position of the window.
+  
+  windowSetPosition(w.impl, cint pos.x, cint pos.y)
 
 proc contentSize*(window: Window): tuple[width, height: int] = 
   ## Gets the window content size.
@@ -1243,6 +1272,7 @@ proc onClosingWrapper(rw: ptr rawui.Window; data: pointer): cint {.cdecl.} =
 
 genCallback wrapOnFocusChangedWrapper, Window, onfocuschanged
 genCallback wrapOnContentSizeChangedWrapper, Window, onContentSizeChanged
+genCallback wrapOnPositionChangedWrapper, Window, onPositionChanged
 
 proc newWindow*(title: string; width, height: int; hasMenubar: bool = false, onfocuschanged: proc (sender: Window) = nil): Window =
   ## Creates and returns a new Window.
@@ -1263,7 +1293,7 @@ proc newWindow*(title: string; width, height: int; hasMenubar: bool = false, onf
   windowOnFocusChanged(result.impl, wrapOnFocusChangedWrapper, cast[pointer](result))
   windowOnClosing(result.impl, onClosingWrapper, cast[pointer](result))
   windowOnContentSizeChanged(result.impl, wrapOnContentSizeChangedWrapper, cast[pointer](result))
-
+  windowOnPositionChanged(result.impl, wrapOnPositionChangedWrapper, cast[pointer](result))
 
 # ------------------------- Box ------------------------------------------
 
