@@ -931,16 +931,16 @@ proc text*(b: Button): string =
 proc `text=`*(b: Button; text: string) =
   ## Sets the button label text.
   ## 
-  ## | `b`: Button instance
-  ## | `text`: Label text
+  ## :b: Button instance
+  ## :text: Label text
 
   buttonSetText(b.impl, text)
 
 proc newButton*(text: string; onclick: proc(sender: Button) = nil): Button =
   ## Creates and returns a new button.
   ## 
-  ## | `text`: Button label text
-  ## | `onclick`: callback for when the button is clicked.
+  ## :text: Button label text
+  ## :onclick: callback for when the button is clicked.
 
   newFinal(result)
   result.impl = rawui.newButton(text)
@@ -961,8 +961,8 @@ genImplProcs(RadioButtons)
 proc add*(r: RadioButtons; items: varargs[string, `$`]) = 
   ## Appends a radio button.
   ## 
-  ## | `r`: RadioButtons instance.
-  ## | `items`: Radio button text(s).
+  ## :r: RadioButtons instance.
+  ## :items: Radio button text(s).
   
   for text in items:
     radioButtonsAppend(r.impl, cstring text)
@@ -971,15 +971,15 @@ proc add*(r: RadioButtons; items: varargs[string, `$`]) =
 proc selected*(r: RadioButtons): int =
   ## Returns the index of the item selected.
   ## 
-  ## `r`: RadioButtons instance.
+  ## :r: RadioButtons instance.
   
   radioButtonsSelected(r.impl)
 
 proc `selected=`*(r: RadioButtons, index: int) =
   ## Sets the item selected.
   ## 
-  ## | `r`: RadioButtons instance.
-  ## | `index`: Index of the item to be selected, `-1` to clear selection.
+  ## :r: RadioButtons instance.
+  ## :index: Index of the item to be selected, `-1` to clear selection.
   
   radioButtonsSetSelected(r.impl, cint index)
 
@@ -988,7 +988,7 @@ genCallback(wrapOnRadioButtonClick, RadioButtons, onselected)
 proc newRadioButtons*(items: openArray[string] = []; onselected: proc(sender: RadioButtons)  = nil): RadioButtons =
   ## Creates a new radio buttons instance.
   ## 
-  ## `onselected`: Callback for when radio button is selected.
+  ## :onselected: Callback for when radio button is selected.
 
   newFinal(result)
   result.impl = rawui.newRadioButtons()
@@ -1023,7 +1023,7 @@ genImplProcs(Window)
 proc title*(w: Window): string =
   ## Returns the window title.
   ## 
-  ## `w`: Window instance.
+  ## :w: Window instance.
 
   result = $windowTitle(w.impl)
   free result
@@ -1033,8 +1033,8 @@ proc `title=`*(w: Window; text: string) =
   ## 
   ## .. note:: This method is merely a hint and may be ignored on unix platforms.
   ## 
-  ## | `w`: Window instance.
-  ## | `title`: Window title text.
+  ## :w: Window instance.
+  ## :title: Window title text.
   
   windowSetTitle(w.impl, text)
 
@@ -1045,7 +1045,7 @@ proc position*(w: Window): tuple[x, y: int] =
   ## 
   ## .. note:: This method may return inaccurate or dummy values on Unix platforms.
   ## 
-  ## `w`: Window instance.
+  ## :w: Window instance.
   
   var x, y: cint
   windowPosition(w.impl, addr x, addr y)
@@ -1060,9 +1060,9 @@ proc `position=`*(w: Window, pos: tuple[x, y: int]) =
   ## 
   ## .. note:: This method may return inaccurate or dummy values on Unix platforms.
   ## 
-  ## | `w`: Window instance.
-  ## | `pos.x`: New x position of the window.
-  ## | `pos.y`: New y position of the window.
+  ## :w: Window instance.
+  ## :pos.x: New x position of the window.
+  ## :pos.y: New y position of the window.
   
   windowSetPosition(w.impl, cint pos.x, cint pos.y)
 
@@ -1071,7 +1071,7 @@ proc contentSize*(window: Window): tuple[width, height: int] =
   ## 
   ## .. note:: The content size does NOT include window decorations like menus or title bars.
   ## 
-  ## `window`: Window instance.
+  ## :window: Window instance.
 
   var w, h: cint
   windowContentSize(window.impl, addr w, addr h)
@@ -1085,16 +1085,16 @@ proc `contentSize=`*(window: Window, size: tuple[width, height: int]) =
   ## 
   ## .. note:: This method is merely a hint and may be ignored by the system.
   ## 
-  ## | `window`: Window instance.
-  ## | `size.width`: Window content width to set.
-  ## | `size.height`:  Window content height to set.
+  ## :window: Window instance.
+  ## :size.width: Window content width to set.
+  ## :size.height:  Window content height to set.
   
   windowSetContentSize(window.impl, cint size.width, cint size.height)
 
 proc fullscreen*(w: Window): bool = 
   ## Returns whether or not the window is full screen.
   ## 
-  ## `w`: Window instance.
+  ## :w: Window instance.
   
   bool windowFullscreen(w.impl)
 
@@ -1103,22 +1103,22 @@ proc `fullscreen=`*(w: Window, fullscreen: bool) =
   ## 
   ## .. note:: This method is merely a hint and may be ignored by the system.
   ## 
-  ## | `w`: Window instance.
-  ## | `fullscreen`: `true` to make window full screen, `false` otherwise.
+  ## :w: Window instance.
+  ## :fullscreen: `true` to make window full screen, `false` otherwise.
   
   windowSetFullscreen(w.impl, cint fullscreen)
 
 proc focused*(w: Window): bool = 
   ## Returns whether or not the window is focused.
   ## 
-  ## `w`: Window instance.
+  ## :w: Window instance.
   
   bool windowFocused(w.impl)
 
 proc borderless*(w: Window): bool =
   ## Returns whether or not the window is borderless.
   ## 
-  ## `w`: Window instance.
+  ## :w: Window instance.
 
   bool windowBorderless(w.impl)
 
@@ -1127,15 +1127,15 @@ proc `borderless=`*(w: Window, borderless: bool) =
   ## 
   ## .. note:: This method is merely a hint and may be ignored by the system.
   ## 
-  ## | `w`: Window instance.
-  ## | `borderless`: `true` to make window borderless, `false` otherwise.
+  ## :w: Window instance.
+  ## :borderless: `true` to make window borderless, `false` otherwise.
 
   windowSetBorderless(w.impl, cint borderless)
 
 proc resizeable*(w: Window): bool = 
   ## Returns whether or not the window is user resizeable.
   ## 
-  ## `w`: Window instance.
+  ## :w: Window instance.
   
   bool windowResizeable(w.impl)
 
@@ -1144,15 +1144,15 @@ proc `resizeable=`*(w: Window, resizeable: bool) =
   ## 
   ## .. note:: This method is merely a hint and may be ignored by the system.
   ## 
-  ## | `w`: Window instance.
-  ## | `resizeable`: `true` to make window resizable, `false` otherwise.
+  ## :w: Window instance.
+  ## :resizeable: `true` to make window resizable, `false` otherwise.
 
   windowSetResizeable(w.impl, cint resizeable)
 
 proc margined*(w: Window): bool = 
   ## Returns whether or not the window has a margin.
   ## 
-  ## `w`: Window instance.
+  ## :w: Window instance.
   
   windowMargined(w.impl) != 0
 
@@ -1160,23 +1160,23 @@ proc `margined=`*(w: Window; margined: bool) =
   ## Sets whether or not the window has a margin.
   ## The margin size is determined by the OS defaults.
   ## 
-  ## | `w`: Window instance.
-  ## | `margined`: `true` to set a window margin, `false` otherwise.
+  ## :w: Window instance.
+  ## :margined: `true` to set a window margin, `false` otherwise.
 
   windowSetMargined(w.impl, cint(margined))
 
 proc child*(w: Window): Widget = 
   ## Returns the window's child.
   ## 
-  ## | `w`: Window instance.
+  ## :w: Window instance.
   
   w.child
 
 proc `child=`*(w: Window; child: Widget) =
   ##  Sets the window's child.
   ## 
-  ## | `w`: Window instance.
-  ## | `child`: Widget to be made child.
+  ## :w: Window instance.
+  ## :child: Widget to be made child.
 
   windowSetChild(w.impl, child.impl)
   w.child = child
@@ -1184,8 +1184,8 @@ proc `child=`*(w: Window; child: Widget) =
 proc setChild*(w: Window; child: Widget) {.deprecated: "Use `child=` instead.".} =
   ##  Sets the window's child.
   ## 
-  ## | `w`: Window instance.
-  ## | `child`: Widget to be made child.
+  ## :w: Window instance.
+  ## :child: Widget to be made child.
 
   windowSetChild(w.impl, child.impl)
   w.child = child
@@ -1197,7 +1197,7 @@ proc openFile*(parent: Window): string =
   ## .. note:: File paths are separated by the underlying OS 
   ##        file path separator.
   ## 
-  ## `parent`: Parent window.
+  ## :parent: Parent window.
   
   let x = openFile(parent.impl)
   result = $x
@@ -1210,7 +1210,7 @@ proc openFolder*(parent: Window): string =
   ## .. note:: File paths are separated by the underlying OS 
   ##        file path separator.
   ## 
-  ## `parent`: Parent window.
+  ## :parent: Parent window.
 
   let x = openFolder(parent.impl)
   result = $x
@@ -1225,7 +1225,7 @@ proc saveFile*(parent: Window): string =
   ## .. note:: File paths are separated by the underlying OS 
   ##        file path separator.
   ## 
-  ## `parent`: Parent window.
+  ## :parent: Parent window.
 
   let x = saveFile(parent.impl)
   result = $x
@@ -1236,9 +1236,9 @@ proc msgBox*(parent: Window; title, desc: string) =
   ## 
   ## A message box displayed in a new window indicating a common message.
   ## 
-  ## | `parent`: Parent window.
-  ## | `title`: Dialog window title text.
-  ## | `description`: Dialog message text.
+  ## :parent: Parent window.
+  ## :title: Dialog window title text.
+  ## :description: Dialog message text.
 
   msgBox(parent.impl, title, desc)
 
@@ -1248,9 +1248,9 @@ proc msgBoxError*(parent: Window; title, desc: string) =
   ## A message box displayed in a new window indicating an error. On some systems
   ## this may invoke an accompanying sound.
   ## 
-  ## | `parent`: Parent window.
-  ## | `title`: Dialog window title text.
-  ## | `description`: Dialog message text.
+  ## :parent: Parent window.
+  ## :title: Dialog window title text.
+  ## :description: Dialog message text.
   
   msgBoxError(parent.impl, title, desc)
 
@@ -1277,11 +1277,11 @@ genCallback wrapOnPositionChangedWrapper, Window, onPositionChanged
 proc newWindow*(title: string; width, height: int; hasMenubar: bool = false, onfocuschanged: proc (sender: Window) = nil): Window =
   ## Creates and returns a new Window.
   ## 
-  ## | `title`: Window title text.
-  ## | `width`: Window width.
-  ## | `height`: Window height.
-  ## | `hasMenubar`: Whether or not the window should display a menu bar.
-  ## | `onfocuschanged`: Callback for when the window focus changes.
+  ## :title: Window title text.
+  ## :width: Window width.
+  ## :height: Window height.
+  ## :hasMenubar: Whether or not the window should display a menu bar.
+  ## :onfocuschanged: Callback for when the window focus changes.
 
   newFinal(result)
   result.impl = rawui.newWindow(title, cint width, cint height, cint hasMenubar)
@@ -1314,9 +1314,9 @@ proc add*(b: Box; child: Widget; stretchy = false) =
   ## Stretchy items expand to use the remaining space within the box.
   ## In the case of multiple stretchy items the space is shared equally.
   ## 
-  ## | `b`: Box instance.
-  ## | `child`: widget instance to append.
-  ## | `stretchy`: `true` to stretch widget,`false` otherwise. Default is `false`.
+  ## :b: Box instance.
+  ## :child: widget instance to append.
+  ## :stretchy: `true` to stretch widget,`false` otherwise. Default is `false`.
 
   boxAppend(b.impl, child.impl, cint(stretchy))
   b.children.add child
@@ -1332,8 +1332,8 @@ proc delete*(b: Box; index: int) =
   ## 
   ## .. note:: The widget is neither destroyed nor freed.
   ## 
-  ## | `b`: Box instance.
-  ## | `index`: Index of widget to be removed.
+  ## :b: Box instance.
+  ## :index: Index of widget to be removed.
   
   boxDelete(b.impl, index.cint)
   b.children.delete index
@@ -1343,7 +1343,7 @@ proc padded*(b: Box): bool =
   ## 
   ## Padding is defined as space between individual widgets.
   ## 
-  ## `b`: Box instance.
+  ## :b: Box instance.
 
   bool boxPadded(b.impl)
 
@@ -1353,8 +1353,8 @@ proc `padded=`*(b: Box; padded: bool) =
   ## Padding is defined as space between individual widgets.
   ## The padding size is determined by the OS defaults.
   ## 
-  ## | `b`: Box instance.
-  ## | `padded` : `true` to make widgets padded, `false` otherwise.
+  ## :b: Box instance.
+  ## :padded: `true` to make widgets padded, `false` otherwise.
 
   boxSetPadded(b.impl, padded.cint)
 
@@ -1363,7 +1363,7 @@ proc newHorizontalBox*(padded = false): Box =
   ## 
   ## Widgets within the box are placed next to each other horizontally.
   ## 
-  ## `padded`: `true` to make widgets padded, `false` otherwise.
+  ## :padded: `true` to make widgets padded, `false` otherwise.
 
   newFinal(result)
   result.impl = rawui.newHorizontalBox()
@@ -1375,7 +1375,7 @@ proc newVerticalBox*(padded = false): Box =
   ## 
   ## Widgets within the box are placed next to each other vertically.
   ## 
-  ## `padded`: `true` to make widgets padded, `false` otherwise.
+  ## :padded: `true` to make widgets padded, `false` otherwise.
 
   newFinal(result)
   result.impl = rawui.newVerticalBox()
@@ -1395,7 +1395,7 @@ genImplProcs(Checkbox)
 proc text*(c: Checkbox): string = 
   ## Returns the checkbox label text.
   ## 
-  ## `c`: Checkbox instance.
+  ## :c: Checkbox instance.
 
   result = $checkboxText(c.impl)
   free result
@@ -1403,8 +1403,8 @@ proc text*(c: Checkbox): string =
 proc `text=`*(c: Checkbox; text: string) = 
   ## Sets the checkbox label text.
   ## 
-  ## | `c`: Checkbox instance.
-  ## | `text`: Label text.
+  ## :c: Checkbox instance.
+  ## :text: Label text.
   
   checkboxSetText(c.impl, text)
 
@@ -1413,23 +1413,23 @@ genCallback(wrapOntoggled, Checkbox, ontoggled)
 proc checked*(c: Checkbox): bool = 
   ## Returns whether or the checkbox is checked.
   ## 
-  ## `c`: Checkbox instance.
+  ## :c: Checkbox instance.
   
   checkboxChecked(c.impl) != 0
 
 proc `checked=`*(c: Checkbox; checked: bool) =
   ## Sets whether or not the checkbox is checked.
   ## 
-  ## | `c`: Checkbox instance.
-  ## | `checked`: `true` to check box, `false` otherwise.
+  ## :c: Checkbox instance.
+  ## :checked: `true` to check box, `false` otherwise.
   
   checkboxSetChecked(c.impl, cint(checked))
 
 proc newCheckbox*(text: string; ontoggled: proc(sender: Checkbox) = nil): Checkbox =
   ## Creates and returns a new checkbox.
   ## 
-  ## | `text`: Checkbox label text
-  ## | `ontoggled`: Callback for when the checkbox is toggled by the user.
+  ## :text: Checkbox label text
+  ## :ontoggled: Callback for when the checkbox is toggled by the user.
 
   newFinal(result)
   result.impl = rawui.newCheckbox(text)
@@ -1449,7 +1449,7 @@ genImplProcs(Entry)
 proc text*(e: Entry): string = 
   ## Returns the entry's text.
   ## 
-  ## `e`: Entry instance.
+  ## :e: Entry instance.
   
   result = $entryText(e.impl)
   free result
@@ -1457,30 +1457,30 @@ proc text*(e: Entry): string =
 proc `text=`*(e: Entry; text: string) = 
   ## Sets the entry's text.
   ## 
-  ## | `e`: Entry instance.
-  ## | `text`: Entry text
+  ## :e: Entry instance.
+  ## :text: Entry text
   
   entrySetText(e.impl, cstring text)
 
 proc clear*(e: Entry) = 
   ## Clears the entry's text
   ## 
-  ## `e`: Entry instance.
+  ## :e: Entry instance.
 
   entrySetText(e.impl, cstring "")
 
 proc readOnly*(e: Entry): bool = 
   ## Returns whether or not the entry's text can be changed.
   ## 
-  ## `e`: Entry instance.
+  ## :e: Entry instance.
   
   entryReadOnly(e.impl) != 0
 
 proc `readOnly=`*(e: Entry; readOnly: bool) =
   ## Sets whether or not the entry's text is read only.
   ## 
-  ## | `e`: Entry instance.
-  ## | `readonly`: `true` to make read only, `false` otherwise.
+  ## :e: Entry instance.
+  ## :readonly: `true` to make read only, `false` otherwise.
   
   entrySetReadOnly(e.impl, cint readOnly)
 
@@ -1489,8 +1489,8 @@ genCallback(wrapOnchanged, Entry, onchanged)
 proc newEntry*(text: string = ""; onchanged: proc(sender: Entry) = nil): Entry =
   ## Creates a new entry.
   ## 
-  ## | `text`: Entry text
-  ## | `onchanged`: Callback for when the user changes the entry's text.
+  ## :text: Entry text
+  ## :onchanged: Callback for when the user changes the entry's text.
   
   newFinal(result)
   result.impl = rawui.newEntry()
@@ -1503,8 +1503,8 @@ proc newPasswordEntry*(text: string = ""; onchanged: proc(sender: Entry) = nil):
   ## 
   ## The entered text is NOT readable by the user but masked as *******.
   ## 
-  ## | `text`: Entry text
-  ## | `onchanged`: Callback for when the user changes the entry's text.
+  ## :text: Entry text
+  ## :onchanged: Callback for when the user changes the entry's text.
   
   newFinal(result)
   result.impl = rawui.newPasswordEntry()
@@ -1518,8 +1518,8 @@ proc newSearchEntry*(text: string = ""; onchanged: proc(sender: Entry) = nil): E
   ## Some systems will deliberately delay the `onchanged()` callback for
   ## a more natural feel.
   ## 
-  ## | `text`: Entry text
-  ## | `onchanged`: Callback for when the user changes the entry's text.
+  ## :text: Entry text
+  ## :onchanged: Callback for when the user changes the entry's text.
 
   newFinal(result)
   result.impl = rawui.newSearchEntry()
@@ -1538,7 +1538,7 @@ genImplProcs(Label)
 proc text*(l: Label): string = 
   ## Returns the label text.
   ## 
-  ## `l`: Lable Instance
+  ## :l: Lable Instance
   
   result = $labelText(l.impl)
   free result
@@ -1546,15 +1546,15 @@ proc text*(l: Label): string =
 proc `text=`*(l: Label; text: string) = 
   ## Sets the label text.
   ## 
-  ## | `l`: Lable Instance
-  ## | `text`: Label text.
+  ## :l: Lable Instance
+  ## :text: Label text.
 
   labelSetText(l.impl, text)
 
 proc newLabel*(text: string = ""): Label =
   ## Creates a new label.
   ## 
-  ## `text`: Label text.
+  ## :text: Label text.
   
   newFinal(result)
   result.impl = rawui.newLabel(text)
@@ -1575,9 +1575,9 @@ genImplProcs(Tab)
 proc add*(t: Tab; name: string; w: Widget) =
   ## Appends a widget in form of a page/tab with label.
   ## 
-  ## | `t`: Tab instance.
-  ## | `name`: Label text.
-  ## | `w`: Widget to append.
+  ## :t: Tab instance.
+  ## :name: Label text.
+  ## :w: Widget to append.
  
   tabAppend t.impl, name, w.impl
   t.tabs.add (name, w)
@@ -1585,10 +1585,10 @@ proc add*(t: Tab; name: string; w: Widget) =
 proc insertAt*(t: Tab; name: string; index: int; w: Widget) =
   ## Inserts a widget in form of a page/tab with label at `index`.
   ## 
-  ## | `t`: Tab instance.
-  ## | `name`: Label text.
-  ## | `index`: Index at which to insert the widget.
-  ## | `w`: Widget to append.
+  ## :t: Tab instance.
+  ## :name: Label text.
+  ## :index: Index at which to insert the widget.
+  ## :w: Widget to append.
 
   tabInsertAt(t.impl, name, index.cint, w.impl)
   t.tabs.insert (name, w), index
@@ -1598,8 +1598,8 @@ proc delete*(t: Tab; index: int) =
   ## 
   ## .. note:: The widget is neither destroyed nor freed.
   ## 
-  ## | `t`: Tab instance.
-  ## | `index`: Index at which to insert the widget.
+  ## :t: Tab instance.
+  ## :index: Index at which to insert the widget.
 
   tabDelete(t.impl, index.cint)
   t.tabs.delete index 
@@ -1607,8 +1607,8 @@ proc delete*(t: Tab; index: int) =
 proc margined*(t: Tab; index: int): bool = 
   ## Returns whether or not the page/tab at `index` has a margin.
   ## 
-  ## | `t`: Tab instance.
-  ## | `index`: Index to check if it has a margin.
+  ## :t: Tab instance.
+  ## :index: Index to check if it has a margin.
 
   bool tabMargined(t.impl, index.cint) 
 
@@ -1617,17 +1617,17 @@ proc setMargined*(t: Tab; index: int; margined: bool) =
   ## 
   ## The margin size is determined by the OS defaults.
   ## 
-  ## | `t`: Tab instance.
-  ## | `index`: Index of the tab/page to un/set margin for.
-  ## | `margined`: `true` to set a margin for tab at `index`, `false` otherwise.
+  ## :t: Tab instance.
+  ## :index: Index of the tab/page to un/set margin for.
+  ## :margined: `true` to set a margin for tab at `index`, `false` otherwise.
 
   tabSetMargined(t.impl, cint index, cint margined)
 
 proc setAllTabsMargined*(t: Tab; margined: bool = true) = 
   ## Set all tabs in `t` as margined
   ##
-  ## | `t`: Tab instance.
-  ## | `margined`: `true` to set a margin for all tabs, `false` otherwise.
+  ## :t: Tab instance.
+  ## :margined: `true` to set a margin for all tabs, `false` otherwise.
 
   for i in 0 ..< t.tabs.len:
     t.setMargined i, margined
@@ -1658,7 +1658,7 @@ genImplProcs(Group)
 proc title*(g: Group): string = 
   ## Returns the group title.
   ## 
-  ## `g`: Group instance.
+  ## :g: Group instance.
 
   result = $groupTitle(g.impl)
   free result
@@ -1666,23 +1666,23 @@ proc title*(g: Group): string =
 proc `title=`*(g: Group; title: string) =
   ## Sets the group title.
   ## 
-  ## | `g`: Group instance.
-  ## | `title`: Group title text.
+  ## :g: Group instance.
+  ## :title: Group title text.
 
   groupSetTitle(g.impl, title)
 
 proc child*(g: Group): Widget = 
   ## Returns the group's child widget.
   ## 
-  ## `g`: Group instance.
+  ## :g: Group instance.
   
   g.child 
 
 proc `child=`*(g: Group; c: Widget) =
   ## Sets the group's child.
   ## 
-  ## | `g`: Group instance.
-  ## | `c`: Widget child instance, or `nil`.
+  ## :g: Group instance.
+  ## :c: Widget child instance, or `nil`.
 
   groupSetChild(g.impl, 
     if c != nil: c.impl
@@ -1694,7 +1694,7 @@ proc `child=`*(g: Group; c: Widget) =
 proc margined*(g: Group): bool = 
   ## Returns whether or not the group has a margin.
   ## 
-  ## `g`: Group instance.
+  ## :g: Group instance.
 
   groupMargined(g.impl) != 0
 
@@ -1703,16 +1703,16 @@ proc `margined=`*(g: Group; margined: bool) =
   ## 
   ## The margin size is determined by the OS defaults.
   ## 
-  ## | `g`: Group instance.
-  ## | `margined`: `true` to set a margin, `false` otherwise.
+  ## :g: Group instance.
+  ## :margined: `true` to set a margin, `false` otherwise.
 
   groupSetMargined(g.impl, margined.cint)
 
 proc newGroup*(title: string; margined: bool = false): Group =
   ## Creates a new group
   ## 
-  ## | `title`: Group title text.
-  ## | `margined`: Sets whether or not the group has a margin.
+  ## :title: Group title text.
+  ## :margined: Sets whether or not the group has a margin.
   
   newFinal result
   result.impl = rawui.newGroup(title)
@@ -1740,7 +1740,7 @@ genImplProcs(Spinbox)
 proc value*(s: Spinbox): int = 
   ## Returns the spinbox value.
   ## 
-  ## `s`: Spinbox instance.
+  ## :s: Spinbox instance.
   
   spinboxValue(s.impl)
 
@@ -1749,8 +1749,8 @@ proc `value=`*(s: Spinbox; value: int) =
   ## 
   ## .. note:: Setting a value out of range will clamp to the nearest value in range.
   ## 
-  ## `s`: Spinbox instance.
-  ## `value`: Value to set.
+  ## :s: Spinbox instance.
+  ## :value: Value to set.
 
   spinboxSetValue(s.impl, value.cint)
 
@@ -1764,8 +1764,8 @@ proc newSpinbox*(range: Slice[SomeInteger]; onchanged: proc (sender: Spinbox) = 
   ## In the current implementation `min` and `max` are swapped if `min>max`.
   ## This may change in the future though.
   ## 
-  ## | `range`: Range of allowed values as `min..max`.
-  ## | `onchanged`: Callback for when the spinbox value is changed by the user.
+  ## :range: Range of allowed values as `min..max`.
+  ## :onchanged: Callback for when the spinbox value is changed by the user.
 
   newFinal result
   result.impl = rawui.newSpinbox(cint range.a, cint range.b)
@@ -1780,9 +1780,9 @@ proc newSpinbox*(min, max: int; onchanged: proc (sender: Spinbox) = nil): Spinbo
   ## In the current implementation `min` and `max` are swapped if `min>max`.
   ## This may change in the future though.
   ## 
-  ## | `min`: Minimum value.
-  ## | `max`: Maximum value.
-  ## | `onchanged`: Callback for when the spinbox value is changed by the user.
+  ## :min: Minimum value.
+  ## :max: Maximum value.
+  ## :onchanged: Callback for when the spinbox value is changed by the user.
 
   newFinal result
   result.impl = rawui.newSpinbox(cint min, cint max)
@@ -1810,30 +1810,30 @@ genImplProcs(Slider)
 proc value*(s: Slider): int = 
   ## Returns the slider value.
   ## 
-  ## `s`: Slider instance.
+  ## :s: Slider instance.
 
   int sliderValue(s.impl)
 
 proc `value=`*(s: Slider; value: int) = 
   ## Sets the slider value.
   ## 
-  ## | `s`: Slider intance.
-  ## | `value`: Value to set.
+  ## :s: Slider intance.
+  ## :value: Value to set.
 
   sliderSetValue(s.impl, cint value)
 
 proc hasToolTip*(s: Slider): bool = 
   ## Returns whether or not the slider has a tool tip.
   ## 
-  ## `s`: Slider instance.
+  ## :s: Slider instance.
 
   bool sliderHasToolTip(s.impl)
 
 proc `hasToolTip=`*(s: Slider, hasToolTip: bool) = 
   ## Sets whether or not the slider has a tool tip.
   ## 
-  ## | `s`: Slider instance.
-  ## | `hasToolTip`: `true` to display a tool tip, `false` to display no tool tip.
+  ## :s: Slider instance.
+  ## :hasToolTip: `true` to display a tool tip, `false` to display no tool tip.
 
   sliderSetHasToolTip(s.impl, cint hasToolTip)
 
@@ -1841,8 +1841,8 @@ proc `hasToolTip=`*(s: Slider, hasToolTip: bool) =
 proc `range=`*(s: Slider; sliderRange: Slice[SomeInteger]) = 
   ## Sets the slider range.
   ## 
-  ## | `s`: Slider instance.
-  ## | `sliderRange`: Slider range, as `min .. max`
+  ## :s: Slider instance.
+  ## :sliderRange: Slider range, as `min .. max`
 
 
   sliderSetRange(s.impl, cint sliderRange.a, cint sliderRange.b)
@@ -1858,8 +1858,8 @@ proc newSlider*(range: Slice[SomeInteger]; onchanged: proc (sender: Slider) = ni
   ## In the current implementation `min` and `max` are swapped if `min > max`.
   ## This may change in the future though. 
   ## 
-  ## | `range`: Slider range, as `min .. max`
-  ## | `onchanged`: Callback for when the slider value is changed by the user.
+  ## :range: Slider range, as `min .. max`
+  ## :onchanged: Callback for when the slider value is changed by the user.
 
   newFinal result
   result.impl = rawui.newSlider(cint range.a, cint range.b)
@@ -1875,9 +1875,9 @@ proc newSlider*(min, max: int; onchanged: proc (sender: Slider) = nil): Slider {
   ## In the current implementation `min` and `max` are swapped if `min > max`.
   ## This may change in the future though. 
   ## 
-  ## | `min`: Minimum value
-  ## | `max`: Maximum value
-  ## | `onchanged`: Callback for when the slider value is changed by the user.
+  ## :min: Minimum value
+  ## :max: Maximum value
+  ## :onchanged: Callback for when the slider value is changed by the user.
 
   newFinal result
   result.impl = rawui.newSlider(cint min, cint max)
@@ -1898,7 +1898,7 @@ genImplProcs(ProgressBar)
 proc value*(p: ProgressBar): int = 
   ## Returns the progress bar value.
   ## 
-  ## `p`: ProgressBar instance.
+  ## :p: ProgressBar instance.
   
   int progressBarValue(p.impl)
 
@@ -1911,16 +1911,16 @@ proc `value=`*(p: ProgressBar; n: -1..100) =
   ## Use a value of `-1` to render an animated bar to convey an indeterminate
   ## value.
   ## 
-  ## | `p`: ProgressBar instance.
-  ## | `n`: Value to set. Integer in the range of `[-1, 100]`.
+  ## :p: ProgressBar instance.
+  ## :n: Value to set. Integer in the range of `[-1, 100]`.
 
   progressBarSetValue p.impl, n.cint
 
 proc newProgressBar*(indeterminate: bool = false): ProgressBar =
   ## Creates a new progress bar.
   ## 
-  ## `indeterminate`: Whether or not the progress bar will display an 
-  ## indeterminate value.
+  ## :indeterminate: Whether or not the progress bar will display an 
+  ##                 indeterminate value.
 
   newFinal result
   result.impl = rawui.newProgressBar()
@@ -1962,8 +1962,8 @@ genImplProcs(Combobox)
 proc add*(c: Combobox; items: varargs[string, `$`]) = 
   ## Appends an item to the combo box.
   ## 
-  ## | `c`: Combobox instance.
-  ## | `items`: Item text(s).
+  ## :c: Combobox instance.
+  ## :items: Item text(s).
 
   for text in items:
     comboboxAppend(c.impl, cstring text)
@@ -1973,9 +1973,9 @@ proc insertAt*(c: Combobox; index: int; text: string) =
   ## Inserts an item at `index` to the combo box.
   ## 
   ## 
-  ## | `c`: Combobox instance.
-  ## | `index`: Index at which to insert the item.
-  ## | `text`: Item text.
+  ## :c: Combobox instance.
+  ## :index: Index at which to insert the item.
+  ## :text: Item text.
 
   comboboxInsertAt(c.impl, cint index, text)
   c.items.insert text, index
@@ -1983,7 +1983,7 @@ proc insertAt*(c: Combobox; index: int; text: string) =
 proc clear*(c: Combobox) = 
   ## Deletes all items from the combo box.
   ## 
-  ## `c`: Combobox instance.
+  ## :c: Combobox instance.
 
   comboboxClear(c.impl)
   c.items = @[]
@@ -1994,8 +1994,8 @@ proc delete*(c: Combobox, index: int) =
   ## .. note:: Deleting the index of the item currently selected will move the
   ##        selection to the next item in the combo box or `-1` if no such item exists.
   ## 
-  ## | `c`: Combobox instance.
-  ## | `index`: Index of the item to be deleted.
+  ## :c: Combobox instance.
+  ## :index: Index of the item to be deleted.
 
   comboboxDelete(c.impl, cint index)
   c.items.delete index
@@ -2003,15 +2003,15 @@ proc delete*(c: Combobox, index: int) =
 proc selected*(c: Combobox): int = 
   ## Returns the index of the item selected.
   ## 
-  ## `c`: Combobox instance.
+  ## :c: Combobox instance.
 
   comboboxSelected(c.impl)
 
 proc `selected=`*(c: Combobox; index: int) = 
   ## Sets the item selected.
   ## 
-  ## | `c`: Combobox instance.
-  ## | `index`: Index of the item to be selected, `-1` to clear selection.
+  ## :c: Combobox instance.
+  ## :index: Index of the item to be selected, `-1` to clear selection.
 
   comboboxSetSelected c.impl, cint index
 
@@ -2020,8 +2020,8 @@ genCallback wrapbbOnSelected, Combobox, onselected
 proc newCombobox*(items: openArray[string] = [], onselected: proc(sender: Combobox) = nil): Combobox =
   ## Creates a new combo box.
   ## 
-  ## | `items`: List of strings to add to the combobox
-  ## | `onselected`: Callback for when a combo box item is selected.
+  ## :items: List of strings to add to the combobox
+  ## :onselected: Callback for when a combo box item is selected.
   
   newFinal result
   result.impl = rawui.newCombobox()
@@ -2049,8 +2049,8 @@ genImplProcs(EditableCombobox)
 proc add*(c: EditableCombobox; items: varargs[string, `$`]) = 
   ## Appends an item to the editable combo box.
   ## 
-  ## | `c`: Combobox instance.
-  ## | `items`: Item text(s). 
+  ## :c: Combobox instance.
+  ## :items: Item text(s). 
 
   for text in items:
     editableComboboxAppend(c.impl, cstring text)
@@ -2062,7 +2062,7 @@ proc text*(c: EditableCombobox): string =
   ## This text is either the text of one of the predefined list items or the
   ## text manually entered by the user.
   ## 
-  ## `c`: Combobox instance.
+  ## :c: Combobox instance.
 
   result = $editableComboboxText(c.impl)
   free result
@@ -2073,15 +2073,15 @@ proc `text=`*(c: EditableCombobox; text: string) =
   ## This text is either the text of one of the predefined list items or the
   ## text manually entered by the user.
   ## 
-  ## | `c`: Combobox instance.
-  ## | `text`: Text field text.
+  ## :c: Combobox instance.
+  ## :text: Text field text.
 
   editableComboboxSetText(c.impl, cstring text)
 
 proc clear*(e: EditableCombobox) = 
   ## Clears the editable combobox's text
   ## 
-  ## `e`: Combobox instance.
+  ## :e: Combobox instance.
 
   editableComboboxSetText(e.impl, cstring "")
 
@@ -2090,7 +2090,7 @@ genCallback wrapecbOnchanged, EditableCombobox, onchanged
 proc newEditableCombobox*(items: openArray[string] = []; onchanged: proc (sender: EditableCombobox) = nil): EditableCombobox =
   ## Creates a new editable combo box.
   ## 
-  ## `onchanged`: Callback for when an editable combo box item is selected or user text changed.
+  ## :onchanged: Callback for when an editable combo box item is selected or user text changed.
 
   newFinal result
   result.impl = rawui.newEditableCombobox()
@@ -2113,7 +2113,7 @@ genImplProcs(MultilineEntry)
 proc text*(e: MultilineEntry): string = 
   ## Returns the multi line entry's text.
   ## 
-  ## `e`: MultilineEntry instance
+  ## :e: MultilineEntry instance
   
   result = $multilineEntryText(e.impl)
   free result
@@ -2121,38 +2121,38 @@ proc text*(e: MultilineEntry): string =
 proc `text=`*(e: MultilineEntry; text: string) = 
   ## Sets the multi line entry's text.
   ## 
-  ## | `e`: MultilineEntry instance
-  ## | `text`: Single/multi line text
+  ## :e: MultilineEntry instance
+  ## :text: Single/multi line text
   
   multilineEntrySetText(e.impl, text)
 
 proc clear*(e: MultilineEntry) = 
   ## Clears the multi line entry's text
   ## 
-  ## `e`: MultilineEntry instance.
+  ## :e: MultilineEntry instance.
 
   multilineEntrySetText(e.impl, cstring "")
 
 proc add*(e: MultilineEntry; text: string) = 
   ## Appends text to the multi line entry's text.
   ## 
-  ## | `e`: MultilineEntry instance
-  ## | `text`: Text to append.
+  ## :e: MultilineEntry instance
+  ## :text: Text to append.
 
   multilineEntryAppend(e.impl, text)
 
 proc readOnly*(e: MultilineEntry): bool = 
   ## Returns whether or not the multi line entry's text can be changed.
   ## 
-  ## | `e`: MultilineEntry instance
+  ## :e: MultilineEntry instance
 
   multilineEntryReadOnly(e.impl) != 0
 
 proc `readOnly=`*(e: MultilineEntry; readOnly: bool) = 
   ## Sets whether or not the multi line entry's text is read only.
   ## 
-  ## | `e`: MultilineEntry instance
-  ## | `readonly`: `true` to make read only, `false` otherwise.
+  ## :e: MultilineEntry instance
+  ## :readonly: `true` to make read only, `false` otherwise.
   
   multilineEntrySetReadOnly(e.impl, cint(readOnly))
 
@@ -2188,7 +2188,7 @@ genImplProcs(MenuItem)
 proc enable*(m: MenuItem) = 
   ## Enables the menu item.
   ## 
-  ## `m`: MenuItem instance.
+  ## :m: MenuItem instance.
 
   menuItemEnable(m.impl)
 
@@ -2197,7 +2197,7 @@ proc disable*(m: MenuItem) =
   ## 
   ## Menu item is grayed out and user interaction is not possible.
   ## 
-  ## `m`: MenuItem instance.
+  ## :m: MenuItem instance.
   
   menuItemDisable(m.impl)
 
@@ -2214,7 +2214,7 @@ proc checked*(m: MenuItem): bool =
   ## 
   ## To be used only with items created via `addCheckItem() <#addCheckItem,Menu,string,proc(MenuItem)>`_.
   ## 
-  ## `m`: MenuItem instance.
+  ## :m: MenuItem instance.
 
   menuItemChecked(m.impl) != 0
 
@@ -2223,8 +2223,8 @@ proc `checked=`*(m: MenuItem; checked: bool) =
   ## 
   ## To be used only with items created via `addCheckItem() <#addCheckItem,Menu,string,proc(MenuItem)>`_.
   ## 
-  ## `m`: MenuItem instance.
-  ## `checked`: `true` to check menu item checkbox, `false` otherwise.
+  ## :m: MenuItem instance.
+  ## :checked: `true` to check menu item checkbox, `false` otherwise.
   
   menuItemSetChecked(m.impl, cint(checked))
 
@@ -2269,9 +2269,9 @@ template addMenuItemImpl(ex) =
 proc addItem*(m: Menu; name: string, onclicked: proc(sender: MenuItem, window: Window) = nil): MenuItem {.discardable.} =
   ## Appends a generic menu item.
   ## 
-  ## | `m`: Menu instance.
-  ## | `name`: Menu item text.
-  ## | `onclicked`: Callback for when the menu item is clicked.
+  ## :m: Menu instance.
+  ## :name: Menu item text.
+  ## :onclicked: Callback for when the menu item is clicked.
 
   addMenuItemImpl(menuAppendItem(m.impl, name))
   result.onclicked = onclicked
@@ -2279,9 +2279,9 @@ proc addItem*(m: Menu; name: string, onclicked: proc(sender: MenuItem, window: W
 proc addCheckItem*(m: Menu; name: string, onclicked: proc(sender: MenuItem, window: Window) = nil): MenuItem {.discardable.} =
   ## Appends a generic menu item with a checkbox.
   ## 
-  ## | `m`: Menu instance.
-  ## | `name`: Menu item text.
-  ## | `onclicked`: Callback for when the menu item is clicked.
+  ## :m: Menu instance.
+  ## :name: Menu item text.
+  ## :onclicked: Callback for when the menu item is clicked.
   
   addMenuItemImpl(menuAppendCheckItem(m.impl, name))
   result.onclicked = onclicked
@@ -2308,8 +2308,8 @@ proc addQuitItem*(m: Menu, shouldQuit: proc(): bool): MenuItem =
   ## .. error:: the window **MUST** be destroyed in `shouldQuit`
   ##        if the proc returns `true`
   ## 
-  ## | `m`: Menu instance
-  ## | `shouldQuit`: Proc that returns if the application should quit or not
+  ## :m: Menu instance
+  ## :shouldQuit: Proc that returns if the application should quit or not
 
   newFinal result
   result.impl = menuAppendQuitItem(m.impl)
@@ -2322,8 +2322,8 @@ proc addPreferencesItem*(m: Menu, onclicked: proc(sender: MenuItem, window: Wind
   ## 
   ## .. warning:: Only one such menu item may exist per application.
   ## 
-  ## | `m`: Menu instance.
-  ## | `onclicked`: Callback for when the menu item is clicked.
+  ## :m: Menu instance.
+  ## :onclicked: Callback for when the menu item is clicked.
 
   addMenuItemImpl(menuAppendPreferencesItem(m.impl))
   result.onclicked = onclicked
@@ -2333,8 +2333,8 @@ proc addAboutItem*(m: Menu, onclicked: proc(sender: MenuItem, window: Window) = 
   ## 
   ## .. warning:: Only one such menu item may exist per application.
   ## 
-  ## | `m`: Menu instance.
-  ## | `onclicked`: Callback for when the menu item is clicked.
+  ## :m: Menu instance.
+  ## :onclicked: Callback for when the menu item is clicked.
   
   addMenuItemImpl(menuAppendAboutItem(m.impl))
   result.onclicked = onclicked
@@ -2344,7 +2344,7 @@ proc addAboutItem*(m: Menu, onclicked: proc(sender: MenuItem, window: Window) = 
 proc addSeparator*(m: Menu) =
   ## Appends a new separator.
   ## 
-  ## `m`: Menu instance.
+  ## :m: Menu instance.
 
   menuAppendSeparator m.impl
 
@@ -2357,7 +2357,7 @@ proc newMenu*(name: string): Menu =
   ## 
   ## Typical values are `File`, `Edit`, `Help`, etc.
   ## 
-  ## `name`: Menu label.
+  ## :name: Menu label.
 
   newFinal result
   result.impl = rawui.newMenu(cstring name)
@@ -2376,7 +2376,7 @@ genImplProcs(FontButton)
 proc font*(f: FontButton): FontDescriptor =
   ## Returns the selected font.
   ## 
-  ## `f`: FontButton instance
+  ## :f: FontButton instance
 
   var font: rawui.FontDescriptor
   fontButtonFont(f.impl, addr font)
@@ -2392,7 +2392,7 @@ proc freeFont*(desc: ptr FontDescriptor) =
   ##  Calling this function on a `FontDescriptor` not previously filled by
   ##  `font() <#font,FontButton>`_ results in undefined behavior.
   ##  
-  ##  `desc`: Font descriptor to free.
+  ##  :desc: Font descriptor to free.
 
   freeFontButtonFont(desc)
 
@@ -2403,7 +2403,7 @@ proc newFontButton*(onchanged: proc(sender: FontButton) = nil): FontButton =
   ##
   ## The default font is determined by the OS defaults.
   ## 
-  ## `onchanged`: Callback for when the font is changed.
+  ## :onchanged: Callback for when the font is changed.
 
   newFinal result
   result.impl = rawui.newFontButton()
@@ -2428,7 +2428,7 @@ genImplProcs(ColorButton)
 proc color*(c: ColorButton): tuple[r, g, b, a: float] = 
   ## Returns the color button color.
   ## 
-  ## `c`: ColorButton instance
+  ## :c: ColorButton instance
   
   var r, g, b, a: cdouble
   colorButtonColor(c.impl, addr r, addr g, addr b, addr a)
@@ -2438,11 +2438,11 @@ proc color*(c: ColorButton): tuple[r, g, b, a: float] =
 proc setColor*(c: ColorButton; r, g, b, alpha: 0.0..1.0 = 1.0) = 
   ## Sets the color button color.
   ##   
-  ## | `c`: ColorButton instance.
-  ## | `r`: Red. Float in range of [0.0, 1.0].
-  ## | `g`: Green. Float in range of [0.0, 1.0].
-  ## | `b`: Blue. Float in range of [0.0, 1.0].
-  ## | `alpha`: Alpha. Float in range of [0.0, 1.0].
+  ## :c: ColorButton instance.
+  ## :r: Red. Float in range of [0.0, 1.0].
+  ## :g: Green. Float in range of [0.0, 1.0].
+  ## :b: Blue. Float in range of [0.0, 1.0].
+  ## :alpha: Alpha. Float in range of [0.0, 1.0].
 
   colorButtonSetColor(c.impl, r, g, b, alpha)
 
@@ -2451,8 +2451,8 @@ proc `color=`*(c: ColorButton; color: Color) =
   ## 
   ## If you need to set color alpha use `setColor() <#setColor,ColorButton,int,int,int,float>`_
   ##   
-  ## | `c`: ColorButton instance.
-  ## | `color`: `Color <https://nim-lang.org/docs/colors.html>`_.
+  ## :c: ColorButton instance.
+  ## :color: `Color <https://nim-lang.org/docs/colors.html>`_.
   
   let (r, g, b) = color.extractRGB()
 
@@ -2463,7 +2463,7 @@ genCallback wrapOnChanged, ColorButton, onchanged
 proc newColorButton*(onchanged: proc (sender: ColorButton) = nil): ColorButton =
   ## Creates a new color button.
   ## 
-  ## `onchanged`: Callback for when the color is changed.
+  ## :onchanged: Callback for when the color is changed.
   
   newFinal result
   result.impl = rawui.newColorButton()
@@ -2473,8 +2473,8 @@ proc newColorButton*(onchanged: proc (sender: ColorButton) = nil): ColorButton =
 proc newColorButton*(color: Color; onchanged: proc (sender: ColorButton) = nil): ColorButton =
   ## Creates a new color button.
   ## 
-  ## | `color`: ColorButton `Color <https://nim-lang.org/docs/colors.html>`_.
-  ## | `onchanged`: Callback for when the color is changed.
+  ## :color: ColorButton `Color <https://nim-lang.org/docs/colors.html>`_.
+  ## :onchanged: Callback for when the color is changed.
   
   newFinal result
   result.impl = rawui.newColorButton()
@@ -2485,11 +2485,11 @@ proc newColorButton*(color: Color; onchanged: proc (sender: ColorButton) = nil):
 proc newColorButton*(r, g, b: 0.0..1.0, alpha = 1.0; onchanged: proc (sender: ColorButton) = nil): ColorButton =
   ## Creates a new color button.
   ## 
-  ## | `r`: Red. Float in range of [0.0, 1.0].
-  ## | `g`: Green. Float in range of [0.0, 1.0].
-  ## | `b`: Blue. Float in range of [0.0, 1.0].
-  ## | `alpha`: Alpha. Float in range of [0.0, 1.0].
-  ## | `onchanged`: Callback for when the color is changed.
+  ## :r: Red. Float in range of [0.0, 1.0].
+  ## :g: Green. Float in range of [0.0, 1.0].
+  ## :b: Blue. Float in range of [0.0, 1.0].
+  ## :alpha: Alpha. Float in range of [0.0, 1.0].
+  ## :onchanged: Callback for when the color is changed.
   
   newFinal result
   result.impl = rawui.newColorButton()
@@ -2521,10 +2521,10 @@ proc add*(f: Form, label: string, w: Widget, stretchy: bool = false) =
   ## Stretchy items expand to use the remaining space within the container.
   ## In the case of multiple stretchy items the space is shared equally.
   ## 
-  ## | `f`: Form instance.
-  ## | `label`: Label text.
-  ## | `w`: Widget to append.
-  ## | `stretchy`: `true` to stretch widget, `false` otherwise.
+  ## :f: Form instance.
+  ## :label: Label text.
+  ## :w: Widget to append.
+  ## :stretchy: `true` to stretch widget, `false` otherwise.
   
   formAppend(f.impl, label, w.impl, cint stretchy)
   f.chlidren.add (label: label, widget: w)
@@ -2534,8 +2534,8 @@ proc delete*(f: Form, index: int) =
   ## 
   ## .. note:: The widget is neither destroyed nor freed. 
   ## 
-  ## | `f`: Form instance.
-  ## | `index`: Index of the widget to be removed.
+  ## :f: Form instance.
+  ## :index: Index of the widget to be removed.
   
   formDelete(f.impl, cint index)
   f.chlidren.delete index
@@ -2545,7 +2545,7 @@ proc padded*(f: Form): bool =
   ## 
   ## Padding is defined as space between individual widgets.
   ## 
-  ## `f`: Form instance.  
+  ## :f: Form instance.  
 
   bool formPadded(f.impl)
 
@@ -2555,15 +2555,15 @@ proc `padded=`*(f: Form, padded: bool) =
   ## Padding is defined as space between individual widgets.
   ## The padding size is determined by the OS defaults.
   ## 
-  ## `f`: Form instance.
-  ## `padded`: `true` to make widgets padded, `false` otherwise.
+  ## :f: Form instance.
+  ## :padded: `true` to make widgets padded, `false` otherwise.
   
   formSetPadded(f.impl, cint padded)
 
 proc newForm*(padded: bool = false): Form = 
   ## Creates a new form.
   ## 
-  ## `padded`: `true` to make widgets padded, `false` otherwise.
+  ## :padded: `true` to make widgets padded, `false` otherwise.
   
   newFinal result
   result.impl = rawui.newForm()
@@ -2598,16 +2598,16 @@ genImplProcs(Grid)
 proc add*(g: Grid; w: Widget; left, top, xspan, yspan: int, hexpand: bool; halign: Align; vexpand: bool; valign: Align) =
   ## Appends a widget to the grid.
   ## 
-  ## | `g`: Grid instance.
-  ## | `w`: The widget to insert.
-  ## | `left`: Placement as number of columns from the left. Integer in range of `[INT_MIN, INT_MAX]`.
-  ## | `top`: Placement as number of rows from the top. Integer in range of `[INT_MIN, INT_MAX]`.
-  ## | `xspan`: Number of columns to span. Integer in range of `[0, INT_MAX]`.
-  ## | `yspan`: Number of rows to span. Integer in range of `[0, INT_MAX]`.
-  ## | `hexpand`: `true` to expand reserved area horizontally, `false` otherwise.
-  ## | `halign`: Horizontal alignment of the widget within the reserved space.
-  ## | `vexpand`: `true` to expand reserved area vertically, `false` otherwise.
-  ## | `valign`: Vertical alignment of the widget within the reserved space.
+  ## :g: Grid instance.
+  ## :w: The widget to insert.
+  ## :left: Placement as number of columns from the left. Integer in range of `[INT_MIN, INT_MAX]`.
+  ## :top: Placement as number of rows from the top. Integer in range of `[INT_MIN, INT_MAX]`.
+  ## :xspan: Number of columns to span. Integer in range of `[0, INT_MAX]`.
+  ## :yspan: Number of rows to span. Integer in range of `[0, INT_MAX]`.
+  ## :hexpand: `true` to expand reserved area horizontally, `false` otherwise.
+  ## :halign: Horizontal alignment of the widget within the reserved space.
+  ## :vexpand: `true` to expand reserved area vertically, `false` otherwise.
+  ## :valign: Vertical alignment of the widget within the reserved space.
   
   gridAppend(g.impl, w.impl, cint left, cint top, cint xspan, cint yspan, cint hexpand, halign, cint vexpand, valign)
   g.children.add w
@@ -2615,16 +2615,16 @@ proc add*(g: Grid; w: Widget; left, top, xspan, yspan: int, hexpand: bool; halig
 proc insertAt*(g: Grid; w, existing: Widget; at: At; left, top, xspan, yspan: int, hexpand: bool; halign: Align; vexpand: bool; valign: Align) = 
   ##  Inserts a widget positioned in relation to another widget within the grid.
   ##  
-  ##  | `g`: Grid instance.
-  ##  | `w`: The widget to insert.
-  ##  | `existing`: The existing widget to position relatively to.
-  ##  | `at`: Placement specifier in relation to `existing` widget.
-  ##  | `xspan`: Number of columns to span. Integer in range of `[0, INT_MAX]`.
-  ##  | `yspan`: Number of rows to span. Integer in range of `[0, INT_MAX]`.
-  ##  | `hexpand`: `true` to expand reserved area horizontally, `false` otherwise.
-  ##  | `halign`: Horizontal alignment of the widget within the reserved space.
-  ##  | `vexpand`: `true` to expand reserved area vertically, `false` otherwise.
-  ##  | `valign`: Vertical alignment of the widget within the reserved space. 
+  ##  :g: Grid instance.
+  ##  :w: The widget to insert.
+  ##  :existing: The existing widget to position relatively to.
+  ##  :at: Placement specifier in relation to `existing` widget.
+  ##  :xspan: Number of columns to span. Integer in range of `[0, INT_MAX]`.
+  ##  :yspan: Number of rows to span. Integer in range of `[0, INT_MAX]`.
+  ##  :hexpand: `true` to expand reserved area horizontally, `false` otherwise.
+  ##  :halign: Horizontal alignment of the widget within the reserved space.
+  ##  :vexpand: `true` to expand reserved area vertically, `false` otherwise.
+  ##  :valign: Vertical alignment of the widget within the reserved space. 
 
   gridInsertAt(g.impl, w.impl, existing.impl, at, cint xspan, cint yspan, cint hexpand, halign, cint vexpand, valign) 
   g.children.add w
@@ -2634,7 +2634,7 @@ proc padded*(g: Grid): bool =
   ## 
   ## Padding is defined as space between individual widgets.
   ## 
-  ## `g`: Grid instance.
+  ## :g: Grid instance.
   
   bool gridPadded(g.impl)
 
@@ -2644,15 +2644,15 @@ proc `padded=`*(g: Grid, padded: bool) =
   ## Padding is defined as space between individual widgets.
   ## The padding size is determined by the OS defaults.
   ## 
-  ## | `g`: Grid instance.
-  ## | `padded`: `true` to make widgets padded, `false` otherwise.
+  ## :g: Grid instance.
+  ## :padded: `true` to make widgets padded, `false` otherwise.
 
   gridSetPadded(g.impl, cint padded)
 
 proc newGrid*(padded: bool = false): Grid = 
   ## Creates a new grid.
   ## 
-  ## `padded`: `true` to make widgets padded, `false` otherwise.
+  ## :padded: `true` to make widgets padded, `false` otherwise.
   
   newFinal result
   result.impl = rawui.newGrid()
@@ -2683,21 +2683,21 @@ genImplProcs(Image)
 proc add*(i: Image; pixels: pointer; pixelWidth: int; pixelHeight: int; byteStride: int) =
   ## Appends a new image representation.
   ## 
-  ## | `i`: Image instance.
-  ## | `pixels`: Pointer to byte array of premultiplied pixels in [R G B A] order.
-  ## |        `pixels[0]` equals the **R** of the first pixel,
+  ## :i: Image instance.
+  ## :pixels: Pointer to byte array of premultiplied pixels in [R G B A] order.
+  ##          `pixels[0]` equals the **R** of the first pixel,
   ##          `[3]` the **A** of the first pixel.
-  ## |        `pixels` must be at least `byteStride * pixelHeight` bytes long.
-  ## | `pixelWidth`: Width in pixels.
-  ## | `pixelHeight`: Height in pixels.
-  ## | `byteStride`: Number of bytes per row of the pixel array.
+  ##          `pixels` must be at least `byteStride * pixelHeight` bytes long.
+  ## :pixelWidth: Width in pixels.
+  ## :pixelHeight: Height in pixels.
+  ## :byteStride: Number of bytes per row of the pixel array.
 
   imageAppend(i.impl, pixels, cint pixelWidth, cint pixelHeight, cint byteStride)
 
 proc free*(i: Image) = 
   ## Frees the image container and all associated resources.
   ## 
-  ## `i`: Image instance.
+  ## :i: Image instance.
 
   freeImage(i.impl)
 
@@ -2707,8 +2707,8 @@ proc newImage*(width, height: float): Image =
   ## Dimensions are measured in points. This is most commonly the pixel size
   ## of the `1x` scaled image.
   ## 
-  ## | `width`: Width in points.
-  ## | `height`: Height in points.
+  ## :width: Width in points.
+  ## :height: Height in points.
 
   newFinal result
   result.impl = rawui.newImage(width.cdouble, height.cdouble)
@@ -2794,7 +2794,7 @@ proc free*(t: TableValue) =
   ##          calling `TableModelHandler` without transferring ownership to
   ##          `Table` or `TableModel`.
   ## 
-  ## `t`: TableValue to free.
+  ## :t: TableValue to free.
 
   freeTableValue(t.impl)
 
@@ -2804,28 +2804,28 @@ proc free*(t: TableModel) =
   ## .. error:: It is an error to free table models currently associated with a
   ##          `Table`.
   ## 
-  ## `m`: Table model to free.
+  ## :m: Table model to free.
 
   freeTableModel(t.impl)
 
 proc free*(t: ptr TableSelection) = 
   ## Frees the given TableSelection and all its resources.
   ## 
-  ## `s`: TableSelection instance.
+  ## :s: TableSelection instance.
 
   freeTableSelection(t)
 
 proc type*(v: TableValue): TableValueType = 
   ## Gets the TableValue type.
   ## 
-  ## `v`: Table value.
+  ## :v: Table value.
 
   rawui.tableValueGetType(v.impl)
 
 proc newTableValue*(str: string): TableValue = 
   ## Creates a new TableValue to store a text string.
   ## 
-  ## `str`: String value.
+  ## :str: String value.
  
   newFinal result
   result.impl = rawui.newTableValueString(cstring str)
@@ -2835,7 +2835,7 @@ proc `$`*(v: TableValue): string =
   ## 
   ## To be used only on `TableValue` objects of type `TableValueTypeString`.
   ## 
-  ## `v`: Table value.  
+  ## :v: Table value.  
   
   if v.type != TableValueTypeString:
     raise newException(ValueError, "Invalid TableValue kind. Must be `TableValueTypeString`, not " & $v.type)
@@ -2852,8 +2852,8 @@ proc newTableValue*(img: Image): TableValue =
   ##          `TableModelHandler`, the image is safe to free once execution
   ##          returns to **ANY** of your code.
   ## 
-  ## `img`: Image.
-  ##          | Data is NOT copied and needs to kept alive.
+  ## :img: Image.
+  ##       Data is NOT copied and needs to kept alive.
 
   newFinal result
   result.impl = rawui.newTableValueImage(img.impl)
@@ -2866,7 +2866,7 @@ proc image*(v: TableValue): Image =
   ## .. warning:: The image returned is not owned by the object `v`,
   ##          hence no lifetime guarantees can be made.
   ## 
-  ## `v`: Table value.
+  ## :v: Table value.
   
   if v.type != TableValueTypeImage:
     raise newException(ValueError, "Invalid TableValue type. Must be `TableValueTypeImage`, not " & $v.type)
@@ -2882,7 +2882,7 @@ proc newTableValue*(i: int | bool): TableValue =
   ## checkboxes. For these, consult ProgressBar and Checkbox for the allowed
   ## integer ranges.
   ## 
-  ## `i`: Integer value.
+  ## :i: Integer or boolean value.
 
   newFinal result
   result.impl = rawui.newTableValueInt(i.cint)
@@ -2892,7 +2892,7 @@ proc getInt*(v: TableValue): int =
   ## 
   ## To be used only on `TableValue` objects of type `TableValueTypeInt`.
   ## 
-  ## `v`: Table value.
+  ## :v: Table value.
   
   if v.type != TableValueTypeInt:
     raise newException(ValueError, "Invalid TableValue type. Must be `TableValueTypeInt`, not " & $v.type)
@@ -2902,10 +2902,10 @@ proc getInt*(v: TableValue): int =
 proc newTableValue*(r, g, b: 0.0..1.0, a = 1.0): TableValue = 
   ## Creates a new table value to store a color in.
   ## 
-  ## | `r`: Red. Float in range of [0, 1.0].
-  ## | `g`: Green. Float in range of [0, 1.0].
-  ## | `b`: Blue. Float in range of [0, 1.0].
-  ## | `a`: Alpha. Float in range of [0, 1.0].
+  ## :r: Red. Float in range of [0, 1.0].
+  ## :g: Green. Float in range of [0, 1.0].
+  ## :b: Blue. Float in range of [0, 1.0].
+  ## :a: Alpha. Float in range of [0, 1.0].
 
   newFinal result
   result.impl = rawui.newTableValueColor(cdouble r, cdouble g, cdouble b, cdouble a)
@@ -2913,8 +2913,8 @@ proc newTableValue*(r, g, b: 0.0..1.0, a = 1.0): TableValue =
 proc newTableValue*(color: Color; a: 0.0..1.0 = 1.0): TableValue = 
   ## Creates a new table value to store a color in.
   ## 
-  ## | `color`: Table value color.
-  ## | `a`: Alpha. Float in range of [0, 1.0].
+  ## :color: Table value color.
+  ## :a: Alpha. Float in range of [0, 1.0].
   
   let (r, g, b) = color.extractRGB
 
@@ -2927,7 +2927,7 @@ proc color*(v: TableValue): tuple[r, g, b, a: float] =
   ## 
   ## To be used only on `TableValue` objects of type `TableValueTypeColor`.
   ## 
-  ## `v`: Table value.
+  ## :v: Table value.
 
   if v.type != TableValueTypeColor:
     raise newException(ValueError, "Invalid TableValue type. Must be `TableValueTypeColor`, not " & $v.type)
@@ -2943,7 +2943,7 @@ proc color*(v: TableValue): tuple[r, g, b, a: float] =
 proc newTableModel*(mh: ptr TableModelHandler): TableModel =
   ## Creates a new table model.
   ## 
-  ## `mh`: Table model handler.
+  ## :mh: Table model handler.
  
   newFinal result
   result.impl = rawui.newTableModel(mh)
@@ -2956,8 +2956,8 @@ proc rowInserted*(m: TableModel; newIndex: int) =
   ## `numRows() <uing/rawui.html#TableModelHandler>`_ must represent the 
   ## new row count before you call this function.
   ## 
-  ## | `m`: Table model that has changed.
-  ## | `newIndex`: Index of the row that has been added.
+  ## :m: Table model that has changed.
+  ## :newIndex: Index of the row that has been added.
 
   rawui.tableModelRowInserted(m.impl, newIndex.cint)
 
@@ -2967,8 +2967,8 @@ proc rowChanged*(m: TableModel; index: int) =
   ## You do NOT need to call this in your `setCellValue() <uing/rawui.html#TableModelHandler>`_ 
   ## handlers, but **NEED** to call this if your data changes at any other point.
   ## 
-  ## | `m`: Table model that has changed.
-  ## | `index`: Index of the row that has changed.
+  ## :m: Table model that has changed.
+  ## :index: Index of the row that has changed.
 
   rawui.tableModelRowChanged(m.impl, index.cint)
 
@@ -2980,21 +2980,21 @@ proc rowDeleted*(m: TableModel; oldIndex: int) =
   ## `numRows() <uing/rawui.html#TableModelHandler>`_ must represent the 
   ## new row count before you call this function.
   ## 
-  ## | `m`: Table model that has changed.
-  ## | `oldIndex`: Index of the row that has been deleted.
+  ## :m: Table model that has changed.
+  ## :oldIndex: Index of the row that has been deleted.
 
   rawui.tableModelRowDeleted(m.impl, oldIndex.cint)
 
 proc addTextColumn*(t: Table, name: string, textModelColumn, textEditableModelColumn: int, textParams: ptr TableTextColumnOptionalParams = nil) =
   ## Appends a text column to the table.
   ## 
-  ## | `t`: Table instance.
-  ## | `name`: Column title text.
-  ## | `textModelColumn`: Column that holds the text to be displayed.
-  ## | `textEditableModelColumn`: Column that defines whether or not the text is editable.
-  ## |                         `TableModelColumnNeverEditable` to make all rows never editable.
-  ## |                         `TableModelColumnAlwaysEditable` to make all rows always editable.
-  ## | `textParams`: Text display settings, `nil` to use defaults.
+  ## :t: Table instance.
+  ## :name: Column title text.
+  ## :textModelColumn: Column that holds the text to be displayed.
+  ## :textEditableModelColumn: Column that defines whether or not the text is editable.
+  ##                           `TableModelColumnNeverEditable` to make all rows never editable.
+  ##                           `TableModelColumnAlwaysEditable` to make all rows always editable.
+  ## :textParams: Text display settings, `nil` to use defaults.
 
   t.impl.tableAppendTextColumn(name, textModelColumn.cint, textEditableModelColumn.cint, textParams)
 
@@ -3004,27 +3004,27 @@ proc addImageColumn*(table: Table, title: string, index: int) =
   ## Images are drawn at icon size, using the representation that best fits the
   ## pixel density of the screen.
   ## 
-  ## | `table`: Table instance.
-  ## | `title`: Column title text.
-  ## | `index`: Column that holds the images to be displayed.
+  ## :table: Table instance.
+  ## :title: Column title text.
+  ## :index: Column that holds the images to be displayed.
 
   table.impl.tableAppendImageColumn(title, index.cint)
 
 proc addCheckboxTextColumn*(t: Table; name: string; checkboxModelColumn, checkboxEditableModelColumn, textModelColumn, textEditableModelColumn: int; textParams: ptr TableTextColumnOptionalParams = nil) =
   ## Appends a column to the table containing a checkbox and text.
   ## 
-  ## | `t`: Table instance.
-  ## | `name`: Column title text.
-  ## | `checkboxModelColumn`: Column that holds the data to be displayed.
-  ## |                     `true` for a checked checkbox, `false` otherwise.
-  ## | `checkboxEditableModelColumn`: Column that defines whether or not the checkbox is editable.
-  ## |                             `TableModelColumnNeverEditable` to make all rows never editable.
-  ## |                             `TableModelColumnAlwaysEditable` to make all rows always editable.
-  ## | `textModelColumn`: Column that holds the text to be displayed.
-  ## | `textEditableModelColumn`: Column that defines whether or not the text is editable.
-  ## |                         `TableModelColumnNeverEditable` to make all rows never editable.
-  ## |                         `TableModelColumnAlwaysEditable` to make all rows always editable.
-  ## | `textParams`: Text display settings, `nil` to use defaults.
+  ## :t`: Table instance.
+  ## :name`: Column title text.
+  ## :checkboxModelColumn`: Column that holds the data to be displayed.
+  ##                       `true` for a checked checkbox, `false` otherwise.
+  ## :checkboxEditableModelColumn`: Column that defines whether or not the checkbox is editable.
+  ##                               `TableModelColumnNeverEditable` to make all rows never editable.
+  ##                               `TableModelColumnAlwaysEditable` to make all rows always editable.
+  ## "textModelColumn: Column that holds the text to be displayed.
+  ## "textEditableModelColumn: Column that defines whether or not the text is editable.
+  ##                           `TableModelColumnNeverEditable` to make all rows never editable.
+  ##                           `TableModelColumnAlwaysEditable` to make all rows always editable.
+  ## :textParams: Text display settings, `nil` to use defaults.
   
   t.impl.tableAppendCheckboxTextColumn(
     name, 
@@ -3041,26 +3041,26 @@ proc addImageTextColumn*(t: Table, name: string, imageIndex, textIndex, editable
   ## Images are drawn at icon size, using the representation that best fits the
   ## pixel density of the screen.
   ## 
-  ## | `t`: Table instance.
-  ## | `name`: Column title text.
-  ## | `imageIndex`: Column that holds the images to be displayed.
-  ## | `textIndex`: Column that holds the text to be displayed.
-  ## | `editableMode`: Column that defines whether or not the text is editable.
-  ## |               `TableModelColumnNeverEditable` to make all rows never editable.
-  ## |               `TableModelColumnAlwaysEditable` to make all rows always editable.
-  ## | `textParams`: Text display settings, `NULL` to use defaults.
+  ## :t: Table instance.
+  ## :name: Column title text.
+  ## :imageIndex: Column that holds the images to be displayed.
+  ## :textIndex: Column that holds the text to be displayed.
+  ## :editableMode: Column that defines whether or not the text is editable.
+  ##               `TableModelColumnNeverEditable` to make all rows never editable.
+  ##               `TableModelColumnAlwaysEditable` to make all rows always editable.
+  ## :textParams: Text display settings, `NULL` to use defaults.
 
   t.impl.tableAppendImageTextColumn(name, imageIndex.cint, textIndex.cint, editableMode.cint, textParams)
 
 proc addCheckboxColumn*(table: Table, title: string, index, editableMode: int) =
   ## Appends a column to the table containing a checkbox.
   ## 
-  ## | `t`: Table instance.
-  ## | `title`: Column title text.
-  ## | `index`: Column that holds the data to be displayed.
-  ## | `editableMode`: Column that defines whether or not the checkbox is editable.
-  ## |               `TableModelColumnNeverEditable` to make all rows never editable.
-  ## |               `TableModelColumnAlwaysEditable` to make all rows always editable.
+  ## :t: Table instance.
+  ## :title: Column title text.
+  ## :index: Column that holds the data to be displayed.
+  ## :editableMode: Column that defines whether or not the checkbox is editable.
+  ##               `TableModelColumnNeverEditable` to make all rows never editable.
+  ##               `TableModelColumnAlwaysEditable` to make all rows always editable.
 
   table.impl.tableAppendCheckboxColumn(title, index.cint, editableMode.cint)
 
@@ -3069,11 +3069,11 @@ proc addProgressBarColumn*(table: Table, title: string, index: int) =
   ## 
   ## The workings and valid range are exactly the same as that of uiProgressBar.
   ## 
-  ## | `table`: Table instance.
-  ## | `title`: Column title text.
-  ## | `index`: Column that holds the data to be displayed.
-  ## |        Integer in range of `[-1, 100]`, see `ProgressBar <#ProgressBar>`_
-  ## |        for details.
+  ## :table: Table instance.
+  ## :title: Column title text.
+  ## :index: Column that holds the data to be displayed.
+  ##         Integer in range of `[-1, 100]`, see `ProgressBar <#ProgressBar>`_
+  ##         for details.
 
   table.impl.tableAppendProgressBarColumn(title, index.cint)
 
@@ -3085,34 +3085,34 @@ proc addButtonColumn*(table: Table, title: string, index, clickableMode: int) =
   ##
   ## CellValue() must return the button text to display.
   ##
-  ## | `table`: Table instance.
-  ## | `title`: Column title text.
-  ## | `index`: Column that holds the button text to be displayed.
-  ## | `clickableMode`: Column that defines whether or not the button is clickable.
-  ## |                `TableModelColumnNeverEditable` to make all rows never clickable.
-  ## |                `TableModelColumnAlwaysEditable` to make all rows always clickable.
+  ## :table: Table instance.
+  ## :title: Column title text.
+  ## :index: Column that holds the button text to be displayed.
+  ## :clickableMode: Column that defines whether or not the button is clickable.
+  ##                 `TableModelColumnNeverEditable` to make all rows never clickable.
+  ##                 `TableModelColumnAlwaysEditable` to make all rows always clickable.
 
   table.impl.tableAppendButtonColumn(title, index.cint, clickableMode.cint)
 
 proc headerVisible*(t: Table): bool = 
   ## Returns whether or not the table header is visible.
   ## 
-  ## `table`: Table instance.
+  ## :table: Table instance.
   
   bool tableHeaderVisible(t.impl)
 
 proc `headerVisible=`*(t: Table; visible: bool) = 
   ## Sets whether or not the table header is visible.
   ## 
-  ## `table`: Table instance.
-  ## `visible`: `true` to show header, `false` to hide header.
+  ## :table: Table instance.
+  ## :visible: `true` to show header, `false` to hide header.
 
   tableHeaderSetVisible(t.impl, cint visible)
 
 proc selectionMode*(table: Table): TableSelectionMode = 
   ## Returns the table selection mode. Defaults to TableSelectionModeZeroOrOne
   ## 
-  ## `table`: Table instance.
+  ## :table: Table instance.
 
   tableGetSelectionMode(table.impl)
 
@@ -3122,16 +3122,16 @@ proc `selectionMode=`*(table: Table, mode: TableSelectionMode) =
   ## .. warning:: All rows will be deselected if the existing selection is illegal
   ##          in the new selection mode.
   ## 
-  ## | `table`: Table instance.
-  ## | `mode`: Table selection mode to set.
+  ## :table: Table instance.
+  ## :mode: Table selection mode to set.
 
   tableSetSelectionMode(table.impl, mode)
 
 proc columnWidth*(table: Table, column: int): int = 
   ## Returns the table column width in pixels.
   ## 
-  ## | `table`: Table instance.
-  ## | `column`: Column index.
+  ## :table: Table instance.
+  ## :column: Column index.
   
   int tableColumnWidth(table.impl, cint column)
 
@@ -3143,17 +3143,17 @@ proc setColumnWidth*(table: Table, column, width: int) =
   ## 
   ## .. note:: Darwin currently only resizes to the column header width on `-1`.
   ## 
-  ## | `table`: Table instance.
-  ## | `column`: Column index.
-  ## | `width`: Column width to set in pixels, `-1` to restore automatic column sizing.
+  ## :table: Table instance.
+  ## :column: Column index.
+  ## :width: Column width to set in pixels, `-1` to restore automatic column sizing.
 
   tableColumnSetWidth(table.impl, cint column, cint width)
 
 proc sortIndicator*(table: Table, column: int): SortIndicator = 
   ## Returns the column's sort indicator displayed in the table header.
   ## 
-  ## | `table`: Table instance.
-  ## | `column`: Column index.
+  ## :table: Table instance.
+  ## :column: Column index.
 
   tableHeaderSortIndicator(table.impl, cint column)
 
@@ -3166,9 +3166,9 @@ proc setSortIndicator*(table: Table, column: int, indicator: SortIndicator) =
   ## .. note:: Setting the indicator is purely visual and does not 
   ##        perform any sorting.
   ## 
-  ## | `table`: Table instance.
-  ## | `column`: Column index.
-  ## | `indicator`: Sort indicator.
+  ## :table: Table instance.
+  ## :column: Column index.
+  ## :indicator: Sort indicator.
 
   tableHeaderSetSortIndicator(table.impl, cint column, indicator)
 
@@ -3177,7 +3177,7 @@ proc selection*(table: Table): seq[int] =
   ## 
   ## .. note:: For empty selections an empty seq will be returned.
   ## 
-  ## `table`: Table instance.
+  ## :table: Table instance.
 
   let tSelection = tableGetSelection(table.impl)
 
@@ -3201,8 +3201,8 @@ proc `selection=`*(table: Table; sel: openArray[int]) =
   ## .. note:: Selecting more rows than the selection mode allows for 
   ##      results in nothing happening.
   ## 
-  ## | `table`: Table instance.
-  ## | `sel`: List of rows to select.
+  ## :table: Table instance.
+  ## :sel: List of rows to select.
   
   var selection: seq[cint]
   
@@ -3234,7 +3234,7 @@ genCallback tableOnSelectionChangedCb, Table, onSelectionChanged
 proc newTable*(params: ptr TableParams): Table =
   ## Creates a new table.
   ## 
-  ## `params`: Table parameters.
+  ## :params: Table parameters.
   
   newFinal result
   result.impl = rawui.newTable(params)
@@ -3284,7 +3284,7 @@ proc parent*[SomeWidget: Widget and not Window](w: SomeWidget): Widget =
   ## 
   ## .. important:: Returns `nil` if `w` has no parent
   ## 
-  ## `w`: Widget instance.
+  ## :w: Widget instance.
   
   let parent = rawui.controlParent(w.impl)
 
@@ -3299,8 +3299,8 @@ proc parent*[SomeWidget: Widget and not Window](w: SomeWidget): Widget =
 proc `parent=`*[SomeWidget: Widget](w: SomeWidget, parent: Widget) =
   ## Sets the widget's parent.
   ## 
-  ## | `w`: Widget instance.
-  ## | `parent`: The parent Widget, `nil` to detach.
+  ## :w: Widget instance.
+  ## :parent: The parent Widget, `nil` to detach.
 
   rawui.controlSetParent(
     w.impl, 
@@ -3311,7 +3311,7 @@ proc `parent=`*[SomeWidget: Widget](w: SomeWidget, parent: Widget) =
 proc handle*[SomeWidget: Widget](w: SomeWidget): int = 
   ## Returns the control's OS-level handle.
   ## 
-  ## `w`: Widget instance.
+  ## :w: Widget instance.
   
   controlHandle(w.impl)
 
@@ -3345,8 +3345,8 @@ proc verifySetParent*[SomeWidget: Widget](w: SomeWidget, parent: Widget) =
   ## 
   ## .. warning:: This will crash the application if `false`.
   ## 
-  ## | `w`: Widget instance.
-  ## | `parent`: Widget instance.
+  ## :w: Widget instance.
+  ## :parent: Widget instance.
 
   rawui.controlVerifySetParent(w.impl, parent.impl)
 
@@ -3378,7 +3378,7 @@ genImplProcs(DateTimePicker)
 proc time*(d: DateTimePicker): DateTime =
   ## Returns date and time stored in the data time picker.
   ## 
-  ## `d`: DateTimePicker instance
+  ## :d: DateTimePicker instance
   
   var tm: Tm
   dateTimePickerTime(d.impl, addr tm)
@@ -3406,9 +3406,8 @@ proc time*(d: DateTimePicker): DateTime =
 proc `time=`*(d: DateTimePicker, dateTime: DateTime) =
   ## Sets date and time of the data time picker.
   ## 
-  ## 
-  ## | `d`: DateTimePicker instance.
-  ## | `time`: Date and/or time as local time.
+  ## :d: DateTimePicker instance.
+  ## :time: Date and/or time as local time.
 
   var tm = rawui.Tm(
     tm_sec: cint dateTime.second,
@@ -3429,7 +3428,7 @@ genCallback dateTimePickerOnChangedCallback, DateTimePicker, onchanged
 proc newDateTimePicker*(onchanged: proc(sender: DateTimePicker) = nil): DateTimePicker =
   ## Creates a new date and time picker.
   ## 
-  ## `onchanged`: Callback for when the date time picker value is changed by the user.
+  ## :onchanged: Callback for when the date time picker value is changed by the user.
 
   newFinal result
   result.impl = rawui.newDateTimePicker()
@@ -3439,8 +3438,8 @@ proc newDateTimePicker*(onchanged: proc(sender: DateTimePicker) = nil): DateTime
 proc newDateTimePicker*(dateTime: DateTime; onchanged: proc(sender: DateTimePicker) = nil): DateTimePicker =
   ## Creates a new date and time picker.
   ## 
-  ## | `dateTime`: Date and/or time as local time.
-  ## | `onchanged`: Callback for when the date time picker value is changed by the user.
+  ## :dateTime: Date and/or time as local time.
+  ## :onchanged: Callback for when the date time picker value is changed by the user.
 
   newFinal result
   result.impl = rawui.newDateTimePicker()
@@ -3451,7 +3450,7 @@ proc newDateTimePicker*(dateTime: DateTime; onchanged: proc(sender: DateTimePick
 proc newDatePicker*(onchanged: proc(sender: DateTimePicker) = nil): DateTimePicker =
   ## Creates a new date picker
   ## 
-  ## `onchanged`: Callback for when the date time picker value is changed by the user.
+  ## :onchanged: Callback for when the date time picker value is changed by the user.
 
   newFinal result
   result.impl = rawui.newDatePicker()
@@ -3461,8 +3460,8 @@ proc newDatePicker*(onchanged: proc(sender: DateTimePicker) = nil): DateTimePick
 proc newDatePicker*(date: DateTime; onchanged: proc(sender: DateTimePicker) = nil): DateTimePicker =
   ## Creates a new date picker
   ## 
-  ## | `date`: Date and/or time as local time.
-  ## | `onchanged`: Callback for when the date time picker value is changed by the user.
+  ## :date: Date and/or time as local time.
+  ## :onchanged: Callback for when the date time picker value is changed by the user.
 
   newFinal result
   result.impl = rawui.newDatePicker()
@@ -3473,7 +3472,7 @@ proc newDatePicker*(date: DateTime; onchanged: proc(sender: DateTimePicker) = ni
 proc newTimePicker*(onchanged: proc(sender: DateTimePicker) = nil): DateTimePicker = 
   ## Creates a new time picker.
   ## 
-  ## `onchanged`: Callback for when the date time picker value is changed by the user.
+  ## :onchanged: Callback for when the date time picker value is changed by the user.
 
   newFinal result
   result.impl = rawui.newTimePicker()
@@ -3483,8 +3482,8 @@ proc newTimePicker*(onchanged: proc(sender: DateTimePicker) = nil): DateTimePick
 proc newTimePicker*(time: DateTime; onchanged: proc(sender: DateTimePicker) = nil): DateTimePicker = 
   ## Creates a new time picker.
   ## 
-  ## | `time`: Date and/or time as local time.
-  ## | `onchanged`: Callback for when the date time picker value is changed by the user.
+  ## :time: Date and/or time as local time.
+  ## :onchanged: Callback for when the date time picker value is changed by the user.
 
   newFinal result
   result.impl = rawui.newTimePicker()
