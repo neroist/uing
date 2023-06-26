@@ -69,7 +69,7 @@ Static and dynamic libraries (e.g. `libui.so`, `libui.lib`) can be found in the
 
 ### Mac OS X
 
-> Thank you @stoneface86 for the screenshots!
+> Thank you [@stoneface86](https://github.com/stoneface86) for the screenshots!
 
 ![controllgallery3_tab1.png](screenshots/macosx/controllgallery3_tab1.png)
 ![controllgallery3_tab3.png](screenshots/macosx/controllgallery3_tab3.png)
