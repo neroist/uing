@@ -69,7 +69,10 @@ Static and dynamic libraries (e.g. `libui.so`, `libui.lib`) can be found in the
 
 ### Mac OS X
 
-> Unfortunately, I don't have a Macbook to get screenshots. PRs are welcome if you wanna add screenshots here!
+> Thank you @stoneface86 for the screenshots!
+
+![controllgallery3_tab1.png](screenshots/macosx/controllgallery3_tab1.png)
+![controllgallery3_tab3.png](screenshots/macosx/controllgallery3_tab3.png)
 
 More screenshots are available at [`screenshots/`](screenshots/).
 
