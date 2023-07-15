@@ -30,7 +30,7 @@ proc eval(_: Button) =
     window.error "An Arithmetic Error Occurred", getCurrentExceptionMsg()
   except OverflowDefect:
     window.error "Value Overflow/Underflow Detected", getCurrentExceptionMsg()
-  except:
+  except CatchableError:
     window.error "An Error Occurred", getCurrentExceptionMsg()
 
 proc main = 
