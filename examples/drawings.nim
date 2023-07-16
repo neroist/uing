@@ -5,40 +5,43 @@ import uing
 
 from uing/rawui import nil
 
-const drawings = [
-  "Original uiArea test",
-  "Arc test",
-  "Direct2D: Direct2D Quickstart for Windows 8",
-  "Direct2D: Creating a Simple Direct2D Application",
-  "Direct2D: How to Create a Solid Color Brush",
-  "Direct2D: How to Create a Linear Gradient Brush",
-  "Direct2D: How to Create a Radial Gradient Brush",
-  "Direct2D: Path Geometries Overview",
-  "Direct2D: How to Create Geometry Groups",
-  "Direct2D: How to Rotate an Object",
-  "Direct2D: How to Scale an Object",
-  "Direct2D: How to Skew an Object",
-  "Direct2D: How to Translate an Object",
-  "Direct2D: How to Apply Multiple Transforms to an Object",
-  "Direct2D: How to Draw and Fill a Complex Shape",
-  "cairo samples: arc",
-  "cairo samples: arc negative",
-  "cairo samples: clip",
-  "cairo samples: curve rectangle",
-  "cairo samples: curve to",
-  "cairo samples: dash",
-  "cairo samples: fill and stroke2",
-  "cairo samples: fill style",
-  "cairo samples: multi segment caps",
-  "cairo samples: rounded rectangle",
-  "cairo samples: set line cap",
-  "cairo samples: set line join",
-  "Quartz 2D PG: Creating a Window Graphics Context in Mac OS X"
-]
+proc drawOriginal(p: ptr AreaDrawParams)
+
+const drawings = {
+  "Original uiArea test": drawOriginal,
+  #"Arc test",
+  #"Direct2D: Direct2D Quickstart for Windows 8",
+  #"Direct2D: Creating a Simple Direct2D Application",
+  #"Direct2D: How to Create a Solid Color Brush",
+  #"Direct2D: How to Create a Linear Gradient Brush",
+  #"Direct2D: How to Create a Radial Gradient Brush",
+  #"Direct2D: Path Geometries Overview",
+  #"Direct2D: How to Create Geometry Groups",
+  #"Direct2D: How to Rotate an Object",
+  #"Direct2D: How to Scale an Object",
+  #"Direct2D: How to Skew an Object",
+  #"Direct2D: How to Translate an Object",
+  #"Direct2D: How to Apply Multiple Transforms to an Object",
+  #"Direct2D: How to Draw and Fill a Complex Shape",
+  #"cairo samples: arc",
+  #"cairo samples: arc negative",
+  #"cairo samples: clip",
+  #"cairo samples: curve rectangle",
+  #"cairo samples: curve to",
+  #"cairo samples: dash",
+  #"cairo samples: fill and stroke2",
+  #"cairo samples: fill style",
+  #"cairo samples: multi segment caps",
+  #"cairo samples: rounded rectangle",
+  #"cairo samples: set line cap",
+  #"cairo samples: set line join",
+  #"Quartz 2D PG: Creating a Window Graphics Context in Mac OS X"
+}
 
 var 
   swallowKeys: Checkbox
   swallowMouse: Checkbox
+  which: Combobox
 
 proc drawOriginal(p: ptr AreaDrawParams) =
   var
@@ -70,127 +73,128 @@ proc drawOriginal(p: ptr AreaDrawParams) =
 
   # ---
 
-  brush.r = 0;
-  brush.g = 0;
-  brush.b = 0.75;
+  brush.r = 0
+  brush.g = 0
+  brush.b = 0.75
   path = newDrawPath(DrawFillModeWinding)
-  path.newFigure(p.clipX, p.clipY);
-  path.lineTo(p.clipX + p.clipWidth, p.clipY);
-  path.lineTo(50, 150);
-  path.lineTo(50, 50);
+  path.newFigure(p.clipX, p.clipY)
+  path.lineTo(p.clipX + p.clipWidth, p.clipY)
+  path.lineTo(50, 150)
+  path.lineTo(50, 50)
   path.closeFigure()
   `end` path
 
-  sp.cap = DrawLineCapFlat;
-  sp.join = DrawLineJoinRound;
-  sp.thickness = 5;
+  sp.cap = DrawLineCapFlat
+  sp.join = DrawLineJoinRound
+  sp.thickness = 5
   p.context.stroke(path, addr brush, addr sp)
 
   free path
 
   # ---
 
-  brush.r = 0;
-  brush.g = 0.75;
-  brush.b = 0;
-  brush.a = 0.5;
+  brush.r = 0
+  brush.g = 0.75
+  brush.b = 0
+  brush.a = 0.5
   path = newDrawPath(DrawFillModeWinding)
-  path.addRectangle(120, 80, 50, 50);
+  path.addRectangle(120, 80, 50, 50)
   `end` path
 
-  p.context.fill(path, addr brush);
+  p.context.fill(path, addr brush)
 
   free path
 
   # ---
 
-  brush.a = 1;
-  brush.r = 0;
-  brush.g = 0.5;
-  brush.b = 0;
+  brush.a = 1
+  brush.r = 0
+  brush.g = 0.5
+  brush.b = 0
   path = newDrawPath(DrawFillModeWinding)
-  path.newFigure(5.5, 10.5);
-  path.lineTo(5.5, 50.5);
+  path.newFigure(5.5, 10.5)
+  path.lineTo(5.5, 50.5)
   `end` path
 
-  sp.cap = DrawLineCapFlat;
-  sp.join = DrawLineJoinMiter;
-  sp.thickness = 1;
-  sp.miterLimit = DrawDefaultMiterLimit;
+  sp.cap = DrawLineCapFlat
+  sp.join = DrawLineJoinMiter
+  sp.thickness = 1
+  sp.miterLimit = DrawDefaultMiterLimit
   p.context.stroke(path, addr brush, addr sp)
 
   free path
 
   # ---
 
-  brush.r = 0.5;
-  brush.g = 0.75;
-  brush.b = 0;
+  brush.r = 0.5
+  brush.g = 0.75
+  brush.b = 0
   path = newDrawPath(DrawFillModeWinding)
-  path.newFigure(400, 100);
+  path.newFigure(400, 100)
   path.arcTo(400, 100,
     50,
     30 * (PI / 180),
     300 * (PI / 180),
-    0);
+    0)
   # the sweep test below doubles as a clockwise test so a checkbox isn't needed anymore
-  path.lineTo(400, 100);
+  path.lineTo(400, 100)
   path.newFigureWithArc(
     510, 100,
     50,
     30 * (PI / 180),
     300 * (PI / 180),
-    0);
+    0)
   path.closeFigure()
   # and now with 330 to make sure sweeps work properly
-  path.newFigure(400, 210);
+  path.newFigure(400, 210)
   path.arcTo(
     400, 210,
     50,
     30 * (PI / 180),
     330 * (PI / 180),
     0);
-  path.lineTo(400, 210);
+  path.lineTo(400, 210)
   path.newFigureWithArc(
     510, 210,
     50,
     30 * (PI / 180),
     330 * (PI / 180),
-    0);
+    0)
   path.closeFigure()
   `end` path
 
-  sp.cap = DrawLineCapFlat;
-  sp.join = DrawLineJoinMiter;
-  sp.thickness = 1;
-  sp.miterLimit = DrawDefaultMiterLimit;
+  sp.cap = DrawLineCapFlat
+  sp.join = DrawLineJoinMiter
+  sp.thickness = 1
+  sp.miterLimit = DrawDefaultMiterLimit
   p.context.stroke(path, addr brush, addr sp)
 
   free path
 
   # ---
 
-  brush.r = 0;
-  brush.g = 0.5;
-  brush.b = 0.75;
+  brush.r = 0
+  brush.g = 0.5
+  brush.b = 0.75
   path = newDrawPath(DrawFillModeWinding)
-  path.newFigure(300, 300);
+  path.newFigure(300, 300)
   path.bezierTo(
     350, 320,
     310, 390,
-    435, 372);
+    435, 372)
   `end` path
 
-  sp.cap = DrawLineCapFlat;
-  sp.join = DrawLineJoinMiter;
-  sp.thickness = 1;
-  sp.miterLimit = DrawDefaultMiterLimit;
+  sp.cap = DrawLineCapFlat
+  sp.join = DrawLineJoinMiter
+  sp.thickness = 1
+  sp.miterLimit = DrawDefaultMiterLimit
   p.context.stroke(path, addr brush, addr sp)
 
   free path
 
 proc handlerDraw(ah: ptr AreaHandler; area: ptr rawui.Area; p: ptr AreaDrawParams) {.cdecl.} = 
-  drawOriginal(p)
+  # idx 1 is the proc
+  drawings[which.selected][1](p)
 
 proc handlerMouseEvent(ah: ptr AreaHandler; area: ptr rawui.Area; e: ptr AreaMouseEvent) {.cdecl.} = 
   if not swallowMouse.checked:
@@ -248,8 +252,12 @@ proc main() =
   let hbox = newHorizontalBox()
   box.add(hbox)
 
-  let which = newCombobox(drawings) do (_: ComboBox):
+  which = newCombobox([]) do (_: ComboBox):
     area.queueRedrawAll()
+  
+  for drawing in drawings:
+    which.add drawing[0]
+  
   which.selected = 0
   hbox.add which
 
