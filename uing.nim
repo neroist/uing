@@ -309,6 +309,15 @@ proc transformSize*(m: ptr DrawMatrix): tuple[x, y: float] =
   drawMatrixTransformSize(m, addr x, addr y)
   result = (x: float x, y: float y)
 
+proc clip*(c: ptr DrawContext; path: DrawPath) =
+  drawClip(c, path.impl)
+
+proc save*(c: ptr DrawContext) =
+  drawSave(c)
+
+proc restore*(c: ptr DrawContext) =
+  drawRestore(c)
+
 # -------- Attributes --------
 
 type
