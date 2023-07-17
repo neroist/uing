@@ -41,30 +41,30 @@ const drawings = {
   "Arc test": drawArcs,
   "Direct2D: Direct2D Quickstart for Windows 8": drawD2DW8QS,
   "Direct2D: Creating a Simple Direct2D Application": drawD2DSimpleApp,
-  #"Direct2D: How to Create a Solid Color Brush": drawD2DSolidBrush,
-  #"Direct2D: How to Create a Linear Gradient Brush": drawD2DLinearBrush,
-  #"Direct2D: How to Create a Radial Gradient Brush": drawD2DGradientBrush,
-  #"Direct2D: Path Geometries Overview": drawD2DPathGeometries,
-  #"Direct2D: How to Create Geometry Groups": drawD2DGeometryGroup,
-  #"Direct2D: How to Rotate an Object": drawD2DRotate,
-  #"Direct2D: How to Scale an Object": drawD2DScale,
-  #"Direct2D: How to Skew an Object": drawD2DSkew,
-  #"Direct2D: How to Translate an Object": drawD2DTranslate,
-  #"Direct2D: How to Apply Multiple Transforms to an Object": drawD2DMultiTransforms,
-  #"Direct2D: How to Draw and Fill a Complex Shape": drawD2DComplexShape,
-  #"cairo samples: arc": drawCSArc,
-  #"cairo samples: arc negative": drawCSArcNegative,
-  #"cairo samples: clip": drawCSClip,
-  #"cairo samples: curve rectangle": drawCSCurveRectangle,
-  #"cairo samples: curve to": drawCSCurveTo,
-  #"cairo samples: dash": drawCSDash,
-  #"cairo samples: fill and stroke2": drawCSFillAndStroke2,
-  #"cairo samples: fill style": drawCSFillStyle,
-  #"cairo samples: multi segment caps": drawCSMultiCaps,
-  #"cairo samples: rounded rectangle": drawCSRoundRect,
-  #"cairo samples: set line cap": drawCSSetLineCap,
-  #"cairo samples: set line join": drawCSSetLineJoin,
-  #"Quartz 2D PG: Creating a Window Graphics Context in Mac OS X": drawQ2DCreateWindowGC
+  # "Direct2D: How to Create a Solid Color Brush": drawD2DSolidBrush,
+  # "Direct2D: How to Create a Linear Gradient Brush": drawD2DLinearBrush,
+  # "Direct2D: How to Create a Radial Gradient Brush": drawD2DGradientBrush,
+  # "Direct2D: Path Geometries Overview": drawD2DPathGeometries,
+  # "Direct2D: How to Create Geometry Groups": drawD2DGeometryGroup,
+  # "Direct2D: How to Rotate an Object": drawD2DRotate,
+  # "Direct2D: How to Scale an Object": drawD2DScale,
+  # "Direct2D: How to Skew an Object": drawD2DSkew,
+  # "Direct2D: How to Translate an Object": drawD2DTranslate,
+  # "Direct2D: How to Apply Multiple Transforms to an Object": drawD2DMultiTransforms,
+  # "Direct2D: How to Draw and Fill a Complex Shape": drawD2DComplexShape,
+  # "cairo samples: arc": drawCSArc,
+  # "cairo samples: arc negative": drawCSArcNegative,
+  # "cairo samples: clip": drawCSClip,
+  # "cairo samples: curve rectangle": drawCSCurveRectangle,
+  # "cairo samples: curve to": drawCSCurveTo,
+  # "cairo samples: dash": drawCSDash,
+  # "cairo samples: fill and stroke2": drawCSFillAndStroke2,
+  # "cairo samples: fill style": drawCSFillStyle,
+  # "cairo samples: multi segment caps": drawCSMultiCaps,
+  # "cairo samples: rounded rectangle": drawCSRoundRect,
+  # "cairo samples: set line cap": drawCSSetLineCap,
+  # "cairo samples: set line join": drawCSSetLineJoin,
+  # "Quartz 2D PG: Creating a Window Graphics Context in Mac OS X": drawQ2DCreateWindowGC
 }
 
 var 
@@ -342,7 +342,6 @@ proc drawArcs(p: ptr AreaDrawParams) =
 
   free path
 
-# Direct2D Quickstart for Windows 8
 proc drawD2DW8QS(p: ptr AreaDrawParams) = 
   var 
     path: DrawPath
