@@ -3,7 +3,7 @@
 
 import std/macros
 
-import "../uing.nim"
+import ../uing.nim
 
 proc `[]`(s: NimNode, x: Slice[int]): seq[NimNode] =
   ## slice operation for NimNodes.
