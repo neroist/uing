@@ -900,7 +900,7 @@ type
     y1*         : cdouble
     outerRadius*: cdouble
     # perhaps instead an array?
-    stops*      : ptr DrawBrushGradientStop
+    stops*      : ptr UncheckedArray[DrawBrushGradientStop]
     numStops*   : csize_t
 
   DrawStrokeParams* {.bycopy.} = object
