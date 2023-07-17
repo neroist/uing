@@ -1,18 +1,22 @@
 import std/strutils
+import std/colors
 import std/math
 
+from uing/rawui import nil
 import uing
 
-from uing/rawui import nil
+import ./d2d
 
 proc drawOriginal(p: ptr AreaDrawParams)
 proc drawArcs*(p: ptr AreaDrawParams)
+proc drawD2DW8QS*(p: ptr AreaDrawParams)
+proc drawD2DSimpleApp*(p: ptr AreaDrawParams)
 
 const drawings = {
   "Original uiArea test": drawOriginal,
   "Arc test": drawArcs,
-  #"Direct2D: Direct2D Quickstart for Windows 8",
-  #"Direct2D: Creating a Simple Direct2D Application",
+  "Direct2D: Direct2D Quickstart for Windows 8": drawD2DW8QS,
+  "Direct2D: Creating a Simple Direct2D Application": drawD2DSimpleApp,
   #"Direct2D: How to Create a Solid Color Brush",
   #"Direct2D: How to Create a Linear Gradient Brush",
   #"Direct2D: How to Create a Radial Gradient Brush",
@@ -193,7 +197,7 @@ proc drawOriginal(p: ptr AreaDrawParams) =
 
   free path
 
-proc drawArcs*(p: ptr AreaDrawParams) = 
+proc drawArcs(p: ptr AreaDrawParams) = 
   var
     path: DrawPath
     start, step: float = 20
@@ -314,6 +318,91 @@ proc drawArcs*(p: ptr AreaDrawParams) =
 
   free path
 
+# Direct2D Quickstart for Windows 8
+proc drawD2DW8QS(p: ptr AreaDrawParams) = 
+  var 
+    path: DrawPath
+    brush: DrawBrush
+
+  path = newDrawPath(DrawFillModeWinding)
+  d2dSolidBrush(brush, colBlack)
+
+  path.addRectangle(
+    100, 100,
+    (p.areaWidth - 100) - 100, 
+    (p.areaHeight - 100) - 100
+  )
+
+  `end` path
+  
+  p.context.fill(path, addr brush)
+
+  free path
+
+proc drawD2DSimpleApp(p: ptr AreaDrawParams) =
+  var
+    path: DrawPath
+    lightSlateGray, cornflowerBlue: DrawBrush
+    sp: DrawStrokeParams
+
+  sp.dashes = nil
+  sp.numDashes = 0
+  sp.dashPhase = 0
+
+  d2dSolidBrush(lightSlateGray, colLightSlateGray)
+  d2dSolidBrush(cornflowerBlue, colCornflowerBlue)
+
+  d2dClear(p, colWhite)
+
+  sp.thickness = 0.5
+  sp.cap = DrawLineCapFlat
+  sp.join = DrawLineJoinMiter
+  sp.miterLimit = DrawDefaultMiterLimit
+
+  for x in countup(0, int (p.areaWidth - 1), 10):
+    path = newDrawPath(DrawFillModeWinding)
+    path.newFigure(float x, 0)
+    path.lineTo(float x, p.areaHeight)
+    `end` path
+
+    p.context.stroke(path, addr lightSlateGray, addr sp)
+    free path
+  
+  for y in countup(0, int (p.areaHeight - 1), 10):
+    path = newDrawPath(DrawFillModeWinding)
+    path.newFigure(0, float y)
+    path.lineTo(p.areaWidth, float y)
+    `end` path
+    
+    p.context.stroke(path, addr lightSlateGray, addr sp)
+    free path
+
+  var
+    left = (p.areaWidth / 2) - 50
+    right = (p.areaWidth / 2) + 50
+    top = (p.areaHeight / 2) - 50
+    bottom = (p.areaHeight / 2) + 50
+ 
+  path = newDrawPath(DrawFillModeWinding);
+  path.addRectangle(left, top, right - left, bottom - top);
+  `end` path
+
+  p.context.fill(path, addr lightSlateGray);
+  free path
+
+  left = (p.areaWidth / 2) - 100
+  right = (p.areaWidth / 2) + 100
+  top = (p.areaHeight / 2) - 100
+  bottom = (p.areaHeight / 2) + 100
+
+  path = newDrawPath(DrawFillModeWinding);
+  path.addRectangle(left, top, right - left, bottom - top);
+  `end` path
+
+  sp.thickness = 1.0;
+  p.context.stroke(path, addr cornflowerBlue, addr sp);
+  free path
+  
 proc handlerDraw(ah: ptr AreaHandler; area: ptr rawui.Area; p: ptr AreaDrawParams) {.cdecl.} = 
   # idx 1 is the proc
   drawings[which.selected][1](p)
@@ -381,7 +470,7 @@ proc main() =
     which.add drawing[0]
   
   which.selected = 0
-  hbox.add which
+  hbox.add which, true
 
   area = newArea(addr handler)
   box.add area, true
