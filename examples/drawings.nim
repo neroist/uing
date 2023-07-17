@@ -6,10 +6,11 @@ import uing
 from uing/rawui import nil
 
 proc drawOriginal(p: ptr AreaDrawParams)
+proc drawArcs*(p: ptr AreaDrawParams)
 
 const drawings = {
   "Original uiArea test": drawOriginal,
-  #"Arc test",
+  "Arc test": drawArcs,
   #"Direct2D: Direct2D Quickstart for Windows 8",
   #"Direct2D: Creating a Simple Direct2D Application",
   #"Direct2D: How to Create a Solid Color Brush",
@@ -184,6 +185,127 @@ proc drawOriginal(p: ptr AreaDrawParams) =
     435, 372)
   `end` path
 
+  sp.cap = DrawLineCapFlat
+  sp.join = DrawLineJoinMiter
+  sp.thickness = 1
+  sp.miterLimit = DrawDefaultMiterLimit
+  p.context.stroke(path, addr brush, addr sp)
+
+  free path
+
+proc drawArcs*(p: ptr AreaDrawParams) = 
+  var
+    path: DrawPath
+    start, step: float = 20
+    rad: float = 25
+    x, y: float = start + rad
+    angle: float # = 0
+    add: float = (2 * PI) / 12
+    brush: DrawBrush
+    sp: DrawStrokeParams
+
+  sp.dashes = nil
+  sp.numDashes = 0
+  sp.dashPhase = 0
+
+  path = newDrawPath(DrawFillModeWinding)
+
+  for _ in 0..12:
+    path.newFigureWithArc(
+      x, y,
+      rad,
+      0, angle,
+      0
+    )
+
+    angle += add
+    x += 2 * rad + step
+
+  y += 2 * rad + step
+  x = start + rad
+  angle = 0
+
+  for _ in 0..12:
+    path.newFigure(x, y)
+    path.arcTo(
+      x, y,
+      rad,
+      0, angle,
+      0
+    )
+
+    angle += add
+    x += 2 * rad + step
+
+  y += 2 * rad + step
+  x = start + rad
+  angle = 0
+
+  for _ in 0..12:
+    path.newFigureWithArc(
+      x, y,
+      rad,
+      (PI / 4), angle,
+      0
+    )
+
+    angle += add
+    x += 2 * rad + step
+
+  y += 2 * rad + step
+  x = start + rad
+  angle = 0
+
+  for _ in 0..12:
+    path.newFigure(x, y)
+    path.arcTo(
+      x, y,
+      rad,
+      (PI / 4), angle,
+      0
+    )
+
+    angle += add
+    x += 2 * rad + step
+
+  y += 2 * rad + step
+  x = start + rad
+  angle = 0
+
+  for _ in 0..12:
+    path.newFigureWithArc(
+      x, y,
+      rad,
+      PI + (PI / 5), angle,
+      0
+    )
+
+    angle += add
+    x += 2 * rad + step
+
+  y += 2 * rad + step
+  x = start + rad
+  angle = 0
+
+  for _ in 0..12:
+    path.newFigure(x, y)
+    path.arcTo(
+      x, y,
+      rad,
+      PI + (PI / 5), angle,
+      0
+    )
+
+    angle += add
+    x += 2 * rad + step
+
+  `end` path
+
+  brush.type = DrawBrushTypeSolid
+  brush.r = 0
+  brush.g = 0
+  brush.b = 0
+  brush.a = 1
   sp.cap = DrawLineCapFlat
   sp.join = DrawLineJoinMiter
   sp.thickness = 1
