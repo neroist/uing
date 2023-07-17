@@ -2748,11 +2748,12 @@ type
     ## in a `TableModelHandler`.
     ## 
     ## Make sure the `TableModel` columns return the right type, as specified in
-    ## the `add*Column()` parameters.
+    ## the `addColumn()` parameters.
     ## 
-    ## The `*EditableModelColumn` parameters typically point to a `TableModel`
+    ## The `EditableModelColumn` parameters typically point to a `TableModel`
     ## column index, that specifies the property on a per row basis.
-    ## | They can however also be passed two special values defining the property
+    ## 
+    ## They can however also be passed two special values defining the property
     ## for all rows: `TableModelColumnNeverEditable` and
     ## `TableModelColumnAlwaysEditable`.
 
