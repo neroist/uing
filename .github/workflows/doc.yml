@@ -33,7 +33,7 @@ jobs:
           nimble mkdocs
           
           cd docs
-          cp docs/uing.html docs/index.html
+          cp uing.html index.html
           echo "uing.nim.town" > CNAME
 
       - name: Deploy to GitHub Pages
