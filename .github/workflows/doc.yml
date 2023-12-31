@@ -29,7 +29,12 @@ jobs:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Generate documentation
-        run: nimble mkdocs
+        run: |
+          nimble mkdocs
+          
+          cd docs
+          cp uing.html index.html
+          echo "uing.nim.town" > CNAME
 
       - name: Deploy to GitHub Pages
         if: success()
