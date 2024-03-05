@@ -636,6 +636,7 @@ proc color*(a: Attribute): tuple[r, g, b, alpha: float] =
   result = (r: float r, g: float g, b: float b, alpha: float alpha)
 
 proc newBackgroundColorAttribute*(r, g, b: float; a: float = 1.0): Attribute =
+proc newBackgroundColorAttribute*(r, g, b: float; a: float = 1.0): Attribute =
   ## Creates a new Attribute that changes the background color 
   ## of the text it is applied to. 
   ## 
@@ -2450,7 +2451,7 @@ proc color*(c: ColorButton): tuple[r, g, b, a: float] =
 
   result = (r: float r, g: float g, b: float b, a: float a)
 
-proc setColor*(c: ColorButton; r, g, b: float; alpha: float = 1.0) = 
+proc setColor*(c: ColorButton; r, g, b: 0.0..1.0; alpha: 0.0..1.0 = 1.0) = 
   ## Sets the color button color.
   ##   
   ## :c: ColorButton instance.
