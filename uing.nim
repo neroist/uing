@@ -630,7 +630,7 @@ proc color*(a: Attribute): tuple[r, g, b, alpha: float] =
   attributeColor(a.impl, addr r, addr g, addr b, addr alpha)
   result = (r: float r, g: float g, b: float b, alpha: float alpha)
 
-proc newBackgroundColorAttribute*(r, g, b, a: float = 1.0): Attribute =
+proc newBackgroundColorAttribute*(r, g, b: float; a: float = 1.0): Attribute =
   ## Creates a new Attribute that changes the background color 
   ## of the text it is applied to. 
   ## 
@@ -2445,7 +2445,7 @@ proc color*(c: ColorButton): tuple[r, g, b, a: float] =
 
   result = (r: float r, g: float g, b: float b, a: float a)
 
-proc setColor*(c: ColorButton; r, g, b, alpha: 0.0..1.0 = 1.0) = 
+proc setColor*(c: ColorButton; r, g, b: float; alpha: float = 1.0) = 
   ## Sets the color button color.
   ##   
   ## :c: ColorButton instance.
@@ -3395,7 +3395,7 @@ proc time*(d: DateTimePicker): DateTime =
   dateTimePickerTime(d.impl, addr tm)
 
   # dateTime was introduced in Nim version 1.6.0
-  when NimMinor < 6: 
+  when NimMinor < 6 and NimMajor < 2: 
     result = initDateTime(
       int tm.tm_mday,
       Month(tm.tm_mon + 1),

@@ -129,7 +129,8 @@ type
   InitOptions* {.bycopy.} = object
     size*: csize_t
 
-{.deadCodeElim: on.}
+when NimMajor < 2:
+  {.deadCodeElim: on.}
 
 proc init*(options: ptr InitOptions): cstring {.cdecl, importc: "uiInit", libui.}
 proc uninit*() {.cdecl, importc: "uiUninit", libui.}
