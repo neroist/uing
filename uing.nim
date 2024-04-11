@@ -56,6 +56,7 @@ proc mainLoop*() =
 
 proc pollingMainLoop*(poll: proc(timeout: int); timeout: int) =
   ## Can be used to merge an async event loop with libui-ng's event loop.
+  ## 
   ## Implemented using timeouts and polling because that's the only
   ## thing that truely composes.
   
@@ -129,7 +130,10 @@ proc timer*(milliseconds: int; fun: proc (): bool) =
 
   rawui.timer(cint milliseconds, wrapTimerProc, cast[pointer](fn))
 
-proc free*(str: string) = rawui.freeText(str) 
+proc free*(str: string) = rawui.freeText(str)
+  ## Free the memory of a returned string.
+  ##
+  ## Every time a string is returned from libui, this method should be called.
 
 # -------- Font Descriptor --------
 
@@ -1947,13 +1951,13 @@ type
 genImplProcs(Separator)
 
 proc newVerticalSeparator*(): Separator = 
-  ## Creates a new vertical separator
+  ## Creates a new vertical separator to separate controls being stacked horizontally.
   
   newFinal result
   result.impl = rawui.newVerticalSeparator()
 
 proc newHorizontalSeparator*(): Separator =
-  ## Creates a new horizontal separator
+  ## Creates a new horizontal separator to separate controls being stacked vertically.
    
   newFinal result
   result.impl = rawui.newHorizontalSeparator()
@@ -3286,6 +3290,10 @@ proc disable*[SomeWidget: Widget and not MenuItem](w: SomeWidget) =
 
 proc destroy*[SomeWidget: Widget](w: SomeWidget) =
   ## Dispose and free all allocated resources.
+  ## 
+  ## The platform specific APIs that actually destroy a Widget (and its children) are called.
+  ## 
+  ## .. note :: Most of the time this is needed to be used directly only on the top level windows.
 
   rawui.controlDestroy(w.impl)
 
@@ -3320,7 +3328,7 @@ proc `parent=`*[SomeWidget: Widget](w: SomeWidget, parent: Widget) =
   )
 
 proc handle*[SomeWidget: Widget](w: SomeWidget): int = 
-  ## Returns the control's OS-level handle.
+  ## Returns the widget's OS-level handle.
   ## 
   ## :w: Widget instance.
   
@@ -3370,7 +3378,9 @@ proc enabledToUser*[SomeWidget: Widget](w: SomeWidget): bool =
   bool rawui.controlEnabledToUser(w.impl)
 
 proc free*[SomeWidget: Widget](w: SomeWidget) = 
-  ## Frees the widget.
+  ## Frees the memory associated with the widget reference.
+  ## 
+  ## .. note:: This method is public only for writing custom widgets.
 
   freeControl(w.impl)
 
