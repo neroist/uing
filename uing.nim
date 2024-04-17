@@ -45,7 +45,7 @@ proc quit* =
   rawui.quit()
 
 proc quitAll*(errorcode: int = QuitSuccess) =
-  ## Both quit UIng and the program altogether
+  ## Quit both UIng and the program altogether
 
   rawui.quit()
   system.quit(errorcode)
@@ -74,7 +74,7 @@ template newFinal(result) =
 
   new result#, finalize
 
-template genCallback(name, typ, on) {. dirty .} =
+template genCallback(name, typ, on) {.dirty.} =
   proc name(w: ptr rawui.typ; data: pointer) {.cdecl.} =
     let widget = cast[typ](data)
     if widget.on != nil: widget.on(widget)
