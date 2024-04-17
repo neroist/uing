@@ -123,7 +123,8 @@ proc timer*(milliseconds: int; fun: proc (): bool) =
   ##        `queueMain() <#queueMain,proc(pointer),pointer>`_
   ## 
   ## .. note:: The minimum exact timing, either accuracy (timer burst, etc.) 
-  ##      or granularity (15ms on Windows, etc.), is OS-defined 
+  ##      or granularity (15ms on Windows, etc.), is OS-defined
+  # TODO If its "OS-defined" then tell me?
   
   let fn = TimerProc(fn: fun)
   GC_ref fn
