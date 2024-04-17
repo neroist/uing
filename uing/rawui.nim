@@ -67,8 +67,11 @@ else:
 
   when defined(windows):
     when defined(gcc):
-      {.passL: "-lstdc++".} # gives warnings when passed to linker with clang
-                            # `LINK : warning LNK4044: unrecognized option '/Z-reserved-lib-stdc++'; ignored`
+      # gives warnings when passed to linker with clang (all 3)
+      {.passL: "-lstdc++".}
+      
+      {.passL: "-static-libgcc".}
+      {.passL: "-static-libstdc++".}
     
     # whole buncha errors with clang + cpp
     when defined(clang) and defined(cpp):
@@ -77,6 +80,8 @@ else:
       {.passC: "-Wno-microsoft-exception-spec".}
 
     when defined(clang) or defined(gcc):
+      {.passL: "-static".}
+
       {.passL: "-lwindowscodecs".} # compiling with clang needs this for some reason
       {.passL: "-lwinspool".}
       {.passL: "-lcomdlg32".}
