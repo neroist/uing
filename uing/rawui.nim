@@ -21,7 +21,7 @@ when defined(useLibUiDll):
   {.pragma: libui, dynlib: dllName.}
 
 elif defined(useLibUiStaticLib):
-  when defined(windows):
+  when defined(windows): #? should be vcc
     const libName* = "libui.lib"
   else:
     const libName* = "libui.a"
@@ -100,6 +100,7 @@ else:
       {.passL: "-luser32".}
       {.passL: "-lkernel32".}
 
+    # should this just be in the above block? vcc already has its own linked resource files...
     when defined(cpu64):
       {.link: "../res/resources.o".} # resources.o is 64-bit
       {.link: "../res/winim64.res".}
@@ -141,6 +142,7 @@ type
   InitOptions* {.bycopy.} = object
     size*: csize_t
 
+# deadCodeElim is a noop on nim 2.0+
 when NimMajor < 2:
   {.deadCodeElim: on.}
 
