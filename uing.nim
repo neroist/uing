@@ -3029,15 +3029,15 @@ proc addImageColumn*(table: Table, title: string, index: int) =
 proc addCheckboxTextColumn*(t: Table; name: string; checkboxModelColumn, checkboxEditableModelColumn, textModelColumn, textEditableModelColumn: int; textParams: ptr TableTextColumnOptionalParams = nil) =
   ## Appends a column to the table containing a checkbox and text.
   ## 
-  ## :t`: Table instance.
-  ## :name`: Column title text.
-  ## :checkboxModelColumn`: Column that holds the data to be displayed.
+  ## :t: Table instance.
+  ## :name: Column title text.
+  ## :checkboxModelColumn: Column that holds the data to be displayed.
   ##                       `true` for a checked checkbox, `false` otherwise.
-  ## :checkboxEditableModelColumn`: Column that defines whether or not the checkbox is editable.
+  ## :checkboxEditableModelColumn: Column that defines whether or not the checkbox is editable.
   ##                               `TableModelColumnNeverEditable` to make all rows never editable.
   ##                               `TableModelColumnAlwaysEditable` to make all rows always editable.
-  ## "textModelColumn: Column that holds the text to be displayed.
-  ## "textEditableModelColumn: Column that defines whether or not the text is editable.
+  ## :textModelColumn: Column that holds the text to be displayed.
+  ## :textEditableModelColumn: Column that defines whether or not the text is editable.
   ##                           `TableModelColumnNeverEditable` to make all rows never editable.
   ##                           `TableModelColumnAlwaysEditable` to make all rows always editable.
   ## :textParams: Text display settings, `nil` to use defaults.
