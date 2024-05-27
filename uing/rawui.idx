@@ -1,0 +1,402 @@
+nimTitle	rawui	uing/rawui.html	module uing/rawui		0
+nim	ForEach	uing/rawui.html#ForEach	enum ForEach		136
+nim	InitOptions	uing/rawui.html#InitOptions	object InitOptions		142
+nim	init	uing/rawui.html#init,ptr.InitOptions	proc init(options: ptr InitOptions): cstring		149
+nim	uninit	uing/rawui.html#uninit	proc uninit()		150
+nim	freeInitError	uing/rawui.html#freeInitError,cstring	proc freeInitError(err: cstring)		151
+nim	main	uing/rawui.html#main	proc main()		152
+nim	mainSteps	uing/rawui.html#mainSteps	proc mainSteps()		153
+nim	mainStep	uing/rawui.html#mainStep,cint	proc mainStep(wait: cint): cint		154
+nim	quit	uing/rawui.html#quit	proc quit()		155
+nim	queueMain	uing/rawui.html#queueMain,proc(pointer),pointer	proc queueMain(f: proc (data: pointer) {.cdecl.}; data: pointer)		156
+nim	timer	uing/rawui.html#timer,cint,proc(pointer),pointer	proc timer(milliseconds: cint; f: proc (data: pointer): cint {.cdecl.}; data: pointer)		158
+nim	onShouldQuit	uing/rawui.html#onShouldQuit,proc(pointer),pointer	proc onShouldQuit(f: proc (data: pointer): cint {.cdecl.}; data: pointer)		160
+nim	freeText	uing/rawui.html#freeText,cstring	proc freeText(text: cstring)		162
+nim	Control	uing/rawui.html#Control	object Control		165
+nim	control	uing/rawui.html#control.t,untyped	template control(this: untyped): untyped		183
+nim	controlDestroy	uing/rawui.html#controlDestroy,ptr.Control	proc controlDestroy(c: ptr Control)		186
+nim	controlHandle	uing/rawui.html#controlHandle,ptr.Control	proc controlHandle(c: ptr Control): int		189
+nim	controlParent	uing/rawui.html#controlParent,ptr.Control	proc controlParent(c: ptr Control): ptr Control		192
+nim	controlSetParent	uing/rawui.html#controlSetParent,ptr.Control,ptr.Control	proc controlSetParent(c: ptr Control; parent: ptr Control)		195
+nim	controlToplevel	uing/rawui.html#controlToplevel,ptr.Control	proc controlToplevel(c: ptr Control): cint		198
+nim	controlVisible	uing/rawui.html#controlVisible,ptr.Control	proc controlVisible(c: ptr Control): cint		201
+nim	controlShow	uing/rawui.html#controlShow,ptr.Control	proc controlShow(c: ptr Control)		204
+nim	controlHide	uing/rawui.html#controlHide,ptr.Control	proc controlHide(c: ptr Control)		206
+nim	controlEnabled	uing/rawui.html#controlEnabled,ptr.Control	proc controlEnabled(c: ptr Control): cint		208
+nim	controlEnable	uing/rawui.html#controlEnable,ptr.Control	proc controlEnable(c: ptr Control)		211
+nim	controlDisable	uing/rawui.html#controlDisable,ptr.Control	proc controlDisable(c: ptr Control)		214
+nim	allocControl	uing/rawui.html#allocControl,csize_t,uint32,uint32,cstring	proc allocControl(n: csize_t; oSsig: uint32; typesig: uint32; typenamestr: cstring): ptr Control		217
+nim	freeControl	uing/rawui.html#freeControl,ptr.Control	proc freeControl(c: ptr Control)		220
+nim	controlVerifySetParent	uing/rawui.html#controlVerifySetParent,ptr.Control,ptr.Control	proc controlVerifySetParent(c: ptr Control; parent: ptr Control)		222
+nim	controlEnabledToUser	uing/rawui.html#controlEnabledToUser,ptr.Control	proc controlEnabledToUser(c: ptr Control): cint		225
+nim	userBugCannotSetParentOnToplevel	uing/rawui.html#userBugCannotSetParentOnToplevel,cstring	proc userBugCannotSetParentOnToplevel(type: cstring)		228
+nim	Window	uing/rawui.html#Window	object Window		232
+nim	window	uing/rawui.html#window.t,untyped	template window(this: untyped): untyped		234
+nim	windowTitle	uing/rawui.html#windowTitle,ptr.Window	proc windowTitle(w: ptr Window): cstring		238
+nim	windowSetTitle	uing/rawui.html#windowSetTitle,ptr.Window,cstring	proc windowSetTitle(w: ptr Window; title: cstring)		241
+nim	windowPosition	uing/rawui.html#windowPosition,ptr.Window,ptr.cint,ptr.cint	proc windowPosition(w: ptr Window; x: ptr cint; y: ptr cint)		244
+nim	windowSetPosition	uing/rawui.html#windowSetPosition,ptr.Window,cint,cint	proc windowSetPosition(w: ptr Window; x: cint; y: cint)		247
+nim	windowOnPositionChanged	uing/rawui.html#windowOnPositionChanged,ptr.Window,proc(ptr.Window,pointer),pointer	proc windowOnPositionChanged(w: ptr Window; f: proc (sender: ptr Window;\n    senderData: pointer) {.cdecl.}; data: pointer)		250
+nim	windowContentSize	uing/rawui.html#windowContentSize,ptr.Window,ptr.cint,ptr.cint	proc windowContentSize(w: ptr Window; width: ptr cint; height: ptr cint)		254
+nim	windowSetContentSize	uing/rawui.html#windowSetContentSize,ptr.Window,cint,cint	proc windowSetContentSize(w: ptr Window; width: cint; height: cint)		257
+nim	windowFullscreen	uing/rawui.html#windowFullscreen,ptr.Window	proc windowFullscreen(w: ptr Window): cint		260
+nim	windowSetFullscreen	uing/rawui.html#windowSetFullscreen,ptr.Window,cint	proc windowSetFullscreen(w: ptr Window; fullscreen: cint)		263
+nim	windowOnContentSizeChanged	uing/rawui.html#windowOnContentSizeChanged,ptr.Window,proc(ptr.Window,pointer),pointer	proc windowOnContentSizeChanged(w: ptr Window; f: proc (sender: ptr Window;\n    senderData: pointer) {.cdecl.}; data: pointer)		266
+nim	windowOnClosing	uing/rawui.html#windowOnClosing,ptr.Window,proc(ptr.Window,pointer),pointer	proc windowOnClosing(w: ptr Window; f: proc (sender: ptr Window; senderData: pointer): cint {.\n    cdecl.}; data: pointer)		270
+nim	windowOnFocusChanged	uing/rawui.html#windowOnFocusChanged,ptr.Window,proc(ptr.Window,pointer),pointer	proc windowOnFocusChanged(w: ptr Window; f: proc (sender: ptr Window;\n    senderData: pointer) {.cdecl.}; data: pointer)		273
+nim	windowFocused	uing/rawui.html#windowFocused,ptr.Window	proc windowFocused(w: ptr Window): cint		277
+nim	windowBorderless	uing/rawui.html#windowBorderless,ptr.Window	proc windowBorderless(w: ptr Window): cint		280
+nim	windowSetBorderless	uing/rawui.html#windowSetBorderless,ptr.Window,cint	proc windowSetBorderless(w: ptr Window; borderless: cint)		283
+nim	windowSetChild	uing/rawui.html#windowSetChild,ptr.Window,ptr.Control	proc windowSetChild(w: ptr Window; child: ptr Control)		286
+nim	windowMargined	uing/rawui.html#windowMargined,ptr.Window	proc windowMargined(w: ptr Window): cint		289
+nim	windowSetMargined	uing/rawui.html#windowSetMargined,ptr.Window,cint	proc windowSetMargined(w: ptr Window; margined: cint)		292
+nim	windowResizeable	uing/rawui.html#windowResizeable,ptr.Window	proc windowResizeable(w: ptr Window): cint		295
+nim	windowSetResizeable	uing/rawui.html#windowSetResizeable,ptr.Window,cint	proc windowSetResizeable(w: ptr Window; resizeable: cint)		298
+nim	newWindow	uing/rawui.html#newWindow,cstring,cint,cint,cint	proc newWindow(title: cstring; width: cint; height: cint; hasMenubar: cint): ptr Window		301
+nim	Button	uing/rawui.html#Button	object Button		305
+nim	button	uing/rawui.html#button.t,untyped	template button(this: untyped): untyped		307
+nim	buttonText	uing/rawui.html#buttonText,ptr.Button	proc buttonText(b: ptr Button): cstring		311
+nim	buttonSetText	uing/rawui.html#buttonSetText,ptr.Button,cstring	proc buttonSetText(b: ptr Button; text: cstring)		314
+nim	buttonOnClicked	uing/rawui.html#buttonOnClicked,ptr.Button,proc(ptr.Button,pointer),pointer	proc buttonOnClicked(b: ptr Button;\n                f: proc (sender: ptr Button; senderData: pointer) {.cdecl.};\n                data: pointer)		317
+nim	newButton	uing/rawui.html#newButton,cstring	proc newButton(text: cstring): ptr Button		320
+nim	Box	uing/rawui.html#Box	object Box		324
+nim	box	uing/rawui.html#box.t,untyped	template box(this: untyped): untyped		326
+nim	boxAppend	uing/rawui.html#boxAppend,ptr.Box,ptr.Control,cint	proc boxAppend(b: ptr Box; child: ptr Control; stretchy: cint)		330
+nim	boxNumChildren	uing/rawui.html#boxNumChildren,ptr.Box	proc boxNumChildren(b: ptr Box): cint		333
+nim	boxDelete	uing/rawui.html#boxDelete,ptr.Box,cint	proc boxDelete(b: ptr Box; index: cint)		336
+nim	boxPadded	uing/rawui.html#boxPadded,ptr.Box	proc boxPadded(b: ptr Box): cint		338
+nim	boxSetPadded	uing/rawui.html#boxSetPadded,ptr.Box,cint	proc boxSetPadded(b: ptr Box; padded: cint)		340
+nim	newHorizontalBox	uing/rawui.html#newHorizontalBox	proc newHorizontalBox(): ptr Box		343
+nim	newVerticalBox	uing/rawui.html#newVerticalBox	proc newVerticalBox(): ptr Box		346
+nim	Checkbox	uing/rawui.html#Checkbox	object Checkbox		349
+nim	checkbox	uing/rawui.html#checkbox.t,untyped	template checkbox(this: untyped): untyped		351
+nim	checkboxText	uing/rawui.html#checkboxText,ptr.Checkbox	proc checkboxText(c: ptr Checkbox): cstring		355
+nim	checkboxSetText	uing/rawui.html#checkboxSetText,ptr.Checkbox,cstring	proc checkboxSetText(c: ptr Checkbox; text: cstring)		358
+nim	checkboxOnToggled	uing/rawui.html#checkboxOnToggled,ptr.Checkbox,proc(ptr.Checkbox,pointer),pointer	proc checkboxOnToggled(c: ptr Checkbox;\n                  f: proc (sender: ptr Checkbox; senderData: pointer) {.cdecl.};\n                  data: pointer)		361
+nim	checkboxChecked	uing/rawui.html#checkboxChecked,ptr.Checkbox	proc checkboxChecked(c: ptr Checkbox): cint		365
+nim	checkboxSetChecked	uing/rawui.html#checkboxSetChecked,ptr.Checkbox,cint	proc checkboxSetChecked(c: ptr Checkbox; checked: cint)		368
+nim	newCheckbox	uing/rawui.html#newCheckbox,cstring	proc newCheckbox(text: cstring): ptr Checkbox		371
+nim	Entry	uing/rawui.html#Entry	object Entry		375
+nim	entry	uing/rawui.html#entry.t,untyped	template entry(this: untyped): untyped		377
+nim	entryText	uing/rawui.html#entryText,ptr.Entry	proc entryText(e: ptr Entry): cstring		381
+nim	entrySetText	uing/rawui.html#entrySetText,ptr.Entry,cstring	proc entrySetText(e: ptr Entry; text: cstring)		383
+nim	entryOnChanged	uing/rawui.html#entryOnChanged,ptr.Entry,proc(ptr.Entry,pointer),pointer	proc entryOnChanged(e: ptr Entry;\n               f: proc (sender: ptr Entry; senderData: pointer) {.cdecl.};\n               data: pointer)		386
+nim	entryReadOnly	uing/rawui.html#entryReadOnly,ptr.Entry	proc entryReadOnly(e: ptr Entry): cint		391
+nim	entrySetReadOnly	uing/rawui.html#entrySetReadOnly,ptr.Entry,cint	proc entrySetReadOnly(e: ptr Entry; readonly: cint)		394
+nim	newEntry	uing/rawui.html#newEntry	proc newEntry(): ptr Entry		397
+nim	newPasswordEntry	uing/rawui.html#newPasswordEntry	proc newPasswordEntry(): ptr Entry		399
+nim	newSearchEntry	uing/rawui.html#newSearchEntry	proc newSearchEntry(): ptr Entry		402
+nim	Label	uing/rawui.html#Label	object Label		405
+nim	label	uing/rawui.html#label.t,untyped	template label(this: untyped): untyped		407
+nim	labelText	uing/rawui.html#labelText,ptr.Label	proc labelText(l: ptr Label): cstring		411
+nim	labelSetText	uing/rawui.html#labelSetText,ptr.Label,cstring	proc labelSetText(l: ptr Label; text: cstring)		413
+nim	newLabel	uing/rawui.html#newLabel,cstring	proc newLabel(text: cstring): ptr Label		416
+nim	Tab	uing/rawui.html#Tab	object Tab		419
+nim	tab	uing/rawui.html#tab.t,untyped	template tab(this: untyped): untyped		421
+nim	tabAppend	uing/rawui.html#tabAppend,ptr.Tab,cstring,ptr.Control	proc tabAppend(t: ptr Tab; name: cstring; c: ptr Control)		425
+nim	tabInsertAt	uing/rawui.html#tabInsertAt,ptr.Tab,cstring,cint,ptr.Control	proc tabInsertAt(t: ptr Tab; name: cstring; index: cint; c: ptr Control)		428
+nim	tabDelete	uing/rawui.html#tabDelete,ptr.Tab,cint	proc tabDelete(t: ptr Tab; index: cint)		431
+nim	tabNumPages	uing/rawui.html#tabNumPages,ptr.Tab	proc tabNumPages(t: ptr Tab): cint		433
+nim	tabMargined	uing/rawui.html#tabMargined,ptr.Tab,cint	proc tabMargined(t: ptr Tab; index: cint): cint		435
+nim	tabSetMargined	uing/rawui.html#tabSetMargined,ptr.Tab,cint,cint	proc tabSetMargined(t: ptr Tab; index: cint; margined: cint)		438
+nim	newTab	uing/rawui.html#newTab	proc newTab(): ptr Tab		441
+nim	Group	uing/rawui.html#Group	object Group		444
+nim	group	uing/rawui.html#group.t,untyped	template group(this: untyped): untyped		446
+nim	groupTitle	uing/rawui.html#groupTitle,ptr.Group	proc groupTitle(g: ptr Group): cstring		450
+nim	groupSetTitle	uing/rawui.html#groupSetTitle,ptr.Group,cstring	proc groupSetTitle(g: ptr Group; title: cstring)		453
+nim	groupSetChild	uing/rawui.html#groupSetChild,ptr.Group,ptr.Control	proc groupSetChild(g: ptr Group; c: ptr Control)		456
+nim	groupMargined	uing/rawui.html#groupMargined,ptr.Group	proc groupMargined(g: ptr Group): cint		459
+nim	groupSetMargined	uing/rawui.html#groupSetMargined,ptr.Group,cint	proc groupSetMargined(g: ptr Group; margined: cint)		462
+nim	newGroup	uing/rawui.html#newGroup,cstring	proc newGroup(title: cstring): ptr Group		465
+nim	Spinbox	uing/rawui.html#Spinbox	object Spinbox		469
+nim	spinbox	uing/rawui.html#spinbox.t,untyped	template spinbox(this: untyped): untyped		471
+nim	spinboxValue	uing/rawui.html#spinboxValue,ptr.Spinbox	proc spinboxValue(s: ptr Spinbox): cint		475
+nim	spinboxSetValue	uing/rawui.html#spinboxSetValue,ptr.Spinbox,cint	proc spinboxSetValue(s: ptr Spinbox; value: cint)		478
+nim	spinboxOnChanged	uing/rawui.html#spinboxOnChanged,ptr.Spinbox,proc(ptr.Spinbox,pointer),pointer	proc spinboxOnChanged(s: ptr Spinbox;\n                 f: proc (sender: ptr Spinbox; senderData: pointer) {.cdecl.};\n                 data: pointer)		481
+nim	newSpinbox	uing/rawui.html#newSpinbox,cint,cint	proc newSpinbox(min: cint; max: cint): ptr Spinbox		484
+nim	Slider	uing/rawui.html#Slider	object Slider		488
+nim	slider	uing/rawui.html#slider.t,untyped	template slider(this: untyped): untyped		490
+nim	sliderValue	uing/rawui.html#sliderValue,ptr.Slider	proc sliderValue(s: ptr Slider): cint		494
+nim	sliderSetValue	uing/rawui.html#sliderSetValue,ptr.Slider,cint	proc sliderSetValue(s: ptr Slider; value: cint)		497
+nim	sliderHasToolTip	uing/rawui.html#sliderHasToolTip,ptr.Slider	proc sliderHasToolTip(s: ptr Slider): cint		500
+nim	sliderSetHasToolTip	uing/rawui.html#sliderSetHasToolTip,ptr.Slider,cint	proc sliderSetHasToolTip(s: ptr Slider; hasToolTip: cint)		503
+nim	sliderOnChanged	uing/rawui.html#sliderOnChanged,ptr.Slider,proc(ptr.Slider,pointer),pointer	proc sliderOnChanged(s: ptr Slider;\n                f: proc (sender: ptr Slider; senderData: pointer) {.cdecl.};\n                data: pointer)		506
+nim	sliderOnReleased	uing/rawui.html#sliderOnReleased,ptr.Slider,proc(ptr.Slider,pointer),pointer	proc sliderOnReleased(s: ptr Slider;\n                 f: proc (sender: ptr Slider; senderData: pointer) {.cdecl.};\n                 data: pointer)		509
+nim	sliderSetRange	uing/rawui.html#sliderSetRange,ptr.Slider,cint,cint	proc sliderSetRange(s: ptr Slider; min: cint; max: cint)		512
+nim	newSlider	uing/rawui.html#newSlider,cint,cint	proc newSlider(min: cint; max: cint): ptr Slider		515
+nim	ProgressBar	uing/rawui.html#ProgressBar	object ProgressBar		519
+nim	progressBar	uing/rawui.html#progressBar.t,untyped	template progressBar(this: untyped): untyped		521
+nim	progressBarValue	uing/rawui.html#progressBarValue,ptr.ProgressBar	proc progressBarValue(p: ptr ProgressBar): cint		525
+nim	progressBarSetValue	uing/rawui.html#progressBarSetValue,ptr.ProgressBar,cint	proc progressBarSetValue(p: ptr ProgressBar; n: cint)		528
+nim	newProgressBar	uing/rawui.html#newProgressBar	proc newProgressBar(): ptr ProgressBar		531
+nim	Separator	uing/rawui.html#Separator	object Separator		535
+nim	separator	uing/rawui.html#separator.t,untyped	template separator(this: untyped): untyped		537
+nim	newHorizontalSeparator	uing/rawui.html#newHorizontalSeparator	proc newHorizontalSeparator(): ptr Separator		541
+nim	newVerticalSeparator	uing/rawui.html#newVerticalSeparator	proc newVerticalSeparator(): ptr Separator		544
+nim	Combobox	uing/rawui.html#Combobox	object Combobox		548
+nim	combobox	uing/rawui.html#combobox.t,untyped	template combobox(this: untyped): untyped		550
+nim	comboboxAppend	uing/rawui.html#comboboxAppend,ptr.Combobox,cstring	proc comboboxAppend(c: ptr Combobox; text: cstring)		554
+nim	comboboxInsertAt	uing/rawui.html#comboboxInsertAt,ptr.Combobox,cint,cstring	proc comboboxInsertAt(c: ptr Combobox; index: cint; text: cstring)		557
+nim	comboboxDelete	uing/rawui.html#comboboxDelete,ptr.Combobox,cint	proc comboboxDelete(c: ptr Combobox; index: cint)		560
+nim	comboboxClear	uing/rawui.html#comboboxClear,ptr.Combobox	proc comboboxClear(c: ptr Combobox)		563
+nim	comboboxNumItems	uing/rawui.html#comboboxNumItems,ptr.Combobox	proc comboboxNumItems(c: ptr Combobox): cint		566
+nim	comboboxSelected	uing/rawui.html#comboboxSelected,ptr.Combobox	proc comboboxSelected(c: ptr Combobox): cint		569
+nim	comboboxSetSelected	uing/rawui.html#comboboxSetSelected,ptr.Combobox,cint	proc comboboxSetSelected(c: ptr Combobox; index: cint)		572
+nim	comboboxOnSelected	uing/rawui.html#comboboxOnSelected,ptr.Combobox,proc(ptr.Combobox,pointer),pointer	proc comboboxOnSelected(c: ptr Combobox; f: proc (sender: ptr Combobox;\n    senderData: pointer) {.cdecl.}; data: pointer)		575
+nim	newCombobox	uing/rawui.html#newCombobox	proc newCombobox(): ptr Combobox		579
+nim	EditableCombobox	uing/rawui.html#EditableCombobox	object EditableCombobox		582
+nim	editableCombobox	uing/rawui.html#editableCombobox.t,untyped	template editableCombobox(this: untyped): untyped		584
+nim	editableComboboxAppend	uing/rawui.html#editableComboboxAppend,ptr.EditableCombobox,cstring	proc editableComboboxAppend(c: ptr EditableCombobox; text: cstring)		588
+nim	editableComboboxText	uing/rawui.html#editableComboboxText,ptr.EditableCombobox	proc editableComboboxText(c: ptr EditableCombobox): cstring		591
+nim	editableComboboxSetText	uing/rawui.html#editableComboboxSetText,ptr.EditableCombobox,cstring	proc editableComboboxSetText(c: ptr EditableCombobox; text: cstring)		594
+nim	editableComboboxOnChanged	uing/rawui.html#editableComboboxOnChanged,ptr.EditableCombobox,proc(ptr.EditableCombobox,pointer),pointer	proc editableComboboxOnChanged(c: ptr EditableCombobox; f: proc (\n    sender: ptr EditableCombobox; senderData: pointer) {.cdecl.}; data: pointer)		597
+nim	newEditableCombobox	uing/rawui.html#newEditableCombobox	proc newEditableCombobox(): ptr EditableCombobox		601
+nim	RadioButtons	uing/rawui.html#RadioButtons	object RadioButtons		605
+nim	radioButtons	uing/rawui.html#radioButtons.t,untyped	template radioButtons(this: untyped): untyped		607
+nim	radioButtonsAppend	uing/rawui.html#radioButtonsAppend,ptr.RadioButtons,cstring	proc radioButtonsAppend(r: ptr RadioButtons; text: cstring)		611
+nim	radioButtonsSelected	uing/rawui.html#radioButtonsSelected,ptr.RadioButtons	proc radioButtonsSelected(r: ptr RadioButtons): cint		614
+nim	radioButtonsSetSelected	uing/rawui.html#radioButtonsSetSelected,ptr.RadioButtons,cint	proc radioButtonsSetSelected(r: ptr RadioButtons; index: cint)		617
+nim	radioButtonsOnSelected	uing/rawui.html#radioButtonsOnSelected,ptr.RadioButtons,proc(ptr.RadioButtons,pointer),pointer	proc radioButtonsOnSelected(r: ptr RadioButtons; f: proc (sender: ptr RadioButtons;\n    senderData: pointer) {.cdecl.}; data: pointer)		620
+nim	newRadioButtons	uing/rawui.html#newRadioButtons	proc newRadioButtons(): ptr RadioButtons		624
+nim	Tm	uing/rawui.html#Tm	object Tm		628
+nim	DateTimePicker	uing/rawui.html#DateTimePicker	object DateTimePicker		639
+nim	dateTimePicker	uing/rawui.html#dateTimePicker.t,untyped	template dateTimePicker(this: untyped): untyped		641
+nim	dateTimePickerTime	uing/rawui.html#dateTimePickerTime,ptr.DateTimePicker,ptr.Tm	proc dateTimePickerTime(d: ptr DateTimePicker; time: ptr Tm)		645
+nim	dateTimePickerSetTime	uing/rawui.html#dateTimePickerSetTime,ptr.DateTimePicker,ptr.Tm	proc dateTimePickerSetTime(d: ptr DateTimePicker; time: ptr Tm)		648
+nim	dateTimePickerOnChanged	uing/rawui.html#dateTimePickerOnChanged,ptr.DateTimePicker,proc(ptr.DateTimePicker,pointer),pointer	proc dateTimePickerOnChanged(d: ptr DateTimePicker; f: proc (\n    sender: ptr DateTimePicker; senderData: pointer) {.cdecl.}; data: pointer)		651
+nim	newDateTimePicker	uing/rawui.html#newDateTimePicker	proc newDateTimePicker(): ptr DateTimePicker		655
+nim	newDatePicker	uing/rawui.html#newDatePicker	proc newDatePicker(): ptr DateTimePicker		658
+nim	newTimePicker	uing/rawui.html#newTimePicker	proc newTimePicker(): ptr DateTimePicker		661
+nim	MultilineEntry	uing/rawui.html#MultilineEntry	object MultilineEntry		665
+nim	multilineEntry	uing/rawui.html#multilineEntry.t,untyped	template multilineEntry(this: untyped): untyped		667
+nim	multilineEntryText	uing/rawui.html#multilineEntryText,ptr.MultilineEntry	proc multilineEntryText(e: ptr MultilineEntry): cstring		671
+nim	multilineEntrySetText	uing/rawui.html#multilineEntrySetText,ptr.MultilineEntry,cstring	proc multilineEntrySetText(e: ptr MultilineEntry; text: cstring)		674
+nim	multilineEntryAppend	uing/rawui.html#multilineEntryAppend,ptr.MultilineEntry,cstring	proc multilineEntryAppend(e: ptr MultilineEntry; text: cstring)		677
+nim	multilineEntryOnChanged	uing/rawui.html#multilineEntryOnChanged,ptr.MultilineEntry,proc(ptr.MultilineEntry,pointer),pointer	proc multilineEntryOnChanged(e: ptr MultilineEntry; f: proc (\n    sender: ptr MultilineEntry; senderData: pointer) {.cdecl.}; data: pointer)		680
+nim	multilineEntryReadOnly	uing/rawui.html#multilineEntryReadOnly,ptr.MultilineEntry	proc multilineEntryReadOnly(e: ptr MultilineEntry): cint		684
+nim	multilineEntrySetReadOnly	uing/rawui.html#multilineEntrySetReadOnly,ptr.MultilineEntry,cint	proc multilineEntrySetReadOnly(e: ptr MultilineEntry; readonly: cint)		687
+nim	newMultilineEntry	uing/rawui.html#newMultilineEntry	proc newMultilineEntry(): ptr MultilineEntry		690
+nim	newNonWrappingMultilineEntry	uing/rawui.html#newNonWrappingMultilineEntry	proc newNonWrappingMultilineEntry(): ptr MultilineEntry		693
+nim	MenuItem	uing/rawui.html#MenuItem	object MenuItem		697
+nim	menuItem	uing/rawui.html#menuItem.t,untyped	template menuItem(this: untyped): untyped		699
+nim	menuItemEnable	uing/rawui.html#menuItemEnable,ptr.MenuItem	proc menuItemEnable(m: ptr MenuItem)		703
+nim	menuItemDisable	uing/rawui.html#menuItemDisable,ptr.MenuItem	proc menuItemDisable(m: ptr MenuItem)		706
+nim	menuItemOnClicked	uing/rawui.html#menuItemOnClicked,ptr.MenuItem,proc(ptr.MenuItem,ptr.Window,pointer),pointer	proc menuItemOnClicked(m: ptr MenuItem; f: proc (sender: ptr MenuItem;\n    window: ptr Window; senderData: pointer) {.cdecl.}; data: pointer)		709
+nim	menuItemChecked	uing/rawui.html#menuItemChecked,ptr.MenuItem	proc menuItemChecked(m: ptr MenuItem): cint		713
+nim	menuItemSetChecked	uing/rawui.html#menuItemSetChecked,ptr.MenuItem,cint	proc menuItemSetChecked(m: ptr MenuItem; checked: cint)		716
+nim	Menu	uing/rawui.html#Menu	object Menu		720
+nim	menu	uing/rawui.html#menu.t,untyped	template menu(this: untyped): untyped		722
+nim	menuAppendItem	uing/rawui.html#menuAppendItem,ptr.Menu,cstring	proc menuAppendItem(m: ptr Menu; name: cstring): ptr MenuItem		726
+nim	menuAppendCheckItem	uing/rawui.html#menuAppendCheckItem,ptr.Menu,cstring	proc menuAppendCheckItem(m: ptr Menu; name: cstring): ptr MenuItem		729
+nim	menuAppendQuitItem	uing/rawui.html#menuAppendQuitItem,ptr.Menu	proc menuAppendQuitItem(m: ptr Menu): ptr MenuItem		732
+nim	menuAppendPreferencesItem	uing/rawui.html#menuAppendPreferencesItem,ptr.Menu	proc menuAppendPreferencesItem(m: ptr Menu): ptr MenuItem		735
+nim	menuAppendAboutItem	uing/rawui.html#menuAppendAboutItem,ptr.Menu	proc menuAppendAboutItem(m: ptr Menu): ptr MenuItem		738
+nim	menuAppendSeparator	uing/rawui.html#menuAppendSeparator,ptr.Menu	proc menuAppendSeparator(m: ptr Menu)		741
+nim	newMenu	uing/rawui.html#newMenu,cstring	proc newMenu(name: cstring): ptr Menu		744
+nim	openFile	uing/rawui.html#openFile,ptr.Window	proc openFile(parent: ptr Window): cstring		746
+nim	openFolder	uing/rawui.html#openFolder,ptr.Window	proc openFolder(parent: ptr Window): cstring		749
+nim	saveFile	uing/rawui.html#saveFile,ptr.Window	proc saveFile(parent: ptr Window): cstring		752
+nim	msgBox	uing/rawui.html#msgBox,ptr.Window,cstring,cstring	proc msgBox(parent: ptr Window; title: cstring; description: cstring)		755
+nim	msgBoxError	uing/rawui.html#msgBoxError,ptr.Window,cstring,cstring	proc msgBoxError(parent: ptr Window; title: cstring; description: cstring)		758
+nim	Area	uing/rawui.html#Area	object Area		762
+nim	Modifiers	uing/rawui.html#Modifiers	enum Modifiers		764
+nim	ExtKey	uing/rawui.html#ExtKey	enum ExtKey		774
+nim	AreaDrawParams	uing/rawui.html#AreaDrawParams	object AreaDrawParams		814
+nim	AreaMouseEvent	uing/rawui.html#AreaMouseEvent	object AreaMouseEvent		823
+nim	AreaKeyEvent	uing/rawui.html#AreaKeyEvent	object AreaKeyEvent		834
+nim	DrawContext	uing/rawui.html#DrawContext	object DrawContext		841
+nim	AreaHandler	uing/rawui.html#AreaHandler	object AreaHandler		843
+nim	WindowResizeEdge	uing/rawui.html#WindowResizeEdge	enum WindowResizeEdge		851
+nim	area	uing/rawui.html#area.t,untyped	template area(this: untyped): untyped		862
+nim	areaSetSize	uing/rawui.html#areaSetSize,ptr.Area,cint,cint	proc areaSetSize(a: ptr Area; width: cint; height: cint)		866
+nim	areaQueueRedrawAll	uing/rawui.html#areaQueueRedrawAll,ptr.Area	proc areaQueueRedrawAll(a: ptr Area)		869
+nim	areaScrollTo	uing/rawui.html#areaScrollTo,ptr.Area,cdouble,cdouble,cdouble,cdouble	proc areaScrollTo(a: ptr Area; x: cdouble; y: cdouble; width: cdouble;\n             height: cdouble)		871
+nim	areaBeginUserWindowMove	uing/rawui.html#areaBeginUserWindowMove,ptr.Area	proc areaBeginUserWindowMove(a: ptr Area)		874
+nim	areaBeginUserWindowResize	uing/rawui.html#areaBeginUserWindowResize,ptr.Area,WindowResizeEdge	proc areaBeginUserWindowResize(a: ptr Area; edge: WindowResizeEdge)		876
+nim	newArea	uing/rawui.html#newArea,ptr.AreaHandler	proc newArea(ah: ptr AreaHandler): ptr Area		878
+nim	newScrollingArea	uing/rawui.html#newScrollingArea,ptr.AreaHandler,cint,cint	proc newScrollingArea(ah: ptr AreaHandler; width: cint; height: cint): ptr Area		880
+nim	DrawPath	uing/rawui.html#DrawPath	object DrawPath		884
+nim	DrawBrushType	uing/rawui.html#DrawBrushType	enum DrawBrushType		886
+nim	DrawLineCap	uing/rawui.html#DrawLineCap	enum DrawLineCap		892
+nim	DrawLineJoin	uing/rawui.html#DrawLineJoin	enum DrawLineJoin		897
+nim	DrawFillMode	uing/rawui.html#DrawFillMode	enum DrawFillMode		902
+nim	DrawBrush	uing/rawui.html#DrawBrush	object DrawBrush		906
+nim	DrawStrokeParams	uing/rawui.html#DrawStrokeParams	object DrawStrokeParams		921
+nim	DrawMatrix	uing/rawui.html#DrawMatrix	object DrawMatrix		930
+nim	DrawBrushGradientStop	uing/rawui.html#DrawBrushGradientStop	object DrawBrushGradientStop		938
+nim	DrawDefaultMiterLimit	uing/rawui.html#DrawDefaultMiterLimit	const DrawDefaultMiterLimit		946
+nim	drawNewPath	uing/rawui.html#drawNewPath,DrawFillMode	proc drawNewPath(fillMode: DrawFillMode): ptr DrawPath		948
+nim	drawFreePath	uing/rawui.html#drawFreePath,ptr.DrawPath	proc drawFreePath(p: ptr DrawPath)		950
+nim	drawPathNewFigure	uing/rawui.html#drawPathNewFigure,ptr.DrawPath,cdouble,cdouble	proc drawPathNewFigure(p: ptr DrawPath; x: cdouble; y: cdouble)		951
+nim	drawPathNewFigureWithArc	uing/rawui.html#drawPathNewFigureWithArc,ptr.DrawPath,cdouble,cdouble,cdouble,cdouble,cdouble,cint	proc drawPathNewFigureWithArc(p: ptr DrawPath; xCenter: cdouble; yCenter: cdouble;\n                         radius: cdouble; startAngle: cdouble; sweep: cdouble;\n                         negative: cint)		953
+nim	drawPathLineTo	uing/rawui.html#drawPathLineTo,ptr.DrawPath,cdouble,cdouble	proc drawPathLineTo(p: ptr DrawPath; x: cdouble; y: cdouble)		957
+nim	drawPathArcTo	uing/rawui.html#drawPathArcTo,ptr.DrawPath,cdouble,cdouble,cdouble,cdouble,cdouble,cint	proc drawPathArcTo(p: ptr DrawPath; xCenter: cdouble; yCenter: cdouble;\n              radius: cdouble; startAngle: cdouble; sweep: cdouble;\n              negative: cint)		960
+nim	drawPathBezierTo	uing/rawui.html#drawPathBezierTo,ptr.DrawPath,cdouble,cdouble,cdouble,cdouble,cdouble,cdouble	proc drawPathBezierTo(p: ptr DrawPath; c1x: cdouble; c1y: cdouble; c2x: cdouble;\n                 c2y: cdouble; endX: cdouble; endY: cdouble)		964
+nim	drawPathCloseFigure	uing/rawui.html#drawPathCloseFigure,ptr.DrawPath	proc drawPathCloseFigure(p: ptr DrawPath)		968
+nim	drawPathAddRectangle	uing/rawui.html#drawPathAddRectangle,ptr.DrawPath,cdouble,cdouble,cdouble,cdouble	proc drawPathAddRectangle(p: ptr DrawPath; x: cdouble; y: cdouble; width: cdouble;\n                     height: cdouble)		971
+nim	drawPathEnded	uing/rawui.html#drawPathEnded,ptr.DrawPath	proc drawPathEnded(p: ptr DrawPath): cint		974
+nim	drawPathEnd	uing/rawui.html#drawPathEnd,ptr.DrawPath	proc drawPathEnd(p: ptr DrawPath)		976
+nim	drawStroke	uing/rawui.html#drawStroke,ptr.DrawContext,ptr.DrawPath,ptr.DrawBrush,ptr.DrawStrokeParams	proc drawStroke(c: ptr DrawContext; path: ptr DrawPath; b: ptr DrawBrush;\n           p: ptr DrawStrokeParams)		977
+nim	drawFill	uing/rawui.html#drawFill,ptr.DrawContext,ptr.DrawPath,ptr.DrawBrush	proc drawFill(c: ptr DrawContext; path: ptr DrawPath; b: ptr DrawBrush)		980
+nim	drawMatrixSetIdentity	uing/rawui.html#drawMatrixSetIdentity,ptr.DrawMatrix	proc drawMatrixSetIdentity(m: ptr DrawMatrix)		983
+nim	drawMatrixTranslate	uing/rawui.html#drawMatrixTranslate,ptr.DrawMatrix,cdouble,cdouble	proc drawMatrixTranslate(m: ptr DrawMatrix; x: cdouble; y: cdouble)		985
+nim	drawMatrixScale	uing/rawui.html#drawMatrixScale,ptr.DrawMatrix,cdouble,cdouble,cdouble,cdouble	proc drawMatrixScale(m: ptr DrawMatrix; xCenter: cdouble; yCenter: cdouble;\n                x: cdouble; y: cdouble)		987
+nim	drawMatrixRotate	uing/rawui.html#drawMatrixRotate,ptr.DrawMatrix,cdouble,cdouble,cdouble	proc drawMatrixRotate(m: ptr DrawMatrix; x: cdouble; y: cdouble; amount: cdouble)		990
+nim	drawMatrixSkew	uing/rawui.html#drawMatrixSkew,ptr.DrawMatrix,cdouble,cdouble,cdouble,cdouble	proc drawMatrixSkew(m: ptr DrawMatrix; x: cdouble; y: cdouble; xamount: cdouble;\n               yamount: cdouble)		992
+nim	drawMatrixMultiply	uing/rawui.html#drawMatrixMultiply,ptr.DrawMatrix,ptr.DrawMatrix	proc drawMatrixMultiply(dest: ptr DrawMatrix; src: ptr DrawMatrix)		995
+nim	drawMatrixInvertible	uing/rawui.html#drawMatrixInvertible,ptr.DrawMatrix	proc drawMatrixInvertible(m: ptr DrawMatrix): cint		997
+nim	drawMatrixInvert	uing/rawui.html#drawMatrixInvert,ptr.DrawMatrix	proc drawMatrixInvert(m: ptr DrawMatrix): cint		999
+nim	drawMatrixTransformPoint	uing/rawui.html#drawMatrixTransformPoint,ptr.DrawMatrix,ptr.cdouble,ptr.cdouble	proc drawMatrixTransformPoint(m: ptr DrawMatrix; x: ptr cdouble; y: ptr cdouble)		1001
+nim	drawMatrixTransformSize	uing/rawui.html#drawMatrixTransformSize,ptr.DrawMatrix,ptr.cdouble,ptr.cdouble	proc drawMatrixTransformSize(m: ptr DrawMatrix; x: ptr cdouble; y: ptr cdouble)		1003
+nim	drawTransform	uing/rawui.html#drawTransform,ptr.DrawContext,ptr.DrawMatrix	proc drawTransform(c: ptr DrawContext; m: ptr DrawMatrix)		1005
+nim	drawClip	uing/rawui.html#drawClip,ptr.DrawContext,ptr.DrawPath	proc drawClip(c: ptr DrawContext; path: ptr DrawPath)		1008
+nim	drawSave	uing/rawui.html#drawSave,ptr.DrawContext	proc drawSave(c: ptr DrawContext)		1010
+nim	drawRestore	uing/rawui.html#drawRestore,ptr.DrawContext	proc drawRestore(c: ptr DrawContext)		1011
+nim	Attribute	uing/rawui.html#Attribute	object Attribute		1015
+nim	AttributedString	uing/rawui.html#AttributedString	object AttributedString		1016
+nim	AttributeType	uing/rawui.html#AttributeType	enum AttributeType		1018
+nim	freeAttribute	uing/rawui.html#freeAttribute,ptr.Attribute	proc freeAttribute(a: ptr Attribute)		1031
+nim	attributeGetType	uing/rawui.html#attributeGetType,ptr.Attribute	proc attributeGetType(a: ptr Attribute): AttributeType		1034
+nim	newFamilyAttribute	uing/rawui.html#newFamilyAttribute,cstring	proc newFamilyAttribute(family: cstring): ptr Attribute		1037
+nim	attributeFamily	uing/rawui.html#attributeFamily,ptr.Attribute	proc attributeFamily(a: ptr Attribute): cstring		1040
+nim	newSizeAttribute	uing/rawui.html#newSizeAttribute,cdouble	proc newSizeAttribute(size: cdouble): ptr Attribute		1043
+nim	attributeSize	uing/rawui.html#attributeSize,ptr.Attribute	proc attributeSize(a: ptr Attribute): cdouble		1046
+nim	TextWeight	uing/rawui.html#TextWeight	enum TextWeight		1050
+nim	TextItalic	uing/rawui.html#TextItalic	enum TextItalic		1080
+nim	newWeightAttribute	uing/rawui.html#newWeightAttribute,TextWeight	proc newWeightAttribute(weight: TextWeight): ptr Attribute		1092
+nim	attributeWeight	uing/rawui.html#attributeWeight,ptr.Attribute	proc attributeWeight(a: ptr Attribute): TextWeight		1095
+nim	newItalicAttribute	uing/rawui.html#newItalicAttribute,TextItalic	proc newItalicAttribute(italic: TextItalic): ptr Attribute		1098
+nim	attributeItalic	uing/rawui.html#attributeItalic,ptr.Attribute	proc attributeItalic(a: ptr Attribute): TextItalic		1101
+nim	TextStretch	uing/rawui.html#TextStretch	enum TextStretch		1105
+nim	newStretchAttribute	uing/rawui.html#newStretchAttribute,TextStretch	proc newStretchAttribute(stretch: TextStretch): ptr Attribute		1127
+nim	attributeStretch	uing/rawui.html#attributeStretch,ptr.Attribute	proc attributeStretch(a: ptr Attribute): TextStretch		1130
+nim	newColorAttribute	uing/rawui.html#newColorAttribute,cdouble,cdouble,cdouble,cdouble	proc newColorAttribute(r: cdouble; g: cdouble; b: cdouble; a: cdouble): ptr Attribute		1133
+nim	attributeColor	uing/rawui.html#attributeColor,ptr.Attribute,ptr.cdouble,ptr.cdouble,ptr.cdouble,ptr.cdouble	proc attributeColor(a: ptr Attribute; r: ptr cdouble; g: ptr cdouble; b: ptr cdouble;\n               alpha: ptr cdouble)		1136
+nim	newBackgroundAttribute	uing/rawui.html#newBackgroundAttribute,cdouble,cdouble,cdouble,cdouble	proc newBackgroundAttribute(r: cdouble; g: cdouble; b: cdouble; a: cdouble): ptr Attribute		1140
+nim	Underline	uing/rawui.html#Underline	enum Underline		1144
+nim	UnderlineColor	uing/rawui.html#UnderlineColor	enum UnderlineColor		1152
+nim	newUnderlineAttribute	uing/rawui.html#newUnderlineAttribute,Underline	proc newUnderlineAttribute(u: Underline): ptr Attribute		1171
+nim	attributeUnderline	uing/rawui.html#attributeUnderline,ptr.Attribute	proc attributeUnderline(a: ptr Attribute): Underline		1174
+nim	newUnderlineColorAttribute	uing/rawui.html#newUnderlineColorAttribute,UnderlineColor,cdouble,cdouble,cdouble,cdouble	proc newUnderlineColorAttribute(u: UnderlineColor; r: cdouble; g: cdouble;\n                           b: cdouble; a: cdouble): ptr Attribute		1177
+nim	attributeUnderlineColor	uing/rawui.html#attributeUnderlineColor,ptr.Attribute,ptr.UnderlineColor,ptr.cdouble,ptr.cdouble,ptr.cdouble,ptr.cdouble	proc attributeUnderlineColor(a: ptr Attribute; u: ptr UnderlineColor; r: ptr cdouble;\n                        g: ptr cdouble; b: ptr cdouble; alpha: ptr cdouble)		1181
+nim	OpenTypeFeatures	uing/rawui.html#OpenTypeFeatures	object OpenTypeFeatures		1186
+nim	OpenTypeFeaturesForEachFunc	uing/rawui.html#OpenTypeFeaturesForEachFunc	type OpenTypeFeaturesForEachFunc		1188
+nim	newOpenTypeFeatures	uing/rawui.html#newOpenTypeFeatures	proc newOpenTypeFeatures(): ptr OpenTypeFeatures		1193
+nim	freeOpenTypeFeatures	uing/rawui.html#freeOpenTypeFeatures,ptr.OpenTypeFeatures	proc freeOpenTypeFeatures(otf: ptr OpenTypeFeatures)		1196
+nim	openTypeFeaturesClone	uing/rawui.html#openTypeFeaturesClone,ptr.OpenTypeFeatures	proc openTypeFeaturesClone(otf: ptr OpenTypeFeatures): ptr OpenTypeFeatures		1199
+nim	openTypeFeaturesAdd	uing/rawui.html#openTypeFeaturesAdd,ptr.OpenTypeFeatures,char,char,char,char,uint32	proc openTypeFeaturesAdd(otf: ptr OpenTypeFeatures; a: char; b: char; c: char;\n                    d: char; value: uint32)		1202
+nim	openTypeFeaturesRemove	uing/rawui.html#openTypeFeaturesRemove,ptr.OpenTypeFeatures,char,char,char,char	proc openTypeFeaturesRemove(otf: ptr OpenTypeFeatures; a: char; b: char; c: char;\n                       d: char)		1206
+nim	openTypeFeaturesGet	uing/rawui.html#openTypeFeaturesGet,ptr.OpenTypeFeatures,char,char,char,char,ptr.uint32	proc openTypeFeaturesGet(otf: ptr OpenTypeFeatures; a: char; b: char; c: char;\n                    d: char; value: ptr uint32): cint		1209
+nim	openTypeFeaturesForEach	uing/rawui.html#openTypeFeaturesForEach,ptr.OpenTypeFeatures,OpenTypeFeaturesForEachFunc,pointer	proc openTypeFeaturesForEach(otf: ptr OpenTypeFeatures;\n                        f: OpenTypeFeaturesForEachFunc; data: pointer)		1213
+nim	newFeaturesAttribute	uing/rawui.html#newFeaturesAttribute,ptr.OpenTypeFeatures	proc newFeaturesAttribute(otf: ptr OpenTypeFeatures): ptr Attribute		1217
+nim	attributeFeatures	uing/rawui.html#attributeFeatures,ptr.Attribute	proc attributeFeatures(a: ptr Attribute): ptr OpenTypeFeatures		1220
+nim	AttributedStringForEachAttributeFunc	uing/rawui.html#AttributedStringForEachAttributeFunc	type AttributedStringForEachAttributeFunc		1224
+nim	newAttributedString	uing/rawui.html#newAttributedString,cstring	proc newAttributedString(initialString: cstring): ptr AttributedString		1228
+nim	freeAttributedString	uing/rawui.html#freeAttributedString,ptr.AttributedString	proc freeAttributedString(s: ptr AttributedString)		1231
+nim	attributedStringString	uing/rawui.html#attributedStringString,ptr.AttributedString	proc attributedStringString(s: ptr AttributedString): cstring		1234
+nim	attributedStringLen	uing/rawui.html#attributedStringLen,ptr.AttributedString	proc attributedStringLen(s: ptr AttributedString): csize_t		1237
+nim	attributedStringAppendUnattributed	uing/rawui.html#attributedStringAppendUnattributed,ptr.AttributedString,cstring	proc attributedStringAppendUnattributed(s: ptr AttributedString; str: cstring)		1240
+nim	attributedStringInsertAtUnattributed	uing/rawui.html#attributedStringInsertAtUnattributed,ptr.AttributedString,cstring,csize_t	proc attributedStringInsertAtUnattributed(s: ptr AttributedString; str: cstring;\n                                     at: csize_t)		1243
+nim	attributedStringDelete	uing/rawui.html#attributedStringDelete,ptr.AttributedString,csize_t,csize_t	proc attributedStringDelete(s: ptr AttributedString; start: csize_t; end: csize_t)		1247
+nim	attributedStringSetAttribute	uing/rawui.html#attributedStringSetAttribute,ptr.AttributedString,ptr.Attribute,csize_t,csize_t	proc attributedStringSetAttribute(s: ptr AttributedString; a: ptr Attribute;\n                             start: csize_t; end: csize_t)		1250
+nim	attributedStringForEachAttribute	uing/rawui.html#attributedStringForEachAttribute,ptr.AttributedString,AttributedStringForEachAttributeFunc,pointer	proc attributedStringForEachAttribute(s: ptr AttributedString;\n                                 f: AttributedStringForEachAttributeFunc;\n                                 data: pointer)		1254
+nim	attributedStringNumGraphemes	uing/rawui.html#attributedStringNumGraphemes,ptr.AttributedString	proc attributedStringNumGraphemes(s: ptr AttributedString): csize_t		1259
+nim	attributedStringByteIndexToGrapheme	uing/rawui.html#attributedStringByteIndexToGrapheme,ptr.AttributedString,csize_t	proc attributedStringByteIndexToGrapheme(s: ptr AttributedString; pos: csize_t): csize_t		1262
+nim	attributedStringGraphemeToByteIndex	uing/rawui.html#attributedStringGraphemeToByteIndex,ptr.AttributedString,csize_t	proc attributedStringGraphemeToByteIndex(s: ptr AttributedString; pos: csize_t): csize_t		1265
+nim	FontDescriptor	uing/rawui.html#FontDescriptor	object FontDescriptor		1269
+nim	loadControlFont	uing/rawui.html#loadControlFont,ptr.FontDescriptor	proc loadControlFont(f: ptr FontDescriptor)		1283
+nim	freeFontDescriptor	uing/rawui.html#freeFontDescriptor,ptr.FontDescriptor	proc freeFontDescriptor(desc: ptr FontDescriptor)		1285
+nim	DrawTextLayout	uing/rawui.html#DrawTextLayout	object DrawTextLayout		1289
+nim	DrawTextAlign	uing/rawui.html#DrawTextAlign	enum DrawTextAlign		1291
+nim	DrawTextLayoutParams	uing/rawui.html#DrawTextLayoutParams	object DrawTextLayoutParams		1299
+nim	drawNewTextLayout	uing/rawui.html#drawNewTextLayout,ptr.DrawTextLayoutParams	proc drawNewTextLayout(params: ptr DrawTextLayoutParams): ptr DrawTextLayout		1310
+nim	drawFreeTextLayout	uing/rawui.html#drawFreeTextLayout,ptr.DrawTextLayout	proc drawFreeTextLayout(tl: ptr DrawTextLayout)		1313
+nim	drawText	uing/rawui.html#drawText,ptr.DrawContext,ptr.DrawTextLayout,cdouble,cdouble	proc drawText(c: ptr DrawContext; tl: ptr DrawTextLayout; x: cdouble; y: cdouble)		1316
+nim	drawTextLayoutExtents	uing/rawui.html#drawTextLayoutExtents,ptr.DrawTextLayout,ptr.cdouble,ptr.cdouble	proc drawTextLayoutExtents(tl: ptr DrawTextLayout; width: ptr cdouble;\n                      height: ptr cdouble)		1319
+nim	FontButton	uing/rawui.html#FontButton	object FontButton		1324
+nim	fontButton	uing/rawui.html#fontButton.t,untyped	template fontButton(this: untyped): untyped		1326
+nim	fontButtonFont	uing/rawui.html#fontButtonFont,ptr.FontButton,ptr.FontDescriptor	proc fontButtonFont(b: ptr FontButton; desc: ptr FontDescriptor)		1330
+nim	fontButtonOnChanged	uing/rawui.html#fontButtonOnChanged,ptr.FontButton,proc(ptr.FontButton,pointer),pointer	proc fontButtonOnChanged(b: ptr FontButton; f: proc (sender: ptr FontButton;\n    senderData: pointer) {.cdecl.}; data: pointer)		1333
+nim	newFontButton	uing/rawui.html#newFontButton	proc newFontButton(): ptr FontButton		1337
+nim	freeFontButtonFont	uing/rawui.html#freeFontButtonFont,ptr.FontDescriptor	proc freeFontButtonFont(desc: ptr FontDescriptor)		1340
+nim	ColorButton	uing/rawui.html#ColorButton	object ColorButton		1344
+nim	colorButton	uing/rawui.html#colorButton.t,untyped	template colorButton(this: untyped): untyped		1346
+nim	colorButtonColor	uing/rawui.html#colorButtonColor,ptr.ColorButton,ptr.cdouble,ptr.cdouble,ptr.cdouble,ptr.cdouble	proc colorButtonColor(b: ptr ColorButton; r: ptr cdouble; g: ptr cdouble;\n                 bl: ptr cdouble; a: ptr cdouble)		1350
+nim	colorButtonSetColor	uing/rawui.html#colorButtonSetColor,ptr.ColorButton,cdouble,cdouble,cdouble,cdouble	proc colorButtonSetColor(b: ptr ColorButton; r: cdouble; g: cdouble; bl: cdouble;\n                    a: cdouble)		1354
+nim	colorButtonOnChanged	uing/rawui.html#colorButtonOnChanged,ptr.ColorButton,proc(ptr.ColorButton,pointer),pointer	proc colorButtonOnChanged(b: ptr ColorButton; f: proc (sender: ptr ColorButton;\n    senderData: pointer) {.cdecl.}; data: pointer)		1358
+nim	newColorButton	uing/rawui.html#newColorButton	proc newColorButton(): ptr ColorButton		1362
+nim	Form	uing/rawui.html#Form	object Form		1366
+nim	form	uing/rawui.html#form.t,untyped	template form(this: untyped): untyped		1368
+nim	formAppend	uing/rawui.html#formAppend,ptr.Form,cstring,ptr.Control,cint	proc formAppend(f: ptr Form; label: cstring; c: ptr Control; stretchy: cint)		1372
+nim	formNumChildren	uing/rawui.html#formNumChildren,ptr.Form	proc formNumChildren(f: ptr Form): cint		1375
+nim	formDelete	uing/rawui.html#formDelete,ptr.Form,cint	proc formDelete(f: ptr Form; index: cint)		1378
+nim	formPadded	uing/rawui.html#formPadded,ptr.Form	proc formPadded(f: ptr Form): cint		1381
+nim	formSetPadded	uing/rawui.html#formSetPadded,ptr.Form,cint	proc formSetPadded(f: ptr Form; padded: cint)		1383
+nim	newForm	uing/rawui.html#newForm	proc newForm(): ptr Form		1386
+nim	Align	uing/rawui.html#Align	enum Align		1389
+nim	At	uing/rawui.html#At	enum At		1399
+nim	Grid	uing/rawui.html#Grid	object Grid		1411
+nim	grid	uing/rawui.html#grid.t,untyped	template grid(this: untyped): untyped		1413
+nim	gridAppend	uing/rawui.html#gridAppend,ptr.Grid,ptr.Control,cint,cint,cint,cint,cint,Align,cint,Align	proc gridAppend(g: ptr Grid; c: ptr Control; left: cint; top: cint; xspan: cint;\n           yspan: cint; hexpand: cint; halign: Align; vexpand: cint;\n           valign: Align)		1417
+nim	gridInsertAt	uing/rawui.html#gridInsertAt,ptr.Grid,ptr.Control,ptr.Control,At,cint,cint,cint,Align,cint,Align	proc gridInsertAt(g: ptr Grid; c: ptr Control; existing: ptr Control; at: At;\n             xspan: cint; yspan: cint; hexpand: cint; halign: Align;\n             vexpand: cint; valign: Align)		1421
+nim	gridPadded	uing/rawui.html#gridPadded,ptr.Grid	proc gridPadded(g: ptr Grid): cint		1425
+nim	gridSetPadded	uing/rawui.html#gridSetPadded,ptr.Grid,cint	proc gridSetPadded(g: ptr Grid; padded: cint)		1427
+nim	newGrid	uing/rawui.html#newGrid	proc newGrid(): ptr Grid		1430
+nim	Image	uing/rawui.html#Image	object Image		1433
+nim	newImage	uing/rawui.html#newImage,cdouble,cdouble	proc newImage(width: cdouble; height: cdouble): ptr Image		1435
+nim	freeImage	uing/rawui.html#freeImage,ptr.Image	proc freeImage(i: ptr Image)		1438
+nim	imageAppend	uing/rawui.html#imageAppend,ptr.Image,pointer,cint,cint,cint	proc imageAppend(i: ptr Image; pixels: pointer; pixelWidth: cint; pixelHeight: cint;\n            byteStride: cint)		1440
+nim	TableValueType	uing/rawui.html#TableValueType	enum TableValueType		1444
+nim	Color	uing/rawui.html#Color	object Color		1452
+nim	TableValueInner	uing/rawui.html#TableValueInner	object TableValueInner		1458
+nim	TableValue	uing/rawui.html#TableValue	object TableValue		1464
+nim	freeTableValue	uing/rawui.html#freeTableValue,ptr.TableValue	proc freeTableValue(v: ptr TableValue)		1469
+nim	tableValueGetType	uing/rawui.html#tableValueGetType,ptr.TableValue	proc tableValueGetType(v: ptr TableValue): TableValueType		1472
+nim	newTableValueString	uing/rawui.html#newTableValueString,cstring	proc newTableValueString(str: cstring): ptr TableValue		1475
+nim	tableValueString	uing/rawui.html#tableValueString,ptr.TableValue	proc tableValueString(v: ptr TableValue): cstring		1478
+nim	newTableValueImage	uing/rawui.html#newTableValueImage,ptr.Image	proc newTableValueImage(img: ptr Image): ptr TableValue		1481
+nim	tableValueImage	uing/rawui.html#tableValueImage,ptr.TableValue	proc tableValueImage(v: ptr TableValue): ptr Image		1484
+nim	newTableValueInt	uing/rawui.html#newTableValueInt,cint	proc newTableValueInt(i: cint): ptr TableValue		1487
+nim	tableValueInt	uing/rawui.html#tableValueInt,ptr.TableValue	proc tableValueInt(v: ptr TableValue): cint		1490
+nim	newTableValueColor	uing/rawui.html#newTableValueColor,cdouble,cdouble,cdouble,cdouble	proc newTableValueColor(r: cdouble; g: cdouble; b: cdouble; a: cdouble): ptr TableValue		1493
+nim	tableValueColor	uing/rawui.html#tableValueColor,ptr.TableValue,ptr.cdouble,ptr.cdouble,ptr.cdouble,ptr.cdouble	proc tableValueColor(v: ptr TableValue; r: ptr cdouble; g: ptr cdouble;\n                b: ptr cdouble; a: ptr cdouble)		1496
+nim	SortIndicator	uing/rawui.html#SortIndicator	enum SortIndicator		1501
+nim	TableModel	uing/rawui.html#TableModel	type TableModel		1507
+nim	TableModelHandler	uing/rawui.html#TableModelHandler	object TableModelHandler		1510
+nim	newTableModel	uing/rawui.html#newTableModel,ptr.TableModelHandler	proc newTableModel(mh: ptr TableModelHandler): ptr TableModel		1559
+nim	freeTableModel	uing/rawui.html#freeTableModel,ptr.TableModel	proc freeTableModel(m: ptr TableModel)		1562
+nim	tableModelRowInserted	uing/rawui.html#tableModelRowInserted,ptr.TableModel,cint	proc tableModelRowInserted(m: ptr TableModel; newIndex: cint)		1565
+nim	tableModelRowChanged	uing/rawui.html#tableModelRowChanged,ptr.TableModel,cint	proc tableModelRowChanged(m: ptr TableModel; index: cint)		1568
+nim	tableModelRowDeleted	uing/rawui.html#tableModelRowDeleted,ptr.TableModel,cint	proc tableModelRowDeleted(m: ptr TableModel; oldIndex: cint)		1571
+nim	TableModelColumnNeverEditable	uing/rawui.html#TableModelColumnNeverEditable	const TableModelColumnNeverEditable		1575
+nim	TableModelColumnAlwaysEditable	uing/rawui.html#TableModelColumnAlwaysEditable	const TableModelColumnAlwaysEditable		1578
+nim	Table	uing/rawui.html#Table	object Table		1582
+nim	TableTextColumnOptionalParams	uing/rawui.html#TableTextColumnOptionalParams	object TableTextColumnOptionalParams		1584
+nim	TableParams	uing/rawui.html#TableParams	object TableParams		1589
+nim	table	uing/rawui.html#table.t,untyped	template table(this: untyped): untyped		1603
+nim	tableAppendTextColumn	uing/rawui.html#tableAppendTextColumn,ptr.Table,cstring,cint,cint,ptr.TableTextColumnOptionalParams	proc tableAppendTextColumn(t: ptr Table; name: cstring; textModelColumn: cint;\n                      textEditableModelColumn: cint;\n                      textParams: ptr TableTextColumnOptionalParams)		1607
+nim	tableAppendImageColumn	uing/rawui.html#tableAppendImageColumn,ptr.Table,cstring,cint	proc tableAppendImageColumn(t: ptr Table; name: cstring; imageModelColumn: cint)		1612
+nim	tableAppendImageTextColumn	uing/rawui.html#tableAppendImageTextColumn,ptr.Table,cstring,cint,cint,cint,ptr.TableTextColumnOptionalParams	proc tableAppendImageTextColumn(t: ptr Table; name: cstring; imageModelColumn: cint;\n                           textModelColumn: cint; textEditableModelColumn: cint;\n                           textParams: ptr TableTextColumnOptionalParams)		1615
+nim	tableAppendCheckboxColumn	uing/rawui.html#tableAppendCheckboxColumn,ptr.Table,cstring,cint,cint	proc tableAppendCheckboxColumn(t: ptr Table; name: cstring;\n                          checkboxModelColumn: cint;\n                          checkboxEditableModelColumn: cint)		1621
+nim	tableAppendCheckboxTextColumn	uing/rawui.html#tableAppendCheckboxTextColumn,ptr.Table,cstring,cint,cint,cint,cint,ptr.TableTextColumnOptionalParams	proc tableAppendCheckboxTextColumn(t: ptr Table; name: cstring;\n                              checkboxModelColumn: cint;\n                              checkboxEditableModelColumn: cint;\n                              textModelColumn: cint;\n                              textEditableModelColumn: cint;\n                              textParams: ptr TableTextColumnOptionalParams)		1626
+nim	tableAppendProgressBarColumn	uing/rawui.html#tableAppendProgressBarColumn,ptr.Table,cstring,cint	proc tableAppendProgressBarColumn(t: ptr Table; name: cstring;\n                             progressModelColumn: cint)		1633
+nim	tableAppendButtonColumn	uing/rawui.html#tableAppendButtonColumn,ptr.Table,cstring,cint,cint	proc tableAppendButtonColumn(t: ptr Table; name: cstring; buttonModelColumn: cint;\n                        buttonClickableModelColumn: cint)		1637
+nim	tableHeaderVisible	uing/rawui.html#tableHeaderVisible,ptr.Table	proc tableHeaderVisible(t: ptr Table): cint		1641
+nim	tableHeaderSetVisible	uing/rawui.html#tableHeaderSetVisible,ptr.Table,cint	proc tableHeaderSetVisible(t: ptr Table; visible: cint)		1644
+nim	newTable	uing/rawui.html#newTable,ptr.TableParams	proc newTable(params: ptr TableParams): ptr Table		1647
+nim	tableOnRowClicked	uing/rawui.html#tableOnRowClicked,ptr.Table,proc(ptr.Table,cint,pointer),pointer	proc tableOnRowClicked(t: ptr Table;\n                  f: proc (t: ptr Table; row: cint; data: pointer) {.cdecl.};\n                  data: pointer)		1650
+nim	tableOnRowDoubleClicked	uing/rawui.html#tableOnRowDoubleClicked,ptr.Table,proc(ptr.Table,cint,pointer),pointer	proc tableOnRowDoubleClicked(t: ptr Table; f: proc (t: ptr Table; row: cint;\n    data: pointer) {.cdecl.}; data: pointer)		1653
+nim	tableHeaderSetSortIndicator	uing/rawui.html#tableHeaderSetSortIndicator,ptr.Table,cint,SortIndicator	proc tableHeaderSetSortIndicator(t: ptr Table; column: cint; indicator: SortIndicator)		1657
+nim	tableHeaderSortIndicator	uing/rawui.html#tableHeaderSortIndicator,ptr.Table,cint	proc tableHeaderSortIndicator(t: ptr Table; column: cint): SortIndicator		1660
+nim	tableHeaderOnClicked	uing/rawui.html#tableHeaderOnClicked,ptr.Table,proc(ptr.Table,cint,pointer),pointer	proc tableHeaderOnClicked(t: ptr Table; f: proc (sender: ptr Table; column: cint;\n    senderData: pointer) {.cdecl.}; data: pointer)		1663
+nim	tableColumnWidth	uing/rawui.html#tableColumnWidth,ptr.Table,cint	proc tableColumnWidth(t: ptr Table; column: cint): cint		1667
+nim	tableColumnSetWidth	uing/rawui.html#tableColumnSetWidth,ptr.Table,cint,cint	proc tableColumnSetWidth(t: ptr Table; column: cint; width: cint)		1670
+nim	TableColumnType	uing/rawui.html#TableColumnType	type TableColumnType		1674
+nim	TableSelectionMode	uing/rawui.html#TableSelectionMode	enum TableSelectionMode		1675
+nim	TableSelection	uing/rawui.html#TableSelection	object TableSelection		1695
+nim	tableGetSelectionMode	uing/rawui.html#tableGetSelectionMode,ptr.Table	proc tableGetSelectionMode(t: ptr Table): TableSelectionMode		1701
+nim	tableSetSelectionMode	uing/rawui.html#tableSetSelectionMode,ptr.Table,TableSelectionMode	proc tableSetSelectionMode(t: ptr Table; mode: TableSelectionMode)		1704
+nim	tableOnSelectionChanged	uing/rawui.html#tableOnSelectionChanged,ptr.Table,proc(ptr.Table,pointer),pointer	proc tableOnSelectionChanged(t: ptr Table;\n                        f: proc (t: ptr Table; data: pointer) {.cdecl.};\n                        data: pointer)		1707
+nim	tableGetSelection	uing/rawui.html#tableGetSelection,ptr.Table	proc tableGetSelection(t: ptr Table): ptr TableSelection		1712
+nim	tableSetSelection	uing/rawui.html#tableSetSelection,ptr.Table,ptr.TableSelection	proc tableSetSelection(t: ptr Table; sel: ptr TableSelection)		1715
+nim	freeTableSelection	uing/rawui.html#freeTableSelection,ptr.TableSelection	proc freeTableSelection(s: ptr TableSelection)		1718
