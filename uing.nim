@@ -131,7 +131,7 @@ proc timer*(milliseconds: int; fun: proc (): bool) =
 
   rawui.timer(cint milliseconds, wrapTimerProc, cast[pointer](fn))
 
-proc free*(str: string) = rawui.freeText(str)
+proc free*(str: cstring) = rawui.freeText(str)
   ## Free the memory of a returned string.
   ##
   ## Every time a string is returned from libui, this method should be called.
@@ -401,8 +401,9 @@ proc free*(a: AttributedString) =
 proc `$`*(s: AttributedString): string =
   ## Returns the textual content of `s` as a string.
   
-  result = $attributedStringString(s.impl) 
-  free result
+  var cstr = attributedStringString(s.impl)
+  result = $cstr
+  free cstr
 
 proc len*(s: AttributedString): int =
   ## Returns the number of UTF-8 bytes in the textual content of `s`
@@ -535,8 +536,9 @@ proc family*(a: Attribute): string =
   ## .. error:: It is an error to call this on a
   ##        `Attribute` that does not hold a font family.
 
-  result = $attributeFamily(a.impl)
-  free result
+  var cstr = attributeFamily(a.impl)
+  result = $cstr
+  free cstr
 
 proc newSizeAttribute*(size: float): Attribute =
   ## Creates a new `Attribute` that changes the
@@ -940,8 +942,9 @@ genImplProcs(Button)
 proc text*(b: Button): string =
   ## Returns the button label text.
   
-  result = $buttonText(b.impl)
-  free result
+  var cstr = buttonText(b.impl)
+  result = $cstr
+  free cstr
 
 proc `text=`*(b: Button; text: string) =
   ## Sets the button label text.
@@ -1040,8 +1043,9 @@ proc title*(w: Window): string =
   ## 
   ## :w: Window instance.
 
-  result = $windowTitle(w.impl)
-  free result
+  var cstr = windowTitle(w.impl)
+  result = $cstr
+  free cstr
 
 proc `title=`*(w: Window; text: string) =
   ## Returns the window title.
@@ -1412,8 +1416,9 @@ proc text*(c: Checkbox): string =
   ## 
   ## :c: Checkbox instance.
 
-  result = $checkboxText(c.impl)
-  free result
+  var cstr = checkboxText(c.impl)
+  result = $cstr
+  free cstr
 
 proc `text=`*(c: Checkbox; text: string) = 
   ## Sets the checkbox label text.
@@ -1466,8 +1471,9 @@ proc text*(e: Entry): string =
   ## 
   ## :e: Entry instance.
   
-  result = $entryText(e.impl)
-  free result
+  var cstr = entryText(e.impl)
+  result = $cstr
+  free cstr
 
 proc `text=`*(e: Entry; text: string) = 
   ## Sets the entry's text.
@@ -1555,8 +1561,9 @@ proc text*(l: Label): string =
   ## 
   ## :l: Lable Instance
   
-  result = $labelText(l.impl)
-  free result
+  var cstr = labelText(l.impl)
+  result = $cstr
+  free cstr
 
 proc `text=`*(l: Label; text: string) = 
   ## Sets the label text.
@@ -1675,8 +1682,9 @@ proc title*(g: Group): string =
   ## 
   ## :g: Group instance.
 
-  result = $groupTitle(g.impl)
-  free result
+  var cstr = groupTitle(g.impl)
+  result = $cstr
+  free cstr
 
 proc `title=`*(g: Group; title: string) =
   ## Sets the group title.
@@ -2079,8 +2087,9 @@ proc text*(c: EditableCombobox): string =
   ## 
   ## :c: Combobox instance.
 
-  result = $editableComboboxText(c.impl)
-  free result
+  var cstr = editableComboboxText(c.impl)
+  result = $cstr
+  free cstr
 
 proc `text=`*(c: EditableCombobox; text: string) =
   ## Sets the text of the editable combo box.
@@ -2129,9 +2138,10 @@ proc text*(e: MultilineEntry): string =
   ## Returns the multi line entry's text.
   ## 
   ## :e: MultilineEntry instance
-  
-  result = $multilineEntryText(e.impl)
-  free result
+
+  var cstr = multilineEntryText(e.impl)
+  result = $cstr
+  free cstr
 
 proc `text=`*(e: MultilineEntry; text: string) = 
   ## Sets the multi line entry's text.
