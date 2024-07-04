@@ -94,7 +94,7 @@ else:
       {.passL: "-lcomctl32".}
       {.passL: "-ld2d1".}
       {.passL: "-ldwrite".}
-      {.passL: "-luxTheme".}
+      {.passL: "-luxtheme".}
       {.passL: "-lusp10".}
       {.passL: "-lgdi32".}
       {.passL: "-luser32".}
