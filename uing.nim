@@ -401,9 +401,9 @@ proc free*(a: AttributedString) =
 proc `$`*(s: AttributedString): string =
   ## Returns the textual content of `s` as a string.
   
-  var cstr = attributedStringString(s.impl)
+  let cstr = attributedStringString(s.impl)
   result = $cstr
-  free cstr
+  if cstr != nil: freeText(cstr)
 
 proc len*(s: AttributedString): int =
   ## Returns the number of UTF-8 bytes in the textual content of `s`
@@ -536,9 +536,9 @@ proc family*(a: Attribute): string =
   ## .. error:: It is an error to call this on a
   ##        `Attribute` that does not hold a font family.
 
-  var cstr = attributeFamily(a.impl)
+  let cstr = attributeFamily(a.impl)
   result = $cstr
-  free cstr
+  if cstr != nil: freeText(cstr)
 
 proc newSizeAttribute*(size: float): Attribute =
   ## Creates a new `Attribute` that changes the
@@ -942,9 +942,9 @@ genImplProcs(Button)
 proc text*(b: Button): string =
   ## Returns the button label text.
   
-  var cstr = buttonText(b.impl)
+  let cstr = buttonText(b.impl)
   result = $cstr
-  free cstr
+  if cstr != nil: freeText(cstr)
 
 proc `text=`*(b: Button; text: string) =
   ## Sets the button label text.
@@ -1043,9 +1043,9 @@ proc title*(w: Window): string =
   ## 
   ## :w: Window instance.
 
-  var cstr = windowTitle(w.impl)
+  let cstr = windowTitle(w.impl)
   result = $cstr
-  free cstr
+  if cstr != nil: freeText(cstr)
 
 proc `title=`*(w: Window; text: string) =
   ## Returns the window title.
@@ -1218,9 +1218,9 @@ proc openFile*(parent: Window): string =
   ## 
   ## :parent: Parent window.
   
-  let x = openFile(parent.impl)
-  result = $x
-  if x != nil: freeText(x)
+  let cstr = openFile(parent.impl)
+  result = $cstr
+  if cstr != nil: freeText(cstr)
 
 proc openFolder*(parent: Window): string =
   ## Folder chooser dialog window to select a single file. Returns
@@ -1231,9 +1231,9 @@ proc openFolder*(parent: Window): string =
   ## 
   ## :parent: Parent window.
 
-  let x = openFolder(parent.impl)
-  result = $x
-  if x != nil: freeText(x)
+  let cstr = openFolder(parent.impl)
+  result = $cstr
+  if cstr != nil: freeText(cstr)
 
 proc saveFile*(parent: Window): string =
   ## Save file dialog window. Returns the selected file path.
@@ -1246,9 +1246,9 @@ proc saveFile*(parent: Window): string =
   ## 
   ## :parent: Parent window.
 
-  let x = saveFile(parent.impl)
-  result = $x
-  if x != nil: freeText(x)
+  let cstr = saveFile(parent.impl)
+  result = $cstr
+  if cstr != nil: freeText(cstr)
 
 proc msgBox*(parent: Window; title, desc: string) =
   ## Message box dialog window.
@@ -1416,9 +1416,9 @@ proc text*(c: Checkbox): string =
   ## 
   ## :c: Checkbox instance.
 
-  var cstr = checkboxText(c.impl)
+  let cstr = checkboxText(c.impl)
   result = $cstr
-  free cstr
+  if cstr != nil: freeText(cstr)
 
 proc `text=`*(c: Checkbox; text: string) = 
   ## Sets the checkbox label text.
@@ -1471,9 +1471,9 @@ proc text*(e: Entry): string =
   ## 
   ## :e: Entry instance.
   
-  var cstr = entryText(e.impl)
+  let cstr = entryText(e.impl)
   result = $cstr
-  free cstr
+  if cstr != nil: freeText(cstr)
 
 proc `text=`*(e: Entry; text: string) = 
   ## Sets the entry's text.
@@ -1561,9 +1561,9 @@ proc text*(l: Label): string =
   ## 
   ## :l: Lable Instance
   
-  var cstr = labelText(l.impl)
+  let cstr = labelText(l.impl)
   result = $cstr
-  free cstr
+  if cstr != nil: freeText(cstr)
 
 proc `text=`*(l: Label; text: string) = 
   ## Sets the label text.
@@ -1682,9 +1682,9 @@ proc title*(g: Group): string =
   ## 
   ## :g: Group instance.
 
-  var cstr = groupTitle(g.impl)
+  let cstr = groupTitle(g.impl)
   result = $cstr
-  free cstr
+  if cstr != nil: freeText(cstr)
 
 proc `title=`*(g: Group; title: string) =
   ## Sets the group title.
@@ -2087,9 +2087,9 @@ proc text*(c: EditableCombobox): string =
   ## 
   ## :c: Combobox instance.
 
-  var cstr = editableComboboxText(c.impl)
+  let cstr = editableComboboxText(c.impl)
   result = $cstr
-  free cstr
+  if cstr != nil: freeText(cstr)
 
 proc `text=`*(c: EditableCombobox; text: string) =
   ## Sets the text of the editable combo box.
@@ -2139,9 +2139,9 @@ proc text*(e: MultilineEntry): string =
   ## 
   ## :e: MultilineEntry instance
 
-  var cstr = multilineEntryText(e.impl)
+  let cstr = multilineEntryText(e.impl)
   result = $cstr
-  free cstr
+  if cstr != nil: freeText(cstr)
 
 proc `text=`*(e: MultilineEntry; text: string) = 
   ## Sets the multi line entry's text.
@@ -2866,7 +2866,9 @@ proc `$`*(v: TableValue): string =
   if v.type != TableValueTypeString:
     raise newException(ValueError, "Invalid TableValue kind. Must be `TableValueTypeString`, not " & $v.type)
 
-  $rawui.tableValueString(v.impl)
+  let cstr = rawui.tableValueString(v.impl)
+  result = $cstr
+  if cstr != nil: freeText(cstr)
 
 proc newTableValue*(img: Image): TableValue = 
   ## Creates a new table value to store an image.
