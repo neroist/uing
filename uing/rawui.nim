@@ -1441,6 +1441,14 @@ proc imageAppend*(i: ptr Image; pixels: pointer; pixelWidth: cint; pixelHeight: 
                  byteStride: cint) {.cdecl, importc: "uiImageAppend", libui.}
 
 type
+  Scroll* = object of Control
+
+proc newScroll*(): ptr Scroll {.cdecl, importc: "uiNewScroll", libui.}
+
+proc scrollSetChild*(scroll: ptr Scroll, ctl: ptr Control) {.cdecl,
+    importc: "uiScrollSetChild", libui.}
+
+type
   TableValueType* {.size: sizeof(cint).} = enum
     ## `TableValue <#TableValue>`_ types.
 
