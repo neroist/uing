@@ -2188,6 +2188,7 @@ proc newMultilineEntry*(onchanged: proc(sender: MultilineEntry) = nil): Multilin
   
   newFinal result
   result.impl = rawui.newMultilineEntry()
+  result.onchanged = onchanged
   multilineEntryOnChanged(result.impl, wrapmeOnchanged, cast[pointer](result))
 
 proc newNonWrappingMultilineEntry*(onchanged: proc(sender: MultilineEntry) = nil): MultilineEntry =
@@ -2198,6 +2199,7 @@ proc newNonWrappingMultilineEntry*(onchanged: proc(sender: MultilineEntry) = nil
 
   newFinal result
   result.impl = rawui.newNonWrappingMultilineEntry()
+  result.onchanged = onchanged
   multilineEntryOnChanged(result.impl, wrapmeOnchanged, cast[pointer](result))
 
 # ---------------------- MenuItem ---------------------------------------
