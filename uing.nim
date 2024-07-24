@@ -2701,9 +2701,12 @@ type
     ## The system will automatically determine the correct image to render depending
     ## on the screen's pixel density.
     ## 
-    ## Image only supports premultiplied 32-bit RGBA images.
+    ## `Image` only supports premultiplied 32-bit RGBA images.
     ## 
     ## No image file loading or image format conversion utilities are provided.
+    ## 
+    ## .. important:: `Image` is only a container format for using with tables
+    ##                See libui-ng issue #229: https://github.com/libui-ng/libui-ng/issues/229
 
 genImplProcs(Image)
 
@@ -2736,6 +2739,9 @@ proc newImage*(width, height: float): Image =
   ## 
   ## :width: Width in points.
   ## :height: Height in points.
+  ## 
+  ## .. important:: To reduce confusion, please read the notice in the
+  ##                documentation for `Image`_
 
   newFinal result
   result.impl = rawui.newImage(width.cdouble, height.cdouble)
