@@ -1,0 +1,443 @@
+nimTitle	uing	uing.html	module uing		0
+nim	Widget	uing.html#Widget	type Widget		16
+nim	impl	uing.html#impl,Widget	proc impl(w: Widget): ptr [Control]		19
+nim	init	uing.html#init	proc init()		22
+nim	uninit	uing.html#uninit	proc uninit()		35
+nim	quit	uing.html#quit	proc quit()		42
+nim	quitAll	uing.html#quitAll,int	proc quitAll(errorcode: int = QuitSuccess)		47
+nim	mainLoop	uing.html#mainLoop	proc mainLoop()		53
+nim	pollingMainLoop	uing.html#pollingMainLoop,proc(int),int	proc pollingMainLoop(poll: proc (timeout: int); timeout: int)		57
+nim	queueMain	uing.html#queueMain,proc(pointer),pointer	proc queueMain(f: proc (data: pointer) {.cdecl.}; data: pointer)		102
+nim	mainSteps	uing.html#mainSteps	proc mainSteps()		105
+nim	mainStep	uing.html#mainStep,int	proc mainStep(wait: int): bool		108
+nim	timer	uing.html#timer,int,proc)	proc timer(milliseconds: int; fun: proc (): bool)		118
+nim	free	uing.html#free,cstring	proc free(str: cstring)		134
+nim	loadControlFont	uing.html#loadControlFont,ptr.FontDescriptor	proc loadControlFont(f: ptr FontDescriptor)		143
+nim	free	uing.html#free,ptr.FontDescriptor	proc free(f: ptr FontDescriptor)		146
+nim	Area	uing.html#Area	type Area		154
+nim	impl	uing.html#impl,Area	proc impl(b: Area): RawArea		85
+nim	impl=	uing.html#impl=,Area,RawArea	proc impl=(b: Area; r: RawArea)		167
+nim	size=	uing.html#size=,Area,tuple[int,int]	proc size=(a: Area; size: tuple[width, height: int])		169
+nim	queueRedrawAll	uing.html#queueRedrawAll,Area	proc queueRedrawAll(a: Area)		172
+nim	beginUserWindowMove	uing.html#beginUserWindowMove,Area	proc beginUserWindowMove(a: Area)		175
+nim	beginUserWindowResize	uing.html#beginUserWindowResize,Area,WindowResizeEdge	proc beginUserWindowResize(a: Area; edge: WindowResizeEdge)		178
+nim	scrollTo	uing.html#scrollTo,Area,float,float,float,float	proc scrollTo(a: Area; x, y, width, height: float)		181
+nim	handler	uing.html#handler,Area	proc handler(a: Area): ptr AreaHandler		184
+nim	newArea	uing.html#newArea,ptr.AreaHandler	proc newArea(ah: ptr AreaHandler): Area		187
+nim	newScrollingArea	uing.html#newScrollingArea,ptr.AreaHandler,int,int	proc newScrollingArea(ah: ptr AreaHandler; width, height: int): Area		192
+nim	DrawPath	uing.html#DrawPath	type DrawPath		203
+nim	impl	uing.html#impl,DrawPath	proc impl(b: DrawPath): RawDrawPath		85
+nim	impl=	uing.html#impl=,DrawPath,RawDrawPath	proc impl=(b: DrawPath; r: RawDrawPath)		216
+nim	newDrawPath	uing.html#newDrawPath,DrawFillMode	proc newDrawPath(fillMode: DrawFillMode): DrawPath		218
+nim	free	uing.html#free,DrawPath	proc free(p: DrawPath)		222
+nim	newFigure	uing.html#newFigure,DrawPath,float,float	proc newFigure(p: DrawPath; x: float; y: float)		224
+nim	newFigureWithArc	uing.html#newFigureWithArc,DrawPath,float,float,float,float,float,int	proc newFigureWithArc(p: DrawPath;\n                 xCenter, yCenter, radius, startAngle, sweep: float;\n                 negative: int)		226
+nim	lineTo	uing.html#lineTo,DrawPath,float,float	proc lineTo(p: DrawPath; x, y: float)		237
+nim	arcTo	uing.html#arcTo,DrawPath,float,float,float,float,float,int	proc arcTo(p: DrawPath; xCenter, yCenter, radius, startAngle, sweep: float;\n      negative: int)		240
+nim	bezierTo	uing.html#bezierTo,DrawPath,float,float,float,float,float,float	proc bezierTo(p: DrawPath; c1x, c1y, c2x, c2y, endX, endY: float)		251
+nim	closeFigure	uing.html#closeFigure,DrawPath	proc closeFigure(p: DrawPath)		262
+nim	addRectangle	uing.html#addRectangle,DrawPath,float,float,float,float	proc addRectangle(p: DrawPath; x, y, width, height: float)		264
+nim	ended	uing.html#ended,DrawPath	proc ended(p: DrawPath): bool		267
+nim	`end`	uing.html#end,DrawPath	proc `end`(p: DrawPath)		270
+nim	stroke	uing.html#stroke,ptr.DrawContext,DrawPath,ptr.DrawBrush,ptr.DrawStrokeParams	proc stroke(c: ptr DrawContext; path: DrawPath; b: ptr DrawBrush;\n       p: ptr DrawStrokeParams)		273
+nim	fill	uing.html#fill,ptr.DrawContext,DrawPath,ptr.DrawBrush	proc fill(c: ptr DrawContext; path: DrawPath; b: ptr DrawBrush)		276
+nim	transform	uing.html#transform,ptr.DrawContext,ptr.DrawMatrix	proc transform(c: ptr DrawContext; m: ptr DrawMatrix)		279
+nim	setIdentity	uing.html#setIdentity,ptr.DrawMatrix	proc setIdentity(m: ptr DrawMatrix)		282
+nim	translate	uing.html#translate,ptr.DrawMatrix,float,float	proc translate(m: ptr DrawMatrix; x, y: float)		285
+nim	scale	uing.html#scale,ptr.DrawMatrix,float,float,float,float	proc scale(m: ptr DrawMatrix; xCenter, yCenter, x, y: float)		288
+nim	rotate	uing.html#rotate,ptr.DrawMatrix,float,float,float	proc rotate(m: ptr DrawMatrix; x, y, amount: float)		291
+nim	skew	uing.html#skew,ptr.DrawMatrix,float,float,float,float	proc skew(m: ptr DrawMatrix; x, y, xamount, yamount: float)		294
+nim	multiply	uing.html#multiply,ptr.DrawMatrix,ptr.DrawMatrix	proc multiply(dest, src: ptr DrawMatrix)		297
+nim	invertible	uing.html#invertible,ptr.DrawMatrix	proc invertible(m: ptr DrawMatrix): bool		300
+nim	invert	uing.html#invert,ptr.DrawMatrix	proc invert(m: ptr DrawMatrix): int		303
+nim	transformPoint	uing.html#transformPoint,ptr.DrawMatrix	proc transformPoint(m: ptr DrawMatrix): tuple[x, y: float]		306
+nim	transformSize	uing.html#transformSize,ptr.DrawMatrix	proc transformSize(m: ptr DrawMatrix): tuple[x, y: float]		312
+nim	clip	uing.html#clip,ptr.DrawContext,DrawPath	proc clip(c: ptr DrawContext; path: DrawPath)		318
+nim	save	uing.html#save,ptr.DrawContext	proc save(c: ptr DrawContext)		321
+nim	restore	uing.html#restore,ptr.DrawContext	proc restore(c: ptr DrawContext)		324
+nim	Attribute	uing.html#Attribute	type Attribute		330
+nim	AttributedString	uing.html#AttributedString	type AttributedString		343
+nim	impl	uing.html#impl,Attribute	proc impl(b: Attribute): RawAttribute		85
+nim	impl=	uing.html#impl=,Attribute,RawAttribute	proc impl=(b: Attribute; r: RawAttribute)		385
+nim	impl	uing.html#impl,AttributedString	proc impl(b: AttributedString): RawAttributedString		85
+nim	impl=	uing.html#impl=,AttributedString,RawAttributedString	proc impl=(b: AttributedString; r: RawAttributedString)		386
+nim	newAttributedString	uing.html#newAttributedString,string	proc newAttributedString(initialString: string): AttributedString		388
+nim	free	uing.html#free,AttributedString	proc free(a: AttributedString)		395
+nim	`$`	uing.html#$,AttributedString	proc `$`(s: AttributedString): string		401
+nim	len	uing.html#len,AttributedString	proc len(s: AttributedString): int		408
+nim	addUnattributed	uing.html#addUnattributed,AttributedString,string	proc addUnattributed(s: AttributedString; str: string)		413
+nim	insertAtUnattributed	uing.html#insertAtUnattributed,AttributedString,string,int	proc insertAtUnattributed(s: AttributedString; str: string; at: int)		419
+nim	delete	uing.html#delete,AttributedString,int,int	proc delete(s: AttributedString; start, end: int)		426
+nim	setAttribute	uing.html#setAttribute,AttributedString,Attribute,int,int	proc setAttribute(s: AttributedString; a: Attribute; start, end: int)		432
+nim	addWithAttributes	uing.html#addWithAttributes,AttributedString,string,varargs[Attribute]	proc addWithAttributes(s: AttributedString; str: string; attrs: varargs[Attribute])		439
+nim	addWithAttributes	uing.html#addWithAttributes,AttributedString,string,openArray[Attribute]	proc addWithAttributes(s: AttributedString; str: string; attrs: openArray[Attribute])		452
+nim	forEachAttribute	uing.html#forEachAttribute,AttributedString,proc(AttributedString,Attribute,int,int)	proc forEachAttribute(str: AttributedString; fun: proc (s: AttributedString;\n    a: Attribute; start, end: int): ForEach)		485
+nim	numGraphemes	uing.html#numGraphemes,AttributedString	proc numGraphemes(s: AttributedString): int		497
+nim	byteIndexToGrapheme	uing.html#byteIndexToGrapheme,AttributedString,int	proc byteIndexToGrapheme(s: AttributedString; pos: int): int		500
+nim	graphemeToByteIndex	uing.html#graphemeToByteIndex,AttributedString,int	proc graphemeToByteIndex(s: AttributedString; pos: int): int		503
+nim	free	uing.html#free,Attribute	proc free(a: Attribute)		508
+nim	getType	uing.html#getType,Attribute	proc getType(a: Attribute): AttributeType		520
+nim	newFamilyAttribute	uing.html#newFamilyAttribute,string	proc newFamilyAttribute(family: string): Attribute		525
+nim	family	uing.html#family,Attribute	proc family(a: Attribute): string		533
+nim	newSizeAttribute	uing.html#newSizeAttribute,float	proc newSizeAttribute(size: float): Attribute		543
+nim	size	uing.html#size,Attribute	proc size(a: Attribute): float		550
+nim	newWeightAttribute	uing.html#newWeightAttribute,TextWeight	proc newWeightAttribute(weight: TextWeight): Attribute		561
+nim	weight	uing.html#weight,Attribute	proc weight(a: Attribute): TextWeight		568
+nim	newItalicAttribute	uing.html#newItalicAttribute,TextItalic	proc newItalicAttribute(italic: TextItalic): Attribute		576
+nim	italic	uing.html#italic,Attribute	proc italic(a: Attribute): TextItalic		583
+nim	newStretchAttribute	uing.html#newStretchAttribute,TextStretch	proc newStretchAttribute(stretch: TextStretch): Attribute		594
+nim	stretch	uing.html#stretch,Attribute	proc stretch(a: Attribute): TextStretch		601
+nim	newColorAttribute	uing.html#newColorAttribute,float,float,float,float	proc newColorAttribute(r, g, b: float; a: float = 1.0): Attribute		609
+nim	newColorAttribute	uing.html#newColorAttribute,Color,float	proc newColorAttribute(color: Color; a: float = 1.0): Attribute		618
+nim	color	uing.html#color,Attribute	proc color(a: Attribute): tuple[r, g, b, alpha: float]		629
+nim	newBackgroundColorAttribute	uing.html#newBackgroundColorAttribute,float,float,float,float	proc newBackgroundColorAttribute(r, g, b: float; a: float = 1.0): Attribute		640
+nim	newBackgroundColorAttribute	uing.html#newBackgroundColorAttribute,Color,float	proc newBackgroundColorAttribute(color: Color; a: float = 1.0): Attribute		649
+nim	newUnderlineAttribute	uing.html#newUnderlineAttribute,Underline	proc newUnderlineAttribute(u: Underline): Attribute		662
+nim	underline	uing.html#underline,Attribute	proc underline(a: Attribute): Underline		669
+nim	newUnderlineColorAttribute	uing.html#newUnderlineColorAttribute,UnderlineColor,float,float,float,float	proc newUnderlineColorAttribute(u: UnderlineColor; r = 0.0; g = 0.0; b = 0.0;\n                           a: float = 0.0): Attribute		678
+nim	newUnderlineColorAttribute	uing.html#newUnderlineColorAttribute,UnderlineColor,Color,float	proc newUnderlineColorAttribute(u: UnderlineColor; color: Color; a: float = 0.0): Attribute		689
+nim	underlineColor	uing.html#underlineColor,Attribute	proc underlineColor(a: Attribute): tuple[u: UnderlineColor, r, g, b, alpha: float]		702
+nim	OpenTypeFeatures	uing.html#OpenTypeFeatures	type OpenTypeFeatures		718
+nim	impl	uing.html#impl,OpenTypeFeatures	proc impl(b: OpenTypeFeatures): RawOpenTypeFeatures		85
+nim	impl=	uing.html#impl=,OpenTypeFeatures,RawOpenTypeFeatures	proc impl=(b: OpenTypeFeatures; r: RawOpenTypeFeatures)		739
+nim	newOpenTypeFeatures	uing.html#newOpenTypeFeatures	proc newOpenTypeFeatures(): OpenTypeFeatures		741
+nim	free	uing.html#free,OpenTypeFeatures	proc free(otf: OpenTypeFeatures)		747
+nim	clone	uing.html#clone,OpenTypeFeatures	proc clone(otf: OpenTypeFeatures): OpenTypeFeatures		752
+nim	add	uing.html#add,OpenTypeFeatures,char,char,char,char,uint32	proc add(otf: OpenTypeFeatures; a, b, c, d: char; value: uint32)		759
+nim	add	uing.html#add,OpenTypeFeatures,string,	proc add(otf: OpenTypeFeatures; abcd: string; value: uint32 | bool)		767
+nim	remove	uing.html#remove,OpenTypeFeatures,char,char,char,char	proc remove(otf: OpenTypeFeatures; a, b, c, d: char)		777
+nim	remove	uing.html#remove,OpenTypeFeatures,string	proc remove(otf: OpenTypeFeatures; abcd: string)		783
+nim	get	uing.html#get,OpenTypeFeatures,char,char,char,char,int	proc get(otf: OpenTypeFeatures; a, b, c, d: char; value: var int): bool		793
+nim	get	uing.html#get,OpenTypeFeatures,string,int	proc get(otf: OpenTypeFeatures; abcd: string; value: var int): bool		812
+nim	forEach	uing.html#forEach,OpenTypeFeatures,proc(OpenTypeFeatures,string,int)	proc forEach(otf: OpenTypeFeatures;\n        f: proc (otf: OpenTypeFeatures; abcd: string; value: int): ForEach)		840
+nim	newFeaturesAttribute	uing.html#newFeaturesAttribute,OpenTypeFeatures	proc newFeaturesAttribute(otf: OpenTypeFeatures): Attribute		852
+nim	features	uing.html#features,Attribute	proc features(a: Attribute): OpenTypeFeatures		860
+nim	DrawTextLayout	uing.html#DrawTextLayout	type DrawTextLayout		872
+nim	impl	uing.html#impl,DrawTextLayout	proc impl(b: DrawTextLayout): RawDrawTextLayout		85
+nim	impl=	uing.html#impl=,DrawTextLayout,RawDrawTextLayout	proc impl=(b: DrawTextLayout; r: RawDrawTextLayout)		895
+nim	newDrawTextLayout	uing.html#newDrawTextLayout,ptr.DrawTextLayoutParams	proc newDrawTextLayout(params: ptr DrawTextLayoutParams): DrawTextLayout		897
+nim	free	uing.html#free,DrawTextLayout	proc free(tl: DrawTextLayout)		903
+nim	drawText	uing.html#drawText,ptr.DrawContext,DrawTextLayout,tuple[float,float]	proc drawText(c: ptr DrawContext; tl: DrawTextLayout; point: tuple[x, y: float])		908
+nim	extents	uing.html#extents,DrawTextLayout	proc extents(tl: DrawTextLayout): tuple[width, height: float]		913
+nim	Button	uing.html#Button	type Button		932
+nim	impl	uing.html#impl,Button	proc impl(b: Button): RawButton		85
+nim	impl=	uing.html#impl=,Button,RawButton	proc impl=(b: Button; r: RawButton)		940
+nim	text	uing.html#text,Button	proc text(b: Button): string		942
+nim	text=	uing.html#text=,Button,string	proc text=(b: Button; text: string)		949
+nim	newButton	uing.html#newButton,string,proc(Button)	proc newButton(text: string; onclick: proc (sender: Button) = nil): Button		957
+nim	RadioButtons	uing.html#RadioButtons	type RadioButtons		971
+nim	impl	uing.html#impl,RadioButtons	proc impl(b: RadioButtons): RawRadioButtons		85
+nim	impl=	uing.html#impl=,RadioButtons,RawRadioButtons	proc impl=(b: RadioButtons; r: RawRadioButtons)		977
+nim	add	uing.html#add,RadioButtons,varargs[string,]	proc add(r: RadioButtons; items: varargs[string, `$`])		979
+nim	selected	uing.html#selected,RadioButtons	proc selected(r: RadioButtons): int		989
+nim	selected=	uing.html#selected=,RadioButtons,int	proc selected=(r: RadioButtons; index: int)		996
+nim	newRadioButtons	uing.html#newRadioButtons,openArray[string],proc(RadioButtons)	proc newRadioButtons(items: openArray[string] = [];\n                onselected: proc (sender: RadioButtons) = nil): RadioButtons		1006
+nim	Window	uing.html#Window	type Window		1022
+nim	impl	uing.html#impl,Window	proc impl(b: Window): RawWindow		85
+nim	impl=	uing.html#impl=,Window,RawWindow	proc impl=(b: Window; r: RawWindow)		1039
+nim	title	uing.html#title,Window	proc title(w: Window): string		1041
+nim	title=	uing.html#title=,Window,string	proc title=(w: Window; text: string)		1050
+nim	position	uing.html#position,Window	proc position(w: Window): tuple[x, y: int]		1060
+nim	position=	uing.html#position=,Window,tuple[int,int]	proc position=(w: Window; pos: tuple[x, y: int])		1075
+nim	contentSize	uing.html#contentSize,Window	proc contentSize(window: Window): tuple[width, height: int]		1088
+nim	contentSize=	uing.html#contentSize=,Window,tuple[int,int]	proc contentSize=(window: Window; size: tuple[width, height: int])		1100
+nim	fullscreen	uing.html#fullscreen,Window	proc fullscreen(w: Window): bool		1113
+nim	fullscreen=	uing.html#fullscreen=,Window,bool	proc fullscreen=(w: Window; fullscreen: bool)		1120
+nim	focused	uing.html#focused,Window	proc focused(w: Window): bool		1130
+nim	borderless	uing.html#borderless,Window	proc borderless(w: Window): bool		1137
+nim	borderless=	uing.html#borderless=,Window,bool	proc borderless=(w: Window; borderless: bool)		1144
+nim	resizeable	uing.html#resizeable,Window	proc resizeable(w: Window): bool		1154
+nim	resizeable=	uing.html#resizeable=,Window,bool	proc resizeable=(w: Window; resizeable: bool)		1161
+nim	margined	uing.html#margined,Window	proc margined(w: Window): bool		1171
+nim	margined=	uing.html#margined=,Window,bool	proc margined=(w: Window; margined: bool)		1178
+nim	child	uing.html#child,Window	proc child(w: Window): Widget		1187
+nim	child=	uing.html#child=,Window,Widget	proc child=(w: Window; child: Widget)		1194
+nim	setChild	uing.html#setChild,Window,Widget	proc setChild(w: Window; child: Widget)		1203
+nim	openFile	uing.html#openFile,Window	proc openFile(parent: Window): string		1212
+nim	openFolder	uing.html#openFolder,Window	proc openFolder(parent: Window): string		1225
+nim	saveFile	uing.html#saveFile,Window	proc saveFile(parent: Window): string		1238
+nim	msgBox	uing.html#msgBox,Window,string,string	proc msgBox(parent: Window; title, desc: string)		1253
+nim	msgBoxError	uing.html#msgBoxError,Window,string,string	proc msgBoxError(parent: Window; title, desc: string)		1264
+nim	error	uing.html#error,Window,string,string	proc error(parent: Window; title, desc: string)		1276
+nim	newWindow	uing.html#newWindow,string,int,int,bool,proc(Window)	proc newWindow(title: string; width, height: int; hasMenubar: bool = false;\n          onfocuschanged: proc (sender: Window) = nil): Window		1296
+nim	Box	uing.html#Box	type Box		1320
+nim	impl	uing.html#impl,Box	proc impl(b: Box): RawBox		85
+nim	impl=	uing.html#impl=,Box,RawBox	proc impl=(b: Box; r: RawBox)		1328
+nim	add	uing.html#add,Box,Widget	proc add(b: Box; child: Widget; stretchy = false)		1330
+nim	add	uing.html#add,Box,openArray[Widget]	proc add(c: Box; items: openArray[Widget]; stretchy = false)		1343
+nim	delete	uing.html#delete,Box,int	proc delete(b: Box; index: int)		1349
+nim	padded	uing.html#padded,Box	proc padded(b: Box): bool		1360
+nim	padded=	uing.html#padded=,Box,bool	proc padded=(b: Box; padded: bool)		1369
+nim	newHorizontalBox	uing.html#newHorizontalBox	proc newHorizontalBox(padded = false): Box		1380
+nim	newVerticalBox	uing.html#newVerticalBox	proc newVerticalBox(padded = false): Box		1392
+nim	Checkbox	uing.html#Checkbox	type Checkbox		1407
+nim	impl	uing.html#impl,Checkbox	proc impl(b: Checkbox): RawCheckbox		85
+nim	impl=	uing.html#impl=,Checkbox,RawCheckbox	proc impl=(b: Checkbox; r: RawCheckbox)		1412
+nim	text	uing.html#text,Checkbox	proc text(c: Checkbox): string		1414
+nim	text=	uing.html#text=,Checkbox,string	proc text=(c: Checkbox; text: string)		1423
+nim	checked	uing.html#checked,Checkbox	proc checked(c: Checkbox): bool		1433
+nim	checked=	uing.html#checked=,Checkbox,bool	proc checked=(c: Checkbox; checked: bool)		1440
+nim	newCheckbox	uing.html#newCheckbox,string,proc(Checkbox)	proc newCheckbox(text: string; ontoggled: proc (sender: Checkbox) = nil): Checkbox		1448
+nim	Entry	uing.html#Entry	type Entry		1462
+nim	impl	uing.html#impl,Entry	proc impl(b: Entry): RawEntry		85
+nim	impl=	uing.html#impl=,Entry,RawEntry	proc impl=(b: Entry; r: RawEntry)		1467
+nim	text	uing.html#text,Entry	proc text(e: Entry): string		1469
+nim	text=	uing.html#text=,Entry,string	proc text=(e: Entry; text: string)		1478
+nim	clear	uing.html#clear,Entry	proc clear(e: Entry)		1486
+nim	readOnly	uing.html#readOnly,Entry	proc readOnly(e: Entry): bool		1493
+nim	readOnly=	uing.html#readOnly=,Entry,bool	proc readOnly=(e: Entry; readOnly: bool)		1500
+nim	newEntry	uing.html#newEntry,string,proc(Entry)	proc newEntry(text: string = ""; onchanged: proc (sender: Entry) = nil): Entry		1510
+nim	newPasswordEntry	uing.html#newPasswordEntry,string,proc(Entry)	proc newPasswordEntry(text: string = ""; onchanged: proc (sender: Entry) = nil): Entry		1522
+nim	newSearchEntry	uing.html#newSearchEntry,string,proc(Entry)	proc newSearchEntry(text: string = ""; onchanged: proc (sender: Entry) = nil): Entry		1536
+nim	Label	uing.html#Label	type Label		1554
+nim	impl	uing.html#impl,Label	proc impl(b: Label): RawLabel		85
+nim	impl=	uing.html#impl=,Label,RawLabel	proc impl=(b: Label; r: RawLabel)		1557
+nim	text	uing.html#text,Label	proc text(l: Label): string		1559
+nim	text=	uing.html#text=,Label,string	proc text=(l: Label; text: string)		1568
+nim	newLabel	uing.html#newLabel,string	proc newLabel(text: string = ""): Label		1576
+nim	Tab	uing.html#Tab	type Tab		1587
+nim	impl	uing.html#impl,Tab	proc impl(b: Tab): RawTab		85
+nim	impl=	uing.html#impl=,Tab,RawTab	proc impl=(b: Tab; r: RawTab)		1595
+nim	add	uing.html#add,Tab,string,Widget	proc add(t: Tab; name: string; w: Widget)		1597
+nim	insertAt	uing.html#insertAt,Tab,string,int,Widget	proc insertAt(t: Tab; name: string; index: int; w: Widget)		1607
+nim	delete	uing.html#delete,Tab,int	proc delete(t: Tab; index: int)		1618
+nim	margined	uing.html#margined,Tab,int	proc margined(t: Tab; index: int): bool		1629
+nim	setMargined	uing.html#setMargined,Tab,int,bool	proc setMargined(t: Tab; index: int; margined: bool)		1637
+nim	setAllTabsMargined	uing.html#setAllTabsMargined,Tab,bool	proc setAllTabsMargined(t: Tab; margined: bool = true)		1648
+nim	newTab	uing.html#newTab	proc newTab(): Tab		1657
+nim	Group	uing.html#Group	type Group		1667
+nim	impl	uing.html#impl,Group	proc impl(b: Group): RawGroup		85
+nim	impl=	uing.html#impl=,Group,RawGroup	proc impl=(b: Group; r: RawGroup)		1678
+nim	title	uing.html#title,Group	proc title(g: Group): string		1680
+nim	title=	uing.html#title=,Group,string	proc title=(g: Group; title: string)		1689
+nim	child	uing.html#child,Group	proc child(g: Group): Widget		1697
+nim	child=	uing.html#child=,Group,Widget	proc child=(g: Group; c: Widget)		1704
+nim	margined	uing.html#margined,Group	proc margined(g: Group): bool		1717
+nim	margined=	uing.html#margined=,Group,bool	proc margined=(g: Group; margined: bool)		1724
+nim	newGroup	uing.html#newGroup,string,bool	proc newGroup(title: string; margined: bool = false): Group		1734
+nim	Spinbox	uing.html#Spinbox	type Spinbox		1747
+nim	impl	uing.html#impl,Spinbox	proc impl(b: Spinbox): RawSpinbox		85
+nim	impl=	uing.html#impl=,Spinbox,RawSpinbox	proc impl=(b: Spinbox; r: RawSpinbox)		1761
+nim	value	uing.html#value,Spinbox	proc value(s: Spinbox): int		1763
+nim	value=	uing.html#value=,Spinbox,int	proc value=(s: Spinbox; value: int)		1770
+nim	newSpinbox	uing.html#newSpinbox,Slice[SomeInteger],proc(Spinbox)	proc newSpinbox(range: Slice[SomeInteger]; onchanged: proc (sender: Spinbox) = nil): Spinbox		1782
+nim	newSpinbox	uing.html#newSpinbox,int,int,proc(Spinbox)	proc newSpinbox(min, max: int; onchanged: proc (sender: Spinbox) = nil): Spinbox		1798
+nim	Slider	uing.html#Slider	type Slider		1818
+nim	impl	uing.html#impl,Slider	proc impl(b: Slider): RawSlider		85
+nim	impl=	uing.html#impl=,Slider,RawSlider	proc impl=(b: Slider; r: RawSlider)		1831
+nim	value	uing.html#value,Slider	proc value(s: Slider): int		1833
+nim	value=	uing.html#value=,Slider,int	proc value=(s: Slider; value: int)		1840
+nim	hasToolTip	uing.html#hasToolTip,Slider	proc hasToolTip(s: Slider): bool		1848
+nim	hasToolTip=	uing.html#hasToolTip=,Slider,bool	proc hasToolTip=(s: Slider; hasToolTip: bool)		1855
+nim	range=	uing.html#range=,Slider,Slice[SomeInteger]	proc range=(s: Slider; sliderRange: Slice[SomeInteger])		1864
+nim	newSlider	uing.html#newSlider,Slice[SomeInteger],proc(Slider)	proc newSlider(range: Slice[SomeInteger]; onchanged: proc (sender: Slider) = nil): Slider		1876
+nim	newSlider	uing.html#newSlider,int,int,proc(Slider)	proc newSlider(min, max: int; onchanged: proc (sender: Slider) = nil): Slider		1893
+nim	ProgressBar	uing.html#ProgressBar	type ProgressBar		1914
+nim	impl	uing.html#impl,ProgressBar	proc impl(b: ProgressBar): RawProgressBar		85
+nim	impl=	uing.html#impl=,ProgressBar,RawProgressBar	proc impl=(b: ProgressBar; r: RawProgressBar)		1919
+nim	value	uing.html#value,ProgressBar	proc value(p: ProgressBar): int		1921
+nim	value=	uing.html#value=,ProgressBar,	proc value=(p: ProgressBar; n: -1 .. 100)		1928
+nim	newProgressBar	uing.html#newProgressBar,bool	proc newProgressBar(indeterminate: bool = false): ProgressBar		1942
+nim	Separator	uing.html#Separator	type Separator		1957
+nim	impl	uing.html#impl,Separator	proc impl(b: Separator): RawSeparator		85
+nim	impl=	uing.html#impl=,Separator,RawSeparator	proc impl=(b: Separator; r: RawSeparator)		1960
+nim	newVerticalSeparator	uing.html#newVerticalSeparator	proc newVerticalSeparator(): Separator		1962
+nim	newHorizontalSeparator	uing.html#newHorizontalSeparator	proc newHorizontalSeparator(): Separator		1968
+nim	Combobox	uing.html#Combobox	type Combobox		1977
+nim	impl	uing.html#impl,Combobox	proc impl(b: Combobox): RawCombobox		85
+nim	impl=	uing.html#impl=,Combobox,RawCombobox	proc impl=(b: Combobox; r: RawCombobox)		1983
+nim	add	uing.html#add,Combobox,varargs[string,]	proc add(c: Combobox; items: varargs[string, `$`])		1985
+nim	insertAt	uing.html#insertAt,Combobox,int,string	proc insertAt(c: Combobox; index: int; text: string)		1995
+nim	clear	uing.html#clear,Combobox	proc clear(c: Combobox)		2006
+nim	delete	uing.html#delete,Combobox,int	proc delete(c: Combobox; index: int)		2014
+nim	selected	uing.html#selected,Combobox	proc selected(c: Combobox): int		2026
+nim	selected=	uing.html#selected=,Combobox,int	proc selected=(c: Combobox; index: int)		2033
+nim	newCombobox	uing.html#newCombobox,openArray[string],proc(Combobox)	proc newCombobox(items: openArray[string] = [];\n            onselected: proc (sender: Combobox) = nil): Combobox		2043
+nim	EditableCombobox	uing.html#EditableCombobox	type EditableCombobox		2060
+nim	impl	uing.html#impl,EditableCombobox	proc impl(b: EditableCombobox): RawEditableCombobox		85
+nim	impl=	uing.html#impl=,EditableCombobox,RawEditableCombobox	proc impl=(b: EditableCombobox; r: RawEditableCombobox)		2070
+nim	add	uing.html#add,EditableCombobox,varargs[string,]	proc add(c: EditableCombobox; items: varargs[string, `$`])		2072
+nim	text	uing.html#text,EditableCombobox	proc text(c: EditableCombobox): string		2082
+nim	text=	uing.html#text=,EditableCombobox,string	proc text=(c: EditableCombobox; text: string)		2094
+nim	clear	uing.html#clear,EditableCombobox	proc clear(e: EditableCombobox)		2105
+nim	newEditableCombobox	uing.html#newEditableCombobox,openArray[string],proc(EditableCombobox)	proc newEditableCombobox(items: openArray[string] = [];\n                    onchanged: proc (sender: EditableCombobox) = nil): EditableCombobox		2114
+nim	MultilineEntry	uing.html#MultilineEntry	type MultilineEntry		2130
+nim	impl	uing.html#impl,MultilineEntry	proc impl(b: MultilineEntry): RawMultilineEntry		85
+nim	impl=	uing.html#impl=,MultilineEntry,RawMultilineEntry	proc impl=(b: MultilineEntry; r: RawMultilineEntry)		2135
+nim	text	uing.html#text,MultilineEntry	proc text(e: MultilineEntry): string		2137
+nim	text=	uing.html#text=,MultilineEntry,string	proc text=(e: MultilineEntry; text: string)		2146
+nim	clear	uing.html#clear,MultilineEntry	proc clear(e: MultilineEntry)		2154
+nim	add	uing.html#add,MultilineEntry,string	proc add(e: MultilineEntry; text: string)		2161
+nim	readOnly	uing.html#readOnly,MultilineEntry	proc readOnly(e: MultilineEntry): bool		2169
+nim	readOnly=	uing.html#readOnly=,MultilineEntry,bool	proc readOnly=(e: MultilineEntry; readOnly: bool)		2176
+nim	newMultilineEntry	uing.html#newMultilineEntry,proc(MultilineEntry)	proc newMultilineEntry(onchanged: proc (sender: MultilineEntry) = nil): MultilineEntry		2186
+nim	newNonWrappingMultilineEntry	uing.html#newNonWrappingMultilineEntry,proc(MultilineEntry)	proc newNonWrappingMultilineEntry(onchanged: proc (sender: MultilineEntry) = nil): MultilineEntry		2194
+nim	MenuItem	uing.html#MenuItem	type MenuItem		2208
+nim	impl	uing.html#impl,MenuItem	proc impl(b: MenuItem): RawMenuItem		85
+nim	impl=	uing.html#impl=,MenuItem,RawMenuItem	proc impl=(b: MenuItem; r: RawMenuItem)		2213
+nim	enable	uing.html#enable,MenuItem	proc enable(m: MenuItem)		2215
+nim	disable	uing.html#disable,MenuItem	proc disable(m: MenuItem)		2222
+nim	checked	uing.html#checked,MenuItem	proc checked(m: MenuItem): bool		2239
+nim	checked=	uing.html#checked=,MenuItem,bool	proc checked=(m: MenuItem; checked: bool)		2248
+nim	Menu	uing.html#Menu	type Menu		2261
+nim	impl	uing.html#impl,Menu	proc impl(b: Menu): RawMenu		85
+nim	impl=	uing.html#impl=,Menu,RawMenu	proc impl=(b: Menu; r: RawMenu)		2288
+nim	addItem	uing.html#addItem,Menu,string,proc(MenuItem,Window)	proc addItem(m: Menu; name: string;\n        onclicked: proc (sender: MenuItem; window: Window) = nil): MenuItem		2296
+nim	addCheckItem	uing.html#addCheckItem,Menu,string,proc(MenuItem,Window)	proc addCheckItem(m: Menu; name: string;\n             onclicked: proc (sender: MenuItem; window: Window) = nil): MenuItem		2306
+nim	addQuitItem	uing.html#addQuitItem,Menu,proc)	proc addQuitItem(m: Menu; shouldQuit: proc (): bool): MenuItem		2330
+nim	addPreferencesItem	uing.html#addPreferencesItem,Menu,proc(MenuItem,Window)	proc addPreferencesItem(m: Menu;\n                   onclicked: proc (sender: MenuItem; window: Window) = nil): MenuItem		2347
+nim	addAboutItem	uing.html#addAboutItem,Menu,proc(MenuItem,Window)	proc addAboutItem(m: Menu; onclicked: proc (sender: MenuItem; window: Window) = nil): MenuItem		2358
+nim	addSeparator	uing.html#addSeparator,Menu	proc addSeparator(m: Menu)		2371
+nim	newMenu	uing.html#newMenu,string	proc newMenu(name: string): Menu		2378
+nim	FontButton	uing.html#FontButton	type FontButton		2396
+nim	impl	uing.html#impl,FontButton	proc impl(b: FontButton): RawFontButton		85
+nim	impl=	uing.html#impl=,FontButton,RawFontButton	proc impl=(b: FontButton; r: RawFontButton)		2401
+nim	font	uing.html#font,FontButton	proc font(f: FontButton): FontDescriptor		2403
+nim	freeFont	uing.html#freeFont,ptr.FontDescriptor	proc freeFont(desc: ptr FontDescriptor)		2413
+nim	newFontButton	uing.html#newFontButton,proc(FontButton)	proc newFontButton(onchanged: proc (sender: FontButton) = nil): FontButton		2428
+nim	ColorButton	uing.html#ColorButton	type ColorButton		2443
+nim	impl	uing.html#impl,ColorButton	proc impl(b: ColorButton): RawColorButton		85
+nim	impl=	uing.html#impl=,ColorButton,RawColorButton	proc impl=(b: ColorButton; r: RawColorButton)		2453
+nim	color	uing.html#color,ColorButton	proc color(c: ColorButton): tuple[r, g, b, a: float]		2455
+nim	setColor	uing.html#setColor,ColorButton,float,float,float,float	proc setColor(c: ColorButton; r, g, b: float; alpha: float = 1.0)		2465
+nim	color=	uing.html#color=,ColorButton,Color	proc color=(c: ColorButton; color: Color)		2476
+nim	newColorButton	uing.html#newColorButton,proc(ColorButton)	proc newColorButton(onchanged: proc (sender: ColorButton) = nil): ColorButton		2490
+nim	newColorButton	uing.html#newColorButton,Color,proc(ColorButton)	proc newColorButton(color: Color; onchanged: proc (sender: ColorButton) = nil): ColorButton		2500
+nim	newColorButton	uing.html#newColorButton,float,float,float,float,proc(ColorButton)	proc newColorButton(r, g, b: float; alpha: float = 1.0;\n               onchanged: proc (sender: ColorButton) = nil): ColorButton		2512
+nim	Form	uing.html#Form	type Form		2530
+nim	impl	uing.html#impl,Form	proc impl(b: Form): RawForm		85
+nim	impl=	uing.html#impl=,Form,RawForm	proc impl=(b: Form; r: RawForm)		2543
+nim	add	uing.html#add,Form,string,Widget,bool	proc add(f: Form; label: string; w: Widget; stretchy: bool = false)		2545
+nim	delete	uing.html#delete,Form,int	proc delete(f: Form; index: int)		2559
+nim	padded	uing.html#padded,Form	proc padded(f: Form): bool		2570
+nim	padded=	uing.html#padded=,Form,bool	proc padded=(f: Form; padded: bool)		2579
+nim	newForm	uing.html#newForm,bool	proc newForm(padded: bool = false): Form		2590
+nim	Grid	uing.html#Grid	type Grid		2602
+nim	impl	uing.html#impl,Grid	proc impl(b: Grid): RawGrid		85
+nim	impl=	uing.html#impl=,Grid,RawGrid	proc impl=(b: Grid; r: RawGrid)		2623
+nim	add	uing.html#add,Grid,Widget,int,int,int,int,bool,Align,bool,Align	proc add(g: Grid; w: Widget; left, top, xspan, yspan: int; hexpand: bool;\n    halign: Align; vexpand: bool; valign: Align)		2625
+nim	insertAt	uing.html#insertAt,Grid,Widget,Widget,At,int,int,int,int,bool,Align,bool,Align	proc insertAt(g: Grid; w, existing: Widget; at: At; left, top, xspan, yspan: int;\n         hexpand: bool; halign: Align; vexpand: bool; valign: Align)		2642
+nim	padded	uing.html#padded,Grid	proc padded(g: Grid): bool		2659
+nim	padded=	uing.html#padded=,Grid,bool	proc padded=(g: Grid; padded: bool)		2668
+nim	newGrid	uing.html#newGrid,bool	proc newGrid(padded: bool = false): Grid		2679
+nim	Image	uing.html#Image	type Image		2691
+nim	impl	uing.html#impl,Image	proc impl(b: Image): RawImage		85
+nim	impl=	uing.html#impl=,Image,RawImage	proc impl=(b: Image; r: RawImage)		2711
+nim	add	uing.html#add,Image,pointer,int,int,int	proc add(i: Image; pixels: pointer; pixelWidth: int; pixelHeight: int;\n    byteStride: int)		2713
+nim	free	uing.html#free,Image	proc free(i: Image)		2727
+nim	newImage	uing.html#newImage,float,float	proc newImage(width, height: float): Image		2734
+nim	Table	uing.html#Table	type Table		2765
+nim	TableValue	uing.html#TableValue	type TableValue		2788
+nim	TableModel	uing.html#TableModel	type TableModel		2795
+nim	impl	uing.html#impl,Table	proc impl(b: Table): RawTable		85
+nim	impl=	uing.html#impl=,Table,RawTable	proc impl=(b: Table; r: RawTable)		2816
+nim	impl	uing.html#impl,TableValue	proc impl(b: TableValue): RawTableValue		85
+nim	impl=	uing.html#impl=,TableValue,RawTableValue	proc impl=(b: TableValue; r: RawTableValue)		2817
+nim	impl	uing.html#impl,TableModel	proc impl(b: TableModel): RawTableModel		85
+nim	impl=	uing.html#impl=,TableModel,RawTableModel	proc impl=(b: TableModel; r: RawTableModel)		2818
+nim	free	uing.html#free,TableValue	proc free(t: TableValue)		2820
+nim	free	uing.html#free,TableModel	proc free(t: TableModel)		2835
+nim	free	uing.html#free,ptr.TableSelection	proc free(t: ptr TableSelection)		2845
+nim	`type`	uing.html#type,TableValue	proc `type`(v: TableValue): TableValueType		2852
+nim	newTableValue	uing.html#newTableValue,string	proc newTableValue(str: string): TableValue		2859
+nim	`$`	uing.html#$,TableValue	proc `$`(v: TableValue): string		2867
+nim	newTableValue	uing.html#newTableValue,Image	proc newTableValue(img: Image): TableValue		2881
+nim	image	uing.html#image,TableValue	proc image(v: TableValue): Image		2897
+nim	newTableValue	uing.html#newTableValue	proc newTableValue(i: int | bool): TableValue		2913
+nim	getInt	uing.html#getInt,TableValue	proc getInt(v: TableValue): int		2926
+nim	newTableValue	uing.html#newTableValue,float,float,float,float	proc newTableValue(r, g, b: float; a: float = 1.0): TableValue		2938
+nim	newTableValue	uing.html#newTableValue,Color,float	proc newTableValue(color: Color; a: float = 1.0): TableValue		2949
+nim	color	uing.html#color,TableValue	proc color(v: TableValue): tuple[r, g, b, a: float]		2961
+nim	newTableModel	uing.html#newTableModel,ptr.TableModelHandler	proc newTableModel(mh: ptr TableModelHandler): TableModel		2979
+nim	rowInserted	uing.html#rowInserted,TableModel,int	proc rowInserted(m: TableModel; newIndex: int)		2987
+nim	rowChanged	uing.html#rowChanged,TableModel,int	proc rowChanged(m: TableModel; index: int)		3000
+nim	rowDeleted	uing.html#rowDeleted,TableModel,int	proc rowDeleted(m: TableModel; oldIndex: int)		3011
+nim	addTextColumn	uing.html#addTextColumn,Table,string,int,int,ptr.TableTextColumnOptionalParams	proc addTextColumn(t: Table; name: string;\n              textModelColumn, textEditableModelColumn: int;\n              textParams: ptr TableTextColumnOptionalParams = nil)		3024
+nim	addImageColumn	uing.html#addImageColumn,Table,string,int	proc addImageColumn(table: Table; title: string; index: int)		3037
+nim	addCheckboxTextColumn	uing.html#addCheckboxTextColumn,Table,string,int,int,int,int,ptr.TableTextColumnOptionalParams	proc addCheckboxTextColumn(t: Table; name: string; checkboxModelColumn,\n    checkboxEditableModelColumn, textModelColumn, textEditableModelColumn: int;\n                      textParams: ptr TableTextColumnOptionalParams = nil)		3049
+nim	addImageTextColumn	uing.html#addImageTextColumn,Table,string,int,int,int,ptr.TableTextColumnOptionalParams	proc addImageTextColumn(t: Table; name: string;\n                   imageIndex, textIndex, editableMode: int;\n                   textParams: ptr TableTextColumnOptionalParams)		3074
+nim	addCheckboxColumn	uing.html#addCheckboxColumn,Table,string,int,int	proc addCheckboxColumn(table: Table; title: string; index, editableMode: int)		3091
+nim	addProgressBarColumn	uing.html#addProgressBarColumn,Table,string,int	proc addProgressBarColumn(table: Table; title: string; index: int)		3103
+nim	addButtonColumn	uing.html#addButtonColumn,Table,string,int,int	proc addButtonColumn(table: Table; title: string; index, clickableMode: int)		3116
+nim	headerVisible	uing.html#headerVisible,Table	proc headerVisible(t: Table): bool		3133
+nim	headerVisible=	uing.html#headerVisible=,Table,bool	proc headerVisible=(t: Table; visible: bool)		3140
+nim	selectionMode	uing.html#selectionMode,Table	proc selectionMode(table: Table): TableSelectionMode		3148
+nim	selectionMode=	uing.html#selectionMode=,Table,TableSelectionMode	proc selectionMode=(table: Table; mode: TableSelectionMode)		3155
+nim	columnWidth	uing.html#columnWidth,Table,int	proc columnWidth(table: Table; column: int): int		3166
+nim	setColumnWidth	uing.html#setColumnWidth,Table,int,int	proc setColumnWidth(table: Table; column, width: int)		3174
+nim	sortIndicator	uing.html#sortIndicator,Table,int	proc sortIndicator(table: Table; column: int): SortIndicator		3188
+nim	setSortIndicator	uing.html#setSortIndicator,Table,int,SortIndicator	proc setSortIndicator(table: Table; column: int; indicator: SortIndicator)		3196
+nim	selection	uing.html#selection,Table	proc selection(table: Table): seq[int]		3211
+nim	selection=	uing.html#selection=,Table,openArray[int]	proc selection=(table: Table; sel: openArray[int])		3234
+nim	newTable	uing.html#newTable,ptr.TableParams	proc newTable(params: ptr TableParams): Table		3270
+nim	show	uing.html#show,SomeWidget	proc show[SomeWidget: Widget](w: SomeWidget)		3285
+nim	hide	uing.html#hide,SomeWidget	proc hide[SomeWidget: Widget](w: SomeWidget)		3290
+nim	enabled	uing.html#enabled,SomeWidget	proc enabled[SomeWidget: Widget](w: SomeWidget): bool		3295
+nim	enable	uing.html#enable,SomeWidget	proc enable[SomeWidget: Widget and not MenuItem](w: SomeWidget)		3302
+nim	disable	uing.html#disable,SomeWidget	proc disable[SomeWidget: Widget and not MenuItem](w: SomeWidget)		3307
+nim	destroy	uing.html#destroy,SomeWidget	proc destroy[SomeWidget: Widget](w: SomeWidget)		3312
+nim	parent	uing.html#parent,SomeWidget	proc parent[SomeWidget: Widget and not Window](w: SomeWidget): Widget		3322
+nim	parent=	uing.html#parent=,SomeWidget,Widget	proc parent=[SomeWidget: Widget](w: SomeWidget; parent: Widget)		3339
+nim	handle	uing.html#handle,SomeWidget	proc handle[SomeWidget: Widget](w: SomeWidget): int		3351
+nim	signature	uing.html#signature,SomeWidget	proc signature[SomeWidget: Widget](w: SomeWidget): int		3358
+nim	typeSignature	uing.html#typeSignature,SomeWidget	proc typeSignature[SomeWidget: Widget](w: SomeWidget): int		3363
+nim	osSignature	uing.html#osSignature,SomeWidget	proc osSignature[SomeWidget: Widget](w: SomeWidget): int		3368
+nim	topLevel	uing.html#topLevel,SomeWidget	proc topLevel[SomeWidget: Widget](w: SomeWidget): bool		3373
+nim	visible	uing.html#visible,SomeWidget	proc visible[SomeWidget: Widget](w: SomeWidget): bool		3378
+nim	verifySetParent	uing.html#verifySetParent,SomeWidget,Widget	proc verifySetParent[SomeWidget: Widget](w: SomeWidget; parent: Widget)		3383
+nim	enabledToUser	uing.html#enabledToUser,SomeWidget	proc enabledToUser[SomeWidget: Widget](w: SomeWidget): bool		3393
+nim	free	uing.html#free,SomeWidget	proc free[SomeWidget: Widget](w: SomeWidget)		3401
+nim	DateTimePicker	uing.html#DateTimePicker	type DateTimePicker		3411
+nim	impl	uing.html#impl,DateTimePicker	proc impl(b: DateTimePicker): RawDateTimePicker		85
+nim	impl=	uing.html#impl=,DateTimePicker,RawDateTimePicker	proc impl=(b: DateTimePicker; r: RawDateTimePicker)		3418
+nim	time	uing.html#time,DateTimePicker	proc time(d: DateTimePicker): DateTime		3420
+nim	time=	uing.html#time=,DateTimePicker,DateTime	proc time=(d: DateTimePicker; dateTime: DateTime)		3448
+nim	newDateTimePicker	uing.html#newDateTimePicker,proc(DateTimePicker)	proc newDateTimePicker(onchanged: proc (sender: DateTimePicker) = nil): DateTimePicker		3470
+nim	newDateTimePicker	uing.html#newDateTimePicker,DateTime,proc(DateTimePicker)	proc newDateTimePicker(dateTime: DateTime;\n                  onchanged: proc (sender: DateTimePicker) = nil): DateTimePicker		3480
+nim	newDatePicker	uing.html#newDatePicker,proc(DateTimePicker)	proc newDatePicker(onchanged: proc (sender: DateTimePicker) = nil): DateTimePicker		3492
+nim	newDatePicker	uing.html#newDatePicker,DateTime,proc(DateTimePicker)	proc newDatePicker(date: DateTime; onchanged: proc (sender: DateTimePicker) = nil): DateTimePicker		3502
+nim	newTimePicker	uing.html#newTimePicker,proc(DateTimePicker)	proc newTimePicker(onchanged: proc (sender: DateTimePicker) = nil): DateTimePicker		3514
+nim	newTimePicker	uing.html#newTimePicker,DateTime,proc(DateTimePicker)	proc newTimePicker(time: DateTime; onchanged: proc (sender: DateTimePicker) = nil): DateTimePicker		3524
+nimgrp	newslider	uing.html#newSlider-procs-all	proc		1876
+nimgrp	padded	uing.html#padded-procs-all	proc		1360
+nimgrp	addwithattributes	uing.html#addWithAttributes-procs-all	proc		439
+nimgrp	text	uing.html#text-procs-all	proc		942
+nimgrp	child=	uing.html#child=-procs-all	proc		1194
+nimgrp	checked	uing.html#checked-procs-all	proc		1433
+nimgrp	selected=	uing.html#selected=-procs-all	proc		996
+nimgrp	selected	uing.html#selected-procs-all	proc		989
+nimgrp	child	uing.html#child-procs-all	proc		1187
+nimgrp	delete	uing.html#delete-procs-all	proc		426
+nimgrp	free	uing.html#free-procs-all	proc		134
+nimgrp	title	uing.html#title-procs-all	proc		1041
+nimgrp	padded=	uing.html#padded=-procs-all	proc		1369
+nimgrp	clear	uing.html#clear-procs-all	proc		1486
+nimgrp	impl	uing.html#impl-procs-all	proc		19
+nimgrp	value=	uing.html#value=-procs-all	proc		1770
+nimgrp	newdatetimepicker	uing.html#newDateTimePicker-procs-all	proc		3470
+nimgrp	margined=	uing.html#margined=-procs-all	proc		1178
+nimgrp	title=	uing.html#title=-procs-all	proc		1050
+nimgrp	add	uing.html#add-procs-all	proc		759
+nimgrp	readonly=	uing.html#readOnly=-procs-all	proc		1500
+nimgrp	newcolorbutton	uing.html#newColorButton-procs-all	proc		2490
+nimgrp	enable	uing.html#enable-procs-all	proc		2215
+nimgrp	newtimepicker	uing.html#newTimePicker-procs-all	proc		3514
+nimgrp	newcolorattribute	uing.html#newColorAttribute-procs-all	proc		609
+nimgrp	newspinbox	uing.html#newSpinbox-procs-all	proc		1782
+nimgrp	text=	uing.html#text=-procs-all	proc		949
+nimgrp	insertat	uing.html#insertAt-procs-all	proc		1607
+nimgrp	value	uing.html#value-procs-all	proc		1763
+nimgrp	newbackgroundcolorattribute	uing.html#newBackgroundColorAttribute-procs-all	proc		640
+nimgrp	$	uing.html#$-procs-all	proc		401
+nimgrp	disable	uing.html#disable-procs-all	proc		2222
+nimgrp	get	uing.html#get-procs-all	proc		793
+nimgrp	newtablevalue	uing.html#newTableValue-procs-all	proc		2859
+nimgrp	checked=	uing.html#checked=-procs-all	proc		1440
+nimgrp	readonly	uing.html#readOnly-procs-all	proc		1493
+nimgrp	margined	uing.html#margined-procs-all	proc		1171
+nimgrp	color	uing.html#color-procs-all	proc		629
+nimgrp	newdatepicker	uing.html#newDatePicker-procs-all	proc		3492
+nimgrp	remove	uing.html#remove-procs-all	proc		777
+nimgrp	impl=	uing.html#impl=-procs-all	proc		88
+nimgrp	newunderlinecolorattribute	uing.html#newUnderlineColorAttribute-procs-all	proc		678
+heading	See also	uing.html#see-also	 See also		0
