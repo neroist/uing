@@ -2538,7 +2538,7 @@ type
     ## Labels and containers are organized into two panes, making both labels
     ## and containers align with each other.
 
-    chlidren*: seq[tuple[label: string, widget: Widget]]
+    children*: seq[tuple[label: string, widget: Widget]]
 
 genImplProcs(Form)
 
