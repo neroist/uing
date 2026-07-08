@@ -32,7 +32,7 @@ elif defined(useLibUiStaticLib):
 else:
   {.pragma: libui.}
 
-  when defined(linux):
+  when defined(linux) or defined(bsd):
     from strutils import replace
 
     const 
